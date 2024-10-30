@@ -1,0 +1,297 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|c:\\users\\tfladmin\\source\\repos\\ecommerce\\ecommerceweb\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommerceweb\\views\\customers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\views\\customers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommerceweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommerceweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommerceweb\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommerceweb\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommerceweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommercetest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommercetest\\line.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\line.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommercetest\\circle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\circle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommercetest\\shape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\shape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\catalog\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|solutionrelative:catalog\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ecommercetest\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6F6700C-CBC3-42C6-8B8E-778A091A26BB}|CRM\\CRM.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\crm\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6F6700C-CBC3-42C6-8B8E-778A091A26BB}|CRM\\CRM.csproj|solutionrelative:crm\\icustomerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6F6700C-CBC3-42C6-8B8E-778A091A26BB}|CRM\\CRM.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\crm\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6F6700C-CBC3-42C6-8B8E-778A091A26BB}|CRM\\CRM.csproj|solutionrelative:crm\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6F6700C-CBC3-42C6-8B8E-778A091A26BB}|CRM\\CRM.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\crm\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6F6700C-CBC3-42C6-8B8E-778A091A26BB}|CRM\\CRM.csproj|solutionrelative:crm\\customerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5BB6BAD0-684D-4A42-994A-256E7E4F7D99}|OrderProcessing\\OrderProcessing.csproj|C:\\Users\\tfladmin\\source\\repos\\ECommerce\\orderprocessing\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5BB6BAD0-684D-4A42-994A-256E7E4F7D99}|OrderProcessing\\OrderProcessing.csproj|solutionrelative:orderprocessing\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Views\\Customers\\Index.cshtml",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Views\\Customers\\Index.cshtml",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Views\\Customers\\Index.cshtml",
+              "RelativeToolTip": "ECommerceWeb\\Views\\Customers\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-30T10:50:46.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomersController.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Controllers\\CustomersController.cs",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Controllers\\CustomersController.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Controllers\\CustomersController.cs",
+              "RelativeToolTip": "ECommerceWeb\\Controllers\\CustomersController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T10:50:22.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Views\\Home\\Contact.cshtml",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "ECommerceWeb\\Views\\Home\\Contact.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-30T10:20:32.101Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Views\\Home\\About.cshtml",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "ECommerceWeb\\Views\\Home\\About.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-30T10:20:24.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "ECommerceWeb\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T10:09:44.764Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Models\\Product.cs",
+              "RelativeToolTip": "ECommerceWeb\\Models\\Product.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T10:07:45.33Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceWeb\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ECommerceWeb\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACUAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-30T09:40:49.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Circle.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Circle.cs",
+              "RelativeDocumentMoniker": "ECommerceTest\\Circle.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Circle.cs",
+              "RelativeToolTip": "ECommerceTest\\Circle.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAABAAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T07:41:16.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Line.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Line.cs",
+              "RelativeDocumentMoniker": "ECommerceTest\\Line.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Line.cs",
+              "RelativeToolTip": "ECommerceTest\\Line.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T07:30:23.604Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Shape.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Shape.cs",
+              "RelativeDocumentMoniker": "ECommerceTest\\Shape.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Shape.cs",
+              "RelativeToolTip": "ECommerceTest\\Shape.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAwAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T07:28:34.547Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Student.cs",
+              "RelativeDocumentMoniker": "ECommerceTest\\Student.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Student.cs",
+              "RelativeToolTip": "ECommerceTest\\Student.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwAgAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T07:14:07.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Program.cs",
+              "RelativeDocumentMoniker": "ECommerceTest\\Program.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\ECommerceTest\\Program.cs",
+              "RelativeToolTip": "ECommerceTest\\Program.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAgwFQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T10:23:43.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ICustomerService.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\CRM\\ICustomerService.cs",
+              "RelativeDocumentMoniker": "CRM\\ICustomerService.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\CRM\\ICustomerService.cs",
+              "RelativeToolTip": "CRM\\ICustomerService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAUwAoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T09:07:11.189Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CustomerService.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\CRM\\CustomerService.cs",
+              "RelativeDocumentMoniker": "CRM\\CustomerService.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\CRM\\CustomerService.cs",
+              "RelativeToolTip": "CRM\\CustomerService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T09:06:37.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\OrderProcessing\\Order.cs",
+              "RelativeDocumentMoniker": "OrderProcessing\\Order.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\OrderProcessing\\Order.cs",
+              "RelativeToolTip": "OrderProcessing\\Order.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T09:04:56.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\CRM\\Customer.cs",
+              "RelativeDocumentMoniker": "CRM\\Customer.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\CRM\\Customer.cs",
+              "RelativeToolTip": "CRM\\Customer.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T09:03:49.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\Catalog\\Product.cs",
+              "RelativeDocumentMoniker": "Catalog\\Product.cs",
+              "ToolTip": "C:\\Users\\tfladmin\\source\\repos\\ECommerce\\Catalog\\Product.cs",
+              "RelativeToolTip": "Catalog\\Product.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAUwAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T09:03:26.66Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+﻿
+@using ECommerceWeb.Models;
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- This is html commment-->
+ 
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        @{
+            /*  This is C style   */
+            // this is c++ syntax
+
+            int count = 56;
+            count++;
+            int  add(int op1, int op2)
+            {
+                return op1 + op2;
+            }
+            int result = add(67, 89);
+            string company = "Transflower";
+            <h1 id="title">@company</h1>
+            <p> @result</p>
+
+        }
+
+        <p class="lead">Online Shopping Portal</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-md">Shop more &raquo;</a></p>
+    </section>
+
+    <div class="row">
+     
+        <ol>
+
+            @{
+                foreach (Product p in @Model)
+                {
+                    <li>
+                        <img src="@p.Image" width="50" height="50" />
+                    </li>
+                }
+            }
+        </ol>
+    </div>
+</main>

@@ -1,0 +1,10 @@
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\bin\Debug\ECommerceTest.exe.config
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\bin\Debug\ECommerceTest.exe
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\bin\Debug\ECommerceTest.pdb
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\bin\Debug\CRM.dll
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\bin\Debug\CRM.pdb
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\obj\Debug\ECommerceTest.csproj.AssemblyReference.cache
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\obj\Debug\ECommerceTest.csproj.CoreCompileInputs.cache
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\obj\Debug\ECommerc.84355B85.Up2Date
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\obj\Debug\ECommerceTest.exe
+C:\Users\tfladmin\source\repos\ECommerce\ECommerceTest\obj\Debug\ECommerceTest.pdb

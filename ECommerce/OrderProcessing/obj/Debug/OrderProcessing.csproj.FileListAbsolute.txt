@@ -1,0 +1,6 @@
+C:\Users\tfladmin\source\repos\ECommerce\OrderProcessing\bin\Debug\OrderProcessing.dll
+C:\Users\tfladmin\source\repos\ECommerce\OrderProcessing\bin\Debug\OrderProcessing.pdb
+C:\Users\tfladmin\source\repos\ECommerce\OrderProcessing\obj\Debug\OrderProcessing.csproj.AssemblyReference.cache
+C:\Users\tfladmin\source\repos\ECommerce\OrderProcessing\obj\Debug\OrderProcessing.csproj.CoreCompileInputs.cache
+C:\Users\tfladmin\source\repos\ECommerce\OrderProcessing\obj\Debug\OrderProcessing.dll
+C:\Users\tfladmin\source\repos\ECommerce\OrderProcessing\obj\Debug\OrderProcessing.pdb

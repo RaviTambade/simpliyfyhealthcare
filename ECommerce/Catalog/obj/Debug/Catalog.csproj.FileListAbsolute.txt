@@ -1,0 +1,6 @@
+C:\Users\tfladmin\source\repos\ECommerce\Catalog\bin\Debug\Catalog.dll
+C:\Users\tfladmin\source\repos\ECommerce\Catalog\bin\Debug\Catalog.pdb
+C:\Users\tfladmin\source\repos\ECommerce\Catalog\obj\Debug\Catalog.csproj.AssemblyReference.cache
+C:\Users\tfladmin\source\repos\ECommerce\Catalog\obj\Debug\Catalog.csproj.CoreCompileInputs.cache
+C:\Users\tfladmin\source\repos\ECommerce\Catalog\obj\Debug\Catalog.dll
+C:\Users\tfladmin\source\repos\ECommerce\Catalog\obj\Debug\Catalog.pdb
