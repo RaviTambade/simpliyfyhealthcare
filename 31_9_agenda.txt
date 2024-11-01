@@ -1,0 +1,25 @@
+objet oriente Paradigm
+OOA (object oriented analysis)
+OOD (object oriented design)
+OOP (object oriente programming)
+
+Functional Requirement of ecommerce:
+
+	product catalog (inventory)-----entity--controllers--views
+	shopping cart-----entity--controllers--views
+	order processing-----entity--controllers--views
+	payment processing-----entity--controllers--views
+	Shipment-----entity--controllers--views
+	customer relationship support(CRM)-----entity--controllers--views
+	
+	Models:
+		Product, customer, order, cart, Item
+	Contollers:
+		AuthController----------Login, Register, ForgotPassword, ResetPassword
+		HomeController----------Index, About, Contact,
+		ProductsContoller-------Index(List), details(GetbyId),Insert, Update, Delete
+		ShoppingCartController---Index (ShowCart), AddtoCart, RemoveFromCart
+		OrdersControllter--------Index,
+		PaymentsController--------
+		ShipmentController
+		CRMController

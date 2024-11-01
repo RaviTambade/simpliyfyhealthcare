@@ -4,3 +4,9 @@ C:\Users\tfladmin\source\repos\ECommerce\CRM\obj\Debug\CRM.csproj.AssemblyRefere
 C:\Users\tfladmin\source\repos\ECommerce\CRM\obj\Debug\CRM.csproj.CoreCompileInputs.cache
 C:\Users\tfladmin\source\repos\ECommerce\CRM\obj\Debug\CRM.dll
 C:\Users\tfladmin\source\repos\ECommerce\CRM\obj\Debug\CRM.pdb
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CRM\bin\Debug\CRM.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CRM\bin\Debug\CRM.pdb
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CRM\obj\Debug\CRM.csproj.AssemblyReference.cache
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CRM\obj\Debug\CRM.csproj.CoreCompileInputs.cache
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CRM\obj\Debug\CRM.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CRM\obj\Debug\CRM.pdb
