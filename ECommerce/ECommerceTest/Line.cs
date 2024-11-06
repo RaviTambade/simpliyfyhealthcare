@@ -13,7 +13,8 @@ namespace ECommerceTest
 
         public override void Draw()
         {
-
+            Console.WriteLine( StartPoint.X + " , "+  StartPoint.Y );
+            Console.WriteLine(EndPoint.X + " , " + EndPoint.Y);
         }
 
     }

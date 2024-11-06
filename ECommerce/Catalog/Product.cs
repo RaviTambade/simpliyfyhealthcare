@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Catalog
 {
+    //Business entity class which contains only data
+    //are called POCO classes in .net 
+    //POCO: Plain Old CLR Objects
+
     public class Product
     {
-        public int Id { get; set; }
+        public int Id { get; set; }  //auto property
         public string Name { get; set; }
         public string Description { get; set; }
         public double UnitPrice { get; set; }

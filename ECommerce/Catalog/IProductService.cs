@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Catalog
 {
+    //interfaces are used to define contract
    public interface IProductService
     {
+
+        //all methods in interface are abstract
         List<Product> GetAll();
         Product Get(int id);
         bool Insert(Product product);

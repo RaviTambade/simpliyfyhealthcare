@@ -6,8 +6,24 @@ using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using CRM;
+
+//namespace is a logical collection of classes
+//namespace can contain child namespaces as well
+
 namespace ECommerceTest
 {
+
+    //There are access specifiers in .net C#
+    //public:this can be accessed from external code
+    //private:these methods or memebers could be accessed only
+    //        throuhg public methods
+    //protected:these methods or members could be accessed through
+    //          child classes
+    //internal: this is also called as assembly scope
+    //          type defiend using internal could be accessed
+    //          only in dll , it contains
+
+
     internal class Program
     {
         static void Main(string[] args)

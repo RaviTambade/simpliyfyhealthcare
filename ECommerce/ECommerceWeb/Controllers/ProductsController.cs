@@ -9,6 +9,10 @@ namespace ECommerceWeb.Controllers
 {
     public class ProductsController : Controller
     {
+
+
+        //should contain action methods
+
         // GET: Products
         public ActionResult Index()
         {
@@ -32,8 +36,5 @@ namespace ECommerceWeb.Controllers
         {
             return View();
         }
-
-
-
     }
 }

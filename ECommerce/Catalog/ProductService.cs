@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Catalog
 {
+
+    //Service class is special class 
+    // we write for implementing core logic  which could be 
+    // used inside web based project , or console application
+    // or in another library.
+
     public class ProductService : IProductService
     {
         public bool Delete(int id)

@@ -1,0 +1,2 @@
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Membership\obj\Debug\Membership.csproj.AssemblyReference.cache
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Membership\obj\Debug\Membership.csproj.CoreCompileInputs.cache

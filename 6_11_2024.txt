@@ -1,0 +1,114 @@
+
+Creating Visual studio Solution
+	.sln -------- visual studio solution
+	.csproj-----  Visual studio project
+			console  application		(bin/test.exe)
+					program.cs, account.cs,.....etc.
+					app.config
+			class library			(bin/catalog.dll)
+							
+					
+			asp.net Web application ()      (bin/ecommerceweb.dll)
+					web.config
+					Global.asax
+					Views
+						razor pages (views)
+						  Home
+							index.cshtml
+							about.cshtml
+							contact.cshtml
+					 Models
+							
+					 
+					 Controllers
+							HomeController.cs
+							ProductsController.cs
+							CRMController.cs
+							ShoppingCartController.cs
+							AuthController.cs
+							OrdersController.cs
+							PaymentsController.cs
+			
+					
+
+					default.aspx
+					login.ascx
+					
+	.cs---------  Source code (C#)
+	.config-----  Configuration File (Application level setting information configured)
+
+Creating console application project
+Creating class library project
+Creating Simple class, base class, derived class, interface
+Adding private, public access specifier for C# class
+Adding public properties (auto property)
+Adding default constructor, paramterized constrcutor, destructor
+Garbage Collector
+.net framework:
+		CLR(Common language Runtime)---.net execution engine
+		CTS(Common Type System)--------.net types
+		CTS= CLS + FCL
+				Value tpes 
+					(primitive types)
+					   int, float, double, char, enum, struct
+				Reference types
+					   class, interface, delegate, event
+		    CLS  (Common language specification)
+				25 lang
+		    FCL  (Framework class library)
+			 Web Froms, asp.net mvc, asp.net web api
+			 .NET Fx  (WPF, WCF, WF,WIF)
+			 LINQ + Entity Framework (ORM)
+			 ADOT.NET
+			 File I/O, Reflection, Serialization
+			 Multithreading, Networking
+Web Application Architecture (asp.net)
+Building Web application using asp.net mvc
+
+  Difference Between exe and dll
+
+1. Exe's are stand alone application ( self executable)------- a seperate process ( primary thread, stack, heap, exe code,dll code
+	contains entry point Main function
+2. DLL;s are reusable libraries
+	do not contain Main function
+
+
+Software Development:
+		Design Principle:
+				DRY: Don't repeat yourself
+				KISS: Keep it simple and stupid
+				SOILD:
+					S: Single Responsibility Priniciple
+					O: Open for extension and Close for modification
+					L:
+					I:
+					D:
+					
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

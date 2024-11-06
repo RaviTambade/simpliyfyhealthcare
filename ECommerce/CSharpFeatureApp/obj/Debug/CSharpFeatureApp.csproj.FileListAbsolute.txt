@@ -1,0 +1,7 @@
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CSharpFeatureApp\bin\Debug\CSharpFeatureApp.exe.config
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CSharpFeatureApp\bin\Debug\CSharpFeatureApp.exe
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CSharpFeatureApp\bin\Debug\CSharpFeatureApp.pdb
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CSharpFeatureApp\obj\Debug\CSharpFeatureApp.csproj.AssemblyReference.cache
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CSharpFeatureApp\obj\Debug\CSharpFeatureApp.csproj.CoreCompileInputs.cache
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CSharpFeatureApp\obj\Debug\CSharpFeatureApp.exe
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\CSharpFeatureApp\obj\Debug\CSharpFeatureApp.pdb
