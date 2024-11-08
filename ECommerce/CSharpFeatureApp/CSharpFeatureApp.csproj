@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Complex.cs" />
+    <Compile Include="Handler.cs" />
     <Compile Include="HR.cs" />
     <Compile Include="MathEngine.cs" />
     <Compile Include="Person.cs" />
@@ -52,6 +53,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Banking\Banking.csproj">
+      <Project>{3c738099-dbfe-4f3f-961a-6c2880b3e6c9}</Project>
+      <Name>Banking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Delegation\Delegation.csproj">
+      <Project>{e6e2ef04-2d59-4abd-8454-8a7dee3a79c7}</Project>
+      <Name>Delegation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Penalty\Penalty.csproj">
+      <Project>{fd1d1db8-2472-4f6f-8e44-eae0cb730839}</Project>
+      <Name>Penalty</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taxation\Taxation.csproj">
+      <Project>{4f3a587b-1702-484d-9acd-b86e162d854d}</Project>
+      <Name>Taxation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -66,49 +66,17 @@ Web Application Architecture (asp.net)
 Building Web application using asp.net mvc
 
   Difference Between exe and dll
-
 1. Exe's are stand alone application ( self executable)------- a seperate process ( primary thread, stack, heap, exe code,dll code
 	contains entry point Main function
 2. DLL;s are reusable libraries
 	do not contain Main function
-
-
 Software Development:
 		Design Principle:
 				DRY: Don't repeat yourself
-				KISS: Keep it simple and stupid
+				KISS: Keep it simple and stupid  (using Clean Code Strategy)
 				SOILD:
 					S: Single Responsibility Priniciple
 					O: Open for extension and Close for modification
-					L:
-					I:
-					D:
-					
-
-
-
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+					L: Liscove's Substituion principle
+					I: Interface Saggrigation principle
+					D: Dependency Injectin

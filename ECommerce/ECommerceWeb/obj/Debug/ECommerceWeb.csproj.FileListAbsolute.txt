@@ -158,3 +158,11 @@ D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\roslyn\vbc.exe.co
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\roslyn\vbc.rsp
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\roslyn\VBCSCompiler.exe
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\roslyn\VBCSCompiler.exe.config
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\POCOLib.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\Services.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\Specification.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\BinaryDataRepositoryLIb.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\POCOLib.pdb
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\Services.pdb
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\Specification.pdb
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ECommerceWeb\bin\BinaryDataRepositoryLIb.pdb

@@ -42,9 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IProductService.cs" />
-    <Compile Include="Product.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\POCOLib\POCOLib.csproj">
+      <Project>{6f7e85f3-fd2c-444e-9bf0-8e40e34ed7c6}</Project>
+      <Name>POCOLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

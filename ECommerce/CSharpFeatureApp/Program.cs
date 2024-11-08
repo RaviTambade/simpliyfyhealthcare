@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CSharpFeatureApp;
 using HR;
+using Banking;
+using Taxation;
+using Penalty;
 
 namespace CSharpFeatureApp
 {
@@ -11,8 +16,25 @@ namespace CSharpFeatureApp
     {
         static void Main(string[] args)
         {
+            //object creation
+                        Account acct = new Account(15000);
+            //EVENT Registration
+            acct.underBalance += PenaltyHandler.ServiceDisconectionPenaltyCharges;
+            acct.underBalance += PenaltyHandler.NotificationPenaltyCharges;
 
-            MathEngine engine = new MathEngine();
+            //object invocation
+            acct.Withdraw(10000);
+
+            Console.ReadLine();
+        }
+    }
+}
+
+
+/*
+ 
+
+MathEngine engine = new MathEngine();
             engine.Add(76, 89);
             engine.Add(76, 89,87);
 
@@ -42,11 +64,33 @@ namespace CSharpFeatureApp
             double packageEmp = emp.ComputePay();
             Console.WriteLine(packageEmp);
 
+
             emp = new Manager { Id = 13, Name = "Manish", BasicSalary = 5000, DA = 500, HRA = 20000, Incentive=45000 };
             double packageMgr=emp.ComputePay();
             Console.WriteLine(packageMgr);
 
-            Console.ReadLine();
-        }
-    }
-}
+ */
+
+
+/*
+ 
+ //Compile time, earlly binding, static linking
+       
+Operation opn1 = new Operation(TaxHandler.PayServiceTax);
+Operation opn2 = new Operation(TaxHandler.PayIncomeTax);
+Operation opn3 = new Operation(TaxHandler.PayProfessionalTax);
+
+Operation masterOperation = null;
+masterOperation += opn1;
+masterOperation += opn2;
+masterOperation += opn3;
+
+//opn1.Invoke(30);
+//opn2.Invoke(30);
+//opn3.Invoke(30);
+masterOperation.Invoke(56);
+Console.WriteLine("After detachment");
+masterOperation -= opn3;
+masterOperation.Invoke(56);
+
+*/

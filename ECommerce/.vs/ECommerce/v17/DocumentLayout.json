@@ -3,52 +3,48 @@
   "WorkspaceRootPath": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\csharpfeatureapp\\hr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|solutionrelative:csharpfeatureapp\\hr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommerceweb\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89982411-9260-42FA-9789-AA772A33B3EB}|BinaryDataRepositoryLIb\\BinaryDataRepositoryLIb.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\binarydatarepositorylib\\binaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89982411-9260-42FA-9789-AA772A33B3EB}|BinaryDataRepositoryLIb\\BinaryDataRepositoryLIb.csproj|solutionrelative:binarydatarepositorylib\\binaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A3476E9B-9891-43B1-AF35-318250C76625}|SerializationTestApp\\SerializationTestApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\serializationtestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A3476E9B-9891-43B1-AF35-318250C76625}|SerializationTestApp\\SerializationTestApp.csproj|solutionrelative:serializationtestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\csharpfeatureapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|solutionrelative:csharpfeatureapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\csharpfeatureapp\\complex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|solutionrelative:csharpfeatureapp\\complex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\csharpfeatureapp\\mathengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|solutionrelative:csharpfeatureapp\\mathengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\csharpfeatureapp\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3BF02451-BAD0-4302-BF18-0049FA0DD430}|CSharpFeatureApp\\CSharpFeatureApp.csproj|solutionrelative:csharpfeatureapp\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommercetest\\shape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\shape.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommercetest\\line.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\line.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommercetest\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommercetest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D58822B3-E77D-4887-BF83-5EE3C6A153BF}|ECommerceTest\\ECommerceTest.csproj|solutionrelative:ecommercetest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|solutionrelative:services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\catalog\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|solutionrelative:catalog\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\catalog\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|solutionrelative:catalog\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\POCOLib.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\pocolib\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\POCOLib.csproj|solutionrelative:pocolib\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\specification\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|solutionrelative:specification\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\specification\\idatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|solutionrelative:specification\\idatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\catalog\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|solutionrelative:catalog\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\services\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|solutionrelative:services\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -67,157 +63,144 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "HR.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\HR.cs",
-              "RelativeDocumentMoniker": "CSharpFeatureApp\\HR.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\HR.cs",
-              "RelativeToolTip": "CSharpFeatureApp\\HR.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAmwCMAAAAFAAAA",
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\ProductsController.cs*",
+              "RelativeToolTip": "ECommerceWeb\\Controllers\\ProductsController.cs*",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABcAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T09:58:03.666Z",
+              "WhenOpened": "2024-11-08T11:07:07.902Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Complex.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\Complex.cs",
-              "RelativeDocumentMoniker": "CSharpFeatureApp\\Complex.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\Complex.cs",
-              "RelativeToolTip": "CSharpFeatureApp\\Complex.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAeAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\SerializationTestApp\\Program.cs",
+              "RelativeDocumentMoniker": "SerializationTestApp\\Program.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\SerializationTestApp\\Program.cs",
+              "RelativeToolTip": "SerializationTestApp\\Program.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAA4AAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T09:30:09.504Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Person.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\Person.cs",
-              "RelativeDocumentMoniker": "CSharpFeatureApp\\Person.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\Person.cs",
-              "RelativeToolTip": "CSharpFeatureApp\\Person.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwCIAAAA9AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T09:11:32.336Z",
+              "WhenOpened": "2024-11-08T10:57:47.005Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MathEngine.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\MathEngine.cs",
-              "RelativeDocumentMoniker": "CSharpFeatureApp\\MathEngine.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\MathEngine.cs",
-              "RelativeToolTip": "CSharpFeatureApp\\MathEngine.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAawCsAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:45:35.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\Program.cs",
               "RelativeDocumentMoniker": "CSharpFeatureApp\\Program.cs",
               "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\CSharpFeatureApp\\Program.cs",
               "RelativeToolTip": "CSharpFeatureApp\\Program.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAgwCgAAAAUAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:45:11.13Z",
+              "WhenOpened": "2024-11-08T10:57:01.673Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Student.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceTest\\Student.cs",
-              "RelativeDocumentMoniker": "ECommerceTest\\Student.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceTest\\Student.cs",
-              "RelativeToolTip": "ECommerceTest\\Student.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IProductService.cs",
+              "RelativeDocumentMoniker": "Specification\\IProductService.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IProductService.cs",
+              "RelativeToolTip": "Specification\\IProductService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:41:16.081Z",
+              "WhenOpened": "2024-11-08T09:58:21.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "Services\\ProductService.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\ProductService.cs",
+              "RelativeToolTip": "Services\\ProductService.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAkwCEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-08T09:50:49.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\Class1.cs",
+              "RelativeDocumentMoniker": "Services\\Class1.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\Class1.cs",
+              "RelativeToolTip": "Services\\Class1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-08T09:49:00.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BinaryRepository.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BinaryDataRepositoryLIb\\BinaryRepository.cs",
+              "RelativeDocumentMoniker": "BinaryDataRepositoryLIb\\BinaryRepository.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BinaryDataRepositoryLIb\\BinaryRepository.cs",
+              "RelativeToolTip": "BinaryDataRepositoryLIb\\BinaryRepository.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA1wBYAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-08T09:31:50.523Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Line.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceTest\\Line.cs",
-              "RelativeDocumentMoniker": "ECommerceTest\\Line.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceTest\\Line.cs",
-              "RelativeToolTip": "ECommerceTest\\Line.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAxwA0AAAAjAAAA",
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\Product.cs",
+              "RelativeDocumentMoniker": "POCOLib\\Product.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\Product.cs",
+              "RelativeToolTip": "POCOLib\\Product.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAWwAsAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:41:09.144Z",
+              "WhenOpened": "2024-11-08T09:27:43.387Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Shape.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceTest\\Shape.cs",
-              "RelativeDocumentMoniker": "ECommerceTest\\Shape.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceTest\\Shape.cs",
-              "RelativeToolTip": "ECommerceTest\\Shape.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAwAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:40:09.367Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceTest\\Program.cs",
-              "RelativeDocumentMoniker": "ECommerceTest\\Program.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceTest\\Program.cs",
-              "RelativeToolTip": "ECommerceTest\\Program.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T08:37:12.446Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
               "Title": "ProductService.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Catalog\\ProductService.cs",
               "RelativeDocumentMoniker": "Catalog\\ProductService.cs",
               "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Catalog\\ProductService.cs",
               "RelativeToolTip": "Catalog\\ProductService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAA5wCMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-31T09:49:56.247Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 9,
               "Title": "IProductService.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Catalog\\IProductService.cs",
               "RelativeDocumentMoniker": "Catalog\\IProductService.cs",
               "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Catalog\\IProductService.cs",
               "RelativeToolTip": "Catalog\\IProductService.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAwAAAAvAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-31T09:47:04.323Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Catalog\\Product.cs",
-              "RelativeDocumentMoniker": "Catalog\\Product.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Catalog\\Product.cs",
-              "RelativeToolTip": "Catalog\\Product.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA4AAAA0AAAA",
+              "DocumentIndex": 8,
+              "Title": "IDataRepository.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IDataRepository.cs",
+              "RelativeDocumentMoniker": "Specification\\IDataRepository.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IDataRepository.cs",
+              "RelativeToolTip": "Specification\\IDataRepository.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAYAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-31T09:33:52.263Z",
+              "WhenOpened": "2024-11-08T09:21:32.223Z",
               "EditorCaption": ""
             }
           ]

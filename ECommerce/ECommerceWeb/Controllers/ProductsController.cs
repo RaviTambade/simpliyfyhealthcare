@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Catalog;
+
+using POCO;
+using Specification;
+using Services;
 
 namespace ECommerceWeb.Controllers
 {
@@ -17,6 +20,8 @@ namespace ECommerceWeb.Controllers
         public ActionResult Index()
         {
             IProductService svc = new ProductService();
+            ProductService pSvc = (ProductService)svc;
+            pSvc.Seeding();
             List<Product> products =svc.GetAll();
             return View(products);
         }
