@@ -1,2 +1,6 @@
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ShoppingCart\obj\Debug\ShoppingCart.csproj.AssemblyReference.cache
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ShoppingCart\obj\Debug\ShoppingCart.csproj.CoreCompileInputs.cache
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ShoppingCart\bin\Debug\ShoppingCart.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ShoppingCart\bin\Debug\ShoppingCart.pdb
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ShoppingCart\obj\Debug\ShoppingCart.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\ShoppingCart\obj\Debug\ShoppingCart.pdb
