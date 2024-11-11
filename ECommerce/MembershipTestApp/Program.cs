@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Membership
+namespace MembershipTestApp
 {
-    public class Credenail
+    internal class Program
     {
-        public string Email { get;set; }
-        public string Password { get;set; }
+        static void Main(string[] args)
+        {
+           
+        }
     }
 }

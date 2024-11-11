@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDesignPatternApp", "Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionDemoApp", "CollectionDemoApp\CollectionDemoApp.csproj", "{D8022334-0FD4-4F85-A208-53CC62AD50E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreConsoleApp", "CoreConsoleApp\CoreConsoleApp.csproj", "{F7A04BE9-9AA2-44BB-80E9-9ADE6CB66A96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembershipTestApp", "MembershipTestApp\MembershipTestApp.csproj", "{DB035D75-B0C5-4589-811E-A6D526E6A40D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +127,14 @@ Global
 		{D8022334-0FD4-4F85-A208-53CC62AD50E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8022334-0FD4-4F85-A208-53CC62AD50E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8022334-0FD4-4F85-A208-53CC62AD50E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A04BE9-9AA2-44BB-80E9-9ADE6CB66A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A04BE9-9AA2-44BB-80E9-9ADE6CB66A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A04BE9-9AA2-44BB-80E9-9ADE6CB66A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A04BE9-9AA2-44BB-80E9-9ADE6CB66A96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB035D75-B0C5-4589-811E-A6D526E6A40D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB035D75-B0C5-4589-811E-A6D526E6A40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB035D75-B0C5-4589-811E-A6D526E6A40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB035D75-B0C5-4589-811E-A6D526E6A40D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
