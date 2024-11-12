@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using POCO;
 using Specification;
 using BinaryDataRepositoryLIb;
+using JsonDataRepositoryLib;
 using System.Security;
 using System.Net.Http;
 namespace Services
 {
-
     //Service class is special class 
     // we write for implementing core logic  which could be 
     // used inside web based project , or console application
@@ -28,8 +28,10 @@ namespace Services
             products.Add(new Product { Id = 3, Name = "lily", Description = "Delicate Flower", UnitPrice = 2, Quantity = 7000, Image = "/images/lily.jpg" });
             products.Add(new Product { Id = 4, Name = "jasmine", Description = "Fregrance Flower", UnitPrice = 12, Quantity = 55000, Image = "/images/jasmines.jpg" });
             products.Add(new Product { Id = 5, Name = "lotus", Description = "Worship Flower", UnitPrice = 45, Quantity = 15000, Image = "/images/lotus.jpg" });
-            IDataRepository<Product> repo = new BinaryRepository<Product>();
-            status= repo.Serialize("products.dat", products);
+
+            // IDataRepository<Product> repo = new BinaryRepository<Product>();
+            IDataRepository<Product> repo = new JsonRepository<Product>();
+            status = repo.Serialize(@"D:/products.json", products);
             return status;
         }
         public bool Delete(int id)
@@ -39,8 +41,8 @@ namespace Services
             {
                 List<Product> allProducts = GetAll();
                 allProducts.Remove(theProduct);
-                IDataRepository<Product> repo = new BinaryRepository<Product>();
-                repo.Serialize("products.dat",allProducts);
+                IDataRepository<Product> repo = new JsonRepository<Product>();
+                 repo.Serialize(@"D:/products.json", allProducts);
             }
             return false;
         }
@@ -63,8 +65,8 @@ namespace Services
         public List<Product> GetAll()
         {
             List<Product> products = new List<Product>();
-            IDataRepository<Product> repository = new BinaryRepository<Product>();
-            products = repository.Deserialize(@"D:/products.dat");
+            IDataRepository<Product> repository = new JsonRepository<Product>();
+            products = repository.Deserialize(@"D:/products.json");
             return products;
         }
 
@@ -72,8 +74,8 @@ namespace Services
         {
             List<Product> allProducts = GetAll();
             allProducts.Add(product);
-            IDataRepository<Product> repo = new BinaryRepository<Product>();
-            repo.Serialize(@"D:/products.dat", allProducts);
+            IDataRepository<Product> repo = new JsonRepository<Product>();
+            repo.Serialize(@"D:/products.json", allProducts);
 
             return false;    
         }
@@ -86,8 +88,8 @@ namespace Services
                 List<Product> allProducts = GetAll();
                 allProducts.Remove(theProduct);
                 allProducts.Add(productTobeUpdated);
-                IDataRepository<Product> repo = new BinaryRepository<Product>();
-                repo.Serialize("products.dat", allProducts);
+                IDataRepository<Product> repo = new JsonRepository<Product>();
+                repo.Serialize(@"D:/products.json", allProducts);
             }
             return false;
         }

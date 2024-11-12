@@ -9,7 +9,7 @@ namespace POCO {
     //are called POCO classes in .net 
     //POCO: Plain Old CLR Objects
 
-    [Serializable]
+    //[Serializable]
     public class Product
     {
         public int Id { get; set; }  //auto property
