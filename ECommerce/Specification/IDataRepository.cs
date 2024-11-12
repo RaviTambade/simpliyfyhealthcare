@@ -8,7 +8,7 @@ namespace Specification
 {
     public interface IDataRepository<T>
     {
-        bool Serialize(string filename, List<T> products);
+        bool Serialize(string filename, List<T> items);
         List<T> Deserialize(string filename);
 
     }
