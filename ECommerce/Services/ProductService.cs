@@ -64,7 +64,7 @@ namespace Services
         {
             List<Product> products = new List<Product>();
             IDataRepository<Product> repository = new BinaryRepository<Product>();
-            products = repository.Deserialize("products.dat");
+            products = repository.Deserialize(@"D:/products.dat");
             return products;
         }
 
@@ -73,7 +73,7 @@ namespace Services
             List<Product> allProducts = GetAll();
             allProducts.Add(product);
             IDataRepository<Product> repo = new BinaryRepository<Product>();
-            repo.Serialize("products.dat", allProducts);
+            repo.Serialize(@"D:/products.dat", allProducts);
 
             return false;    
         }
