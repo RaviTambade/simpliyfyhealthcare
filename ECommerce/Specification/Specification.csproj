@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAuthService.cs" />
     <Compile Include="IDataRepository.cs" />
     <Compile Include="IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
