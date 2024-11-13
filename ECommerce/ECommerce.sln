@@ -63,6 +63,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{5D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interfaces", "Interfaces", "{209EE317-C955-4160-B589-1EC409257FDC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{3B56B3DF-CAE7-4F31-964F-5D38A8AB166D}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\products.dat = ..\..\..\..\..\products.dat
+		..\..\..\..\..\products.json = ..\..\..\..\..\products.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BannkingPortal", "BannkingPortal\BannkingPortal.csproj", "{1835CF4A-B343-49A5-8F7C-78F15AA36F59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +169,10 @@ Global
 		{D4E99A12-4A79-4CF2-B3B2-56F76608FBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4E99A12-4A79-4CF2-B3B2-56F76608FBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4E99A12-4A79-4CF2-B3B2-56F76608FBE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1835CF4A-B343-49A5-8F7C-78F15AA36F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1835CF4A-B343-49A5-8F7C-78F15AA36F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1835CF4A-B343-49A5-8F7C-78F15AA36F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1835CF4A-B343-49A5-8F7C-78F15AA36F59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -189,6 +201,7 @@ Global
 		{DB035D75-B0C5-4589-811E-A6D526E6A40D} = {0851DFE9-E120-4D4C-B4D7-29725349A224}
 		{2F4449CF-3427-418F-93C0-B175651247BB} = {027BF7B4-D2AC-4CE5-B737-7B58EE132CAD}
 		{D4E99A12-4A79-4CF2-B3B2-56F76608FBE3} = {CA196CA4-D2D3-48D5-8FD4-9190DAF3DED0}
+		{1835CF4A-B343-49A5-8F7C-78F15AA36F59} = {027BF7B4-D2AC-4CE5-B737-7B58EE132CAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09F9E268-0BA4-4291-90C6-1D38188729E4}
