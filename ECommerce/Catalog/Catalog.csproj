@@ -46,9 +46,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\POCOLib\POCOLib.csproj">
+    <ProjectReference Include="..\POCOLib\ECommerceEntities.csproj">
       <Project>{6f7e85f3-fd2c-444e-9bf0-8e40e34ed7c6}</Project>
-      <Name>POCOLib</Name>
+      <Name>ECommerceEntities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 using POCO;
 using Specification;
-using Services;
+using ECommerceServices;
 
 namespace ECommerceWeb.Controllers
 {

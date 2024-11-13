@@ -238,13 +238,13 @@
       <Project>{0a36cf2d-e6cb-4d7a-91b3-314e6a3a21f7}</Project>
       <Name>Catalog</Name>
     </ProjectReference>
-    <ProjectReference Include="..\POCOLib\POCOLib.csproj">
+    <ProjectReference Include="..\POCOLib\ECommerceEntities.csproj">
       <Project>{6f7e85f3-fd2c-444e-9bf0-8e40e34ed7c6}</Project>
-      <Name>POCOLib</Name>
+      <Name>ECommerceEntities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
+    <ProjectReference Include="..\Services\ECommerceServices.csproj">
       <Project>{deccf391-8cd8-4c6f-bf07-a8fa1e49a94d}</Project>
-      <Name>Services</Name>
+      <Name>ECommerceServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\Specification\Specification.csproj">
       <Project>{c4b3f2b3-a6dd-4764-8a11-10f407eb2611}</Project>

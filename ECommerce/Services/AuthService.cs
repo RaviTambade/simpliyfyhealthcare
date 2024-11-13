@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using Specification;
 using POCO;
 
-namespace Services
+namespace ECommerceServices
+
 {
     public class AuthService : IAuthService
     {

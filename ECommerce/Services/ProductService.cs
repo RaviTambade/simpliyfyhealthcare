@@ -9,7 +9,7 @@ using BinaryDataRepositoryLIb;
 using JsonDataRepositoryLib;
 using System.Security;
 using System.Net.Http;
-namespace Services
+namespace ECommerceServices
 {
     //Service class is special class 
     // we write for implementing core logic  which could be 

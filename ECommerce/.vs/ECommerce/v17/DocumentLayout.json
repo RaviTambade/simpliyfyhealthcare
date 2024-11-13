@@ -3,84 +3,68 @@
   "WorkspaceRootPath": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\authwebapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|solutionrelative:authwebapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\ECommerceEntities.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\pocolib\\credenail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\ECommerceEntities.csproj|solutionrelative:pocolib\\credenail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\POCOLib.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\pocolib\\credenail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\POCOLib.csproj|solutionrelative:pocolib\\credenail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\authwebapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|solutionrelative:authwebapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\specification\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|solutionrelative:specification\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\ECommerceEntities.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\pocolib\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\ECommerceEntities.csproj|solutionrelative:pocolib\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\POCOLib.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\pocolib\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\POCOLib.csproj|solutionrelative:pocolib\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\POCOLib.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\pocolib\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F7E85F3-FD2C-444E-9BF0-8E40E34ED7C6}|POCOLib\\POCOLib.csproj|solutionrelative:pocolib\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|solutionrelative:services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\specification\\idatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|solutionrelative:specification\\idatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommerceweb\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\authwebapi\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|solutionrelative:authwebapi\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35893171-0EE1-4624-8328-9A558F448A43}|Membership\\Membership.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\membership\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35893171-0EE1-4624-8328-9A558F448A43}|Membership\\Membership.csproj|solutionrelative:membership\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35893171-0EE1-4624-8328-9A558F448A43}|Membership\\Membership.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\membership\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35893171-0EE1-4624-8328-9A558F448A43}|Membership\\Membership.csproj|solutionrelative:membership\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\specification\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B3F2B3-A6DD-4764-8A11-10F407EB2611}|Specification\\Specification.csproj|solutionrelative:specification\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4E99A12-4A79-4CF2-B3B2-56F76608FBE3}|JsonDataRepositoryLib\\JsonDataRepositoryLib.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\jsondatarepositorylib\\jsonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4E99A12-4A79-4CF2-B3B2-56F76608FBE3}|JsonDataRepositoryLib\\JsonDataRepositoryLib.csproj|solutionrelative:jsondatarepositorylib\\jsonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89982411-9260-42FA-9789-AA772A33B3EB}|BinaryDataRepositoryLIb\\BinaryDataRepositoryLIb.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\binarydatarepositorylib\\binaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89982411-9260-42FA-9789-AA772A33B3EB}|BinaryDataRepositoryLIb\\BinaryDataRepositoryLIb.csproj|solutionrelative:binarydatarepositorylib\\binaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A3476E9B-9891-43B1-AF35-318250C76625}|SerializationTestApp\\SerializationTestApp.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\serializationtestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A3476E9B-9891-43B1-AF35-318250C76625}|SerializationTestApp\\SerializationTestApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\serializationtestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A3476E9B-9891-43B1-AF35-318250C76625}|SerializationTestApp\\SerializationTestApp.csproj|solutionrelative:serializationtestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\authwebapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|solutionrelative:authwebapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\authwebapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|solutionrelative:authwebapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\authwebapi\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|solutionrelative:authwebapi\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\authwebapi\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2F4449CF-3427-418F-93C0-B175651247BB}|AuthWebAPI\\AuthWebAPI.csproj|solutionrelative:authwebapi\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\catalog\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A36CF2D-E6CB-4D7A-91B3-314E6A3A21F7}|Catalog\\Catalog.csproj|solutionrelative:catalog\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommerceweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35893171-0EE1-4624-8328-9A558F448A43}|Membership\\Membership.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\membership\\credenail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35893171-0EE1-4624-8328-9A558F448A43}|Membership\\Membership.csproj|solutionrelative:membership\\credenail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommerceweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DB035D75-B0C5-4589-811E-A6D526E6A40D}|MembershipTestApp\\MembershipTestApp.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\membershiptestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DB035D75-B0C5-4589-811E-A6D526E6A40D}|MembershipTestApp\\MembershipTestApp.csproj|solutionrelative:membershiptestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|solutionrelative:services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DECCF391-8CD8-4C6F-BF07-A8FA1E49A94D}|Services\\Services.csproj|solutionrelative:services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommerceweb\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommerceweb\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,270 +74,218 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Credenail.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\Credenail.cs",
-              "RelativeDocumentMoniker": "POCOLib\\Credenail.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\Credenail.cs",
-              "RelativeToolTip": "POCOLib\\Credenail.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T11:24:48.448Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\User.cs",
-              "RelativeDocumentMoniker": "POCOLib\\User.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\User.cs",
-              "RelativeToolTip": "POCOLib\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T11:23:06.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "Services\\AuthService.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\AuthService.cs",
-              "RelativeToolTip": "Services\\AuthService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T11:22:33.953Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "AuthWebAPI\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\AuthController.cs*",
-              "RelativeToolTip": "AuthWebAPI\\Controllers\\AuthController.cs*",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAQwBUAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T11:17:02.645Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "AuthWebAPI\\Controllers\\UsersController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "AuthWebAPI\\Controllers\\UsersController.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAADwvwcAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T11:16:07.564Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IAuthService.cs",
-              "RelativeDocumentMoniker": "Specification\\IAuthService.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IAuthService.cs",
-              "RelativeToolTip": "Specification\\IAuthService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T11:13:43.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "IProductService.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IProductService.cs",
-              "RelativeDocumentMoniker": "Specification\\IProductService.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IProductService.cs",
-              "RelativeToolTip": "Specification\\IProductService.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAhwA0AAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T11:01:30.167Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "JsonRepository.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\JsonDataRepositoryLib\\JsonRepository.cs",
-              "RelativeDocumentMoniker": "JsonDataRepositoryLib\\JsonRepository.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\JsonDataRepositoryLib\\JsonRepository.cs",
-              "RelativeToolTip": "JsonDataRepositoryLib\\JsonRepository.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwBsAAAAQAAAA",
+              "DocumentIndex": 0,
+              "Title": "Credenail.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\Credenail.cs",
+              "RelativeDocumentMoniker": "POCOLib\\Credenail.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\Credenail.cs",
+              "RelativeToolTip": "POCOLib\\Credenail.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T10:32:03.494Z",
+              "WhenOpened": "2024-11-13T07:50:45.794Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Catalog\\ProductService.cs",
-              "RelativeDocumentMoniker": "Catalog\\ProductService.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Catalog\\ProductService.cs",
-              "RelativeToolTip": "Catalog\\ProductService.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAA1wB8AAACdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:38:14.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\Product.cs",
               "RelativeDocumentMoniker": "POCOLib\\Product.cs",
               "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\Product.cs",
               "RelativeToolTip": "POCOLib\\Product.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAOAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:36:52.809Z",
+              "WhenOpened": "2024-11-13T07:50:41.987Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "AuthWebAPI\\Controllers\\ProductsController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "AuthWebAPI\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\User.cs",
+              "RelativeDocumentMoniker": "POCOLib\\User.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\POCOLib\\User.cs",
+              "RelativeToolTip": "POCOLib\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:17:21.503Z",
+              "WhenOpened": "2024-11-13T07:50:06.051Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "AuthWebAPI\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "AuthWebAPI\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:17:01.631Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\ProductService.cs",
-              "RelativeDocumentMoniker": "Services\\ProductService.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\ProductService.cs",
-              "RelativeToolTip": "Services\\ProductService.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAswAsAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T10:02:57.808Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\SerializationTestApp\\Program.cs",
               "RelativeDocumentMoniker": "SerializationTestApp\\Program.cs",
               "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\SerializationTestApp\\Program.cs",
               "RelativeToolTip": "SerializationTestApp\\Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAqwA4AAAAUAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T10:02:46.619Z",
+              "WhenOpened": "2024-11-13T07:48:55.083Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "BinaryRepository.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BinaryDataRepositoryLIb\\BinaryRepository.cs",
-              "RelativeDocumentMoniker": "BinaryDataRepositoryLIb\\BinaryRepository.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BinaryDataRepositoryLIb\\BinaryRepository.cs",
-              "RelativeToolTip": "BinaryDataRepositoryLIb\\BinaryRepository.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwBQAAAAbAAAA",
+              "DocumentIndex": 6,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "AuthWebAPI\\Controllers\\UsersController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "AuthWebAPI\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T10:00:34.267Z",
+              "WhenOpened": "2024-11-13T07:48:45.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "AuthWebAPI\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "AuthWebAPI\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T07:48:10.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "IDataRepository.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IDataRepository.cs",
-              "RelativeDocumentMoniker": "Specification\\IDataRepository.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Specification\\IDataRepository.cs",
-              "RelativeToolTip": "Specification\\IDataRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T09:59:25.546Z",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "AuthWebAPI\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "AuthWebAPI\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-13T07:41:20.009Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\MembershipTestApp\\Program.cs",
-              "RelativeDocumentMoniker": "MembershipTestApp\\Program.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\MembershipTestApp\\Program.cs",
-              "RelativeToolTip": "MembershipTestApp\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAALAAAA",
+              "DocumentIndex": 9,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "AuthWebAPI\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "AuthWebAPI\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAoAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T09:16:40.423Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Credenail.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Membership\\Credenail.cs",
-              "RelativeDocumentMoniker": "Membership\\Credenail.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Membership\\Credenail.cs",
-              "RelativeToolTip": "Membership\\Credenail.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T09:15:43.583Z",
+              "WhenOpened": "2024-11-13T07:40:53.152Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Membership\\AuthService.cs",
-              "RelativeDocumentMoniker": "Membership\\AuthService.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Membership\\AuthService.cs",
-              "RelativeToolTip": "Membership\\AuthService.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAgwBkAAAAdAAAA",
+              "Title": "About.cshtml",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Views\\Home\\About.cshtml",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "ECommerceWeb\\Views\\Home\\About.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-13T07:39:37.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "ECommerceWeb\\Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T09:15:13.955Z",
+              "WhenOpened": "2024-11-13T07:39:05.904Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Membership\\IAuthService.cs",
-              "RelativeDocumentMoniker": "Membership\\IAuthService.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Membership\\IAuthService.cs",
-              "RelativeToolTip": "Membership\\IAuthService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "ECommerceWeb\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBMAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T09:14:57.283Z",
+              "WhenOpened": "2024-11-13T07:39:00.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "AuthWebAPI\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\AuthWebAPI\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "AuthWebAPI\\Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T07:38:34.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "Services\\ProductService.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\ProductService.cs",
+              "RelativeToolTip": "Services\\ProductService.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAsAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T07:23:54.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\Services\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T07:23:53.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Views\\Auth\\Login.cshtml",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Views\\Auth\\Login.cshtml",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Views\\Auth\\Login.cshtml",
+              "RelativeToolTip": "ECommerceWeb\\Views\\Auth\\Login.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-13T07:18:53.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ECommerceWeb\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ECommerceWeb\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-13T07:18:38.923Z",
               "EditorCaption": ""
             }
           ]

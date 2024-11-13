@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using POCO;
 using Specification;
-using Services;
+using ECommerceServices;
 namespace AuthWebAPI.Controllers
 {
     public class UsersController : ApiController
