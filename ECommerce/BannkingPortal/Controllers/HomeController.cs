@@ -11,6 +11,7 @@ namespace BannkingPortal.Controllers
         //action methods
         public ActionResult Index()
         {
+            string company = "Transflower Learning Pvt. Ltd";
             return View();
         }
 
