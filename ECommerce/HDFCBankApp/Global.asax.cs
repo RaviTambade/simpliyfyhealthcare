@@ -17,5 +17,20 @@ namespace HDFCBankApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_Start()
+        {
+
+        }
+
+        protected void Session_End()
+        {
+
+        }
+
+        protected void Application_End()
+        {
+
+        }
     }
 }

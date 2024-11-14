@@ -36,5 +36,12 @@ namespace HDFCBankApp.Controllers
             return View();
         }
 
+        public ActionResult Thankyou()
+        {
+            string theMessage = TempData["mymessage"] as string;
+            ViewData["processmessage"] = theMessage;
+            return View();
+        }
+
     }
 }

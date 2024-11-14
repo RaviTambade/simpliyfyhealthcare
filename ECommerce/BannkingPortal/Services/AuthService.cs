@@ -10,7 +10,7 @@ namespace BannkingPortal.Services
     {
         public bool ForgotPassword(string username)
         {
-            
+            return false;
         }
 
         public bool Login(string username, string password)
