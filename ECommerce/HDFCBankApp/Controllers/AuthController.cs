@@ -20,6 +20,7 @@ namespace HDFCBankApp.Controllers
         {
             if (email == "shubhangi.tambade@gmail.com" && password == "seed")
             {
+                //add data into session variable
                 this.HttpContext.Session["loggedinUser"] = email;
                 return RedirectToAction("welcome");
             }
@@ -32,6 +33,7 @@ namespace HDFCBankApp.Controllers
 
         public ActionResult Welcome()
         {
+            //extract data from session
             string email = this.HttpContext.Session["loggedinUser"] as string;
             ViewBag.Email = email;
             return View();

@@ -3,100 +3,28 @@
   "WorkspaceRootPath": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|solutionrelative:hrportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|solutionrelative:hrportal\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|solutionrelative:hrportal\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\views\\home\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|solutionrelative:hrportal\\views\\home\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\accounts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\accounts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\controllers\\accountscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\bannkingportal\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|solutionrelative:bannkingportal\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\auth\\welcome.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\auth\\welcome.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\bannkingportal\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|solutionrelative:bannkingportal\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\bannkingportal\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\bannkingportal\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|solutionrelative:bannkingportal\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\ecommerceweb\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3A002612-0C45-4AA2-A94D-6666FDC3D13D}|ECommerceWeb\\ECommerceWeb.csproj|solutionrelative:ecommerceweb\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\home\\thankyou.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\home\\thankyou.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\bannkingportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\bannkingportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|solutionrelative:bannkingportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\accounts\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\accounts\\process.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\accounts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\accounts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\customers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\customers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\customers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\customers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\bannkingportal\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1835CF4A-B343-49A5-8F7C-78F15AA36F59}|BannkingPortal\\BannkingPortal.csproj|solutionrelative:bannkingportal\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hdfcbankapp\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{71D5892A-39F0-4711-AD77-3C2B032AA4C5}|HDFCBankApp\\HDFCBankApp.csproj|solutionrelative:hdfcbankapp\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -106,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -114,312 +42,78 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Web.config",
+              "RelativeDocumentMoniker": "HRPortal\\Web.config",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Web.config",
+              "RelativeToolTip": "HRPortal\\Web.config",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAEwBAAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-11-15T05:52:17.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Views\\Home\\Error.cshtml",
+              "RelativeDocumentMoniker": "HRPortal\\Views\\Home\\Error.cshtml",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Views\\Home\\Error.cshtml",
+              "RelativeToolTip": "HRPortal\\Views\\Home\\Error.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-15T05:50:30.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Global.asax.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Global.asax.cs",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Global.asax.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Global.asax.cs*",
-              "RelativeToolTip": "HDFCBankApp\\Global.asax.cs*",
-              "ViewState": "AQIAABEAAAAAAAAAAAAnwBoAAAAJAAAA",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Global.asax.cs",
+              "RelativeDocumentMoniker": "HRPortal\\Global.asax.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Global.asax.cs",
+              "RelativeToolTip": "HRPortal\\Global.asax.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAowBMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T10:42:19.289Z",
+              "WhenOpened": "2024-11-15T05:40:38.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "HRPortal\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Controllers\\HomeController.cs*",
+              "RelativeToolTip": "HRPortal\\Controllers\\HomeController.cs*",
+              "ViewState": "AQIAAAgAAAAAAAAAAAA5wAwAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T05:36:10.367Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Accounts\\Details.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Accounts\\Details.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Accounts\\Details.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Accounts\\Details.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T10:01:49.516Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "BannkingPortal\\Services\\AuthService.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Services\\AuthService.cs",
-              "RelativeToolTip": "BannkingPortal\\Services\\AuthService.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAA9wAwAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T09:57:48.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Welcome.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Auth\\Welcome.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Auth\\Welcome.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Auth\\Welcome.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Auth\\Welcome.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T09:54:39.901Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Views\\Auth\\Login.cshtml",
-              "RelativeDocumentMoniker": "BannkingPortal\\Views\\Auth\\Login.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Views\\Auth\\Login.cshtml",
-              "RelativeToolTip": "BannkingPortal\\Views\\Auth\\Login.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T09:51:29.539Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Auth\\Login.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Auth\\Login.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Auth\\Login.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Auth\\Login.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T09:51:10.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "BannkingPortal\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Controllers\\AuthController.cs",
               "RelativeToolTip": "BannkingPortal\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwAwAAAAfAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-14T06:15:19.933Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ECommerceWeb\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\ECommerceWeb\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "ECommerceWeb\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T09:50:43.625Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "HDFCBankApp\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAADwvyIAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T09:49:51.537Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Thankyou.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Home\\Thankyou.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Home\\Thankyou.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Home\\Thankyou.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Home\\Thankyou.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T09:24:42.693Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Process.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Accounts\\Process.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Accounts\\Process.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Accounts\\Process.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Accounts\\Process.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T09:16:12.668Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Accounts\\Index.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Accounts\\Index.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Accounts\\Index.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Accounts\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T09:05:31.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "AccountsController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Controllers\\AccountsController.cs",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Controllers\\AccountsController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Controllers\\AccountsController.cs",
-              "RelativeToolTip": "HDFCBankApp\\Controllers\\AccountsController.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAuwBwAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T09:04:43.019Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Customers\\Details.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Customers\\Details.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Customers\\Details.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Customers\\Details.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T07:27:43.981Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Models\\Customer.cs",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Models\\Customer.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Models\\Customer.cs",
-              "RelativeToolTip": "HDFCBankApp\\Models\\Customer.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T06:54:41.259Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Customers\\Index.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Customers\\Index.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Customers\\Index.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Customers\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T06:51:11.925Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CustomersController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Controllers\\CustomersController.cs",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Controllers\\CustomersController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Controllers\\CustomersController.cs",
-              "RelativeToolTip": "HDFCBankApp\\Controllers\\CustomersController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAA3wCAAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T06:50:49.785Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Contact.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Home\\Contact.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Home\\Contact.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Home\\Contact.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Home\\Contact.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T06:26:05.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Contact.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Models\\Contact.cs",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Models\\Contact.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Models\\Contact.cs",
-              "RelativeToolTip": "HDFCBankApp\\Models\\Contact.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAYAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T06:22:16.17Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "About.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Home\\About.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Home\\About.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Home\\About.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Home\\About.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T06:21:15.673Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "HDFCBankApp\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T06:18:14.08Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "HDFCBankApp\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HDFCBankApp\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "HDFCBankApp\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABAAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T06:17:41.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "BannkingPortal\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "BannkingPortal\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAgwA0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-14T06:13:55.27Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "BannkingPortal\\Controllers\\HomeController.cs",
               "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Controllers\\HomeController.cs",
               "RelativeToolTip": "BannkingPortal\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAeAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-14T06:12:58.469Z",
               "EditorCaption": ""
