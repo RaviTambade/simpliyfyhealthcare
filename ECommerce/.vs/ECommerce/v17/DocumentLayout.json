@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|solutionrelative:hrportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|solutionrelative:hrportal\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\views\\home\\error2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|solutionrelative:hrportal\\views\\home\\error2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|solutionrelative:hrportal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C46BAC13-33D8-4A20-B94D-2DC55E484DB9}|HRPortal\\HRPortal.csproj|d:\\ravi\\tap\\tap\\simpliyfyhealthcare\\ecommerce\\hrportal\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -42,20 +46,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Error2.cshtml",
+              "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Views\\Home\\Error2.cshtml",
+              "RelativeDocumentMoniker": "HRPortal\\Views\\Home\\Error2.cshtml",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Views\\Home\\Error2.cshtml",
+              "RelativeToolTip": "HRPortal\\Views\\Home\\Error2.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-15T06:28:40.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Web.config",
               "RelativeDocumentMoniker": "HRPortal\\Web.config",
               "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Web.config",
               "RelativeToolTip": "HRPortal\\Web.config",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAEwBAAAAACAAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAEwA8AAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2024-11-15T05:52:17.627Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Error.cshtml",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Views\\Home\\Error.cshtml",
               "RelativeDocumentMoniker": "HRPortal\\Views\\Home\\Error.cshtml",
@@ -68,33 +85,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Global.asax.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Global.asax.cs",
               "RelativeDocumentMoniker": "HRPortal\\Global.asax.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Global.asax.cs",
-              "RelativeToolTip": "HRPortal\\Global.asax.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAowBMAAAAAAAAA",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Global.asax.cs*",
+              "RelativeToolTip": "HRPortal\\Global.asax.cs*",
+              "ViewState": "AQIAABQAAAAAAAAAAAAIwB4AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T05:40:38.946Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "HRPortal\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Controllers\\HomeController.cs*",
-              "RelativeToolTip": "HRPortal\\Controllers\\HomeController.cs*",
-              "ViewState": "AQIAAAgAAAAAAAAAAAA5wAwAAAAwAAAA",
+              "ToolTip": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\HRPortal\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "HRPortal\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAACUAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T05:36:10.367Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "BannkingPortal\\Controllers\\AuthController.cs",
@@ -107,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\Ravi\\TAP\\TAP\\simpliyfyhealthcare\\ECommerce\\BannkingPortal\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "BannkingPortal\\Controllers\\HomeController.cs",

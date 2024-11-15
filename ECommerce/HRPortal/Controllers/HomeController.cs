@@ -34,5 +34,11 @@ namespace HRPortal.Controllers
         {
             return View();
         }
+
+        public ActionResult Error2()
+        {
+            return View();
+        }
+
     }
 }

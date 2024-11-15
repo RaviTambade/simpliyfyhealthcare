@@ -28,7 +28,7 @@ namespace HRPortal
 
         protected void Application_Error()
         {
-            Response.Redirect("/Home/Error");
+           // Response.Redirect("/Home/Error2");
         }
     }
 }
