@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartService.cs" />
     <Compile Include="IAuthService.cs" />
     <Compile Include="IDataRepository.cs" />
+    <Compile Include="ICartService.cs" />
     <Compile Include="IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,26 +1,25 @@
-﻿using System;
+﻿using ECommerceEntities;
+using Specification;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Specification;
-using ECommerceEntities;
 
 namespace ECommerceServices
-
 {
-    public partial class AuthService : IAuthService
+    public partial class AuthService 
     {
-       
-
-        public bool Register(User user)
+        public bool ForgotPassword(string username)
         {
             throw new NotImplementedException();
         }
 
-        public bool RestPassword(string username, string oldPassword, string newPassword)
+        public bool Login(string username, string password)
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

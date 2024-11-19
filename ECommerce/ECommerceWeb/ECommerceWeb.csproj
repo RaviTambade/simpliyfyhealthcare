@@ -198,6 +198,8 @@
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\ShoppingCart\AddToCart.cshtml" />
     <Content Include="Views\ShoppingCart\RemoveFromCart.cshtml" />
+    <Content Include="Views\Customers\PersonalInformationView.cshtml" />
+    <Content Include="Views\Customers\OrdersHistoryView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -234,10 +236,6 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Catalog\Catalog.csproj">
-      <Project>{0a36cf2d-e6cb-4d7a-91b3-314e6a3a21f7}</Project>
-      <Name>Catalog</Name>
-    </ProjectReference>
     <ProjectReference Include="..\POCOLib\ECommerceEntities.csproj">
       <Project>{6f7e85f3-fd2c-444e-9bf0-8e40e34ed7c6}</Project>
       <Name>ECommerceEntities</Name>

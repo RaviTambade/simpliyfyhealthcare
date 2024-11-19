@@ -1,7 +1,21 @@
-﻿
+﻿@using ECommerceEntities;
 @{
     ViewBag.Title = "Index";
+
+
 }
 
-<h2>Index</h2>
+<h2>Customer Profile</h2>
+@{
+    CustomerProfile profile = (CustomerProfile)ViewData["profile"];
+    @Html.Partial("PersonalInformationView", profile.TheCustomer);
+
+    @Html.Partial("OrdersHistoryView", profile.OrderHistory);
+
+}
+
+<hr>
+
+
+
 

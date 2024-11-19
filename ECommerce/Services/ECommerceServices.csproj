@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthService.cs" />
+    <Compile Include="AuthService2.cs" />
+    <Compile Include="CartService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +64,9 @@
       <Project>{c4b3f2b3-a6dd-4764-8a11-10f407eb2611}</Project>
       <Name>Specification</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

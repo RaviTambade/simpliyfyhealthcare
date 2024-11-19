@@ -10,6 +10,6 @@ D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.csproj.A
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.csproj.CoreCompileInputs.cache
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.dll
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.pdb
-D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\POCOLib.dll
-D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\POCOLib.pdb
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.csproj.Up2Date
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\ECommerceEntities.dll
+D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\ECommerceEntities.pdb
