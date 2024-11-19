@@ -23,11 +23,9 @@ namespace ECommerceWeb.Controllers
                 Contact = "9883478569",
                 Email = "raj.mane@gmail.com"
             };
-
             theProfile.OrderHistory  = new List<Order>();
             theProfile.OrderHistory.Add(new Order { Id = 12, Status = "delivered", Created = DateTime.Now, Amount = 76000 });
             theProfile.OrderHistory.Add(new Order { Id = 16, Status = "cancelled", Created = DateTime.Now, Amount = 34000 });
-
             ViewData["profile"] = theProfile;
             return View();
         }

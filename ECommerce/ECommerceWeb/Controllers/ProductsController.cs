@@ -20,7 +20,7 @@ namespace ECommerceWeb.Controllers
         {
             IProductService svc = new ProductService();
             ProductService pSvc = (ProductService)svc;
-            List<Product> products =svc.GetAll();
+            List<Product> products = new List<Product>();
             return View(products);
         }
 
