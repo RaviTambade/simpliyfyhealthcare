@@ -15,21 +15,8 @@
         let userEmail = txtUserEmail.value;
         let txtUserPassword = document.getElementById("txtPassword");
         let userPassword = txtUserPassword.value;
-        /* if (email === "ravi.tambade@gmail.com" && password === "123") {
-            alert("login successful");
-            }
-            else {
-                alert("invalid user");
-            }
-        */
-       /* fetch('/home/signin',)
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
-        */
-
         // Define the URL of the API endpoint
-        const url = '/home/signin';
+        const url = '/home/login';
 
         // Define the data to send in the request body (usually JSON)
         const credential = {

@@ -11,6 +11,4 @@ namespace ECommerceEntities
         public Customer TheCustomer { get; set; }
         public List<Order> OrderHistory { get; set; }
     }
-
-
 }

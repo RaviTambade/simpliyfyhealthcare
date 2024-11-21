@@ -9,7 +9,6 @@ namespace ECommerceEntities
     //Business entity class which contains only data
     //are called POCO classes in .net 
     //POCO: Plain Old CLR Objects
-
     //[Serializable]
     public class Product
     {
