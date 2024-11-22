@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Storage";
+}
+<h2>Storage</h2>
+<div>
+    <table>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" id="txtemail" name="txtemail"/></td>
+        </tr>
+        <tr>
+            <td>Action</td>
+            <td>
+                <table>
+                    <tr>
+                        <td><button id="btnSetData" onclick="onSetData()">Set Data</button></td>
+                        <td><button id="btnGetData" onclick="onGetData()">Get Data</button></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label id="lblresult"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src="~/Scripts/storage.js"></script>

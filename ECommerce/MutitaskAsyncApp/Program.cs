@@ -12,7 +12,7 @@ namespace MutitaskAsyncApp
         {
         
             // Simulate fetching data asynchronously with a delay of 2 seconds
-            await Task.Delay(2000);
+            await Task.Delay(10);
             return "Data fetched successfully!";
         }
 

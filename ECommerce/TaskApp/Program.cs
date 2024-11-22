@@ -7,19 +7,28 @@ using System.Threading.Tasks;
 
 namespace TaskApp
 {
+    public class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
     internal class Program
     {
             static void Main(string[] args)
             {
                 Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
-
-
-            Task<string> obTask = Task.Run(() => { 
-                    Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
-                    return " Hello"; 
+                Task<Person> obTask = Task.Run(() => { 
+                    Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);                  
+                    Person thePerson = new Person
+                    {
+                        FirstName = "Sarika",
+                        LastName = "Jadhav"
+                    };
+                    return thePerson; 
                 });
-                Console.WriteLine(obTask.Result);
+                Console.WriteLine(obTask.Result.FirstName + obTask.Result.LastName);
+
             }
-      
     }
 }

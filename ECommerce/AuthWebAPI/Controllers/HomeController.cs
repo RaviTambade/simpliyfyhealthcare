@@ -42,5 +42,16 @@ namespace AuthWebAPI.Controllers
             };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Storage()
+        {
+
+            return View();
+        }
+
+        public ActionResult JqueryDemo()
+        {
+            return View();
+        }
     }
 }
