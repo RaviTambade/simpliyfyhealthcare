@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GDIWindowsApp.Entities.Drawing;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using Rectangle = GDIWindowsApp.Entities.Drawing.Rectangle;
 
 namespace GDIWindowsApp
 {
@@ -15,7 +19,12 @@ namespace GDIWindowsApp
 
         public Point point2;
         public Point point1;
-        public int shape = 1;
+        public int shapeFlag = 1;
+        public Color penColor;
+        public int thickness = 1;
+
+        List<Shape> shapes = new List<Shape>();
+
 
         public Form1()
         {
@@ -25,7 +34,15 @@ namespace GDIWindowsApp
         private void OnFileOpen(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.ShowDialog(this);
+ 
+            if (ofd.ShowDialog(this) == DialogResult.OK)
+            {
+                string fileName = ofd.FileName;
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream fs = new FileStream(fileName, FileMode.Open);
+                shapes=(List<Shape>)bf.Deserialize(fs);
+                fs.Close();
+            }
         }
 
         private void OnFileExit(object sender, EventArgs e)
@@ -38,7 +55,15 @@ namespace GDIWindowsApp
         private void OnFileSaveAs(object sender, EventArgs e)
         {
             SaveFileDialog ofd = new SaveFileDialog();
-            ofd.ShowDialog(this);
+            if (ofd.ShowDialog(this) == DialogResult.OK)
+            {
+                string fileName=ofd.FileName;
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate);
+                bf.Serialize(fs, shapes);
+                fs.Close();
+                
+            }
 
         }
 
@@ -68,42 +93,78 @@ namespace GDIWindowsApp
             //propetyr dependency injection
 
             //consturctor dependency injection example
-            Pen thePen = new Pen(Color.Red);
+            
             Graphics g=this.CreateGraphics();
-
-            switch (shape)
+            Shape shape = null;
+            switch (shapeFlag)
             {
                 case 1:
-                    g.DrawLine(thePen, point1, point2);
+
+                    {
+                        shape = new Line(point1,point2, penColor,thickness);
+                        shape.Draw(g);
+                    }
+                   
                     break;
                 case 2:
                     {
-                        float width = point2.X - point1.X;
-                        float height = point2.Y - point1.Y;
-                        g.DrawRectangle(thePen, point1.X, point1.Y, width, height);
+                        shape = new Rectangle(point1, point2, penColor, thickness);
+                        shape.Draw(g);
                     }
                     break;
             }
-            
+
+            shapes.Add(shape);
+            this.Invalidate();
             //method dependency injection example
-            
 
-
-
-
-            
         }
 
         private void OnShapeLine(object sender, EventArgs e)
         {
-            this.shape = 1;
+            this.shapeFlag = 1;
 
         }
 
         private void OnShapeRectangle(object sender, EventArgs e)
         {
 
-            this.shape = 2;
+            this.shapeFlag = 2;
+        }
+
+        private void OnShapeColor(object sender, EventArgs e)
+        {
+            ColorDialog dlg = new ColorDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                this.penColor = dlg.Color;
+            }
+        }
+
+        private void OnShapeThickness1(object sender, EventArgs e)
+        {
+            thickness = 1;
+
+        }
+
+        private void OnShapeThickness2(object sender, EventArgs e)
+        {
+            thickness = 2;
+        }
+
+        private void OnShapeThickness4(object sender, EventArgs e)
+        {
+            thickness = 4;
+
+        }
+
+        private void OnFormPaint(object sender, PaintEventArgs e)
+        {
+
+            foreach (var shape in shapes)
+            {
+                shape.Draw(e.Graphics);
+            }
         }
     }
 }
