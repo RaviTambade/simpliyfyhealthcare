@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http.Results;
+using System.Web.Management;
 using System.Web.Mvc;
 
 namespace AuthWebAPI.Controllers
@@ -51,6 +52,18 @@ namespace AuthWebAPI.Controllers
 
         public ActionResult JqueryDemo()
         {
+            return View();
+        }
+
+
+        public ActionResult Register()
+        {
+
+            return View();
+        }
+        public ActionResult SignIn()
+        {
+
             return View();
         }
     }

@@ -262,6 +262,8 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Storage.cshtml" />
     <Content Include="Views\Home\JqueryDemo.cshtml" />
+    <Content Include="Views\Home\SignIn.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
