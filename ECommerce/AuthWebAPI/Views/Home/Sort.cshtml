@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Sort";
+}
+<h2>Reports data in tabular form</h2>
+<hr />
+<table id="tblUsers">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Data rows will be dynamically added here by jQuery -->
+    </tbody>
+</table>
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script>
+    // Sample array of products
+    let products = [
+        { id: 1, name: "Rose", price: 43 },
+        { id: 2, name: "Gerbera", price: 15 },
+        { id: 3, name: "Jasmine", price: 8 },
+        { id: 4, name: "Marigold", price: 6 }
+    ];
+
+    // Function to sort the array of products based on a given key
+    function sortProducts(products, key, order = 'asc') {
+        return products.sort((a, b) => {
+            if (order === 'asc') {
+                // For ascending order
+                if (a[key] < b[key]) return -1;
+                if (a[key] > b[key]) return 1;
+                return 0;
+            } else {
+                // For descending order
+                if (a[key] > b[key]) return -1;
+                if (a[key] < b[key]) return 1;
+                return 0;
+            }
+        });
+    }
+
+    // Sort by price in ascending order
+  //  let sortedByPriceAsc = sortProducts(products, 'price', 'asc');
+   // console.log("Sorted by Price (Asc):", sortedByPriceAsc);
+
+    // Sort by price in descending order
+    let sortedByPriceDesc = sortProducts(products, 'price', 'desc');
+    console.log("Sorted by Price (Desc):", sortedByPriceDesc);
+
+    // Sort by name in ascending order
+    let sortedByNameAsc = sortProducts(products, 'name', 'asc');
+    console.log("Sorted by Name (Asc):", sortedByNameAsc);
+
+
+   /* let sortedByNameDesc = sortProducts(products, 'name', 'desc');
+    console.log("Sorted by Name (Desc):", sortedByNameDesc);
+    */
+
+
+
+</script>

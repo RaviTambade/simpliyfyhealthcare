@@ -71,5 +71,64 @@ namespace AuthWebAPI.Controllers
         {
             return View();
         }
+
+        public ActionResult Report()
+        {
+            return View();
+        }
+
+
+        public ActionResult Sort()
+        {
+            return View();
+        }
+
+
+        public ActionResult Options()
+        {
+            return View();
+        }
+
+        public ActionResult MultipleChecks()
+        {
+            return View();
+        }
+
+        public ActionResult StatesCities()
+        {
+            return View();
+        }
+
+        public ActionResult TeamSelection()
+        {
+            return View();
+        }
+
+        public ActionResult DataEntryPregress()
+        {
+            return View();
+        }
+
+        public ActionResult CreditCard()
+        {
+            return View();
+        }
+
+        public ActionResult SliderProgress()
+        {
+            return View();
+        }
+
+
+        public ActionResult ProductsGrid()
+        {
+            return View();
+        }
+
+
+        public ActionResult CardsGridSort()
+        {
+            return View();
+        }
     }
 }

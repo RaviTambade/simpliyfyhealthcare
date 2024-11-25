@@ -238,6 +238,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\creditcard.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />
@@ -265,6 +266,17 @@
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Gdi.cshtml" />
+    <Content Include="Views\Home\Report.cshtml" />
+    <Content Include="Views\Home\Sort.cshtml" />
+    <Content Include="Views\Home\Options.cshtml" />
+    <Content Include="Views\Home\MultipleChecks.cshtml" />
+    <Content Include="Views\Home\StatesCities.cshtml" />
+    <Content Include="Views\Home\TeamSelection.cshtml" />
+    <Content Include="Views\Home\DataEntryPregress.cshtml" />
+    <Content Include="Views\Home\CreditCard.cshtml" />
+    <Content Include="Views\Home\SliderProgress.cshtml" />
+    <Content Include="Views\Home\ProductsGrid.cshtml" />
+    <Content Include="Views\Home\CardsGridSort.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

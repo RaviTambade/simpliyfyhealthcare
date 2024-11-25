@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Checkbox";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="border border-dark border-1 p-4 rounded-2">
+    <h1 class="mb-3">Filter using Multi-Select <span class="text-success">Checkbox</span></h1>
+    <hr />
+    <div class="box1 mt-3 row">
+
+        <div class="col d-flex gap-3">
+            <input type="checkbox" id="vegetable" />
+            <label class="">Vegetables</label>
+        </div>
+
+        <div class="col d-flex gap-3">
+            <input type="checkbox" id="fruits" />
+            <label>Fruits</label>
+        </div>
+
+        <div class="col d-flex gap-3">
+            <input type="checkbox" id="flowers" />
+            <label>Flowers</label>
+        </div>
+    </div>
+
+    <div class="row mt-3" id="printBox"></div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        var selected = new Set();
+
+        $(document).change(() => {
+
+            $("#printBox")[0].innerHTML = "";
+            
+            var checks = $("input");
+
+
+            checks.map((idx, val) => {
+                if (val.checked == true) {
+                    selected.add(val.id);
+                } else {
+                    selected.delete(val.id);
+
+               }
+            })
+
+            for (let key of selected) {
+                //Debugging purpose
+                //console.log(key)
+
+                if(key == "vegetable")
+                    $("#printBox")[0].innerHTML += `<h3 class="fw-semibold">${String(key).charAt(0).toUpperCase() + String(key).slice(1)} &#129382</h3>`;
+                else if (key == "fruits")
+                    $("#printBox")[0].innerHTML += `<h3 class="fw-semibold">${String(key).charAt(0).toUpperCase() + String(key).slice(1)} &#127822</h3>`;
+                else
+                    $("#printBox")[0].innerHTML += `<h3 class="fw-semibold">${String(key).charAt(0).toUpperCase() + String(key).slice(1)} &#127803</h3>`;
+
+;            }
+        })
+    })
+</script>

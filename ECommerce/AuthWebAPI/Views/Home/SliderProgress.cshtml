@@ -1,0 +1,75 @@
+﻿﻿
+@{
+    ViewBag.Title = "SliderAnimation";
+}
+
+<h2>SliderAnimation</h2>
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<div class="slidecontainer">
+    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <p>Value: <span id="demo"></span></p>
+
+
+
+</div>
+
+<div id="WidthChange">
+    <p id="para">Hi Welcome </p>
+
+    <button>submit</button>
+
+</div>
+<style>
+    #WidthChange {
+        width: 50%;
+        background-color: greenyellow;
+    }
+</style>
+
+<script>
+    $(document).ready(() => {
+        $(".slider").on("input", () => {
+            let slider = $("#myRange").val();
+            console.log(slider);
+            //let output = $("#demo").val();
+            $("#demo").html(slider);
+            $("#WidthChange").css("width", slider + "%");
+        });
+    });
+
+
+
+
+
+    //var slider = document.getElementById("myRange");
+    //var output = document.getElementById("demo");
+    //output.innerHTML = slider.value;
+
+
+    //slider.oninput = function() {
+    //output.innerHTML = this.value;
+
+    //document.getElementById("WidthChange").style.width = this.value + "%";
+    //document.getElementById("WidthChange").style.height = this.value + "%";
+
+    //}
+    /*  $(document).ready(function () {
+          $("button").click(function () {
+              var div = $("#WidthChange");
+              div.animate({ left: '100px' }, "slow");
+              div.animate({ fontSize: '3em' }, "slow");
+          });
+      });
+      */
+
+    /*
+
+      $(document).ready(function () {
+          $("#myRange").on("input change", function () {
+              $("#para").css("width", $(this).val() + "px");
+              //change span value
+              $(".value").text($(this).val() + "px");
+          });
+      });
+      */
+</script>

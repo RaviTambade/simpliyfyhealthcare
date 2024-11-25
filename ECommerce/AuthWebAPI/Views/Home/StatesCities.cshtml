@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "DropDownList";
+}
+
+<h2>DropDownList</h2>
+
+
+<select name="states" id="states">
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Sikkim">Sikkim</option>
+    <option value="Odisha">Odisha</option>
+    <option value="Goa">Goa</option>
+    <option value="Gujrat">Gujrat</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Meghalaya">Meghalaya</option>
+    <option value="Punjab">Punjab</option>
+    <option value="Haryana">Haryana</option>
+</select>
+
+<br />
+
+@*second dropdown based on chosen state*@
+<select name="cities" id="cities">
+    <option value="Pune">Pune</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Nashik">Nashik</option>
+
+</select>
+
+<hr />
+<button id="getSelection">Display</button>
+
+<hr />
+
+
+<p id="selectedState"></p>
+<p id="selectedCity"></p>
+
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script>
+
+    var cities = {
+        Maharashtra: ["Pune", "Mumbai", "Nashik"],
+        Rajasthan: ["Bikaner", "Jaipur", "Kota"],
+        Sikkim: ["Gangtok", "Rangpo", "Yuksom"],
+        Odisha: ["Bhuvaneshwar", "Puri", "Cuttack"],
+        Goa:["Panji", "Calungute", "Bardez"],
+        Gujrat: ["Ahmedabad", "Kachh", "Gandhinagar"],
+        Kerala: ["Kochi", "Tiruvanantpuram", "Alleppy"],
+        Meghalaya: ["Tura", "Shilong", "Cherrapunji"],
+        Punjab: ["Chandigarh", "Amritsar", "Ludhiana"],
+        Haryana: ["Gurugram", "Hisar", "Panipat"],
+    }
+
+    $(document).ready(() => {
+
+        $("#getSelection").click(() => {
+            let selectedState = $("#states").val();
+            let selectedCity = $("#cities").val();
+
+            $("#selectedState").html(selectedState);
+            $("#selectedCity").html(selectedCity);
+        })
+
+        $("#states").change(() => {
+
+            let stateIndex = $("#states").val();
+            //console.log($("#states").val(), $("#cities").val())
+
+            if (state!="") {
+                $.each(cities[stateIndex], (index, city) => {
+                    $("#cities").append('<option value="' + city + '">' + city + '</option>');
+                })
+            }
+        })
+
+
+    })
+
+
+</script>

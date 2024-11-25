@@ -1,0 +1,118 @@
+﻿﻿@{
+    ViewBag.Title = "ListBox";
+}
+
+<h2>ListBox</h2>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Transfer using jQuery</title>
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <style>
+        .student-list {
+            margin: 10px;
+        }
+
+        .button {
+            margin: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Team selection</h2>
+
+    <div class="student-list">
+        <h3>Available Students</h3>
+        <div id="available-students">
+            <!-- Available students will be added here dynamically -->
+        </div>
+    </div>
+
+    <button class="button" id="transfer-btn">Transfer to Selected</button>
+
+    <div class="student-list">
+        <h3>Selected Students</h3>
+        <div id="selected-students">
+
+        </div>
+    </div>
+
+    <button class="button" id="remove-btn">Remove from Selected</button>
+
+    <script>
+        var students = ["Chetan", "Rutuja", "sam", "Ruchita", "Yash"];
+
+        // Seeding
+        function addStudentsToAvailableList() {
+            $('#available-students').empty();
+            students.forEach(function (student) {
+                var studentCheckbox = $('<input type="checkbox" name="student" value="' + student + '" id="' + student + '">');
+                var studentLabel = $('<label for="' + student + '">' + student + '</label><br>');
+                $('#available-students').append(studentCheckbox).append(studentLabel);
+            });
+        }
+
+
+        addStudentsToAvailableList();
+
+        // Transfer
+        $('#transfer-btn').click(function () {
+
+            var selectedStudentsList = $("input[name='student']:checked");
+
+            if (selectedStudentsList.length > 0) {
+                selectedStudentsList.each(function () {
+                    var selectedStudent = $(this).val();
+
+
+                    var studentCheckbox = $('<input type="checkbox" name="selected-student" value="' + selectedStudent + '" id="selected-' + selectedStudent + '">');
+                    var studentLabel = $('<label for="selected-' + selectedStudent + '">' + selectedStudent + '</label><br>');
+
+
+                    $('#selected-students').append(studentCheckbox).append(studentLabel);
+
+
+                    $(this).next('label').remove();
+                    $(this).remove();
+                });
+            } else {
+                alert('Please select at least one student from the available list.');
+            }
+        });
+
+        // Remove
+        $('#remove-btn').click(function () {
+
+            var selectedStudents = $("input[name='selected-student']:checked");
+
+            if (selectedStudents.length > 0) {
+                selectedStudents.each(function () {
+                    var selectedStudent = $(this).val();
+
+
+                    $(this).next('label').remove();
+                    $(this).remove();
+
+
+                    var studentCheckbox = $('<input type="checkbox" name="student" value="' + selectedStudent + '" id="' + selectedStudent + '">');
+                    var studentLabel = $('<label for="' + selectedStudent + '">' + selectedStudent + '</label><br>');
+
+
+                    $('#available-students').append(studentCheckbox).append(studentLabel);
+                });
+            } else {
+                alert('Please select at least one student from the selected list.');
+            }
+        });
+    </script>
+
+</body>

@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "CreditPayment";
+}
+
+<h2>Credit Card Payment</h2>
+
+
+<!--  <div>
+    <table>
+        <tr>
+            <td>Name on Card</td>
+            <td><input type="text" id="name" name="name" /></td>
+        </tr>
+
+        <tr>
+            <td>Card Number</td>
+            <td><input type="number" id="cardnumber" name="cardnumber" min="16" max="16" /></td>
+
+        </tr>
+
+        <tr>
+            <td>Expiry Date</td>
+            <td><input type="date" id="expdate" name="expdate" /></td>
+        </tr>
+
+        <tr>
+            <td>CVV/CVD</td>
+            <td><input type="number" id="cvv" name="cvv" placeholder="XXX" maxlength="3" required /></td>
+        </tr>
+
+        <tr>
+            <td>Payment Amount</td>
+            <td><input type="number" id="amount" name="amount" /></td>
+        </tr>
+
+        <tr>
+            <td><button type="submit" id="btnpay">PAY</button></td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="form-group">
+    <label for="cvv">CVV</label>
+    <input type="text" id="cvv" placeholder="XXX" maxlength="3" required>
+    <small id="cvv-error" class="error-message"></small>
+</div>
+
+<div class="form-group">
+    <label for="cvv">Name on Card</label>
+    <input type="text" id="name" placeholder="XXX" maxlength="3" required>
+    <small id="name-error" class="error-message"></small>
+</div> -->
+
+<form>
+    <p>
+        <label>Name on card</label>
+        <input type="text" placeholder="Firstname Lastname" id="name_on_card" required>
+    </p>
+
+    <p>
+        <label>Card number</label>
+        <input type="text" placeholder="1234 5678 9012 3456" minlength="16" maxlength="16" id="cardnumber" required>
+    </p>
+    <p>
+        <label>Expiry Date</label>
+        <input type="text" placeholder="MM" minlength="2" maxlength="2" id="expirymonth" required>
+        <span></span>
+        <input type="text" placeholder="YYYY" minlength="4" maxlength="4" id="expiryyear" required>
+    </p>
+
+    <p>
+        <label>CVV</label>
+        <input type="text" placeholder="123" minlength="3" maxlength="3" id="cvv" required>
+    </p>
+
+
+    <p>
+        <label>Payment Amount</label>
+        <input type="number" placeholder="000000" min="0" id="amount" required>
+    </p>
+    <p>
+        <button type="submit" id="btnpay">PAY</button>
+    </p>
+</form>
+
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script>
+    $(document).ready(
+        () => {
+
+            $("#btnpay").click(() => {
+                let user = JSON.parse(localStorage.getItem("payers"));
+
+                let name = $("#name").val();
+                let cnumber = $("#cardnumber").val();
+                let expirymonth = $("#expirymonth").val();
+                let expiryyear = $("#expiryyear").val();
+
+                let cvv = $("#cvv").val();
+                let payamount = $("#amount").val();
+
+
+
+
+                if (expirymonth > 12) {
+                    console.log("Invalid input ");
+                    alert("invalid input ");
+                }
+                else {
+
+                    let obj = {
+                        name: name,
+                        number: cnumber,
+                        month: expirymonth,
+                        year: expiryyear,
+                        cvv: cvv,
+                        amount: payamount,
+
+                    }
+
+                    if (!user) {
+                        user = [];
+
+                    }
+                    user.push(obj);
+                    localStorage.setItem("payers", JSON.stringify(user));
+                    console.log("Payment Initialised");
+                }
+
+            }
+
+            )
+
+        }
+    )
+</script>
