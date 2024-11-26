@@ -1,3 +1,4 @@
+# $.ajax()
 The `$.ajax()` method in jQuery is used to make asynchronous HTTP requests to interact with an API, including performing CRUD operations (Create, Read, Update, Delete). It provides a flexible and customizable way to send and receive data between the client (browser) and the server.
 
 Here’s an overview of how `$.ajax()` can be used to perform the four CRUD operations:
