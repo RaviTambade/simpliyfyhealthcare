@@ -8,6 +8,9 @@
     <tr><td>P </td><td> <button onclick="onSignIn()"> Login</button></td></tr>
 </table>
 
+<div id="div1"> Result will be shown here </div>
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
 <script>
     var onSignIn = () => {
         //Dom programming
@@ -24,8 +27,9 @@
             password: userPassword
         };
 
+        console.log(credential);
         // Use fetch API to send a POST request
-        fetch(url, {
+       /* fetch(url, {
             method: 'POST', // Specify the request method
             headers: { 'Content-Type': 'application/json' }, // Set content type to JSON
             body: JSON.stringify(credential), // Convert JavaScript object to JSON string
@@ -42,5 +46,21 @@
             .catch(error => {
                 console.error('There was an error!', error); // Handle any errors
             });
+
+            */
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType:"application/json",
+            data: JSON.stringify(credential),
+            success:  (result)=> {
+                $("#div1").html(result);
+                console.log(result);
+            },
+            error: () => {
+                console.log("something has gone wrong");
+            }
+        });
     };
 </script>

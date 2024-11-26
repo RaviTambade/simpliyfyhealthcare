@@ -277,6 +277,7 @@
     <Content Include="Views\Home\SliderProgress.cshtml" />
     <Content Include="Views\Home\ProductsGrid.cshtml" />
     <Content Include="Views\Home\CardsGridSort.cshtml" />
+    <Content Include="Views\Home\Catalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
