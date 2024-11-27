@@ -145,5 +145,9 @@ namespace AuthWebAPI.Controllers
         {
             return View();
         }
+        public ActionResult OopsJS()
+        {
+            return View();
+        }
     }
 }

@@ -11,16 +11,16 @@
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (success) {
-                    resolve("Data fetched successfully!"); // This will trigger the .then() block
+                    resolve("Data fetched successfully!");  
                 } else {
-                    reject("Error: Failed to fetch data."); // This will trigger the .catch() block
+                    reject("Error: Failed to fetch data.");  
                 }
-            }, 5000); // Simulate a 5-second delay
+            }, 5000); 
         });
     }
 
     // Using the Promise
-    fetchData(false) // Pass 'true' to simulate a successful fetch
+    fetchData(true)  
         .then((message) => {
             console.log(message); // This will log "Data fetched successfully!"
         })
