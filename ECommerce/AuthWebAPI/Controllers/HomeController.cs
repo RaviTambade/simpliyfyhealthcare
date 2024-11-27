@@ -136,5 +136,14 @@ namespace AuthWebAPI.Controllers
             return View();
         }
 
+        public ActionResult CatalogAjax()
+        {
+            return View();
+        }
+
+        public ActionResult Promise()
+        {
+            return View();
+        }
     }
 }
