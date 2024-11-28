@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 
 /*
@@ -30,9 +31,78 @@ namespace DBTestApp
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static string conString = @"data source=DESKTOP-H1K53PL\SQLEXPRESS; database=Simplyfy; integrated security=SSPI";
+
+        public bool InsertRecord(int id, string name, string decription, int quantity, double unitPrice)
         {
-            string conString = @"data source=DESKTOP-H1K53PL\SQLEXPRESS; database=Simplyfy; integrated security=SSPI";
+            bool status = false;
+            IDbConnection con = new SqlConnection(conString);
+            string query = "INSERT INTO products (Id, Name, Description, UnitPrice, Quantity, Image)"
+                           + "values("+id + ", '"+ name+ "', '"+)";
+
+            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                status = true;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return status;
+        }
+        public static void DeleteReord()
+        {
+            IDbConnection con = new SqlConnection(conString);
+            string query = "DELETE from products WHERE Id=2";
+            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public static void ShowRecordCount()
+        { 
+
+            IDbConnection con = new SqlConnection(conString);
+            string query = "SELECT COUNT(*) from products";
+            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
+            try
+            {
+                con.Open();
+               int count= int.Parse(cmd.ExecuteScalar().ToString());
+               Console.WriteLine("Records {0}", count,56);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+
+                con.Close();
+            }
+        }
+    
+
+        public static void ShowAllRecords() {
+
             IDbConnection con = new SqlConnection(conString);
             string query = "SELECT * from products";
             IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
@@ -41,23 +111,29 @@ namespace DBTestApp
                 con.Open();
                 IDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
-                { 
-                    string name=dr["Name"].ToString();
-                    string description=dr["Description"].ToString();
+                {
+                    string name = dr["Name"].ToString();
+                    string description = dr["Description"].ToString();
                     int quantity = int.Parse(dr["Quantity"].ToString());
-                    Console.WriteLine(name + "  "+ description + " "+ quantity);
+                    Console.WriteLine(name + "  " + description + " " + quantity);
                 }
                 dr.Close();
             }
             catch (SqlException ex)
             {
-                Console.WriteLine(ex.Message);  
+                Console.WriteLine(ex.Message);
             }
             finally
             {
-                
+
                 con.Close();
             }
+        }
+        static void Main(string[] args)
+        {
+
+            ShowAllRecords();
+
         }
     }
 }
