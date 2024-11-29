@@ -18,5 +18,10 @@ namespace ECommerceEntities
         public double UnitPrice { get; set; }
         public int Quantity { get; set; }
         public string Image { get; set; }
+
+        public override string ToString()
+        {
+            return  Id + " " + Name + " " + Description;    
+        }
     }
 }

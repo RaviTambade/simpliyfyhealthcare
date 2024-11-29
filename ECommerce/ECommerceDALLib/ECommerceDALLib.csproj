@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBManager.cs" />
+    <Compile Include="Connected\DBManager.cs" />
+    <Compile Include="DisConnected\DBManager.cs" />
+    <Compile Include="ORM\DBManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
