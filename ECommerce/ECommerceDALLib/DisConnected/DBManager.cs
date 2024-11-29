@@ -41,10 +41,33 @@ namespace ECommerceDALLib.DisConnectedDataAccess
 
         public static void Delete( int id)
         {
+           
+            List<Product> products = new List<Product>();
             IDbConnection con = new SqlConnection(conString);
-            string query = "DELETE from products WHERE Id=2";
+            string query = "SELECT * from products";
             IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            
+            DataSet dataSet = new DataSet();
+       
+            IDataAdapter adapter = new SqlDataAdapter(cmd as SqlCommand);
+            SqlCommandBuilder builder = new SqlCommandBuilder(adapter as SqlDataAdapter);
+            adapter.Fill(dataSet);
+            DataTable table = dataSet.Tables[0];
+            DataRowCollection rows = table.Rows;
+            DataRow foundRow = null;
+            foreach (DataRow row in rows)
+            {
+                int rowId = int.Parse(row["Id"].ToString());
+                if (rowId == id)
+                {
+                    foundRow = row;
+                }
+            }
+
+            if (foundRow != null)
+            {
+                rows.Remove(foundRow);
+            }
+            adapter.Update(dataSet);
         }
 
         public static void GetCount()
