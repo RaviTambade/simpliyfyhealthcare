@@ -7,14 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using ECommerceEntities;
+using Specification;
 namespace ECommerceDALLib.DisConnectedDataAccess
 {
-    public static  class DBManager
+    public static  class DBManager:IDBManager
     {
 
-        public static string conString = @"data source=DESKTOP-H1K53PL\SQLEXPRESS; database=Simplyfy; integrated security=SSPI";
+      public   string conString = @"data source=DESKTOP-H1K53PL\SQLEXPRESS; database=Simplyfy; integrated security=SSPI";
 
-        public static bool Insert(Product product)
+        public   bool Insert(Product product)
         {
             bool status = false;
             IDbConnection con = new SqlConnection(conString);
@@ -26,7 +27,7 @@ namespace ECommerceDALLib.DisConnectedDataAccess
             return status;
         }
 
-        public static bool Update(Product product)
+        public   bool Update(Product product)
         {
             bool status = false;
             IDbConnection con = new SqlConnection(conString);
@@ -39,48 +40,11 @@ namespace ECommerceDALLib.DisConnectedDataAccess
             return status;
         }
 
-        public static void Delete( int id)
-        {
-           
-            List<Product> products = new List<Product>();
-            IDbConnection con = new SqlConnection(conString);
-            string query = "SELECT * from products";
-            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            DataSet dataSet = new DataSet();
        
-            IDataAdapter adapter = new SqlDataAdapter(cmd as SqlCommand);
-            SqlCommandBuilder builder = new SqlCommandBuilder(adapter as SqlDataAdapter);
-            adapter.Fill(dataSet);
-            DataTable table = dataSet.Tables[0];
-            DataRowCollection rows = table.Rows;
-            DataRow foundRow = null;
-            foreach (DataRow row in rows)
-            {
-                int rowId = int.Parse(row["Id"].ToString());
-                if (rowId == id)
-                {
-                    foundRow = row;
-                }
-            }
 
-            if (foundRow != null)
-            {
-                rows.Remove(foundRow);
-            }
-            adapter.Update(dataSet);
-        }
+      
 
-        public static void GetCount()
-        {
-
-            IDbConnection con = new SqlConnection(conString);
-            string query = "SELECT COUNT(*) from products";
-            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            
-        }
-
-
-        public static List<Product> GetAll()
+        public   List<Product> GetAll()
         {
             List<Product> products = new List<Product>();
             IDbConnection con = new SqlConnection(conString);
@@ -108,7 +72,7 @@ namespace ECommerceDALLib.DisConnectedDataAccess
             return products;
         }
 
-         public static Product GetById(int id)
+         public   Product GetById(int id)
         {
             List<Product> products = new List<Product>();
             products = GetAll();
@@ -116,5 +80,43 @@ namespace ECommerceDALLib.DisConnectedDataAccess
             return theProduct;
         }
 
+       public  bool IDBManager.Delete(int id)
+        {
+            List<Product> products = new List<Product>();
+            IDbConnection con = new SqlConnection(conString);
+            string query = "SELECT * from products";
+            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
+            DataSet dataSet = new DataSet();
+
+            IDataAdapter adapter = new SqlDataAdapter(cmd as SqlCommand);
+            SqlCommandBuilder builder = new SqlCommandBuilder(adapter as SqlDataAdapter);
+            adapter.Fill(dataSet);
+            DataTable table = dataSet.Tables[0];
+            DataRowCollection rows = table.Rows;
+            DataRow foundRow = null;
+            foreach (DataRow row in rows)
+            {
+                int rowId = int.Parse(row["Id"].ToString());
+                if (rowId == id)
+                {
+                    foundRow.Delete();
+                }
+            }
+
+            if (foundRow != null)
+            {
+                rows.Remove(foundRow);
+            }
+            adapter.Update(dataSet);
+
+        }
+
+      public   int IDBManager.GetCount()
+        {
+            IDbConnection con = new SqlConnection(conString);
+            string query = "SELECT COUNT(*) from products";
+            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
+
+        }
     }
 }

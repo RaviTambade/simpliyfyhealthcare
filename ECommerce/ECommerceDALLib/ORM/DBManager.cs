@@ -7,187 +7,69 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using ECommerceEntities;
+using System.Runtime.Remoting.Contexts;
+using System.Data.Entity;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 namespace ECommerceDALLib
 {
+    public class ECommerceContext : DbContext
+    {
+        public   string conString = @"data source=DESKTOP-H1K53PL\SQLEXPRESS; database=Simplyfy; integrated security=SSPI";
+        public DbSet<Product> Products { get; set; }
+        public ECommerceContext() : base("name=conString") { }
+    }
+
     public static  class DBManager
     {
-
-        public static string conString = @"data source=DESKTOP-H1K53PL\SQLEXPRESS; database=Simplyfy; integrated security=SSPI";
-
         public static bool Insert(Product product)
         {
             bool status = false;
-            IDbConnection con = new SqlConnection(conString);
-           /* string query = "INSERT INTO products (Id, Name, Description, UnitPrice, Quantity, Image)"
-                           + "values(" + product.Id+ ", '" + product.Name + "', '" +)";
-           */
-
-            string query=string.Empty;
-            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            try
-            {
-                con.Open();
-                cmd.ExecuteNonQuery();
-                status = true;
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
+           
             return status;
         }
 
         public static bool Update(Product product)
         {
             bool status = false;
-            IDbConnection con = new SqlConnection(conString);
-            /*string query = "INSERT INTO products (Id, Name, Description, UnitPrice, Quantity, Image)"
-                           + "values(" + product.Id + ", '" + product.Name + "', '" +)";
-            */
-
-            string query = string.Empty;
-
-            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            try
-            {
-                con.Open();
-                cmd.ExecuteNonQuery();
-                status = true;
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
+           
             return status;
         }
 
         public static void Delete( int id)
         {
-            IDbConnection con = new SqlConnection(conString);
-            string query = "DELETE from products WHERE Id=2";
-            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            try
-            {
-                con.Open();
-                cmd.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
+         
         }
 
         public static void GetCount()
-        {
-
-            IDbConnection con = new SqlConnection(conString);
-            string query = "SELECT COUNT(*) from products";
-            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            try
-            {
-                con.Open();
-                int count = int.Parse(cmd.ExecuteScalar().ToString());
-                Console.WriteLine("Records {0}", count, 56);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-
-                con.Close();
-            }
+        {   
         }
 
 
         public static List<Product> GetAll()
         {
             List<Product> products = new List<Product>();
-
-            IDbConnection con = new SqlConnection(conString);
-            string query = "SELECT * from products";
-            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            try
+            using (var context = new ECommerceContext())
             {
-                con.Open();
-                IDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
+                var dbProducts = context.Products.ToList();
+                foreach (var product in dbProducts)
                 {
-                    string name = dr["Name"].ToString();
-                    string description = dr["Description"].ToString();
-                    int quantity = int.Parse(dr["Quantity"].ToString());
-
-                    Product product = new Product();
-                    product.Name = name;
-                    product.Description = description;
-                    product.Quantity = quantity;
+                    Product theProduct = new Product();
+                    theProduct.Name = product.Name;
+                    theProduct.Description = product.Description;
+                    theProduct.Quantity = product.Quantity;
+                    theProduct.Image = product.Image;
                     products.Add(product);
-
                 }
-                dr.Close();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-
-                con.Close();
             }
             return products;
-
         }
 
          public static Product GetById(int id)
         {
-            List<Product> products = new List<Product>();
 
-            IDbConnection con = new SqlConnection(conString);
-            string query = "SELECT * from products WHERE Id="+id;
-            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
-            try
-            {
-                con.Open();
-                IDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    string name = dr["Name"].ToString();
-                    string description = dr["Description"].ToString();
-                    int quantity = int.Parse(dr["Quantity"].ToString());
+            return new Product();
 
-                    Product product = new Product();
-                    product.Name = name;
-                    product.Description = description;
-                    product.Quantity = quantity;
-                    products.Add(product);
-
-                }
-                dr.Close();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-
-                con.Close();
-            }
-            return  new Product();
         }
 
     }
