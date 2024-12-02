@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -9,9 +11,13 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 namespace ORMTestApp
 {
+    [Table("products")]
     public class Product
     {
-        public string Id { get; set; }  
+        [Key]
+        public string Id { get; set; }
+
+        [Column("Name")]
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal UnitPrice { get; set; }
@@ -97,11 +103,11 @@ namespace ORMTestApp
 
             using (var context = new ECommerceContext())
             {
-                var foundDroduct = context.Products.SingleOrDefault(s => s.Id == product.Id);
-                if (foundDroduct != null)
+                var foundProduct = context.Products.SingleOrDefault(s => s.Id == product.Id);
+                if (foundProduct != null)
                 {
-                    foundDroduct.Name = product.Name;
-                    foundDroduct.Description = product.Description;
+                    foundProduct.Name = product.Name;
+                    foundProduct.Description = product.Description;
                     context.SaveChanges();
                 }
                 else
