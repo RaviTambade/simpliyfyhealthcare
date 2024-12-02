@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Catalog.Repositories;
 namespace Catalog.Services
 {
     public class ProductService : IProductService
     {
         //Sampling data for testing purpose
+        private IDataRepository _repo;
+        public ProductService(IDataRepository repo) {
+            _repo = repo;
+        }
 
         public bool Delete(int id)
         {
@@ -40,7 +44,7 @@ namespace Catalog.Services
         public List<Product> GetAll()
         {
             List<Product> products = new List<Product>();
-            
+            products=_repo.GetAll();
             return products;
         }
 

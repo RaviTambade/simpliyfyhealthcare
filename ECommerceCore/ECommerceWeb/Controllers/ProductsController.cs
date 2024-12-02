@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Catalog.Entities;
+using Catalog.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceWeb.Controllers
 {
