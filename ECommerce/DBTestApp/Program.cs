@@ -129,6 +129,30 @@ namespace DBTestApp
                 con.Close();
             }
         }
+
+
+        public static void DemoStoredProcedure()
+        {
+            IDbConnection con = new SqlConnection(conString);
+            string query = "RegisterUser";
+            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
+           // cmd.CommandText = query;
+          
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         static void Main(string[] args)
         {
 

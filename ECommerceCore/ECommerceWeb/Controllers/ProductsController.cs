@@ -9,7 +9,6 @@ namespace ECommerceWeb.Controllers
         IProductService _service;
         public ProductsController(IProductService service) {
             this._service = service;
-
         }
         public IActionResult Index()
         {

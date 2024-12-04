@@ -5,7 +5,7 @@ using Catalog.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//services configuration
+//services registration
 //Adding services which needed in future
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddTransient<IDataRepository, ProductRepository>();

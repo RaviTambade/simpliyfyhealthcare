@@ -15,7 +15,6 @@ namespace FormbasedAuthWebApp.Controllers
         }
 
         [HttpPost]
-       // [ValidateAntiForgeryToken]
         public ActionResult Login(string email, string password, string returnUrl)
         {
             if (email == "ravi.tambade@transflower.in" && password == "seed")

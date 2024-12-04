@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWordApp", "HelloWordApp\HelloWordApp.csproj", "{E8536A1A-8F3F-4401-8A57-17BB52325084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{17AD3A54-7EFA-44CA-A636-F231B871D9FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRWeb", "HRWeb\HRWeb.csproj", "{5C94CE27-AD0D-4D5A-A81E-47E05A80E51F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8536A1A-8F3F-4401-8A57-17BB52325084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8536A1A-8F3F-4401-8A57-17BB52325084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8536A1A-8F3F-4401-8A57-17BB52325084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8536A1A-8F3F-4401-8A57-17BB52325084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17AD3A54-7EFA-44CA-A636-F231B871D9FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17AD3A54-7EFA-44CA-A636-F231B871D9FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17AD3A54-7EFA-44CA-A636-F231B871D9FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17AD3A54-7EFA-44CA-A636-F231B871D9FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C94CE27-AD0D-4D5A-A81E-47E05A80E51F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C94CE27-AD0D-4D5A-A81E-47E05A80E51F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C94CE27-AD0D-4D5A-A81E-47E05A80E51F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C94CE27-AD0D-4D5A-A81E-47E05A80E51F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
