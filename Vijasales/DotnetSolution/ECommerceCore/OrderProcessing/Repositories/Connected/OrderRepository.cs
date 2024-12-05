@@ -11,7 +11,7 @@ namespace OrderProcessing.Repositories.Connected
 {
     public class OrderRepository : IOrderRepository
     {
-        string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+        string conString = string.Empty;
         public bool Delete(int id)
         {
             throw new NotImplementedException();
