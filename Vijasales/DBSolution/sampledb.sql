@@ -49,58 +49,29 @@ INSERT INTO VsProducts (Title, Description, Brand, Price, Stock, Category, Image
 ('Vu 65" 4K LED TV', 'Vu 65" 4K LED Smart TV with HDR', 'Vu', 59999, 200, 'TV', '/images/products/tvs/vu_65_4k.jpg');
 
 --Inserting data into VsOrders
-INSERT INTO VsOrders (OrderDate, CustomerId, Status, TotalAmount)
-VALUES
+INSERT INTO VsOrders (CustomerId, OrderDate, TotalAmount, Status) VALUES
+(1, '2024-11-10 14:30:00', 120.50, 'Completed'),
+(2, '2024-11-12 10:15:00', 89.99, 'Pending'),
+(3, '2024-11-13 16:45:00', 150.75, 'Shipped'),
+(4, '2024-11-14 09:20:00', 200.30, 'Completed'),
+(5, '2024-11-15 12:00:00', 75.40, 'Cancelled'),
+(6, '2024-11-16 17:10:00', 300.00, 'Completed'),
+(7, '2024-11-17 11:50:00', 450.25, 'Shipped'),
+(8, '2024-11-18 13:25:00', 189.99, 'Pending'),
+(9, '2024-11-19 15:35:00', 100.80, 'Completed'),
+(10, '2024-11-20 18:00:00', 330.10, 'Shipped'),
+(11, '2024-11-21 08:45:00', 49.95, 'Completed'),
+(12, '2024-11-22 10:10:00', 77.60, 'Cancelled'),
+(13, '2024-11-23 16:30:00', 200.00, 'Completed'),
+(14, '2024-11-24 14:40:00', 350.90, 'Pending'),
+(15, '2024-11-25 19:00:00', 140.55, 'Shipped'),
+(16, '2024-11-26 11:00:00', 90.40, 'Completed'),
+(17, '2024-11-27 13:30:00', 111.25, 'Shipped'),
+(18, '2024-11-28 09:10:00', 45.00, 'Pending'),
+(19, '2024-11-29 17:20:00', 125.75, 'Completed'),
+(20, '2024-11-30 21:00:00', 178.95, 'Cancelled');
 
-('2024-12-01', 2, 'Completed', 120000),
 
-('2024-12-02', 2, 'Pending', 34999),
-
-('2024-12-03', 4, 'Completed', 86000),
-
-('2024-12-04', 6, 'Cancelled', 23999),
-
-('2024-12-05', 8, 'Completed', 74999),
-
-('2024-12-06', 10, 'Pending', 56999),
-
-('2024-12-07', 12, 'Completed', 64999),
-
-('2024-12-08', 2, 'Completed', 23999),
-
-('2024-12-09', 3, 'Cancelled', 47999),
-
-('2024-12-10', 3, 'Pending', 129998),
-
-('2024-12-11', 4, 'Completed', 86000),
-
-('2024-12-12', 5, 'Pending', 99999),
-
-('2024-12-13', 6, 'Cancelled', 109000),
-
-('2024-12-14', 7, 'Completed', 179999),
-
-('2024-12-15', 8, 'Pending', 47999),
-
-('2024-12-16', 9, 'Completed', 79999),
-
-('2024-12-17', 10, 'Pending', 64999),
-
-('2024-12-18', 10, 'Cancelled', 35999),
-
-('2024-12-19', 11, 'Completed', 74999),
-
-('2024-12-20', 12, 'Pending', 129999),
-
-('2024-12-21', 12, 'Completed', 109000),
-
-('2024-12-22', 13, 'Cancelled', 74999),
-
-('2024-12-23', 13, 'Pending', 47999),
-
-('2024-12-24', 14, 'Completed', 120000),
-
-('2024-12-25', 15, 'Pending', 64999);
 
 --Inserting data into VsOrderItems 
  

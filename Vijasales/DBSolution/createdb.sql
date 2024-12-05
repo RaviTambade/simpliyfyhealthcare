@@ -26,7 +26,7 @@ CREATE TABLE VsUsers (
 CREATE TABLE VsOrders (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     CustomerId INT NOT NULL,
-    OrderDate DATE NOT NULL,
+    OrderDate DATETIME NOT NULL,
     TotalAmount DECIMAL(10, 2),
     Status VARCHAR(50),
     FOREIGN KEY (CustomerId) REFERENCES VsUsers(Id)
