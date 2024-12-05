@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shipment.Services
+namespace ShipmentLib.Services
 {
-    internal class ShipmentService
+    public class ShipmentService
     {
     }
 }

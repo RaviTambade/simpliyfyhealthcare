@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessingTestApp", "O
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentTest", "ShipmentTest\ShipmentTest.csproj", "{D0E7EFD2-C8B8-4FC8-9FAB-2AE2242243C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipment", "Shipment\Shipment.csproj", "{897EA8E2-E435-4C9E-93AD-DB98135026A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentLib", "Shipment\ShipmentLib.csproj", "{897EA8E2-E435-4C9E-93AD-DB98135026A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
