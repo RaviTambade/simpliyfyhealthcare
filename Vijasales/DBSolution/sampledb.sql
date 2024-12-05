@@ -15,7 +15,8 @@ VALUES
 ('Sunita', 'Gupta', 'Password123!', 'sunita.gupta@example.com', 'Street 12, City Chennai', 'director', '9876543221', '/images/baseImage.png'),
 ('Manish', 'Yadav', 'Password123!', 'manish.yadav@example.com', 'Street 13, City Delhi', 'sales', '9876543222', '/images/baseImage.png'),
 ('Shalini', 'Bose', 'Password123!', 'shalini.bose@example.com', 'Street 14, City Mumbai', 'customer', '9876543223', '/images/baseImage.png'),
-('Vijay', 'Malhotra', 'Password123!', 'vijay.malhotra@example.com', 'Street 15, City Bengaluru', 'vendor', '9876543224', '/images/baseImage.png');
+('Vijay', 'Malhotra', 'Password123!', 'vijay.malhotra@example.com', 'Street 15, City Bengaluru', 'vendor', '9876543224', '/images/baseImage.png'),
+('Vijay','Sales','Password123!','admin@vijaysales.com','Vijay sales HQ, Magarpatta','admin','9970154890','/images/baseImage.png');
 
 
 --Inserting data into VsProducts
@@ -49,27 +50,33 @@ INSERT INTO VsProducts (Title, Description, Brand, Price, Stock, Category, Image
 ('Vu 65" 4K LED TV', 'Vu 65" 4K LED Smart TV with HDR', 'Vu', 59999, 200, 'TV', '/images/products/tvs/vu_65_4k.jpg');
 
 --Inserting data into VsOrders
-INSERT INTO VsOrders (CustomerId, OrderDate, TotalAmount, Status) VALUES
-(1, '2024-11-10 14:30:00', 120.50, 'Completed'),
-(2, '2024-11-12 10:15:00', 89.99, 'Pending'),
-(3, '2024-11-13 16:45:00', 150.75, 'Shipped'),
-(4, '2024-11-14 09:20:00', 200.30, 'Completed'),
-(5, '2024-11-15 12:00:00', 75.40, 'Cancelled'),
-(6, '2024-11-16 17:10:00', 300.00, 'Completed'),
-(7, '2024-11-17 11:50:00', 450.25, 'Shipped'),
-(8, '2024-11-18 13:25:00', 189.99, 'Pending'),
-(9, '2024-11-19 15:35:00', 100.80, 'Completed'),
-(10, '2024-11-20 18:00:00', 330.10, 'Shipped'),
-(11, '2024-11-21 08:45:00', 49.95, 'Completed'),
-(12, '2024-11-22 10:10:00', 77.60, 'Cancelled'),
-(13, '2024-11-23 16:30:00', 200.00, 'Completed'),
-(14, '2024-11-24 14:40:00', 350.90, 'Pending'),
-(15, '2024-11-25 19:00:00', 140.55, 'Shipped'),
-(16, '2024-11-26 11:00:00', 90.40, 'Completed'),
-(17, '2024-11-27 13:30:00', 111.25, 'Shipped'),
-(18, '2024-11-28 09:10:00', 45.00, 'Pending'),
-(19, '2024-11-29 17:20:00', 125.75, 'Completed'),
-(20, '2024-11-30 21:00:00', 178.95, 'Cancelled');
+INSERT INTO VsOrders (OrderDate, CustomerId, Status, TotalAmount)
+VALUES
+('2024-12-01 08:30:00', 2, 'Completed', 120000),
+('2024-12-02 14:45:00', 2, 'Pending', 34999),
+('2024-12-03 09:15:00', 4, 'Completed', 86000),
+('2024-12-04 16:00:00', 6, 'Cancelled', 23999),
+('2024-12-05 10:30:00', 8, 'Completed', 74999),
+('2024-12-06 13:00:00', 10, 'Pending', 56999),
+('2024-12-07 11:20:00', 12, 'Completed', 64999),
+('2024-12-08 15:30:00', 2, 'Completed', 23999),
+('2024-12-09 17:45:00', 3, 'Cancelled', 47999),
+('2024-12-10 12:00:00', 3, 'Pending', 129998),
+('2024-12-11 08:00:00', 4, 'Completed', 86000),
+('2024-12-12 19:30:00', 5, 'Pending', 99999),
+('2024-12-13 10:00:00', 6, 'Cancelled', 109000),
+('2024-12-14 09:00:00', 7, 'Completed', 179999),
+('2024-12-15 16:10:00', 8, 'Pending', 47999),
+('2024-12-16 18:00:00', 9, 'Completed', 79999),
+('2024-12-17 14:00:00', 10, 'Pending', 64999),
+('2024-12-18 20:30:00', 10, 'Cancelled', 35999),
+('2024-12-19 11:25:00', 11, 'Completed', 74999),
+('2024-12-20 13:40:00', 12, 'Pending', 129999),
+('2024-12-21 22:05:00', 12, 'Completed', 109000),
+('2024-12-22 07:30:00', 13, 'Cancelled', 74999),
+('2024-12-23 09:50:00', 13, 'Pending', 47999),
+('2024-12-24 11:00:00', 14, 'Completed', 120000),
+('2024-12-25 12:30:00', 15, 'Pending', 64999);
 
 
 
@@ -77,57 +84,31 @@ INSERT INTO VsOrders (CustomerId, OrderDate, TotalAmount, Status) VALUES
  
 INSERT INTO VsOrderItems (OrderId, ProductId, Quantity)
 VALUES
-
-(1, 2, 1),
-
-(1, 3, 2),
-
-(2, 2, 3),
-
-(2, 4, 1),
-
-(3, 1, 2),
-
-(3, 2, 1),
-
-(3, 5, 1),
-
-(4, 6, 1),
-
-(4, 1, 2),
-
-(5, 3, 1),
-
-(5, 8, 2),
-
-(5, 2, 2),
-
-(6, 2, 1),
-
-(6, 10, 1),
-
-(7, 2, 1),
-
-(7, 3, 2),
-
-(7, 8, 1),
-
-(8, 2, 1),
-
-(8, 5, 1),
-
-(8, 10, 1),
-
-(9, 2, 1),
-
-(9, 3, 2),
-
-(9, 8, 1),
-
-(10, 2, 1),
-
-(10, 5, 1);
-
+(17, 2, 1),
+(17, 3, 2),
+(18, 2, 3),
+(18, 4, 1),
+(19, 1, 2),
+(19, 2, 1),
+(19, 5, 1),
+(20, 6, 1),
+(20, 1, 2),
+(21, 3, 1),
+(21, 8, 2),
+(21, 2, 2),
+(22, 2, 1),
+(22, 10, 1),
+(23, 2, 1),
+(23, 3, 2),
+(23, 8, 1),
+(24, 2, 1),
+(24, 5, 1),
+(24, 10, 1),
+(25, 2, 1),
+(25, 3, 2),
+(25, 8, 1),
+(26, 2, 1),
+(26, 5, 1);
  --Insert values in VsPayemnt table 
 INSERT INTO VsPayments (OrderId, PaymentDate, PaymentAmount, PaymentMode, PaymentStatus)
 VALUES 
