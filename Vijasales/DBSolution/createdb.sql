@@ -49,13 +49,12 @@ CREATE TABLE VsOrderItems (
  
 CREATE TABLE VsShipment (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    ShipmentDate TIMESTAMP NOT NULL,
+    ShipmentDate DATETIME NOT NULL,
     OrderId INT NOT NULL,
     ShipmentStatus VARCHAR(50) NOT NULL,
-    UserId INT NOT NULL,
     FOREIGN KEY (OrderId) REFERENCES VsOrders(Id),
-    FOREIGN KEY (UserId) REFERENCES VsUsers(Id)
 );
+
 CREATE TABLE VsAccounts (     
 AccountId INT IDENTITY(1,1) PRIMARY KEY,   
   UserId INT NOT NULL,     
