@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Index">
+        <form id="addToCartForm" asp-action="AddToCart" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
@@ -33,9 +33,9 @@
 
 <div style="text-align: center; margin-top: 20px;">
     <!-- Add to Cart link with dynamic JavaScript -->
-    <a href="javascript:void(0);" class="btn btn-success btn-lg" role="button" style="margin-right: 10px;" onclick="addToCart()">
+    <button class="btn btn-success btn-lg" role="button" style="margin-right: 10px;" onclick="submitForm()">
         Add to Cart
-    </a>
+    </button>
 
     <a asp-action="Index">Back to List</a>
 </div>
@@ -46,16 +46,15 @@
     }
 
     <script>
-        function addToCart() {
+        function submitForm() {
             // Get the value of the Id input field
             var itemId = document.getElementById("itemId").value;
+            // Set the value of the itemId into the hidden field in the form if required
+            document.getElementById("itemId").value = itemId;
 
-            // Construct the URL with the itemId as a query parameter
-            var url = '@Url.Action("AddToCart", "ShoppingCart", new { id = "__id__" })';
-            url = url.replace("__id__", itemId); // Replace __id__ with the actual value entered by the user
-
-            // Redirect to the constructed URL
-            window.location.href = url;
+            // Submit the form
+            document.getElementById("addToCartForm").submit();
         }
     </script>
 }
+

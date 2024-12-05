@@ -4,32 +4,31 @@ using ShoppingCartTest.Models;
 
 namespace ShoppingCartTest.Controllers
 {
-    public class Cart : Controller
+    public class CartController : Controller
     {
         public ActionResult Index()
         {
             return View();
            
         }
+
+
         [HttpPost]
-
-        public ActionResult AddToCart(Items id)
+        public ActionResult AddToCart(IFormCollection f)
         {
-            Cart myCart = (Cart)this.HttpContext.Session["cart"];
-            ICartService cartService = new CartService(myCart);
-            cartService.AddToCart(i);
-            return RedirectToAction("Index", "Product");
+            int id = int.Parse(f["Id"]);
+            string Name = f["Name"];
+            int Quantity = int.Parse(f["Quantity"]);
+            Items i=new Items();
+            i.Id = id;
+            i.Name = Name;
+            i.Quantity = Quantity;
+            ViewData["item"] = i;
+            return View();
         }
-        public ActionResult AddToCart(int id)
-        {
-            Items item = new Items();
-            item.Id = id;
-            item.Quantity = 0;
-            item.Name = name;
-            ViewData["item"] = item;
-            return View(item);
 
-        }
+      
+
 
         public ActionResult RemoveFromCart(int id)
         {

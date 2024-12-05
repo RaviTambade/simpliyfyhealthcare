@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderProcessing
+namespace DataLib
 {
-    internal interface IOrderService
+    public interface IRepository
     {
+        string GetData();
     }
 }
