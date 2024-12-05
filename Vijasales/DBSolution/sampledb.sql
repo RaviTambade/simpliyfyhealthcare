@@ -156,3 +156,26 @@ VALUES
 (23, '2024-12-12 16:30:00', 400.20, 'Credit Card', 'Pending'),
 (24, '2024-12-12 18:45:00', 90.00, 'Cash', 'Completed'),
 (25, '2024-12-13 10:00:00', 500.50, 'Debit Card', 'Failed');
+
+
+--Inserting data into VsShipment
+INSERT INTO VsShipment (ShipmentDate, OrderId, ShipmentStatus)
+VALUES
+(DATEADD(DAY, 7, '2024-12-01'), 17, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-02'), 18, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-03'), 19, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-04'), 20, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-05'), 21, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-06'), 22, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-07'), 23, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-08'), 24, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-09'), 25, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-10'), 26, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-11'), 27, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-12'), 28, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-13'), 29, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-14'), 30, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-15'), 31, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-16'), 32, 'Order Confirmed'),
+(DATEADD(DAY, 7, '2024-12-17'), 33, 'Order Confirmed');
+
