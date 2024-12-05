@@ -27,11 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipmentTest", "ShipmentTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipmentLib", "Shipment\ShipmentLib.csproj", "{897EA8E2-E435-4C9E-93AD-DB98135026A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shipment", "Shipment\Shipment.csproj", "{D5FE931E-0A2C-4D29-9666-41C2F70467D4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRM", "CRM\CRM.csproj", "{DEE13F73-805C-4999-8B11-CD206E967F82}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shipment", "Shipment\Shipment.csproj", "{D5FE931E-0A2C-4D29-9666-41C2F70467D4}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipmentMVCTest", "ShipmentMVCTest\ShipmentMVCTest.csproj", "{5DB96325-8B7F-4FA9-A1D7-3C076B1BFC2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogueTest", "ProductCatalogueTest\ProductCatalogueTest.csproj", "{C4F92240-9552-4697-8B37-81E3E41A77A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{5DB96325-8B7F-4FA9-A1D7-3C076B1BFC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DB96325-8B7F-4FA9-A1D7-3C076B1BFC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DB96325-8B7F-4FA9-A1D7-3C076B1BFC2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F92240-9552-4697-8B37-81E3E41A77A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F92240-9552-4697-8B37-81E3E41A77A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F92240-9552-4697-8B37-81E3E41A77A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F92240-9552-4697-8B37-81E3E41A77A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
