@@ -19,6 +19,11 @@ namespace OrderProcessing.Services.Connected
             return _svc.GetAll();
         }
 
+        public List<Order> GetCustomerOrders(int id)
+        {
+            return _svc.GetCustomerOrder(id);
+        }
+
         public Order GetOrder(int id)
         {
             return _svc.GetOrder(id);

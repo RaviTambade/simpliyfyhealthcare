@@ -5,11 +5,11 @@ using OrderProcessing.Entities;
 using OrderProcessing.Repositories.Connected;
 
 OrderRepository _orderRepository = new OrderRepository();
-Order _newOrder = new Order { CustomerId=12,Status="Shipped",OrderDate=DateTime.Now,TotalAmount=decimal.Parse("8800")};
+//Order _newOrder = new Order { CustomerId=12,Status="Shipped",OrderDate=DateTime.Now,TotalAmount=decimal.Parse("8800")};
 
-if(_orderRepository.Insert(_newOrder)) 
-        Console.WriteLine("Inserted");
-List<Order> _orders = _orderRepository.GetAll();
+//if(_orderRepository.Insert(_newOrder)) 
+  //      Console.WriteLine("Inserted");
+List<Order> _orders = _orderRepository.GetCustomerOrder(2);
 
 foreach(Order order in _orders)
 {

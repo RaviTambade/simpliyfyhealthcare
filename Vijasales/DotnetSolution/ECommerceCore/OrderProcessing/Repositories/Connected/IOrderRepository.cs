@@ -11,6 +11,7 @@ namespace OrderProcessing.Repositories.Connected
     {
         List<Order> GetAll();
         Order GetOrder(int id);
+        List<Order> GetCustomerOrder(int customerId);
         bool Insert(Order order);
         bool Update(Order order);
         bool Delete(int id);
