@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
-using Microsoft.Extensions.Configuration;
+using System.Net.NetworkInformation;
 
 namespace ShipmentLib.Repositories.ORM
 {
@@ -19,15 +19,6 @@ namespace ShipmentLib.Repositories.ORM
     }
     public class ShipmentRepository : IShipmentRepository
     {
-        public string _conString;
-
-        private IConfiguration _configuration;
-        public ShipmentRepository(IConfiguration configuration)
-        {
-            _configuration = configuration;
-            _conString = this._configuration.GetConnectionString("DefaultConnection");
-        }
-
         public bool Create(Shipment shipment)
         {
             bool status = false;
@@ -35,6 +26,7 @@ namespace ShipmentLib.Repositories.ORM
             {
                 context.Shipments.Add(shipment);
             }
+            status = false;
             return status;
 
 
@@ -84,6 +76,7 @@ namespace ShipmentLib.Repositories.ORM
                 }
             }
             return shipments;
+            //throw new NotImplementedException();
         }
 
         public List<Shipment> GetByDate(DateTime date)
