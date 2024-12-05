@@ -1,20 +1,11 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
+
 
 <h2>Add To Cart</h2>
 
-<h3>@Model.Name</h3>
-
-<h3>@Model.Id</h3>
-
-<form action="@Url.Action("AddToCart","Shopping")" method="post">
-    <input type="hidden" name="Id" value="@Model.Id" />
-    <label for="Quantity">Quantity :</label>
-        <label for="Name">Name:</label>
-    <input type="number" id="Quantity" name="Quantity" value="1" min="1" />
-
-    <input type="submit" value="Add to cart" />
-</form>
+@{
+    Items i = (Items)ViewData["item"];
+    <p>@i.Name  @i.Id  @i.Quantity</p>
 }
