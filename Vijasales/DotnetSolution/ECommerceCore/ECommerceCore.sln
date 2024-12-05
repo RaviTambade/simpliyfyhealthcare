@@ -25,6 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Securi
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentTest", "ShipmentTest\ShipmentTest.csproj", "{D0E7EFD2-C8B8-4FC8-9FAB-2AE2242243C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipment", "Shipment\Shipment.csproj", "{897EA8E2-E435-4C9E-93AD-DB98135026A1}"
+<<<<<<< HEAD
+>>>>>>> da95b6bbce313895559cc39ce04a4b0081909292
+=======
 >>>>>>> da95b6bbce313895559cc39ce04a4b0081909292
 EndProject
 Global
@@ -54,11 +57,14 @@ Global
 		{9DBEA530-55B8-4CB7-A2D0-B7EB1FD22252}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DBEA530-55B8-4CB7-A2D0-B7EB1FD22252}.Release|Any CPU.Build.0 = Release|Any CPU
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{184910FD-0B96-4DC4-8598-A078069319B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{184910FD-0B96-4DC4-8598-A078069319B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{184910FD-0B96-4DC4-8598-A078069319B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{184910FD-0B96-4DC4-8598-A078069319B8}.Release|Any CPU.Build.0 = Release|Any CPU
 =======
+=======
+>>>>>>> da95b6bbce313895559cc39ce04a4b0081909292
 		{D0E7EFD2-C8B8-4FC8-9FAB-2AE2242243C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0E7EFD2-C8B8-4FC8-9FAB-2AE2242243C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E7EFD2-C8B8-4FC8-9FAB-2AE2242243C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -67,6 +73,9 @@ Global
 		{897EA8E2-E435-4C9E-93AD-DB98135026A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{897EA8E2-E435-4C9E-93AD-DB98135026A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{897EA8E2-E435-4C9E-93AD-DB98135026A1}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+>>>>>>> da95b6bbce313895559cc39ce04a4b0081909292
+=======
 >>>>>>> da95b6bbce313895559cc39ce04a4b0081909292
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
@@ -83,6 +92,9 @@ Global
 =======
 		{D0E7EFD2-C8B8-4FC8-9FAB-2AE2242243C4} = {E236737E-B1D2-4CAD-B93C-C06B7942A3C3}
 		{897EA8E2-E435-4C9E-93AD-DB98135026A1} = {76531FC2-513B-4F35-9D0A-03B545374308}
+<<<<<<< HEAD
+>>>>>>> da95b6bbce313895559cc39ce04a4b0081909292
+=======
 >>>>>>> da95b6bbce313895559cc39ce04a4b0081909292
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
