@@ -1,0 +1,61 @@
+﻿@model ShoppingCartTest.Models.Items
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>Items</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" id="itemId" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <!-- Add to Cart link with dynamic JavaScript -->
+    <a href="javascript:void(0);" class="btn btn-success btn-lg" role="button" style="margin-right: 10px;" onclick="addToCart()">
+        Add to Cart
+    </a>
+
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function addToCart() {
+            // Get the value of the Id input field
+            var itemId = document.getElementById("itemId").value;
+
+            // Construct the URL with the itemId as a query parameter
+            var url = '@Url.Action("AddToCart", "ShoppingCart", new { id = "__id__" })';
+            url = url.replace("__id__", itemId); // Replace __id__ with the actual value entered by the user
+
+            // Redirect to the constructed URL
+            window.location.href = url;
+        }
+    </script>
+}
