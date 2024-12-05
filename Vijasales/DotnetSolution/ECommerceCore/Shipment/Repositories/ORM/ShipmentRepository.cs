@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
+using Microsoft.Extensions.Configuration;
 
 namespace ShipmentLib.Repositories.ORM
 {
@@ -18,15 +19,51 @@ namespace ShipmentLib.Repositories.ORM
     }
     public class ShipmentRepository : IShipmentRepository
     {
+        public string _conString;
+
+        private IConfiguration _configuration;
+        public ShipmentRepository(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _conString = this._configuration.GetConnectionString("DefaultConnection");
+        }
+
         public bool Create(Shipment shipment)
         {
+            bool status = false;
+            using (var context = new ShipmentContext())
+            {
+                context.Shipments.Add(shipment);
+            }
+            return status;
 
-            throw new NotImplementedException();
+
+           // throw new NotImplementedException();
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            bool flag = false;
+            int ship_Id = id;
+            using (var context = new ShipmentContext())
+            {
+                var shipment = context.Shipments.SingleOrDefault(s => s.Id == ship_Id);
+                if (shipment != null)
+                {
+                    context.Shipments.Remove(shipment);
+                    context.SaveChanges();
+
+                }
+                else
+                {
+                    Console.WriteLine("Shipment not found.");
+                }
+                flag = true;
+            }
+
+            return flag;
+
+           // throw new NotImplementedException();
         }
 
         public List<Shipment> GetAll()
@@ -47,12 +84,34 @@ namespace ShipmentLib.Repositories.ORM
                 }
             }
             return shipments;
-            //throw new NotImplementedException();
         }
 
         public List<Shipment> GetByDate(DateTime date)
         {
-            throw new NotImplementedException();
+
+            List<Shipment> shipments = new List<Shipment>();
+
+            using (var context = new ShipmentContext())
+            {
+                var dbshipments = context.Shipments.ToList();
+
+                foreach (var shipment in dbshipments)
+                {
+                    Shipment theShipment = new Shipment();
+                    if (shipment.ShipmentDate == date)
+                    {
+                        theShipment.Id = shipment.Id;
+                        theShipment.OrderId = shipment.OrderId;
+                        theShipment.ShipmentDate = shipment.ShipmentDate;
+                        theShipment.ShipmentStatus = shipment.ShipmentStatus;
+
+                        shipments.Add(theShipment);
+                    }
+
+                }
+                return shipments;
+                //throw new NotImplementedException();
+            }
         }
 
         public Shipment GetById(int id)
@@ -71,6 +130,31 @@ namespace ShipmentLib.Repositories.ORM
 
         public List<Shipment> GetByStatus(string status)
         {
+            List<Shipment>shipments= new List<Shipment>();
+
+            using (var context=new ShipmentContext())
+            {
+              var  dbshipments = context.Shipments.ToList();
+
+                foreach (var shipment in dbshipments)
+                {
+                    Shipment theShipment = new Shipment();
+                    if(shipment.ShipmentStatus==status)
+                    {
+                        theShipment.Id = shipment.Id;
+                        theShipment.OrderId = shipment.OrderId;
+                        theShipment.ShipmentDate = shipment.ShipmentDate;
+                        theShipment.ShipmentStatus = shipment.ShipmentStatus;
+
+                        shipments.Add(theShipment);
+                    }
+                    
+                }
+
+                return shipments;
+
+            }
+
             throw new NotImplementedException();
         }
 

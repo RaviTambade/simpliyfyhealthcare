@@ -11,11 +11,49 @@ namespace OrderProcessing.Repositories.Connected
 {
     public class OrderRepository : IOrderRepository
     {
+<<<<<<< HEAD
+        string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+=======
         string conString = string.Empty;
+>>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
         public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
+<<<<<<< HEAD
+=======
+        public List<Order> GetCustomerOrder(int customerId)
+        {
+            List<Order> orders = new List<Order>();
+            IDbConnection conn = new SqlConnection(conString);
+            string query = "SELECT * FROM VSORDERS WHERE CUSTOMERID=" + customerId;
+            IDbCommand cmd = new SqlCommand(query, conn as SqlConnection);
+            try
+            {
+                conn.Open();
+                IDataReader data = cmd.ExecuteReader();
+                while (data.Read())
+                {
+                    Order order = new Order();
+                    order.Id = Convert.ToInt32(data["Id"].ToString());
+                    order.CustomerId = Convert.ToInt32(data["CustomerId"].ToString());
+                    order.Status = data["Status"].ToString();
+                    order.OrderDate = DateTime.Parse(data["OrderDate"].ToString());
+                    order.TotalAmount = Convert.ToDecimal(data["TotalAmount"].ToString());
+                    orders.Add(order);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Catch exception
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return orders;
+        }
+>>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
 
         public List<Order> GetAll()
         {
