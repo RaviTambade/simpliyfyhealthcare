@@ -4,48 +4,42 @@ using ShoppingCartTest.Models;
 
 namespace ShoppingCartTest.Controllers
 {
-    public class CartController : Controller
-    {
-        public ActionResult Index()
+
+        public class CartController : Controller
         {
-            return View();
-           
+            public ActionResult Index()
+            {
+                return View();
+            }
+
+
+            [HttpPost]
+            public ActionResult AddToCart(IFormCollection f)
+            {
+                int id = int.Parse(f["Id"]);
+                string Name = f["Name"];
+                int Quantity = int.Parse(f["Quantity"]);
+                Items i = new Items();
+                i.Id = id;
+                i.Name = Name;
+                i.Quantity = Quantity;
+                ViewData["item"] = i;
+                return View();
+            }
+
+
+
+
+            public ActionResult RemoveFromCart(int id)
+            {
+                return View();
+            }
+            public ActionResult Clear()
+            {
+                return View();
+            }
+
         }
-
-
-        [HttpPost]
-        public ActionResult AddToCart(IFormCollection f)
-        {
-<<<<<<< HEAD
-            return View();
-        }
-        public ActionResult AddToCart(int id)
-        {
-            return View();
-=======
-            int id = int.Parse(f["Id"]);
-            string Name = f["Name"];
-            int Quantity = int.Parse(f["Quantity"]);
-            Items i=new Items();
-            i.Id = id;
-            i.Name = Name;
-            i.Quantity = Quantity;
-            ViewData["item"] = i;
-            return View();
-        }
->>>>>>> 67deac4f883763a7cfed310100794f98d7f648e5
-
-      
-
-
-        public ActionResult RemoveFromCart(int id)
-        {
-            return View();
-        }
-        public ActionResult Clear()
-        {
-            return View();
-        }
-
     }
-}
+
+       
