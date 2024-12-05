@@ -1,8 +1,6 @@
 create storedprocedure
--- Transaction Procedure for Payment
-CREATE PROCEDURE Payment
+CREATE PROCEDURE FundTransfer
     @CustomerAccountID INT,
-	@OrderID INT,
     @AdminAccountID INT,
     @Amount DECIMAL(10, 2),
     @PaymentMode VARCHAR(50) -- Payment mode, e.g., 'Bank Transfer', 'Cash', etc.
@@ -15,7 +13,7 @@ BEGIN
         -- Step 1: Check if customer account has sufficient balance
         DECLARE @CustomerBalance DECIMAL(18, 2);
         
-		IF (@PaymentMode=='Debit' || @PaymentMode=='Netbanking')
+		IF (@PaymentMode='Debit' || @PaymentMode='Netbanking')
 			BEGIN
 				SELECT @CustomerBalance = Balance
 				FROM VsAccounts
@@ -42,7 +40,7 @@ BEGIN
 			END
  
         -- Step 2: Debit amount from customer account
-		IF (@PaymentMode=='Debit' || @PaymentMode=='Netbanking')
+		IF (@PaymentMode = 'Debit' || @PaymentMode = 'Netbanking')
 			BEGIN
 				UPDATE VsAccounts
 				SET Balance = Balance - @Amount
@@ -72,11 +70,7 @@ BEGIN
         VALUES (@AdminAccountID, @Amount, GETDATE());
 		
 		
-        -- Step 4: Insert a payment record (optional)
-        INSERT INTO VsPayments (PaymentDate, OrderId, PaymentMode, PaymentStatus)
-        VALUES (GETDATE(), @OrderID, @PaymentMode, 'Completed');
-
-        -- Step 5: Commit the transaction
+        -- Step 4: Commit the transaction
         COMMIT TRANSACTION;
  
         -- Return success message
