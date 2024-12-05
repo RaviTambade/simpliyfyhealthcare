@@ -1,4 +1,4 @@
-﻿namespace Shipment.Entities
+﻿namespace ShipmentLib.Entities
 {
     public class Shipment
     {
