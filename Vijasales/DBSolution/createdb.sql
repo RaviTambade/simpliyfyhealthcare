@@ -54,6 +54,7 @@ CREATE TABLE VsShipment (
     ShipmentStatus VARCHAR(50) NOT NULL,
     FOREIGN KEY (OrderId) REFERENCES VsOrders(Id),
 );
+
 CREATE TABLE VsAccounts (     
 AccountId INT IDENTITY(1,1) PRIMARY KEY,   
   UserId INT NOT NULL,     

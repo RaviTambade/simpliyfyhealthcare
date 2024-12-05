@@ -139,7 +139,7 @@ VALUES
 (25, '2024-12-13 10:00:00', 500.50, 'Debit Card', 'Failed');
 
 
---Inserting data into VsShipment
+--Inserting data into VsShipment - shipment date should be 7 days after the order date
 INSERT INTO VsShipment (ShipmentDate, OrderId, ShipmentStatus)
 VALUES
 (DATEADD(DAY, 7, '2024-12-01'), 17, 'Order Confirmed'),
