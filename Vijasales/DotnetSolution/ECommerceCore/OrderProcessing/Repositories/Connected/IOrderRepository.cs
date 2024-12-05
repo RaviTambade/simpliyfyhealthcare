@@ -11,6 +11,10 @@ namespace OrderProcessing.Repositories.Connected
     {
         List<Order> GetAll();
         Order GetOrder(int id);
+<<<<<<< HEAD
+=======
+        List<Order> GetCustomerOrder(int customerId);
+>>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
         bool Insert(Order order);
         bool Update(Order order);
         bool Delete(int id);
