@@ -13,6 +13,10 @@ namespace OrderProcessing.Services.Connected
         {
             throw new NotImplementedException();
         }
+        public List<Order> GetCustomerOrders(int id)
+        {
+            return _svc.GetCustomerOrder(id);
+        }
 
         public List<Order> GetAll()
         {

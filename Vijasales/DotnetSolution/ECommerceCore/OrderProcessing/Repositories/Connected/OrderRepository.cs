@@ -16,6 +16,37 @@ namespace OrderProcessing.Repositories.Connected
         {
             throw new NotImplementedException();
         }
+        public List<Order> GetCustomerOrder(int customerId)
+        {
+            List<Order> orders = new List<Order>();
+            IDbConnection conn = new SqlConnection(conString);
+            string query = "SELECT * FROM VSORDERS WHERE CUSTOMERID=" + customerId;
+            IDbCommand cmd = new SqlCommand(query, conn as SqlConnection);
+            try
+            {
+                conn.Open();
+                IDataReader data = cmd.ExecuteReader();
+                while (data.Read())
+                {
+                    Order order = new Order();
+                    order.Id = Convert.ToInt32(data["Id"].ToString());
+                    order.CustomerId = Convert.ToInt32(data["CustomerId"].ToString());
+                    order.Status = data["Status"].ToString();
+                    order.OrderDate = DateTime.Parse(data["OrderDate"].ToString());
+                    order.TotalAmount = Convert.ToDecimal(data["TotalAmount"].ToString());
+                    orders.Add(order);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Catch exception
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return orders;
+        }
 
         public List<Order> GetAll()
         {

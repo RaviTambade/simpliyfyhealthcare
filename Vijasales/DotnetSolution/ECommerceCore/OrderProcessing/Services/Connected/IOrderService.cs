@@ -9,7 +9,7 @@ namespace OrderProcessing.Services.Connected
         bool Update(Order order);
         bool Delete(int id );
 
-
+        List<Order> GetCustomerOrders(int id);
 
     }
 }
