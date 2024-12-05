@@ -10,7 +10,11 @@ namespace OrderProcessing.Services.Connected
         bool Update(Order order);
         bool Delete(int id );
 
+<<<<<<< HEAD
 
+=======
+        List<Order> GetCustomerOrders(int id);
+>>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
 
     }
 }

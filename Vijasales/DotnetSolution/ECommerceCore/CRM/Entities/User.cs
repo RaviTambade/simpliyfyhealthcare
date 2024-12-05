@@ -19,6 +19,10 @@ namespace CRM.Entities
         public string ContactNumber {  get; set; }
         public string ImageUrl {  get; set; }
         public DateTime CreatedAt { get; set; }
+<<<<<<< HEAD
+
+=======
+>>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
 
     }
 }
