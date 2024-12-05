@@ -13,7 +13,7 @@ namespace ShoppingCartTest.Controllers
         }
         [HttpPost]
 
-        public ActionResult AddToCart(Items i)
+        public ActionResult AddToCart(Items id)
         {
             Cart myCart = (Cart)this.HttpContext.Session["cart"];
             ICartService cartService = new CartService(myCart);
