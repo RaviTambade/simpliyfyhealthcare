@@ -26,10 +26,38 @@
     .btn {
         margin-top: auto;
     }
+
+    
+    .view-details-btn {
+        margin-top: 10px;
+        background-color: #28a745; 
+        color: white;
+    }
+
+        .view-details-btn:hover {
+            background-color: #218838; 
+        }
+
+   
+    .add-to-cart-btn {
+        margin-top: 10px;
+        background-color: #007bff !important; 
+        color: white !important;
+        border: none;
+        transition: none; 
+    }
+
+      
+        .add-to-cart-btn:hover {
+            background-color: #007bff !important; 
+            color: white !important;
+        }
+        .add-to-cart-btn:focus {
+            outline: none !important;
+        }
 </style>
 
 <div id="productGrid" class="container">
-   
     <div class="row" id="productGridRow">
        
     </div>
@@ -38,7 +66,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        
+       
         function loadProducts() {
             $.ajax({
                 url: "/Products/Grid",  
@@ -46,11 +74,12 @@
                 success: function (data) {
                     var productHtml = '';
 
+                    
                     data.forEach(function (card) {
                         productHtml += ProductCard(card);
                     });
 
-                   
+                    
                     $('#productGridRow').html(productHtml);
                 },
                 error: function () {
@@ -61,49 +90,24 @@
 
        
         function ProductCard(card) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             return `
-                <div class="col-12 col-sm-6 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="${card.imageUrl}" class="card-img-top product-image" alt="${card.title}" />
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${card.title}</h5>
-                            <p class="card-text">₹ ${card.price}</p>
-                            <a href="#" class="btn btn-primary mt-auto">View Details</a>
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="${card.imageUrl}" class="card-img-top product-image" alt="${card.title}" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${card.title}</h5>
+                                <p class="card-text">₹ ${card.price}</p>
+                                <!-- View Details Button (Green) -->
+                                <a href="#" class="btn view-details-btn mt-auto">View Details</a>
+                                <!-- Add to Cart Button (Blue) -->
+                                <button class="btn add-to-cart-btn mt-2">Add to Cart</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
         }
 
        
         loadProducts();
     });
 </script>
-
