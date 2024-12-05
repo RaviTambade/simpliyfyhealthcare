@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CRM.Entities
 {
-    internal class User
+    public class User
     {
+
     }
 }
