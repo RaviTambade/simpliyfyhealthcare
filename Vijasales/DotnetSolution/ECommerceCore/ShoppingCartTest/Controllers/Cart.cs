@@ -2,7 +2,7 @@
 
 namespace ShoppingCartTest.Controllers
 {
-    public class ShoppingCart : Controller
+    public class Cart : Controller
     {
         public IActionResult Index()
         {
