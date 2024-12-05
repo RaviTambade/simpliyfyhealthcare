@@ -157,4 +157,31 @@ VALUES
 
 (10, 5, 1);
 
- 
+ --Insert values in VsPayemnt table 
+INSERT INTO VsPayments (OrderId, PaymentDate, PaymentAmount, PaymentMode, PaymentStatus)
+VALUES 
+(1, '2024-12-01 10:00:00', 150.75, 'Credit Card', 'Completed'),
+(2, '2024-12-01 11:15:00', 200.00, 'PayPal', 'Pending'),
+(3, '2024-12-02 09:30:00', 75.50, 'Bank Transfer', 'Completed'),
+(4, '2024-12-02 14:45:00', 500.00, 'Debit Card', 'Failed'),
+(5, '2024-12-03 08:00:00', 120.30, 'Credit Card', 'Completed'),
+(6, '2024-12-03 16:10:00', 250.00, 'PayPal', 'Completed'),
+(7, '2024-12-04 10:30:00', 80.90, 'Cash', 'Pending'),
+(8, '2024-12-04 11:45:00', 320.00, 'Debit Card', 'Completed'),
+(9, '2024-12-05 08:00:00', 100.00, 'Credit Card', 'Failed'),
+(10, '2024-12-05 15:00:00', 60.50, 'Bank Transfer', 'Completed'),
+(11, '2024-12-06 09:10:00', 175.00, 'PayPal', 'Completed'),
+(12, '2024-12-06 12:30:00', 450.75, 'Credit Card', 'Completed'),
+(13, '2024-12-07 14:00:00', 130.60, 'Debit Card', 'Pending'),
+(14, '2024-12-07 18:00:00', 200.00, 'Cash', 'Completed'),
+(15, '2024-12-08 09:15:00', 320.25, 'PayPal', 'Failed'),
+(16, '2024-12-08 13:40:00', 550.00, 'Credit Card', 'Completed'),
+(17, '2024-12-09 10:20:00', 85.75, 'Bank Transfer', 'Pending'),
+(18, '2024-12-09 16:00:00', 45.90, 'Cash', 'Completed'),
+(19, '2024-12-10 08:10:00', 350.50, 'PayPal', 'Completed'),
+(20, '2024-12-10 17:30:00', 200.00, 'Debit Card', 'Pending'),
+(21, '2024-12-11 09:00:00', 250.00, 'PayPal', 'Completed'),
+(22, '2024-12-11 14:00:00', 135.40, 'Bank Transfer', 'Completed'),
+(23, '2024-12-12 16:30:00', 400.20, 'Credit Card', 'Pending'),
+(24, '2024-12-12 18:45:00', 90.00, 'Cash', 'Completed'),
+(25, '2024-12-13 10:00:00', 500.50, 'Debit Card', 'Failed');
