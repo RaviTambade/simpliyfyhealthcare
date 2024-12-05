@@ -13,7 +13,7 @@ namespace ShoppingCartTest.Controllers
         }
         [HttpPost]
 
-        public ActionResult AddToCart(Items i)
+        public ActionResult AddToCart(Items id)
         {
             return View();
         }
