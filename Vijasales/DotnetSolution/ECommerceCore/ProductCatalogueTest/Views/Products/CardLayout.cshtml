@@ -7,71 +7,72 @@
 
 <script>
     let addToCard = (products) => {
-        $('ul.list-unstyled').html('');
+        $('ul.list-unstyled').html('');  
         $.each(products, (index, item) => {
             var cardHtml = `
-                                <li>
-                                    <div class="card mb-3 w-75">
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="${item.imageUrl}" class="img-fluid rounded-start" alt="${item.title}">
-                                            </div>
-                                            <div class="col-md-8 d-flex align-items-center">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${item.title}</h5>
-                                                    <p class="card-text text-secondary">Rs ${item.price}</p>
+                    <li>
+                        <div class="card mb-3 w-75">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="${item.imageUrl}" class="img-fluid rounded-start" alt="${item.title}">
+                                </div>
+                                <div class="col-md-8 d-flex align-items-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${item.title}</h5>
+                                        <p class="card-text text-secondary">Rs ${item.price}</p>
 
-                                                    <!-- More Details Button (Only Green on Hover) -->
-                                                    <a class="btn view-details-btn btn-sm btn-soft-secondary rounded-5" href="#">More Details</a>
-                                                        <!-- Add to Cart Button (Always Blue) -->
-                                                        <a class="btn add-to-cart-btn btn-sm btn-sm-wide rounded-5" href="#">Add to cart</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!-- More Details Button (Only Green on Hover) -->
+                                        <a class="btn view-details-btn btn-sm btn-soft-secondary rounded-5" href="/Products/Details/${item.Id}">More Details</a>
+                                        <h1>${item.Id}</h1>
+
+                                        <!-- Add to Cart Button (Always Blue) -->
+                                        <a class="btn add-to-cart-btn btn-sm btn-sm-wide rounded-5" href="#">Add to cart</a>
                                     </div>
-                                </li>`;
-            $('ul.list-unstyled').append(cardHtml);
+                                </div>
+                            </div>
+                        </div>
+                    </li>`;
+            $('ul.list-unstyled').append(cardHtml);  
         });
     }
 
     $(document).ready(() => {
         $.ajax({
-            url: "/Products/Grid",
+            url: "/Products/Grid",  
             type: "GET",
             success: function (data) {
-                addToCard(data);
+                addToCard(data);  
             },
             error: function (error) {
-                console.error('Error fetching data:', error);
+                console.error('Error fetching data:', error);  
             }
         })
     });
 </script>
 
 <style>
-
+    
     .add-to-cart-btn {
-        background-color: #007bff !important;
+        background-color: #007bff !important; 
         color: white !important;
         border: none;
     }
 
-
         .add-to-cart-btn:hover {
-            background-color: #007bff !important;
+            background-color: #007bff !important; 
             color: white !important;
         }
 
-
+   
     .view-details-btn {
         background-color: transparent;
         color: #28a745;
-        border: 1px solid #28a745;
+        border: 1px solid #28a745; 
     }
 
-
         .view-details-btn:hover {
-            background-color: #28a745;
+            background-color: #28a745; 
             color: white;
             border: 1px solid #218838;
+        }
 </style>
