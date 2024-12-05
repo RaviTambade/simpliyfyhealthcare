@@ -5,49 +5,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace ShoppingCartTest.Controllers
 {
-<<<<<<< HEAD
     public class CartController : Controller
     {
         private const string SessionCartKey = "_Cart";
-=======
-<<<<<<< HEAD
-    public class CartController : Controller
-    {
-        public ActionResult Index()
-        {
-            return View();
-           
-        }
-
-
-        [HttpPost]
-        public ActionResult AddToCart(IFormCollection f)
-        {
-            int id = int.Parse(f["Id"]);
-            string Name = f["Name"];
-            int Quantity = int.Parse(f["Quantity"]);
-            Items i=new Items();
-            i.Id = id;
-            i.Name = Name;
-            i.Quantity = Quantity;
-            ViewData["item"] = i;
-            return View();
-        }
-
-      
-
-
-        public ActionResult RemoveFromCart(int id)
-        {
-            return View();
-        }
-        public ActionResult Clear()
-        {
-            return View();
-        }
-
-=======
->>>>>>> 009ef1d72f44e5ad780c961b439d9c4a95bcb6c2
 
         
         public IActionResult Index()
@@ -70,7 +30,7 @@ namespace ShoppingCartTest.Controllers
             return View(cart); 
         }
 
-    
+        // POST: Cart/AddToCart
         [HttpPost]
         public IActionResult AddToCart(IFormCollection form)
         {
@@ -99,11 +59,6 @@ namespace ShoppingCartTest.Controllers
             
             return RedirectToAction("GetCart");
         }
-<<<<<<< HEAD
-=======
->>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
-    }
->>>>>>> 009ef1d72f44e5ad780c961b439d9c4a95bcb6c2
 
        
         public IActionResult RemoveFromCart(int id)
