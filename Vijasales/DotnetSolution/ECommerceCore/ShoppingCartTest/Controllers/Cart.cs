@@ -15,19 +15,11 @@ namespace ShoppingCartTest.Controllers
 
         public ActionResult AddToCart(Items id)
         {
-            Cart myCart = (Cart)this.HttpContext.Session["cart"];
-            ICartService cartService = new CartService(myCart);
-            cartService.AddToCart(i);
-            return RedirectToAction("Index", "Product");
+            return View();
         }
         public ActionResult AddToCart(int id)
         {
-            Items item = new Items();
-            item.Id = id;
-            item.Quantity = 0;
-            item.Name = name;
-            ViewData["item"] = item;
-            return View(item);
+            return View();
 
         }
 
