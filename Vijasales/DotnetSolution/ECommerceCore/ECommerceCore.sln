@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VijaySalesPortal", "VijaySa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCartTest", "ShoppingCartTest\ShoppingCartTest.csproj", "{2D1D0BFB-8CF1-40E0-B179-B7C8C6EA7655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessingTestApp", "OrderProcessingTestApp\OrderProcessingTestApp.csproj", "{9DBEA530-55B8-4CB7-A2D0-B7EB1FD22252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessingTestApp", "OrderProcessingTestApp\OrderProcessingTestApp.csproj", "{9DBEA530-55B8-4CB7-A2D0-B7EB1FD22252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderProcessing", "OrderProcessing\OrderProcessing.csproj", "{D6049755-306B-4734-9C21-DCBDE528ECB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderProcessing", "OrderProcessing\OrderProcessing.csproj", "{D6049755-306B-4734-9C21-DCBDE528ECB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +61,7 @@ Global
 		{DCCAD766-0833-4DB8-AA27-37ABBA201DAC} = {65C83AF8-DBA4-4CFE-9468-306C09034EBF}
 		{2D1D0BFB-8CF1-40E0-B179-B7C8C6EA7655} = {E236737E-B1D2-4CAD-B93C-C06B7942A3C3}
 		{9DBEA530-55B8-4CB7-A2D0-B7EB1FD22252} = {E236737E-B1D2-4CAD-B93C-C06B7942A3C3}
+		{D6049755-306B-4734-9C21-DCBDE528ECB7} = {76531FC2-513B-4F35-9D0A-03B545374308}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {517D2181-39AB-4105-8929-FAABF2E885E5}
