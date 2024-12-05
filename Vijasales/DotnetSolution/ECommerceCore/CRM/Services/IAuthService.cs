@@ -8,5 +8,6 @@ namespace CRM.Services
 {
     public interface IAuthService
     {
+
     }
 }
