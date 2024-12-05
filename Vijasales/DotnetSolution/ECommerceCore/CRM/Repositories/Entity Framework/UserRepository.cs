@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CRM.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IDataRepository
     {
     }
 }
