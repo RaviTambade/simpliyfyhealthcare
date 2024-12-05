@@ -16,6 +16,7 @@ VALUES
 ('Manish', 'Yadav', 'Password123!', 'manish.yadav@example.com', 'Street 13, City Delhi', 'sales', '9876543222', '/images/baseImage.png'),
 ('Shalini', 'Bose', 'Password123!', 'shalini.bose@example.com', 'Street 14, City Mumbai', 'customer', '9876543223', '/images/baseImage.png'),
 ('Vijay', 'Malhotra', 'Password123!', 'vijay.malhotra@example.com', 'Street 15, City Bengaluru', 'vendor', '9876543224', '/images/baseImage.png');
+('Vijay','Sales','Password123!','admin@vijaysales.com','Vijay sales HQ, Magarpatta','admin','9970154890','/images/baseImage.png');
 
 
 --Inserting data into VsProducts
