@@ -47,3 +47,113 @@ INSERT INTO VsProducts (Title, Description, Brand, Price, Stock, Category, Image
 ('Vu 55" 4K LED TV', 'Vu 4K LED Smart TV with Android OS', 'Vu', 44999, 250, 'TV', '/images/products/tvs/vu_55_4k.jpg'),
 ('Vu 65" 4K LED TV', 'Vu 65" 4K LED Smart TV with HDR', 'Vu', 59999, 200, 'TV', '/images/products/tvs/vu_65_4k.jpg');
 
+--Inserting data into VsOrders
+INSERT INTO VsOrders (OrderDate, CustomerId, Status, TotalAmount)
+VALUES
+
+('2024-12-01', 2, 'Completed', 120000),
+
+('2024-12-02', 2, 'Pending', 34999),
+
+('2024-12-03', 4, 'Completed', 86000),
+
+('2024-12-04', 6, 'Cancelled', 23999),
+
+('2024-12-05', 8, 'Completed', 74999),
+
+('2024-12-06', 10, 'Pending', 56999),
+
+('2024-12-07', 12, 'Completed', 64999),
+
+('2024-12-08', 2, 'Completed', 23999),
+
+('2024-12-09', 3, 'Cancelled', 47999),
+
+('2024-12-10', 3, 'Pending', 129998),
+
+('2024-12-11', 4, 'Completed', 86000),
+
+('2024-12-12', 5, 'Pending', 99999),
+
+('2024-12-13', 6, 'Cancelled', 109000),
+
+('2024-12-14', 7, 'Completed', 179999),
+
+('2024-12-15', 8, 'Pending', 47999),
+
+('2024-12-16', 9, 'Completed', 79999),
+
+('2024-12-17', 10, 'Pending', 64999),
+
+('2024-12-18', 10, 'Cancelled', 35999),
+
+('2024-12-19', 11, 'Completed', 74999),
+
+('2024-12-20', 12, 'Pending', 129999),
+
+('2024-12-21', 12, 'Completed', 109000),
+
+('2024-12-22', 13, 'Cancelled', 74999),
+
+('2024-12-23', 13, 'Pending', 47999),
+
+('2024-12-24', 14, 'Completed', 120000),
+
+('2024-12-25', 15, 'Pending', 64999);
+
+--Inserting data into VsOrderItems 
+ 
+INSERT INTO VsOrderItems (OrderId, ProductId, Quantity)
+VALUES
+
+(1, 2, 1),
+
+(1, 3, 2),
+
+(2, 2, 3),
+
+(2, 4, 1),
+
+(3, 1, 2),
+
+(3, 2, 1),
+
+(3, 5, 1),
+
+(4, 6, 1),
+
+(4, 1, 2),
+
+(5, 3, 1),
+
+(5, 8, 2),
+
+(5, 2, 2),
+
+(6, 2, 1),
+
+(6, 10, 1),
+
+(7, 2, 1),
+
+(7, 3, 2),
+
+(7, 8, 1),
+
+(8, 2, 1),
+
+(8, 5, 1),
+
+(8, 10, 1),
+
+(9, 2, 1),
+
+(9, 3, 2),
+
+(9, 8, 1),
+
+(10, 2, 1),
+
+(10, 5, 1);
+
+ 
