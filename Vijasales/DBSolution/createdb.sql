@@ -1,1 +1,99 @@
-create Table
+CREATE TABLE VsProducts (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Title VARCHAR(100) NOT NULL,
+    Description VARCHAR(MAX),
+    Brand VARCHAR(50) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    Stock INT NOT NULL,
+    Category VARCHAR(50) NOT NULL,
+    LastModified DATETIME DEFAULT GETDATE(), 
+    ImageUrl VARCHAR(MAX) NOT NULL
+);
+ 
+CREATE TABLE VsUsers (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Address VARCHAR(255) NOT NULL,
+    Role VARCHAR(50) NOT NULL,
+    ContactNumber VARCHAR(10) NOT NULL UNIQUE,
+	ImageUrl VARCHAR(MAX) NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+ 
+CREATE TABLE VsOrders (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    CustomerId INT NOT NULL,
+    OrderDate DATE NOT NULL,
+    TotalAmount DECIMAL(10, 2),
+    Status VARCHAR(50),
+    FOREIGN KEY (CustomerId) REFERENCES VsUsers(Id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+ 
+CREATE TABLE VsOrderItems (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    OrderId INT NOT NULL,
+    ProductId INT NOT NULL,
+    Quantity INT NOT NULL,
+    FOREIGN KEY (OrderId) REFERENCES VsOrders(Id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (ProductId) REFERENCES VsProducts(Id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+ 
+CREATE TABLE VsShipment (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ShipmentDate TIMESTAMP NOT NULL,
+    OrderId INT NOT NULL,
+    ShipmentStatus VARCHAR(50) NOT NULL,
+    UserId INT NOT NULL,
+    FOREIGN KEY (OrderId) REFERENCES VsOrders(Id),
+    FOREIGN KEY (UserId) REFERENCES VsUsers(Id)
+);
+CREATE TABLE VsAccounts (     
+AccountId INT IDENTITY(1,1) PRIMARY KEY,   
+  UserId INT NOT NULL,     
+AccountNumber VARCHAR(20) NOT NULL, 
+  BankName VARCHAR(255),    
+ IFSCCode VARCHAR(20),    
+ Balance DECIMAL(18,2),     
+CONSTRAINT FK_UserId FOREIGN KEY (UserId) 
+REFERENCES VsUsers(Id) ON DELETE CASCADE ON UPDATE CASCADE );
+
+CREATE TABLE VsTransactions (     
+ Id INT IDENTITY(1,1) PRIMARY KEY,     
+ AccountId INT NOT NULL,    
+ Amount DECIMAL(18,2),    
+ TransactionDate DATETIME,    
+ CONSTRAINT FK_AccountId FOREIGN KEY (AccountId)        
+ REFERENCES VsAccounts(AccountId)
+ ON DELETE CASCADE 
+ ON UPDATE CASCADE
+ );
+CREATE TABLE VsCards (
+    Id INT Identity (1,1)PRIMARY KEY,
+    CVV VARCHAR(50) NOT NULL UNIQUE,
+    AccountId VARCHAR(255) NOT NULL,
+    CardType VARCHAR(100) CHECK(CardType IN('Credit Card','Debit Card'))NOT NULL,
+    CreditLimit DECIMAL(255) ,
+	CardNumber VARCHAR(MAX) NOT NULL,
+    ExpiryDate DATETIME DEFAULT GETDATE()
+);
+CREATE TABLE VsPayments (
+    Id INT Identity(1,1) PRIMARY KEY,
+    OrderId INT NOT NULL,
+    PaymentDate DATETIME DEFAULT GETDATE(),
+    PaymentAmount DECIMAL(10, 2) NOT NULL,
+    PaymentMode VARCHAR(50)  NOT NULL,
+    PaymentStatus VARCHAR(50) NOT NULL,
+    FOREIGN KEY (OrderId) REFERENCES VsOrders(Id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+

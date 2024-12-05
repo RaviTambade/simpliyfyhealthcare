@@ -1,21 +1,22 @@
---INSERTING 15 ENTRIES INTO VSUSERS TABLE
+--Insert values into VsUsers
 INSERT INTO VsUsers (FirstName, LastName, Password, Email, Address, Role, ContactNumber, ImageUrl)
 VALUES
-('Amit', 'Sharma', 'Password123!', 'amit.sharma@example.com', 'Street 1, City Delhi', 'sales', '9876543210', '/wwwroot/images/baseImage.png'),
-('Priya', 'Patel', 'Password123!', 'priya.patel@example.com', 'Street 2, City Mumbai', 'customer', '9876543211', '/wwwroot/images/baseImage.png'),
-('Rahul', 'Gupta', 'Password123!', 'rahul.gupta@example.com', 'Street 3, City Bengaluru', 'vendor', '9876543212', '/wwwroot/images/baseImage.png'),
-('Neha', 'Verma', 'Password123!', 'neha.verma@example.com', 'Street 4, City Chennai', 'director', '9876543213', '/wwwroot/images/baseImage.png'),
-('Ravi', 'Singh', 'Password123!', 'ravi.singh@example.com', 'Street 5, City Delhi', 'sales', '9876543214', '/wwwroot/images/baseImage.png'),
-('Sita', 'Nair', 'Password123!', 'sita.nair@example.com', 'Street 6, City Mumbai', 'customer', '9876543215', '/wwwroot/images/baseImage.png'),
-('Vikas', 'Kumar', 'Password123!', 'vikas.kumar@example.com', 'Street 7, City Bengaluru', 'vendor', '9876543216', '/wwwroot/images/baseImage.png'),
-('Rita', 'Joshi', 'Password123!', 'rita.joshi@example.com', 'Street 8, City Chennai', 'director', '9876543217', '/wwwroot/images/baseImage.png'),
-('Ajay', 'Reddy', 'Password123!', 'ajay.reddy@example.com', 'Street 9, City Delhi', 'sales', '9876543218', '/wwwroot/images/baseImage.png'),
-('Anjali', 'Chaudhary', 'Password123!', 'anjali.chaudhary@example.com', 'Street 10, City Mumbai', 'customer', '9876543219', '/wwwroot/images/baseImage.png'),
-('Karan', 'Patel', 'Password123!', 'karan.patel@example.com', 'Street 11, City Bengaluru', 'vendor', '9876543220', '/wwwroot/images/baseImage.png'),
-('Sunita', 'Gupta', 'Password123!', 'sunita.gupta@example.com', 'Street 12, City Chennai', 'director', '9876543221', '/wwwroot/images/baseImage.png'),
-('Manish', 'Yadav', 'Password123!', 'manish.yadav@example.com', 'Street 13, City Delhi', 'sales', '9876543222', '/wwwroot/images/baseImage.png'),
-('Shalini', 'Bose', 'Password123!', 'shalini.bose@example.com', 'Street 14, City Mumbai', 'customer', '9876543223', '/wwwroot/images/baseImage.png'),
-('Vijay', 'Malhotra', 'Password123!', 'vijay.malhotra@example.com', 'Street 15, City Bengaluru', 'vendor', '9876543224', '/wwwroot/images/baseImage.png');
+('Amit', 'Sharma', 'Password123!', 'amit.sharma@example.com', 'Street 1, City Delhi', 'sales', '9876543210', '/images/baseImage.png'),
+('Priya', 'Patel', 'Password123!', 'priya.patel@example.com', 'Street 2, City Mumbai', 'customer', '9876543211', '/images/baseImage.png'),
+('Rahul', 'Gupta', 'Password123!', 'rahul.gupta@example.com', 'Street 3, City Bengaluru', 'vendor', '9876543212', '/images/baseImage.png'),
+('Neha', 'Verma', 'Password123!', 'neha.verma@example.com', 'Street 4, City Chennai', 'director', '9876543213', '/images/baseImage.png'),
+('Ravi', 'Singh', 'Password123!', 'ravi.singh@example.com', 'Street 5, City Delhi', 'sales', '9876543214', '/images/baseImage.png'),
+('Sita', 'Nair', 'Password123!', 'sita.nair@example.com', 'Street 6, City Mumbai', 'customer', '9876543215', '/images/baseImage.png'),
+('Vikas', 'Kumar', 'Password123!', 'vikas.kumar@example.com', 'Street 7, City Bengaluru', 'vendor', '9876543216', '/images/baseImage.png'),
+('Rita', 'Joshi', 'Password123!', 'rita.joshi@example.com', 'Street 8, City Chennai', 'director', '9876543217', '/images/baseImage.png'),
+('Ajay', 'Reddy', 'Password123!', 'ajay.reddy@example.com', 'Street 9, City Delhi', 'sales', '9876543218', '/images/baseImage.png'),
+('Anjali', 'Chaudhary', 'Password123!', 'anjali.chaudhary@example.com', 'Street 10, City Mumbai', 'customer', '9876543219', '/images/baseImage.png'),
+('Karan', 'Patel', 'Password123!', 'karan.patel@example.com', 'Street 11, City Bengaluru', 'vendor', '9876543220', '/images/baseImage.png'),
+('Sunita', 'Gupta', 'Password123!', 'sunita.gupta@example.com', 'Street 12, City Chennai', 'director', '9876543221', '/images/baseImage.png'),
+('Manish', 'Yadav', 'Password123!', 'manish.yadav@example.com', 'Street 13, City Delhi', 'sales', '9876543222', '/images/baseImage.png'),
+('Shalini', 'Bose', 'Password123!', 'shalini.bose@example.com', 'Street 14, City Mumbai', 'customer', '9876543223', '/images/baseImage.png'),
+('Vijay', 'Malhotra', 'Password123!', 'vijay.malhotra@example.com', 'Street 15, City Bengaluru', 'vendor', '9876543224', '/images/baseImage.png');
+
 
 --Inserting data into VsProducts
 INSERT INTO VsProducts (Title, Description, Brand, Price, Stock, Category, ImageUrl) VALUES
@@ -47,3 +48,113 @@ INSERT INTO VsProducts (Title, Description, Brand, Price, Stock, Category, Image
 ('Vu 55" 4K LED TV', 'Vu 4K LED Smart TV with Android OS', 'Vu', 44999, 250, 'TV', '/images/products/tvs/vu_55_4k.jpg'),
 ('Vu 65" 4K LED TV', 'Vu 65" 4K LED Smart TV with HDR', 'Vu', 59999, 200, 'TV', '/images/products/tvs/vu_65_4k.jpg');
 
+--Inserting data into VsOrders
+INSERT INTO VsOrders (OrderDate, CustomerId, Status, TotalAmount)
+VALUES
+
+('2024-12-01', 2, 'Completed', 120000),
+
+('2024-12-02', 2, 'Pending', 34999),
+
+('2024-12-03', 4, 'Completed', 86000),
+
+('2024-12-04', 6, 'Cancelled', 23999),
+
+('2024-12-05', 8, 'Completed', 74999),
+
+('2024-12-06', 10, 'Pending', 56999),
+
+('2024-12-07', 12, 'Completed', 64999),
+
+('2024-12-08', 2, 'Completed', 23999),
+
+('2024-12-09', 3, 'Cancelled', 47999),
+
+('2024-12-10', 3, 'Pending', 129998),
+
+('2024-12-11', 4, 'Completed', 86000),
+
+('2024-12-12', 5, 'Pending', 99999),
+
+('2024-12-13', 6, 'Cancelled', 109000),
+
+('2024-12-14', 7, 'Completed', 179999),
+
+('2024-12-15', 8, 'Pending', 47999),
+
+('2024-12-16', 9, 'Completed', 79999),
+
+('2024-12-17', 10, 'Pending', 64999),
+
+('2024-12-18', 10, 'Cancelled', 35999),
+
+('2024-12-19', 11, 'Completed', 74999),
+
+('2024-12-20', 12, 'Pending', 129999),
+
+('2024-12-21', 12, 'Completed', 109000),
+
+('2024-12-22', 13, 'Cancelled', 74999),
+
+('2024-12-23', 13, 'Pending', 47999),
+
+('2024-12-24', 14, 'Completed', 120000),
+
+('2024-12-25', 15, 'Pending', 64999);
+
+--Inserting data into VsOrderItems 
+ 
+INSERT INTO VsOrderItems (OrderId, ProductId, Quantity)
+VALUES
+
+(1, 2, 1),
+
+(1, 3, 2),
+
+(2, 2, 3),
+
+(2, 4, 1),
+
+(3, 1, 2),
+
+(3, 2, 1),
+
+(3, 5, 1),
+
+(4, 6, 1),
+
+(4, 1, 2),
+
+(5, 3, 1),
+
+(5, 8, 2),
+
+(5, 2, 2),
+
+(6, 2, 1),
+
+(6, 10, 1),
+
+(7, 2, 1),
+
+(7, 3, 2),
+
+(7, 8, 1),
+
+(8, 2, 1),
+
+(8, 5, 1),
+
+(8, 10, 1),
+
+(9, 2, 1),
+
+(9, 3, 2),
+
+(9, 8, 1),
+
+(10, 2, 1),
+
+(10, 5, 1);
+
+ 
