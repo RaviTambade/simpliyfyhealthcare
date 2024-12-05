@@ -1,12 +1,11 @@
 create storedprocedure
 
 CREATE PROCEDURE BankPayment
-    @CustomerAccountID INT,
+	@CustomerAccountID INT,
 	@OrderID INT,
-    @AdminAccountID INT,
-    @Amount DECIMAL(10, 2),
-    @PaymentMode VARCHAR(50) -- Payment mode, e.g., 'Bank Transfer', 'Cash', etc.
-	@PaymentStatus
+	@AdminAccountID INT,
+	@Amount DECIMAL(10, 2),
+	@PaymentMode VARCHAR(50) -- Payment mode, e.g., 'Bank Transfer', 'Cash', etc.
 AS
 BEGIN
     -- Start a transaction
