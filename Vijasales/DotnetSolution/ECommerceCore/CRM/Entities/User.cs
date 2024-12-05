@@ -9,5 +9,6 @@ namespace CRM.Entities
     public class User
     {
 
+
     }
 }
