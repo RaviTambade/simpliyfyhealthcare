@@ -1,4 +1,4 @@
-﻿using ShipmentLib.Entities;
+﻿using Shipment.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,20 +6,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 using System.Net.NetworkInformation;
+using Microsoft.EntityFrameworkCore;
 
-namespace ShipmentLib.Repositories.ORM
+namespace Shipment.Repositories.ORM
 {
 
     public class ShipmentContext : DbContext
     {
-        public DbSet<Shipment> Shipments { get; set; }
-        public ShipmentContext() : base("name=conString") { }
+        public DbSet<Delivery> Shipments { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+            optionsBuilder.UseSqlServer(conString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Delivery>((e) =>
+            {
+                e.HasKey(e => e.Id);
+            });
+            modelBuilder.Entity<Delivery>().ToTable("VsShipment");
+        }
+
+        
     }
     public class ShipmentRepository : IShipmentRepository
     {
-        public bool Create(Shipment shipment)
+        public bool Create(Delivery shipment)
         {
             bool status = false;
             using (var context = new ShipmentContext())
@@ -58,19 +75,19 @@ namespace ShipmentLib.Repositories.ORM
            // throw new NotImplementedException();
         }
 
-        public List<Shipment> GetAll()
+        public List<Delivery> GetAll()
         {
-            List<Shipment> shipments = new List<Shipment>();
+            List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext())
             {
                 var dbshipments = context.Shipments.ToList();
                 foreach (var shipment in dbshipments)
                 {
-                    Shipment theShipment = new Shipment();
+                    Delivery theShipment = new Delivery();
                     theShipment.Id = shipment.Id;
                     theShipment.OrderId = shipment.OrderId;
                     theShipment.ShipmentDate=shipment.ShipmentDate;
-                    theShipment.ShipmentStatus=shipment.ShipmentStatus;
+                    theShipment.Status=shipment.Status;
                     
                     shipments.Add(theShipment);
                 }
@@ -79,10 +96,10 @@ namespace ShipmentLib.Repositories.ORM
             //throw new NotImplementedException();
         }
 
-        public List<Shipment> GetByDate(DateTime date)
+        public List<Delivery> GetByDate(DateTime date)
         {
 
-            List<Shipment> shipments = new List<Shipment>();
+            List<Delivery> shipments = new List<Delivery>();
 
             using (var context = new ShipmentContext())
             {
@@ -90,13 +107,13 @@ namespace ShipmentLib.Repositories.ORM
 
                 foreach (var shipment in dbshipments)
                 {
-                    Shipment theShipment = new Shipment();
+                    Delivery theShipment = new Delivery();
                     if (shipment.ShipmentDate == date)
                     {
                         theShipment.Id = shipment.Id;
                         theShipment.OrderId = shipment.OrderId;
                         theShipment.ShipmentDate = shipment.ShipmentDate;
-                        theShipment.ShipmentStatus = shipment.ShipmentStatus;
+                        theShipment.Status = shipment.Status;
 
                         shipments.Add(theShipment);
                     }
@@ -107,9 +124,9 @@ namespace ShipmentLib.Repositories.ORM
             }
         }
 
-        public Shipment GetById(int id)
+        public Delivery GetById(int id)
         {
-            Shipment shipment = null;
+            Delivery shipment = null;
             int ship_Id = id;
             using (var context = new ShipmentContext())
             {
@@ -121,9 +138,9 @@ namespace ShipmentLib.Repositories.ORM
             //throw new NotImplementedException();
         }
 
-        public List<Shipment> GetByStatus(string status)
+        public List<Delivery> GetByStatus(string status)
         {
-            List<Shipment>shipments= new List<Shipment>();
+            List<Delivery>shipments= new List<Delivery>();
 
             using (var context=new ShipmentContext())
             {
@@ -131,13 +148,13 @@ namespace ShipmentLib.Repositories.ORM
 
                 foreach (var shipment in dbshipments)
                 {
-                    Shipment theShipment = new Shipment();
-                    if(shipment.ShipmentStatus==status)
+                    Delivery theShipment = new Delivery();
+                    if(shipment.Status==status)
                     {
                         theShipment.Id = shipment.Id;
                         theShipment.OrderId = shipment.OrderId;
                         theShipment.ShipmentDate = shipment.ShipmentDate;
-                        theShipment.ShipmentStatus = shipment.ShipmentStatus;
+                        theShipment.Status = shipment.Status;
 
                         shipments.Add(theShipment);
                     }
@@ -151,7 +168,7 @@ namespace ShipmentLib.Repositories.ORM
             throw new NotImplementedException();
         }
 
-        public bool Update(Shipment shipment)
+        public bool Update(Delivery shipment)
         {
             bool status = false;
 
@@ -161,7 +178,7 @@ namespace ShipmentLib.Repositories.ORM
                 if (foundShipment != null)
                 {
                     foundShipment.ShipmentDate = shipment.ShipmentDate;
-                    foundShipment.ShipmentStatus = shipment.ShipmentStatus;
+                    foundShipment.Status = shipment.Status;
                     foundShipment.OrderId = shipment.OrderId;
 
                     context.SaveChanges();
