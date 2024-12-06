@@ -1,27 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<!-- Link to Bootstrap CSS -->
+
 <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 
 
-<!-- Add FontAwesome for the icons -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
 <div class="row">
-    <!-- Sidebar Section -->
+  
     <div class="col-md-2 bg-light p-3 h-100">
         <h4>Categories</h4>
-        <!-- Category Dropdown -->
+        
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Categories
             </button>
             <ul class="dropdown-menu w-100">
-                <!-- Smartphones Dropdown -->
+               
                 <li class="dropdown-submenu">
                     <button class="dropdown-item dropdown-toggle" type="button">Smartphones</button>
                     <ul class="dropdown-menu">
@@ -30,7 +30,7 @@
                         <li><a class="dropdown-item" href="#">OnePlus</a></li>
                     </ul>
                 </li>
-                <!-- Laptops Dropdown -->
+               
                 <li class="dropdown-submenu">
                     <button class="dropdown-item dropdown-toggle" type="button">Laptops</button>
                     <ul class="dropdown-menu">
@@ -39,7 +39,7 @@
                         <li><a class="dropdown-item" href="#">Lenovo</a></li>
                     </ul>
                 </li>
-                <!-- TVs Dropdown -->
+               
                 <li class="dropdown-submenu">
                     <button class="dropdown-item dropdown-toggle" type="button">TVs</button>
                     <ul class="dropdown-menu">
@@ -51,24 +51,24 @@
             </ul>
         </div>
     </div>
-    <!-- Main Content Section -->
+    
     <div class="col-md-10">
-        <!-- Search Section -->
+        
         <div class="row d-flex justify-content-center my-3">
             <div class="col-md-6 d-flex">
-                <!-- Search Bar -->
+               
                 <input type="text" class="form-control" placeholder="Search for products..." name="search">
-                <!-- Search Button -->
+               
                 <button class="search-button btn btn-primary ms-2" type="button">Search</button>
-                <!-- Toggle View Button (Grid/List) -->
+                
                 <button id="toggleViewBtn" class="btn btn-light ms-2">
-                    <i class="fas fa-th-large"></i> <!-- Default Grid View Icon -->
+                    <i class="fas fa-th-large"></i> 
                 </button>
             </div>
         </div>
-        <!-- Product Layout (Grid or List) -->
+       
         <div id="productLayout">
-            <!-- Initially show the Grid View -->
+           
             <div id="gridView" class="view" style="display: block;">
                 @Html.Partial("GridLayout") <!-- Grid View Partial -->
             </div>
@@ -78,9 +78,9 @@
         </div>
     </div>
 </div>
-<!-- Styling for Dropdown Submenu -->
+
 <style>
-    /* For multi-level dropdown */
+   
     .dropdown-submenu {
         position: relative;
     }
@@ -97,12 +97,12 @@
             display: block;
         }
 
-    /* For dropdown item styling */
+    
     .dropdown-item {
         padding: 10px 20px;
     }
 </style>
-<!-- Toggle Script for View Change -->
+
 <script>
     const toggleViewBtn = document.getElementById('toggleViewBtn');
     const gridView = document.getElementById('gridView');
