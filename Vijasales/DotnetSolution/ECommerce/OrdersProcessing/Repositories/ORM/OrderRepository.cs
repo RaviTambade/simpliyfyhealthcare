@@ -8,7 +8,6 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace OrdersProcessing.Repositories.ORM
 {
-
     public class OrderContext : DbContext
     {
         public DbSet<Order> Orders { get; set; }
@@ -22,11 +21,13 @@ namespace OrdersProcessing.Repositories.ORM
             using (var ctx = new OrderContext())
             {
                 var dbProducts = ctx.Orders.ToList();
+
                 foreach (var dbProduct in dbProducts)
                 {
                     if(dbProduct.Id == id)
                     {
                         ctx.Orders.Remove(dbProduct);
+                        ctx.SaveChanges();
                         status = true;
                     }
                 }
@@ -102,7 +103,15 @@ namespace OrdersProcessing.Repositories.ORM
 
         public bool Insert(Order order)
         {
-            throw new NotImplementedException();
+            bool status = false;
+            using(var ctx = new OrderContext())
+            {
+                var dbProducts = ctx.Orders.ToList();
+                ctx.Orders.Add(order);
+                ctx.SaveChanges();
+                status = true;
+            }
+            return status;
         }
 
         public bool Update(Order order)

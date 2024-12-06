@@ -8,6 +8,8 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using Catalog.Entities;
 using Microsoft.Extensions.Configuration;
+using System.Collections;
+using System.Diagnostics;
 
 namespace Catalog.Repositories.Connected
 {
@@ -108,25 +110,29 @@ namespace Catalog.Repositories.Connected
         }
 
         public Product GetById(int id)
-        {/*
+        {
+            Product product = new Product();
             IDbConnection conn = new SqlConnection(_conString);
-            string query = "SELECT * FROM VIVEK_PRODUCTS WHERE Id=" + id;
+            string query = "SELECT * FROM VsProducts WHERE Id=" + id;
             IDbCommand cmd = new SqlCommand(query, conn as SqlConnection);
             IDataReader dataReader = null;
-            Product product = null;
             try
             {
                 conn.Open();
                 dataReader = cmd.ExecuteReader();
                 if (dataReader.Read())
                 {
-                    int Id = int.Parse(dataReader["Id"].ToString());
-                    int quantity = int.Parse(dataReader["Quantity"].ToString());
-                    int unitPrice = (int)double.Parse(dataReader["UnitPrice"].ToString());
-                    string title = dataReader["Title"].ToString();
-                    string desc = dataReader["Description"].ToString();
-                    string imageurl = dataReader["ImageUrl"].ToString();
-                    product = new Product { Id = Id, Quantity = quantity, UnitPrice = unitPrice, ImageUrl = imageurl, Name = title, Description = desc };
+
+                    product.Id = Convert.ToInt32(dataReader["Id"]);
+                    product.Title = dataReader["Title"].ToString();
+                    product.Description = dataReader["Description"].ToString();
+                    product.Brand = dataReader["Brand"].ToString();
+                    product.Price = Convert.ToDecimal(dataReader["Price"]);
+                    product.Stock = Convert.ToInt32(dataReader["Stock"]);
+                    product.Category = dataReader["Category"].ToString();
+                    product.LastModified = Convert.ToDateTime(dataReader["LastModified"]);
+                    product.ImageUrl = dataReader["ImageUrl"].ToString();
+
                 }
 
             }
@@ -141,10 +147,11 @@ namespace Catalog.Repositories.Connected
             finally
             {
                 conn.Close();
-            }*/
-            Product product = null;
+            }
             return product;
         }
+
+       
 
         public int GetCount()
         {

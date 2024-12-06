@@ -39,13 +39,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-       
         let url = "http://localhost:5218/api/products/" + @id;
-        console.log(url);
+
         // Make an AJAX request to get product details
         $.ajax({
-            url:url,
-           
+            url: url,
             method: 'GET',
             success: function (data) {
                 // Update the DOM with the product details
@@ -54,28 +52,35 @@
                 $('#productImage').attr('src', data.imageUrl);
                 $('#productImage').attr('alt', data.title);
                 $('#productDescription').text(data.description);
+               
 
                 if (data.stock < 10) {
                     $('#stockStatus').html('<strong>Only ' + data.stock + ' left!</strong>');
                 } else {
                     $('#stockStatus').text('In stock: ' + data.stock);
                 }
+
+                // Store product data in window.productData for later use
+                window.productData = data; // Set the global productData object
             },
             error: function (xhr, status, error) {
                 console.error("Error loading product details:", error);
             }
         });
 
-        // Add to Cart functionality (this is a placeholder)
+        // Add to Cart functionality
         $('#addToCartButton').click(function () {
             if (window.productData) {
+                // Ensure all properties are available in productToAdd
                 var productToAdd = {
                     id: window.productData.id,
                     title: window.productData.title,
                     description: window.productData.description,
                     price: window.productData.price,
                     stock: window.productData.stock,
-                    imageUrl: window.productData.imageUrl
+                    imageUrl: window.productData.imageUrl,
+                    category: window.productData.category,  // Add category here
+                    brand: window.productData.brand         // Add brand here
                 };
 
                 $.ajax({
@@ -95,8 +100,6 @@
                 alert("Product details are not available.");
             }
         });
-   
+
     });
-
-
 </script>
