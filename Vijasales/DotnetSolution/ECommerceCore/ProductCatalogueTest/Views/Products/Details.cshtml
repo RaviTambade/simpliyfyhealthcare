@@ -5,30 +5,36 @@
 }
 
 <div class="container mt-5">
-   
     <div class="card mx-auto" style="max-width: 800px; border: 2px solid #ddd; border-radius: 8px;">
         <div class="card-body">
-          
-            <h1 class="card-title text-center">@Model.Title</h1>
+            <div class="row">
+               
+                <div class="col-md-6 text-center">
+                    <img src="@Model.ImageUrl" class="img-fluid rounded" alt="@Model.Title" />
+                </div>
 
-         
-            <div class="text-center mb-4">
-                <img src="@Model.ImageUrl" class="img-fluid rounded" alt="@Model.Title" />
-            </div>
-
-        
-            <div class="product-details" style="border-top: 2px solid #ddd; padding-top: 20px;">
-                <h3 class="text-center">Price: ₹@Model.Price</h3>
-                <p><strong>Stock:</strong> @Model.Stock</p>
-                <p><strong>Description:</strong> @Model.Description</p>
-            </div>
-
+             
+                <div class="col-md-6">
+                  
+                    <h1 class="card-title text-center mt-4 text-success">@Model.Title</h1> 
+                    <div class="product-details" style="padding-left: 20px;">
+                       
+                        <h5 class="text-center mt-3">Price: ₹@Model.Price</h5>
+                       
+                        @if (Model.Stock < 10)
+                        {
+                            <p><strong>Only @Model.Stock left!</strong></p>
+                        }
       
-            <div class="text-center mt-3">
-                
-                <a href="@Url.Action("Index", "Products")" class="btn btn-primary mx-2">Back to Products</a>
+                            <p> @Model.Description</p>
+                       
+                    </div>
+                </div>
+            </div>
 
             
+            <div class="text-center mt-3">
+                <a href="@Url.Action("Index", "Products")" class="btn btn-primary mx-2">Back to Products</a>
                 <button class="btn btn-success mx-2">Add to Cart</button>
             </div>
         </div>
