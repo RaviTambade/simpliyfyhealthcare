@@ -1,4 +1,4 @@
-﻿namespace ShipmentLib.Entities
+﻿namespace Shipment.Entities
 {
     public class Delivery
     {
@@ -7,8 +7,12 @@
             public DateTime ShipmentDate { get; set; }
             public int OrderId { get; set; }
             public string Status { get; set; } = "Order Confirmed";
-           
 
-         
+        public override string ToString()
+        {
+            return Id + " "+OrderId + " "+Status;
+        }
+
+
     }
 }

@@ -1,9 +1,9 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+ 
+builder.Services.AddCors();
 builder.Services.AddControllers();
-
-// Add in-memory distributed cache
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
 // Add session service
@@ -16,13 +16,10 @@ builder.Services.AddSession(options =>
 });
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
+ 
+app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 app.UseAuthorization();
-
-// Enable session middleware after routing
 app.UseSession();
-
 app.MapControllers();
-
 app.Run();
