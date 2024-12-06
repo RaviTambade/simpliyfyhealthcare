@@ -26,7 +26,7 @@ namespace ShipmentLib.Repositories.ORM
             {
                 context.Shipments.Add(shipment);
             }
-            status = false;
+            status = true;
             return status;
 
 

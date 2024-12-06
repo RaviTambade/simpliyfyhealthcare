@@ -9,14 +9,13 @@ namespace ShoppingCartTest.Controllers
     {
         private const string SessionCartKey = "_Cart";
 
-        
         public IActionResult Index()
         {
-            
-            return View();  
+
+            return View();
         }
 
-        
+
         public IActionResult GetCart()
         {
             // Retrieve the cart from session
@@ -27,7 +26,7 @@ namespace ShoppingCartTest.Controllers
                 ViewData["Message"] = "Your cart is empty.";
             }
 
-            return View(cart); 
+            return View(cart);
         }
 
         // POST: Cart/AddToCart
@@ -50,17 +49,17 @@ namespace ShoppingCartTest.Controllers
             // Retrieve the cart from session, or create a new cart if it doesn't exist
             var cart = GetCartFromSession() ?? new Cart();
 
-         
+
             cart.Items.Add(item);
 
             // Save the updated cart 
             SetCartInSession(cart);
 
-            
+
             return RedirectToAction("GetCart");
         }
 
-       
+
         public IActionResult RemoveFromCart(int id)
         {
             // Retrieve the cart from session
@@ -77,17 +76,17 @@ namespace ShoppingCartTest.Controllers
                 }
             }
 
-            
+
             return RedirectToAction("GetCart");
         }
 
-     
+
         public IActionResult Clear()
         {
             // Remove the cart from session
             HttpContext.Session.Remove(SessionCartKey);
 
-           
+
             return RedirectToAction("GetCart");
         }
 
@@ -97,7 +96,7 @@ namespace ShoppingCartTest.Controllers
             var cartJson = HttpContext.Session.GetString(SessionCartKey);
             if (cartJson == null)
             {
-                return null;  
+                return null;
             }
             return JsonConvert.DeserializeObject<Cart>(cartJson);
         }
