@@ -6,7 +6,7 @@ namespace ProductCatalogueTest.Controllers
 {
     public class ProductsController : Controller
     {
-        // Sample data - ideally, this would come from a database
+
         private static readonly List<CardModel> cardList = new List<CardModel>
         {
             new CardModel { Id = 1, ImageUrl = "/Images/galaxy_M05.jpg", Title = "Galaxy M05", Price = 10000, Description = "This is Galaxy M05 with great features", Stock = 10 },
@@ -21,7 +21,7 @@ namespace ProductCatalogueTest.Controllers
         {
             return View();
         }
-        public IActionResult ProductIndex() 
+        public IActionResult ProductIndex()
         {
             return View();
         }
@@ -33,7 +33,7 @@ namespace ProductCatalogueTest.Controllers
         [HttpGet]
         public IActionResult Grid()
         {
-            // Return the list of products in JSON format
+
             return Json(cardList);
         }
 
@@ -42,17 +42,13 @@ namespace ProductCatalogueTest.Controllers
             return View();
         }
 
-        // The Details action now takes an ID parameter to fetch the correct product
+
         public IActionResult Details(int id)
         {
-            var product = cardList.FirstOrDefault(p => p.Id == id);
+            ViewData["id"] = id;
+            
 
-            if (product == null)
-            {
-                return NotFound(); // Return a 404 if the product is not found
-            }
-
-            return View(product); // Pass the product to the view for display
+            return View();
         }
     }
 }
