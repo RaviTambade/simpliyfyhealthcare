@@ -45,14 +45,10 @@ namespace ProductCatalogueTest.Controllers
 
         public IActionResult Details(int id)
         {
-            var product = cardList.FirstOrDefault(p => p.Id == id);
+            ViewData["id"] = id;
+            
 
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
+            return View();
         }
     }
 }

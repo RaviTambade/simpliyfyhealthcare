@@ -36,6 +36,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipmentMVCTest", "ShipmentMVCTest\ShipmentMVCTest.csproj", "{5DB96325-8B7F-4FA9-A1D7-3C076B1BFC2A}"
 EndProject
 <<<<<<< HEAD
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2DF4A270-A61A-4998-A556-592BB823FF3E}"
+=======
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogueTest", "ProductCatalogueTest\ProductCatalogueTest.csproj", "{C4F92240-9552-4697-8B37-81E3E41A77A5}"
 =======
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2DF4A270-A61A-4998-A556-592BB823FF3E}"
@@ -44,6 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking", "Banking\Banking.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentProcessing", "PaymentProcessing\PaymentProcessing.csproj", "{645C1A67-8230-498B-AF9D-089C100FA260}"
 >>>>>>> f91968d975b67f1e422de7dfcc409fea4aeec961
+>>>>>>> b43cf1a80266941ca688275f3329fd0f23cbe2a1
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

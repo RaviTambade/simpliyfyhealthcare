@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace OrdersProcessing.Repositories.ORM
 {
+
     public class OrderContext : DbContext
     {
         public DbSet<Order> Orders { get; set; }
