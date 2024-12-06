@@ -52,7 +52,7 @@
                 $('#productImage').attr('src', data.imageUrl);
                 $('#productImage').attr('alt', data.title);
                 $('#productDescription').text(data.description);
-                $('#productBrand').text(data.brand);
+               
 
                 if (data.stock < 10) {
                     $('#stockStatus').html('<strong>Only ' + data.stock + ' left!</strong>');
@@ -71,16 +71,16 @@
         // Add to Cart functionality
         $('#addToCartButton').click(function () {
             if (window.productData) {
+                // Ensure all properties are available in productToAdd
                 var productToAdd = {
                     id: window.productData.id,
                     title: window.productData.title,
                     description: window.productData.description,
                     price: window.productData.price,
                     stock: window.productData.stock,
-                    imageUrl: window.productData.imageUrl
-                    category:window.productData.category,
-                    brand:window.productData.brand
-
+                    imageUrl: window.productData.imageUrl,
+                    category: window.productData.category,  // Add category here
+                    brand: window.productData.brand         // Add brand here
                 };
 
                 $.ajax({
@@ -100,5 +100,6 @@
                 alert("Product details are not available.");
             }
         });
+
     });
 </script>
