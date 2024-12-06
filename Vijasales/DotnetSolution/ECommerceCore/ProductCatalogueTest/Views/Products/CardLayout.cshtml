@@ -38,7 +38,7 @@
 
     $(document).ready(() => {
         $.ajax({
-            url: "/Products/Grid",  
+            url: "http://localhost:5218/api/products",
             type: "GET",
             success: function (data) {
                 addToCard(data);  

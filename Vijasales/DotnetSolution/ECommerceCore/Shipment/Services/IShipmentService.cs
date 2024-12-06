@@ -1,4 +1,4 @@
-﻿using ShipmentLib.Entities;
+﻿using Shipment.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +9,19 @@ namespace ShipmentLib.Services
 {
     public interface IShipmentService
     {
-        bool CreateShipment(Shipment shipment);
+        bool CreateShipment(Delivery shipment);
 
-        bool UpdateShipment(Shipment shipment);
+        bool UpdateShipment(Delivery shipment);
 
         bool DeleteShipment(int id);
 
-        List<Shipment> GetAll();
+        List<Delivery> GetAll();
 
-        List<Shipment> GetByDate(DateTime date);
+        List<Delivery> GetByDate(DateTime date);
 
-        List<Shipment> GetByStatus(string status);
+        List<Delivery> GetByStatus(string status);
 
-        Shipment GetById(int id);
+        Delivery GetById(int id);
 
     }
 }
