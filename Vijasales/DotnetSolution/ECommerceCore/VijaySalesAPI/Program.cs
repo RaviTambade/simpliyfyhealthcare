@@ -1,6 +1,9 @@
 using Catalog.Repositories;
 using Catalog.Repositories.Connected;
 using Catalog.Services;
+using PaymentProcessing.Services;
+using PaymentProcessing.Repositories;
+using PaymentProcessing.Repositories.Connected;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +35,10 @@ builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
 // Register ProductService (already done in your code)
 builder.Services.AddTransient<IProductService, ProductService>();
+
+builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
+
+builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
