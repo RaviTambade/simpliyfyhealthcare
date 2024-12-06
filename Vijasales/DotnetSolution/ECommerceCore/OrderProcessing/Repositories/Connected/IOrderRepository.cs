@@ -9,14 +9,12 @@ namespace OrderProcessing.Repositories.Connected
 {
     public interface IOrderRepository
     {
-        List<Order> GetAll();
-        Order GetOrder(int id);
-<<<<<<< HEAD
-=======
-        List<Order> GetCustomerOrder(int customerId);
->>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
-        bool Insert(Order order);
-        bool Update(Order order);
-        bool Delete(int id);
+        Task<List<Order>> GetAllAsync();           
+        Task<Order> GetOrderAsync(int id);         
+        Task<List<Order>> GetCustomerOrderAsync(int customerId);  
+        Task<bool> InsertAsync(Order order);       
+        Task<bool> UpdateAsync(Order order);      
+        Task<bool> DeleteAsync(int id);            
     }
+
 }
