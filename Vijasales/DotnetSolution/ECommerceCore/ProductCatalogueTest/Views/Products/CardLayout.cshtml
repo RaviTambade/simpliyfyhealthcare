@@ -10,7 +10,7 @@
         $('ul.list-unstyled').html('');  
         $.each(products, (index, item) => {
             var cardHtml = `
-                    <li>
+                    <li class="d-flex justify-content-center">
                         <div class="card mb-3 w-75">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -22,11 +22,11 @@
                                         <p class="card-text text-secondary">Rs ${item.price}</p>
 
                                         <!-- More Details Button (Only Green on Hover) -->
-                                        <a class="btn view-details-btn btn-sm btn-soft-secondary rounded-5" href="/Products/Details/${item.Id}">More Details</a>
-                                        <h1>${item.Id}</h1>
+                                        <a class="w-25 btn view-details-btn btn-sm btn-soft-secondary rounded-5" href="/Products/Details/${item.id}">More Details</a>
+                                     
 
                                         <!-- Add to Cart Button (Always Blue) -->
-                                        <a class="btn add-to-cart-btn btn-sm btn-sm-wide rounded-5" href="#">Add to cart</a>
+                                        <a class=" w-25 btn add-to-cart-btn btn-sm btn-sm-wide rounded-5" href="#">Add to cart</a>
                                     </div>
                                 </div>
                             </div>

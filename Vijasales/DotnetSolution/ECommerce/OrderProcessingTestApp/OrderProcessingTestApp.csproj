@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrdersProcessing\OrdersProcessing.csproj">
+      <Project>{0dfd67f9-4987-475e-adb0-43ece6d6f32e}</Project>
+      <Name>OrdersProcessing</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
