@@ -17,7 +17,22 @@ namespace OrdersProcessing.Repositories.ORM
     {
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            bool status = false;
+            using (var ctx = new OrderContext())
+            {
+                var dbProducts = ctx.Orders.ToList();
+
+                foreach (var dbProduct in dbProducts)
+                {
+                    if(dbProduct.Id == id)
+                    {
+                        ctx.Orders.Remove(dbProduct);
+                        ctx.SaveChanges();
+                        status = true;
+                    }
+                }
+            }
+            return status;
         }
 
         public List<Order> GetAll()
@@ -88,12 +103,36 @@ namespace OrdersProcessing.Repositories.ORM
 
         public bool Insert(Order order)
         {
-            throw new NotImplementedException();
+            bool status = false;
+            using(var ctx = new OrderContext())
+            {
+                var dbProducts = ctx.Orders.ToList();
+                ctx.Orders.Add(order);
+                ctx.SaveChanges();
+                status = true;
+            }
+            return status;
         }
 
         public bool Update(Order order)
         {
-            throw new NotImplementedException();
+            bool status = false;
+            using(var ctx = new OrderContext())
+            {
+                var dbProducts = ctx.Orders.ToList();
+                foreach (var dbProduct in dbProducts) { 
+                    if(dbProduct.Id == order.Id)
+                    {
+                        dbProduct.OrderDate = order.OrderDate;
+                        dbProduct.CustomerId = order.CustomerId;
+                        dbProduct.Status = order.Status;
+                        dbProduct.TotalAmount = order.TotalAmount;
+                        ctx.SaveChanges();
+                        status = true;
+                    }
+                }
+            }
+            return status;
         }
     }
 }

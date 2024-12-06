@@ -11,7 +11,8 @@ namespace OrdersProcessing.Services.ORM
     {
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            IOrderRepository _repo = new OrderRepository();
+            return _repo.Delete(id);
         }
 
         public List<Order> GetAll()
@@ -34,12 +35,14 @@ namespace OrdersProcessing.Services.ORM
 
         public bool Insert(Order order)
         {
-            throw new NotImplementedException();
+            IOrderRepository _repo = new OrderRepository();
+            return _repo.Insert(order);
         }
 
         public bool Update(Order order)
         {
-            throw new NotImplementedException();
+            IOrderRepository _repo = new OrderRepository();
+            return _repo.Update(order);
         }
     }
 }
