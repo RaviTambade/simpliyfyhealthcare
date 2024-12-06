@@ -10,7 +10,6 @@ namespace Shipment.Repositories.Connected
     public class ShipmentRepository : IShipmentRepository
     {
 
-
         public bool Create(Delivery shipment)
         {
             throw new NotImplementedException();

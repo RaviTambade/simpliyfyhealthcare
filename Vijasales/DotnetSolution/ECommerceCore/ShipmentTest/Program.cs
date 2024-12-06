@@ -10,15 +10,34 @@ IShipmentRepository repo = new ShipmentRepository();
 
 
 DateTime dateTime = new DateTime(2024, 12, 14);
+/*
+foreach (Delivery sh in repo.GetAll())
+{
+    Console.WriteLine(sh);
+}*/
 
-foreach (Delivery sh in repo.GetByDate(dateTime))
+//bool status = repo.Delete(17);
+
+//Console.WriteLine(status);
+
+Console.WriteLine("Giving One Shipment");
+
+
+
+//Console.WriteLine(theshipment);
+
+Delivery updatedshipment=repo.GetById(4);
+//updatedshipment.Id=theshipment.Id;
+//updatedshipment.OrderId=theshipment.OrderId;
+updatedshipment.Status="Pending";
+//updatedshipment.ShipmentDate=theshipment.ShipmentDate;
+
+bool res=repo.Update(updatedshipment);
+
+Console.WriteLine(res);
+foreach (Delivery sh in repo.GetAll())
 {
     Console.WriteLine(sh);
 }
 
-
-Console.WriteLine("Giving One Shipment");
-
-Delivery theshipment = repo.GetById(4);
-Console.WriteLine(theshipment);
 
