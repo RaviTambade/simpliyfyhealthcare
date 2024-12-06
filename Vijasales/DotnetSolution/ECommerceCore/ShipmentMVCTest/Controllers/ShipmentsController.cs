@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShipmentLib.Entities;
+using Shipment.Entities;
 
 namespace ShipmentMVCTest.Controllers
 {
@@ -13,10 +13,10 @@ namespace ShipmentMVCTest.Controllers
         // list of shipments 
         public IActionResult List()
         {
-            List<Shipment> shipments = new List<Shipment>();
-            shipments.Add(new Shipment { Id = 1, ShipmentDate = DateTime.Now, OrderId = 17, ShipmentStatus = "Pending" });
-            shipments.Add(new Shipment { Id = 2, ShipmentDate = DateTime.Now, OrderId = 18, ShipmentStatus = "Pending" });
-            shipments.Add(new Shipment { Id = 3, ShipmentDate = DateTime.Now, OrderId = 19, ShipmentStatus = "Pending" });
+            List<Delivery> shipments = new List<Delivery>();
+            shipments.Add(new Delivery { Id = 1, ShipmentDate = DateTime.Now, OrderId = 17, Status= "Pending" });
+            shipments.Add(new Delivery { Id = 2, ShipmentDate = DateTime.Now, OrderId = 18, Status= "Pending" });
+            shipments.Add(new Delivery { Id = 3, ShipmentDate = DateTime.Now, OrderId = 19, Status= "Pending" });
 
             return View(shipments);
         }
