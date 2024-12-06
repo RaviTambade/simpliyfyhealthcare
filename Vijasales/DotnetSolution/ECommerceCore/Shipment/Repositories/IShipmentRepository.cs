@@ -1,28 +1,28 @@
-﻿using ShipmentLib.Entities;
+﻿using Shipment.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShipmentLib.Repositories
+namespace Shipment.Repositories
 {
     public interface IShipmentRepository
     {
-        List<Shipment> GetAll();
+        List<Delivery> GetAll();
 
-        List<Shipment> GetByDate(DateTime date);
+        List<Delivery> GetByDate(DateTime date);
 
-        List<Shipment> GetByStatus(string status);
+        List<Delivery> GetByStatus(string status);
 
         // id refers to shipment id
         bool Delete(int id);
 
-        Shipment GetById(int id);
+        Delivery GetById(int id);
 
-        bool Create(Shipment shipment);
+        bool Create(Delivery shipment);
 
-        bool Update(Shipment shipment);
+        bool Update(Delivery shipment);
 
 
     }

@@ -14,7 +14,6 @@ namespace CRM.Services
         bool Register(User user);
         //string ForgotPassword(string email);
         bool ResetPassword(string email, string oldpassword, string newpassword);
-        User Get(int id);
-        bool UpdateProfile(User user);
+        bool Logout();
     }
 }

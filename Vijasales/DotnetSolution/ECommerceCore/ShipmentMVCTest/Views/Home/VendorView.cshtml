@@ -1,0 +1,162 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Shipments";
+}
+
+@{
+
+@* Include some basic styling *@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f8f8f8;
+    }
+
+    .btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-danger {
+        background-color: #f44336;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+    .filter-container {
+        margin-bottom: 20px;
+    }
+
+        .filter-container select, .filter-container input[type="date"] {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+</style>
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+
+    <!-- Filter by date and status -->
+    <div class="filter-container">
+        <label for="shipmentDateFilter">Filter by Shipment Date:</label>
+        <input type="date" id="shipmentDateFilter" name="shipmentDateFilter" class="form-control" />
+
+        <label for="shipmentStatusFilter">Filter by Shipment Status:</label>
+        <select id="shipmentStatusFilter" class="form-control">
+            <option value="All">All</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Pending">Pending</option>
+        </select>
+
+        <button class="btn" id="applyFilterButton">Apply Filter</button>
+    </div>
+
+    <!-- Shipments Table -->
+    <table id="shipmentsTable">
+        <thead>
+            <tr>
+                <th>Shipment ID</th>
+                <th>Order ID</th>
+                <th>Shipment Date</th>
+                <th>Shipment Status</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var shipment in Model)
+            {
+                <tr>
+                    <td>@shipment.Id</td>
+                    <td>@shipment.OrderId</td>
+                    <td>@shipment.ShipmentDate.ToString("yyyy-MM-dd HH:mm:ss")</td> <!-- Display the full date-time -->
+                    <td>
+                        @* Dropdown for changing status *@
+                        <div class="dropdown">
+                            <button class="btn" id="dropdownStatusButton">@shipment.Status</button>
+                            
+                        </div>
+                    </td>
+                    <td>
+                    <div class="dropdown">
+                        <button class="btn btn-danger update-status-btn" data-shipment-id="@shipment.Id">Update Status</button>
+                        <div class="dropdown-content">
+                                <a href="#" class="update-status" data-shipment-id="@shipment.Id" data-status="Delivered">Order Delivered</a>
+                                <a href="#" class="update-status" data-shipment-id="@shipment.Id" data-status="Rejected">Order Rejected</a>
+                        </div>
+
+                    </div>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@* Scripts to handle filtering and status update *@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+}
