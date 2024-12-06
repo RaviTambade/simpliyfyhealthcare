@@ -52,6 +52,7 @@
                 $('#productImage').attr('src', data.imageUrl);
                 $('#productImage').attr('alt', data.title);
                 $('#productDescription').text(data.description);
+                $('#productBrand').text(data.brand);
 
                 if (data.stock < 10) {
                     $('#stockStatus').html('<strong>Only ' + data.stock + ' left!</strong>');
@@ -77,6 +78,9 @@
                     price: window.productData.price,
                     stock: window.productData.stock,
                     imageUrl: window.productData.imageUrl
+                    category:window.productData.category,
+                    brand:window.productData.brand
+
                 };
 
                 $.ajax({
