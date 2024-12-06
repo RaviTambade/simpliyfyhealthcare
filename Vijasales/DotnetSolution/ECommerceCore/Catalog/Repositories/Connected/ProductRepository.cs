@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Catalog.Repositories.Connected
 {
-    public  class ProductRepository : IDataRepository
+    public  class ProductRepository : IProductRepository
     {
         public string _conString;
 

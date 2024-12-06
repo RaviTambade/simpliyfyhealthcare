@@ -26,9 +26,10 @@ namespace VijaySalesAPI.Controllers
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Product Get(int id)
         {
-            return "value";
+            Product product= _productService.Get(id);
+            return product;
         }
 
         // POST api/<ProductsController>
