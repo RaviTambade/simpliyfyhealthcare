@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 using System.Net.NetworkInformation;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShipmentLib.Repositories.ORM
 {
@@ -15,7 +15,24 @@ namespace ShipmentLib.Repositories.ORM
     public class ShipmentContext : DbContext
     {
         public DbSet<Shipment> Shipments { get; set; }
-        public ShipmentContext() : base("name=conString") { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+            optionsBuilder.UseSqlServer(conString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Shipment>((e) =>
+            {
+                e.HasKey(e => e.Id);
+            });
+            modelBuilder.Entity<Shipment>().ToTable("VsShipment");
+        }
+
+        
     }
     public class ShipmentRepository : IShipmentRepository
     {
