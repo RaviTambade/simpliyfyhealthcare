@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Catalog.Repositories
 {
-    public interface IDataRepository
+    public interface IProductRepository
     {
         bool Insert(Product product);
         bool Update(Product product);
@@ -15,7 +15,7 @@ namespace Catalog.Repositories
         int GetCount();
         List<Product> GetAll();
         Product GetById(int id);
-
+        List<Product> GetByCategory(string category);
 
     }
 }

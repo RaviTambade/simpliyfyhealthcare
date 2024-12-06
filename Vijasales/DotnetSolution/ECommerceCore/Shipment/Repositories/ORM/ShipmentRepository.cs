@@ -18,7 +18,8 @@ namespace Shipment.Repositories.ORM
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+            // Add constring here to run  (@-------)
+            string conString = "Not added because of Security Issues";
             optionsBuilder.UseSqlServer(conString);
         }
 
@@ -187,6 +188,7 @@ namespace Shipment.Repositories.ORM
                 {
                     Console.WriteLine("Shipment not found.");
                 }
+                status = true;
             }
 
 

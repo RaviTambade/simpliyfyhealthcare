@@ -1,0 +1,262 @@
+﻿@{
+
+    Layout = "_Layout";  // Assuming you have a layout page
+
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Payment Processing</h2>
+    <!-- Payment Method Toggle -->
+    <div class="form-group mb-4">
+        <label for="paymentMethod">Select Payment Method</label>
+        <div>
+            <input type="radio" id="creditDebitCard" name="paymentMethod" value="creditDebitCard" checked>
+            <label for="creditDebitCard" class="mx-2">Credit/Debit Card</label>
+            <input type="radio" id="netBanking" name="paymentMethod" value="netBanking">
+            <label for="netBanking" class="mx-2">Net Banking</label>
+        </div>
+    </div>
+
+    <!-- Payment Form -->
+    <form id="paymentForm" class="p-4 border shadow-sm rounded bg-light">
+        <!-- Credit/Debit Card Fields -->
+        <div id="creditDebitCardForm" class="payment-method-form">
+            <h4 class="mb-3">Card Details</h4>
+            <div class="form-group mb-3">
+                <label for="cardType">Card Type</label>
+                <select class="form-control" id="cardType">
+                    <option value="creditCard">Credit Card</option>
+                    <option value="debitCard">Debit Card</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number" required />
+            </div>
+            <div class="form-group mb-3">
+                <label for="cardExpiry">Expiry Date (MM/YY)</label>
+                <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5" required />
+            </div>
+            <div class="form-group mb-3">
+                <label for="cardCVV">CVV</label>
+                <input type="text" class="form-control" id="cardCVV" placeholder="Enter CVV" required />
+            </div>
+            <div class="form-group mb-3">
+                <label for="cardPassword">Password</label>
+                <input type="password" class="form-control" id="cardPassword" placeholder="Enter card password" required />
+            </div>
+            <button type="button" class="btn btn-outline-primary" id="verifyCard">Verify Card</button>
+        </div>
+
+        <!-- Net Banking Fields -->
+        <div id="netBankingForm" class="payment-method-form" style="display: none;">
+            <h4 class="mb-3">Net Banking</h4>
+            <div class="form-group mb-3">
+                <label for="bankName">Select Bank</label>
+                <select class="form-control" id="bankName">
+                    <option value="default">Select</option>
+                    <option value="bank1">Bank 1</option>
+                    <option value="bank2">Bank 2</option>
+                    <option value="bank3">Bank 3</option>
+                    <option value="bank4">Bank 4</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="netBankingPassword">Password</label>
+                <input type="password" class="form-control" id="netBankingPassword" placeholder="Enter net banking password" required />
+            </div>
+            <button type="button" class="btn btn-outline-primary" id="verifyNetBanking">Verify Bank</button>
+        </div>
+
+        <!-- Pay Now Button -->
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-success btn-lg w-100" id="payNowButton" disabled>Pay Now</button>
+        </div>
+    </form>
+</div>
+
+    <script>
+
+        $(document).ready(function () {
+
+            // Initially show the Credit/Debit Card form
+
+            $("input[name='paymentMethod']").on("change", function () {
+
+                // Hide all payment method forms
+
+                $(".payment-method-form").hide();
+
+                // Show the selected payment method form
+
+                var selectedMethod = $("input[name='paymentMethod']:checked").val();
+
+                $("#" + selectedMethod + "Form").show();
+
+            });
+
+            // Trigger the change event on page load to show the correct form
+
+            $("input[name='paymentMethod']:checked").trigger("change");
+
+            // Disable payment method toggle when verification is triggered
+
+            function disablePaymentMethodToggle() {
+
+                $("input[name='paymentMethod']").hide();
+
+            }
+
+            // Enable payment method toggle after verification is successful
+
+            function enablePaymentMethodToggle() {
+
+                $("input[name='paymentMethod']").show();
+
+            }
+
+            // Disable Pay Now button
+
+            function disablePayNowButton() {
+
+                $("#payNowButton").prop("disabled", true);
+
+            }
+
+            // Enable Pay Now button
+
+            function enablePayNowButton() {
+
+                $("#payNowButton").prop("disabled", false);
+
+            }
+
+            // Verify Card Action
+
+            $("#verifyCard").click(function () {
+
+                var cardData = {
+
+                    cardType: $("#cardType").val(),
+
+                    cardNumber: $("#cardNumber").val(),
+
+                    cardExpiry: $("#cardExpiry").val(),
+
+                    cardCVV: $("#cardCVV").val(),
+
+                    cardPassword: $("#cardPassword").val()
+                };
+                //ajax code
+                // Disable toggle and start verification
+
+                disablePaymentMethodToggle();
+
+                disablePayNowButton(); // Ensure Pay Now button remains disabled until verification
+
+                verifyCard(cardData);
+
+            });
+
+            // Verify Net Banking Action
+
+            $("#verifyNetBanking").click(function () {
+
+                var netBankingData = {
+
+                    bankName: $("#bankName").val(),
+
+                    netBankingPassword: $("#netBankingPassword").val()
+
+                };
+
+                // Disable toggle and start verification
+
+                disablePaymentMethodToggle();
+
+                disablePayNowButton(); // Ensure Pay Now button remains disabled until verification
+
+                verifyNetBanking(netBankingData);
+
+            });
+
+            // Handle form submission (for now, prevent actual submission)
+
+            $("#paymentForm").submit(function (e) {
+
+                e.preventDefault();
+
+                alert("Payment processing...");
+
+            });
+
+            // Expiry Date Formatting
+
+            $('#cardExpiry').on('input', function () {
+
+                var input = $(this).val();
+
+                // Remove non-numeric characters and limit to 4 digits
+
+                input = input.replace(/\D/g, '').slice(0, 4);
+
+                // Format the input to MM/YY with a slash after 2 digits
+
+                if (input.length >= 3) {
+
+                    input = input.slice(0, 2) + '/' + input.slice(2, 4); // Add slash after MM
+
+                }
+
+                $(this).val(input);
+
+            });
+
+            // Card verification function
+
+            function verifyCard(cardData) {
+
+                console.log("Verifying Card:", cardData);
+
+                // Simulate a successful verification
+
+                setTimeout(function () {
+
+                    alert("Card verification successful!");
+
+                    enablePaymentMethodToggle();
+
+                    enablePayNowButton();
+                    
+                    // Enable Pay Now button after successful verification
+
+                }, 2000); // Simulating a 2-second delay
+
+            }
+
+            // Net Banking verification function
+
+            function verifyNetBanking(netBankingData) {
+
+                console.log("Verifying Net Banking:", netBankingData);
+
+                // Simulate a successful verification
+
+                setTimeout(function () {
+
+                    alert("Net Banking verification successful!");
+
+                    enablePaymentMethodToggle();
+
+                    enablePayNowButton(); // Enable Pay Now button after successful verification
+
+                }, 2000); // Simulating a 2-second delay
+
+            }
+
+        });
+    </script>
+
+

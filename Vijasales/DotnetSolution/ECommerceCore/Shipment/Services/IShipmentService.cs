@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShipmentLib.Services
+namespace Shipment.Services
 {
     public interface IShipmentService
     {

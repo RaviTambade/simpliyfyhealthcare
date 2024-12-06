@@ -11,8 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Banking\Banking.csproj" />
     <ProjectReference Include="..\Catalog\Catalog.csproj" />
+<<<<<<< HEAD
     <ProjectReference Include="..\CRM\CRM.csproj" />
+=======
+    <ProjectReference Include="..\PaymentProcessing\PaymentProcessing.csproj" />
+>>>>>>> d1dc1443681bbd5dc44a04ee128c9ae991492135
     <ProjectReference Include="..\ShoppingCart\ShoppingCart.csproj" />
   </ItemGroup>
 

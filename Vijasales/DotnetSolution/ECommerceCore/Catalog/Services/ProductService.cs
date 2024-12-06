@@ -10,8 +10,8 @@ namespace Catalog.Services
     public class ProductService : IProductService
     {
         //Sampling data for testing purpose
-        private IDataRepository _repo;
-        public ProductService(IDataRepository repo) {
+        private IProductRepository _repo;
+        public ProductService(IProductRepository repo) {
             _repo = repo;
         }
 
@@ -28,17 +28,9 @@ namespace Catalog.Services
 
         public Product Get(int id)
         {
-            Product foundProduct = null;
-            List<Product> products = GetAll();
-            foreach (Product p in products)
-            {
-                if (p.Id == id)
-                {
-                    foundProduct = p;
+            Product product = _repo.GetById(id);
 
-                }
-            }
-            return foundProduct;
+            return product;
         }
 
         public List<Product> GetAll()
@@ -68,6 +60,19 @@ namespace Catalog.Services
                 
             }
             return false;
+        }
+
+        public List<Product> GetByCategory(string category)
+        {
+            try
+            {
+                List<Product> products = _repo.GetByCategory(category);
+                return products;
+            }
+            catch(Exception ex)
+            {
+                return new List<Product>();
+            }
         }
     }
 }
