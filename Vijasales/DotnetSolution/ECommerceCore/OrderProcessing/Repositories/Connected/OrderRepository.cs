@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,27 +12,48 @@ namespace OrderProcessing.Repositories.Connected
 {
     public class OrderRepository : IOrderRepository
     {
-<<<<<<< HEAD
-        string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
-=======
         string conString = string.Empty;
->>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
-        public bool Delete(int id)
+
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-<<<<<<< HEAD
-=======
-        public List<Order> GetCustomerOrder(int customerId)
-        {
-            List<Order> orders = new List<Order>();
-            IDbConnection conn = new SqlConnection(conString);
-            string query = "SELECT * FROM VSORDERS WHERE CUSTOMERID=" + customerId;
-            IDbCommand cmd = new SqlCommand(query, conn as SqlConnection);
+            bool status = false;
+            SqlConnection conn = new SqlConnection(conString);
+            string query = "DELETE VSORDERS WHERE ID=@Id";
+            SqlCommand cmd = new SqlCommand(query,conn);
+            SqlParameter IdParameter = new SqlParameter("@Id",SqlDbType.Int);
+            IdParameter.Value = id;
+            cmd.Parameters.Add(IdParameter);
             try
             {
-                conn.Open();
-                IDataReader data = cmd.ExecuteReader();
+                await conn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
+                status = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+            return status;
+        }
+
+        public async Task<List<Order>> GetCustomerOrderAsync(int customerId)
+        {
+            List<Order> orders = new List<Order>();
+            SqlConnection conn = new SqlConnection(conString);
+            string query = "SELECT * FROM VSORDERS WHERE CUSTOMERID=@CustomerId";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            //Set Parameter for insert Query
+            SqlParameter CustomeridParameter = new SqlParameter("@CustomerId", SqlDbType.Int);
+            CustomeridParameter.Value = customerId;
+            cmd.Parameters.Add(CustomeridParameter);
+            try
+            {
+                await conn.OpenAsync();
+                IDataReader data = await cmd.ExecuteReaderAsync();
                 while (data.Read())
                 {
                     Order order = new Order();
@@ -49,22 +71,22 @@ namespace OrderProcessing.Repositories.Connected
             }
             finally
             {
-                conn.Close();
+                await conn.CloseAsync();
             }
             return orders;
         }
->>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
 
-        public List<Order> GetAll()
+
+        public async Task<List<Order>> GetAllAsync()
         {
-            IDbConnection conn = new SqlConnection(conString);
+            SqlConnection conn = new SqlConnection(conString);
             string query = "SELECT * FROM VsOrders";
-            IDbCommand cmd = new SqlCommand(query, conn as SqlConnection);
+            SqlCommand cmd = new SqlCommand(query, conn);
             List<Order> orders = new List<Order>();
             try
             {
-                conn.Open();
-                IDataReader data = cmd.ExecuteReader();
+                await conn.OpenAsync();
+                IDataReader data = await cmd.ExecuteReaderAsync();
                 while(data.Read())
                 {
                     Order order = new Order();
@@ -82,22 +104,26 @@ namespace OrderProcessing.Repositories.Connected
             }
             finally
             {
-                conn.Close();
+                await conn.CloseAsync();
             }
             return orders;
         }
 
-        public Order GetOrder(int id)
+
+        public async Task<Order> GetOrderAsync(int id)
         {
-            Order order = new Order(); 
-            IDbConnection conn = new SqlConnection(conString);
-            string query = "SELECT * FROM VsOrders WHERE ID=" + id;
-            IDbCommand cmd = new SqlCommand(query, conn as SqlConnection);
+            Order order = new Order();
+            SqlConnection conn = new SqlConnection(conString);
+            string query = "SELECT * FROM VsOrders WHERE ID=@Id";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlParameter IdParameter = new SqlParameter("@Id", SqlDbType.Int);
+            IdParameter.Value = id;
+            cmd.Parameters.Add(IdParameter);
             
             try
             {
-                conn.Open();
-                IDataReader data = cmd.ExecuteReader();
+                await conn.OpenAsync();
+                IDataReader data = await cmd.ExecuteReaderAsync();
                 if (data.Read())
                 {
                     
@@ -115,21 +141,37 @@ namespace OrderProcessing.Repositories.Connected
             }
             finally
             {
-                conn.Close();
+                await conn.CloseAsync();
             }
             return order;
         }
 
-        public bool Insert(Order order)
+        public async Task<bool> InsertAsync(Order order)
         {
             bool status = false;
-            IDbConnection conn = new SqlConnection(conString);
-            string query = string.Format("INSERT INTO VSORDERS (CUSTOMERID,STATUS,TOTALAMOUNT,ORDERDATE) VALUES({0},'{1}',{2},'{3}')",order.CustomerId,order.Status,order.TotalAmount,order.OrderDate) ;
-            IDbCommand cmd = new SqlCommand(query, conn as SqlConnection);
+            SqlConnection conn = new SqlConnection(conString);
+            string query = "INSERT INTO VSORDERS(CUSTOMERID, STATUS, TOTALAMOUNT, ORDERDATE) VALUES(@CustomerId,@Status,@TotalAmount,@OrderDate)";
+            SqlCommand cmd = new SqlCommand(query, conn as SqlConnection);
+            
+            //Set Parameter for insert Query
+            SqlParameter CustomeridParameter = new SqlParameter("@CustomerId", SqlDbType.Int);
+            CustomeridParameter.Value = order.CustomerId;
+            SqlParameter TotalAmountParameter = new SqlParameter("@TotalAmount", SqlDbType.Decimal);
+            TotalAmountParameter.Value = order.TotalAmount;
+            SqlParameter OrderDateParameter = new SqlParameter("OrderDate", SqlDbType.DateTime);
+            OrderDateParameter.Value = order.OrderDate;
+            SqlParameter StatusParameter = new SqlParameter("@Status", SqlDbType.VarChar);
+            StatusParameter.Value = order.Status;
+
+            //Add Parameter to Query/Command
+            cmd.Parameters.Add(CustomeridParameter);
+            cmd.Parameters.Add(TotalAmountParameter);
+            cmd.Parameters.Add(OrderDateParameter);
+            cmd.Parameters.Add(StatusParameter);
             try
             {
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                await conn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
                 status = true;
             }
             catch (Exception ex)
@@ -138,14 +180,52 @@ namespace OrderProcessing.Repositories.Connected
             }
             finally
             {
-                conn.Close();
+                await conn.CloseAsync();
             }
             return status;
         }
 
-        public bool Update(Order order)
+        public async Task<bool> UpdateAsync(Order order)
         {
-            throw new NotImplementedException();
+            bool status = false;
+            SqlConnection conn = new SqlConnection(conString);
+            string query = "UPDATE VSORDERS SET CUSTOMERID=@CustomerId , STATUS=@Status , TOTALAMOUNT=@TotalAmount , ORDERDATE=@OrderDate  WHERE ID=@Id";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            //Set Paramter for Update Query
+            SqlParameter IdParameter = new SqlParameter("@Id",SqlDbType.Int);
+            IdParameter.Value = order.Id;
+            SqlParameter CustomeridParameter = new SqlParameter("@CustomerId",SqlDbType.Int);
+            CustomeridParameter.Value = order.CustomerId;
+            SqlParameter TotalAmountParameter = new SqlParameter("@TotalAmount",SqlDbType.Decimal);
+            TotalAmountParameter.Value = order.TotalAmount;
+            SqlParameter OrderDateParameter = new SqlParameter("OrderDate",SqlDbType.DateTime);
+            OrderDateParameter.Value = order.OrderDate;
+            SqlParameter StatusParameter = new SqlParameter("@Status",SqlDbType.VarChar);
+            StatusParameter.Value = order.Status;
+
+            //Add Parameter to Query/Command
+            cmd.Parameters.Add(IdParameter);
+            cmd.Parameters.Add(CustomeridParameter);
+            cmd.Parameters.Add(TotalAmountParameter);
+            cmd.Parameters.Add(OrderDateParameter);
+            cmd.Parameters.Add(StatusParameter);
+
+            try
+            {
+                await conn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
+                status = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+
+            return status;
         }
     }
 }
