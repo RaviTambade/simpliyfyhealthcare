@@ -62,5 +62,17 @@ namespace Catalog.Services
             return false;
         }
 
+        public List<Product> GetByCategory(string category)
+        {
+            try
+            {
+                List<Product> products = _repo.GetByCategory(category);
+                return products;
+            }
+            catch(Exception ex)
+            {
+                return new List<Product>();
+            }
+        }
     }
 }

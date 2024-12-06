@@ -16,6 +16,6 @@ namespace Catalog.Services
         bool Update(Product product);
         bool Delete(int id);
 
-        //List<Product> GetByCategory(string category);
+        List<Product> GetByCategory(string category);
     }
 }
