@@ -1,20 +1,20 @@
-﻿using OrderProcessing.Entities;
-using OrderProcessing.Repositories.Connected;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrdersProcessing.Services;
+using OrdersProcessing.Repositories.Connected;
+using OrdersProcessing.Entities;
 
-namespace OrderProcessing.Service
+namespace OrdersProcessing.Services
 {
-    public class OrderService : IOrderService
+    public class OrderService :IOrderservice
     {
-          
         IOrderRepository _svc;
-        public OrderService() 
+        public OrderService()
         {
-            _svc=new OrderRepository();
+            _svc = new OrderRepository();
         }
 
         public bool Delete(int id)

@@ -1,13 +1,14 @@
-﻿using OrderProcessing.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using OrdersProcessing.Entities;
+using OrdersProcessing.Repositories;
+using System.Data;
 
-namespace OrderProcessing.Repositories.Connected
+namespace OrdersProcessing.Repositories.Connected
 {
     public class OrderRepository : IOrderRepository 
     {
