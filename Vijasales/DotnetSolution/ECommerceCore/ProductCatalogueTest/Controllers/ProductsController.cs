@@ -21,7 +21,10 @@ namespace ProductCatalogueTest.Controllers
         {
             return View();
         }
-
+        public IActionResult ProductIndex() 
+        {
+            return View();
+        }
         public IActionResult GridLayout()
         {
             return View();
