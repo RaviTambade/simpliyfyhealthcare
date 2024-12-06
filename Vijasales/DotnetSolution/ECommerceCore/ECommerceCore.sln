@@ -35,7 +35,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogueTest", "Pro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipmentMVCTest", "ShipmentMVCTest\ShipmentMVCTest.csproj", "{5DB96325-8B7F-4FA9-A1D7-3C076B1BFC2A}"
 EndProject
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2DF4A270-A61A-4998-A556-592BB823FF3E}"
+=======
+<<<<<<< HEAD
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2DF4A270-A61A-4998-A556-592BB823FF3E}"
+=======
+<<<<<<< HEAD
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2DF4A270-A61A-4998-A556-592BB823FF3E}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2DF4A270-A61A-4998-A556-592BB823FF3E}"
+>>>>>>> 42f5188d842f0283fb65da7a048f202587a30805
+>>>>>>> 903df9b73efdd6bdf4f32778b23a1d4a4d4d8c7f
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shipment", "Shipment\Shipment.csproj", "{D5FE931E-0A2C-4D29-9666-41C2F70467D4}"
+>>>>>>> 6cb8a2453ad079c63a14fac50aaeb4b4605f7faa
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

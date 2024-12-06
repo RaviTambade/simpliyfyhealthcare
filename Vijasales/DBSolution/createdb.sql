@@ -47,11 +47,11 @@ CREATE TABLE VsOrderItems (
         ON DELETE CASCADE
 );
  
-CREATE TABLE VsShipment (
+CREATE TABLE VsShipments (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     ShipmentDate DATETIME NOT NULL,
     OrderId INT NOT NULL,
-    ShipmentStatus VARCHAR(50) NOT NULL,
+    Status VARCHAR(50) NOT NULL,
     FOREIGN KEY (OrderId) REFERENCES VsOrders(Id),
 );
 
