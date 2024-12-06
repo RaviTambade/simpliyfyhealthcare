@@ -1,4 +1,5 @@
-﻿namespace VijaySales.Security
+﻿
+namespace VijaySales.Security
 {
     public static class PasswordEncryptionManager
     {

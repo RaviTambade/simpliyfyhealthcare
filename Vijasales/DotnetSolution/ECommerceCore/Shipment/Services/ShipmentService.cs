@@ -1,9 +1,9 @@
-﻿using ShipmentLib.Entities;
+﻿using Shipment.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ShipmentLib.Repositories.ORM;
+using Shipment.Repositories.ORM;
 
 namespace ShipmentLib.Services
 {
@@ -16,7 +16,7 @@ namespace ShipmentLib.Services
             _context = context;
         }
 
-        public bool CreateShipment(Shipment shipment)
+        public bool CreateShipment(Delivery shipment)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace ShipmentLib.Services
             }
         }
 
-        public List<Shipment> GetAll()
+        public List<Delivery> GetAll()
         {
             try
             {
@@ -59,11 +59,11 @@ namespace ShipmentLib.Services
             }
             catch (Exception)
             {
-                return new List<Shipment>();
+                return new List<Delivery>();
             }
         }
 
-        public List<Shipment> GetByDate(DateTime date)
+        public List<Delivery> GetByDate(DateTime date)
         {
             try
             {
@@ -73,11 +73,11 @@ namespace ShipmentLib.Services
             }
             catch (Exception)
             {
-                return new List<Shipment>();
+                return new List<Delivery>();
             }
         }
 
-        public Shipment GetById(int id)
+        public Delivery GetById(int id)
         {
             try
             {
@@ -89,22 +89,22 @@ namespace ShipmentLib.Services
             }
         }
 
-        public List<Shipment> GetByStatus(string status)
+        public List<Delivery> GetByStatus(string status)
         {
             try
             {
                 return _context.Shipments
-                               .Where(s => s.ShipmentStatus.Equals(status, StringComparison.OrdinalIgnoreCase))
+                               .Where(s => s.Status.Equals(status, StringComparison.OrdinalIgnoreCase))
                                
                                .ToList();
             }
             catch (Exception)
             {
-                return new List<Shipment>();
+                return new List<Delivery>();
             }
         }
 
-        public bool UpdateShipment(Shipment shipment)
+        public bool UpdateShipment(Delivery shipment)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace ShipmentLib.Services
                     return false;
 
                 existingShipment.ShipmentDate = shipment.ShipmentDate;
-                existingShipment.ShipmentStatus = shipment.ShipmentStatus;
+                existingShipment.Status = shipment.Status;
 
                 _context.SaveChanges();
                 return true;
