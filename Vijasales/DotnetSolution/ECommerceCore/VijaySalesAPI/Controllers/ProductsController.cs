@@ -32,6 +32,7 @@ namespace VijaySalesAPI.Controllers
             return product;
         }
 
+
         // POST api/<ProductsController>
         [HttpPost]
         public void Post([FromBody] string value)
