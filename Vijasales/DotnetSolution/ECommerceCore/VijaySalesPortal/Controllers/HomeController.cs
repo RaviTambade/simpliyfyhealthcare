@@ -17,6 +17,7 @@ namespace VijaySalesPortal.Controllers
         {
             return View();
         }
+       
         public IActionResult CustomerProfile()
         {
             return View();
