@@ -1,12 +1,12 @@
 ﻿namespace ShipmentLib.Entities
 {
-    public class Shipment
+    public class Delivery
     {
       
             public int Id { get; set; }
             public DateTime ShipmentDate { get; set; }
             public int OrderId { get; set; }
-            public string ShipmentStatus { get; set; } = "Order Confirmed";
+            public string Status { get; set; } = "Order Confirmed";
            
 
          

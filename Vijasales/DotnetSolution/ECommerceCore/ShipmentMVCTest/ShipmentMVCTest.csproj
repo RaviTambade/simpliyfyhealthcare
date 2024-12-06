@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shipment\ShipmentLib.csproj" />
+  </ItemGroup>
+
 </Project>

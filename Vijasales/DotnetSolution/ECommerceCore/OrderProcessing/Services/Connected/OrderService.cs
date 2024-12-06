@@ -9,37 +9,37 @@ namespace OrderProcessing.Services.Connected
         public OrderService(IOrderRepository svc) { 
             this._svc = svc;
         }
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            return await  _svc.DeleteAsync(id);
         }
 
-        public List<Order> GetCustomerOrders(int id)
+        public async Task<List<Order>> GetCustomerOrdersAsync(int id)
         {
-            return _svc.GetCustomerOrder(id);
+            return await _svc.GetCustomerOrderAsync(id);
         }
 
 
-        public List<Order> GetAll()
+        public async Task<List<Order>> GetAllAsync()
         {
-            return _svc.GetAll();
+            return await _svc.GetAllAsync();
         }
 
         
 
-        public Order GetOrder(int id)
+        public async Task<Order> GetOrderAsync(int id)
         {
-            return _svc.GetOrder(id);
+            return await _svc.GetOrderAsync(id);
         }
 
-        public bool Insert(Order order)
+        public async Task<bool> InsertAsync(Order order)
         {
-            return _svc.Insert(order);
+            return await _svc.InsertAsync(order);
         }
 
-        public bool Update(Order order)
+        public async Task<bool> UpdateAsync(Order order)
         {
-            throw new NotImplementedException();
+            return await _svc.UpdateAsync(order);
         }
     }
 }
