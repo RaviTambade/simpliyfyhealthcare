@@ -29,7 +29,7 @@ namespace Shipment.Repositories.ORM
             {
                 e.HasKey(e => e.Id);
             });
-            modelBuilder.Entity<Delivery>().ToTable("VsShipment");
+            modelBuilder.Entity<Delivery>().ToTable("VsShipments");
         }
 
         
