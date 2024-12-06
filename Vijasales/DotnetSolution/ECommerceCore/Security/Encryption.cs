@@ -1,14 +1,14 @@
-﻿namespace Security
+﻿namespace VijaySales.Security
 {
-    public static class Encryption
+    public static class PasswordEncryptionManager
     {
-        public static string EncryptPassword(string password)
+        public static string Encrypt(string password)
         {
             var hashed = BCrypt.Net.BCrypt.HashPassword(password, 10);
             return hashed.ToString();
         }
 
-        public static bool CheckDecryptPassword(string password, string dbpassword)
+        public static bool Verify(string password, string dbpassword)
         {
             var hashed = BCrypt.Net.BCrypt.Verify(password, dbpassword);
             return hashed;

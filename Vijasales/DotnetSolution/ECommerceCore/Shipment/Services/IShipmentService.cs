@@ -21,5 +21,7 @@ namespace ShipmentLib.Services
 
         List<Shipment> GetByStatus(string status);
 
+        Shipment GetById(int id);
+
     }
 }

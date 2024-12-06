@@ -3,17 +3,12 @@ namespace OrderProcessing.Services.Connected
 {
     public interface IOrderService
     {
-        List<Order> GetAll();
-        Order GetOrder(int id);
-        bool Insert(Order order);
-        bool Update(Order order);
-        bool Delete(int id );
-
-<<<<<<< HEAD
-
-=======
-        List<Order> GetCustomerOrders(int id);
->>>>>>> b0c17e237b863f7216a7b86c16fa089738de0f31
-
+        Task<List<Order>> GetAllAsync();           
+        Task<Order> GetOrderAsync(int id);         
+        Task<List<Order>> GetCustomerOrdersAsync(int id);  
+        Task<bool> InsertAsync(Order order);       
+        Task<bool> UpdateAsync(Order order);       
+        Task<bool> DeleteAsync(int id);            
     }
+
 }

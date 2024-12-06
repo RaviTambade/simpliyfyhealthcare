@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
-using Microsoft.Extensions.Configuration;
+using System.Net.NetworkInformation;
+using Microsoft.EntityFrameworkCore;
 
 namespace ShipmentLib.Repositories.ORM
 {
@@ -15,19 +15,27 @@ namespace ShipmentLib.Repositories.ORM
     public class ShipmentContext : DbContext
     {
         public DbSet<Shipment> Shipments { get; set; }
-        public ShipmentContext() : base("name=conString") { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+            optionsBuilder.UseSqlServer(conString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Shipment>((e) =>
+            {
+                e.HasKey(e => e.Id);
+            });
+            modelBuilder.Entity<Shipment>().ToTable("VsShipment");
+        }
+
+        
     }
     public class ShipmentRepository : IShipmentRepository
     {
-        public string _conString;
-
-        private IConfiguration _configuration;
-        public ShipmentRepository(IConfiguration configuration)
-        {
-            _configuration = configuration;
-            _conString = this._configuration.GetConnectionString("DefaultConnection");
-        }
-
         public bool Create(Shipment shipment)
         {
             bool status = false;
@@ -35,6 +43,7 @@ namespace ShipmentLib.Repositories.ORM
             {
                 context.Shipments.Add(shipment);
             }
+            status = true;
             return status;
 
 
@@ -84,6 +93,7 @@ namespace ShipmentLib.Repositories.ORM
                 }
             }
             return shipments;
+            //throw new NotImplementedException();
         }
 
         public List<Shipment> GetByDate(DateTime date)
