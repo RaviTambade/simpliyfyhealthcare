@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CRM.Repositories
 {
-    public interface IDataRepository
+    public interface IUserDataRepository
     {
         List<User> GetAll();
         bool Insert(User user);
