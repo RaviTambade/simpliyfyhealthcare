@@ -9,7 +9,6 @@ namespace ShoppingCartTest.Controllers
     {
         private const string SessionCartKey = "_Cart";
 
-
         public IActionResult Index()
         {
 
