@@ -1,17 +1,16 @@
-﻿using ShipmentLib.Entities;
+﻿using Shipment.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShipmentLib.Repositories.Connected
+namespace Shipment.Repositories.Connected
 {
     public class ShipmentRepository : IShipmentRepository
     {
 
-
-        public bool Create(Shipment shipment)
+        public bool Create(Delivery shipment)
         {
             throw new NotImplementedException();
         }
@@ -21,27 +20,27 @@ namespace ShipmentLib.Repositories.Connected
             throw new NotImplementedException();
         }
 
-        public List<Shipment> GetAll()
+        public List<Delivery> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public List<Shipment> GetByDate(DateTime date)
+        public List<Delivery> GetByDate(DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        public Shipment GetById(int id)
+        public Delivery GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Shipment> GetByStatus(string status)
+        public List<Delivery> GetByStatus(string status)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Shipment shipment)
+        public bool Update(Delivery shipment)
         {
             throw new NotImplementedException();
         }

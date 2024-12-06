@@ -3,9 +3,7 @@ using CRM.Repositories;
 using CRM.Repositories.ORM;
 using CRM.Entities;
 
-IDataRepository _reposvc = new UserRepository();
-
-
+IUserDataRepository _reposvc = new UserRepository();
 
 
 

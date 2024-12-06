@@ -9,11 +9,7 @@ using VijaySales.Security;
 
 namespace CRM.Repositories.ORM
 {
-<<<<<<< Updated upstream
-=======
-    
->>>>>>> Stashed changes
-    public class UserRepository : IDataRepository
+    public class UserRepository : IUserDataRepository
     {
         public bool Delete(int Id)
         {

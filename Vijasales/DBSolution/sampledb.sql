@@ -140,23 +140,23 @@ VALUES
 
 
 --Inserting data into VsShipment - shipment date should be 7 days after the order date
-INSERT INTO VsShipment (ShipmentDate, OrderId, ShipmentStatus)
+INSERT INTO VsShipments (ShipmentDate, OrderId, Status)
 VALUES
-(DATEADD(DAY, 7, '2024-12-01'), 17, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-02'), 18, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-03'), 19, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-04'), 20, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-05'), 21, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-06'), 22, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-07'), 23, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-08'), 24, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-09'), 25, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-10'), 26, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-11'), 27, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-12'), 28, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-13'), 29, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-14'), 30, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-15'), 31, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-16'), 32, 'Order Confirmed'),
-(DATEADD(DAY, 7, '2024-12-17'), 33, 'Order Confirmed');
+(DATEADD(DAY, 7, '2024-12-01'), 17, 'Pending'),
+(DATEADD(DAY, 7, '2024-12-02'), 18, 'Delievered'),
+(DATEADD(DAY, 7, '2024-12-03'), 19, 'In Transit'),
+(DATEADD(DAY, 7, '2024-12-04'), 20, 'In Transit'),
+(DATEADD(DAY, 7, '2024-12-05'), 21, 'Dispatched'),
+(DATEADD(DAY, 7, '2024-12-06'), 22, 'Delievered'),
+(DATEADD(DAY, 7, '2024-12-07'), 23, 'Pending'),
+(DATEADD(DAY, 7, '2024-12-08'), 24, 'Pending'),
+(DATEADD(DAY, 7, '2024-12-09'), 25, 'Pending'),
+(DATEADD(DAY, 7, '2024-12-10'), 26, 'Dispatched'),
+(DATEADD(DAY, 7, '2024-12-11'), 27, 'Pending'),
+(DATEADD(DAY, 7, '2024-12-12'), 28, 'Dispatched'),
+(DATEADD(DAY, 7, '2024-12-13'), 29, 'In Transit'),
+(DATEADD(DAY, 7, '2024-12-14'), 30, 'In Transit'),
+(DATEADD(DAY, 7, '2024-12-15'), 31, 'Pending'),
+(DATEADD(DAY, 7, '2024-12-16'), 32, 'Dispatched'),
+(DATEADD(DAY, 7, '2024-12-17'), 33, 'Pending');
 

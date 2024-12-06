@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using Catalog.Entities;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -49,9 +50,12 @@ namespace VijaySalesAPI.Controllers
 
         // POST api/<ShoppingCartController>
         [HttpPost]
-        public void Post([FromBody] Items item)
+        public void Post([FromBody] Product product)
         {
-            if (item == null || item.Quantity <= 0 || item.Price <= 0)
+            Items item = new Items();
+            item.Price = product.Price;
+
+            if ( item.Quantity <= 0 || item.Price <= 0)
             {
                 return; // Invalid item data, do nothing.
             }

@@ -1,11 +1,12 @@
-﻿using ShipmentLib.Entities;
+﻿using Shipment.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ShipmentLib.Repositories.ORM;
+using Shipment.Repositories.ORM;
+using Shipment.Repositories;
 
-namespace ShipmentLib.Services
+namespace Shipment.Services
 {
     public class ShipmentService : IShipmentService
     {
@@ -16,112 +17,41 @@ namespace ShipmentLib.Services
             _context = context;
         }
 
-        public bool CreateShipment(Shipment shipment)
+        public bool CreateShipment(Delivery shipment)
         {
-            try
-            {
-                if (shipment == null)
-                    return false;
-
-                _context.Shipments.Add(shipment);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
 
         public bool DeleteShipment(int id)
         {
-            try
-            {
-                var shipment = _context.Shipments.Find(id);
-                if (shipment == null)
-                    return false;
-
-                _context.Shipments.Remove(shipment);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
 
-        public List<Shipment> GetAll()
+        public List<Delivery> GetAll()
         {
-            try
-            {
-                return _context.Shipments.ToList();
-            }
-            catch (Exception)
-            {
-                return new List<Shipment>();
-            }
+            IShipmentRepository repo = new ShipmentRepository();
+
+            return repo.GetAll();
         }
 
-        public List<Shipment> GetByDate(DateTime date)
+        public List<Delivery> GetByDate(DateTime date)
         {
-            try
-            {
-                return _context.Shipments
-                               .Where(s => s.ShipmentDate.Date == date.Date)
-                               .ToList();
-            }
-            catch (Exception)
-            {
-                return new List<Shipment>();
-            }
+            return null;
         }
 
-        public Shipment GetById(int id)
+        public Delivery GetById(int id)
         {
-            try
-            {
-                return _context.Shipments.Find(id);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return null;
         }
 
-        public List<Shipment> GetByStatus(string status)
+        public List<Delivery> GetByStatus(string status)
         {
-            try
-            {
-                return _context.Shipments
-                               .Where(s => s.ShipmentStatus.Equals(status, StringComparison.OrdinalIgnoreCase))
-                               
-                               .ToList();
-            }
-            catch (Exception)
-            {
-                return new List<Shipment>();
-            }
+            return null;
         }
 
-        public bool UpdateShipment(Shipment shipment)
+        public bool UpdateShipment(Delivery shipment)
         {
-            try
-            {
-                var existingShipment = _context.Shipments.Find(shipment.Id);
-                if (existingShipment == null)
-                    return false;
-
-                existingShipment.ShipmentDate = shipment.ShipmentDate;
-                existingShipment.ShipmentStatus = shipment.ShipmentStatus;
-
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

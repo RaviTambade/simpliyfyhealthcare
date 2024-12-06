@@ -5,27 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Security;
+using VijaySales.Security;
+using CRM.Repositories.ORM;
 
 namespace CRM.Services
 {
     public class AuthService : IAuthService
     {
-        IDataRepository repo;
+        private readonly IUserDataRepository repo;
         public AuthService()
         {
             repo = new UserRepository();
-        }
-        //public string ForgotPassword(string email)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public User Get(int id)
-        {
-            List<User> users = repo.GetAll();
-            User user = users.Find(x => x.Id == id);
-            return user;
         }
 
         public bool Login(string email, string password)
@@ -33,7 +23,7 @@ namespace CRM.Services
             List<User> users = repo.GetAll();
             foreach (var user in users)
             {
-                if(user.Email == email && Encryption.CheckDecryptPassword(password, user.Password))
+                if (user.Email == email && PasswordEncryptionManager.Verify(password, user.Password))
                 {
                     return true;
                 }
@@ -41,9 +31,14 @@ namespace CRM.Services
             return false;
         }
 
+        public bool Logout()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Register(User user)
         {
-            user.Password = Encryption.EncryptPassword(user.Password);
+            ;
             return repo.Insert(user);
         }
 
@@ -52,21 +47,16 @@ namespace CRM.Services
             List<User> users = repo.GetAll();
             foreach (var user in users)
             {
-                if (user.Email == email && Encryption.CheckDecryptPassword(oldpassword, user.Password))
+                if (user.Email == email && PasswordEncryptionManager.Verify(oldpassword, user.Password))
                 {
-                    user.Password = Encryption.EncryptPassword(newpassword);
+                    user.Password = newpassword;
+                    repo.Update(user);
                     return true;
                 }
             }
             return false;
         }
 
-        public bool UpdateProfile(User newuser)
-        {
-            User user = repo.Get(newuser.Id);
-            repo.Delete(user);
-            repo.Inser(newuser);
 
-        }
     }
 }
