@@ -1,5 +1,4 @@
-25/7/2003
-___________________________________________________
+_____________________________________
 Agenda:
 
 	SDM:
@@ -48,23 +47,6 @@ Agenda:
 
 		Spiral Model
 		      Agile Methodology
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -124,11 +106,11 @@ Non Functional Requirement
 				Each permisssion in permission level 
 						with allow or deny Access to the resource
 
-		Claim :
-			Claim Based Authentication
+Claim :
+	Claim Based Authentication
 
 
-		How do you implment Authentication & Authourization in Asp.net 
+How do you implment Authentication & Authourization in Asp.net 
 
 ASP.NET Framework:
 	Different Types of Authentication
@@ -182,134 +164,69 @@ ASP.NET Framework:
 
 
 
-	ASP.NET Core
+ASP.NET Core
 
 
-		Web Application consist of Set of reusable REST API
-		Secure Web API
-			means calling client request will be  process based on claim submitted by calling person/ application
-		asp.ner core application should implement  JWT Token Authentication
+Web Application consist of Set of reusable REST API
+Secure Web API
+	means calling client request will be  process based on claim submitted by calling person/ application
+	asp.net core application should implement  JWT Token Authentication
 
 
-		Web Application could be 
-
-			B--2--C ( Bussiness to  Consumer)------- MVC Application-------
-			B--2--B ( Bussiness to Bussiness )------ MVC Application --------accessing -------Web API
+	Web Application could be 
+	B--2--C ( Bussiness to  Consumer)------- MVC Application-------
+	B--2--B ( Bussiness to Bussiness )------ MVC Application --------accessing -------Web API
 		
-		How does security is implemented betwee two application:
-				1.Transport Level Security	
-				2.Message Level Security
-
+How does security is implemented betwee two application:
+	1.Transport Level Security	
+	2.Message Level Security
 
 Steps to implment JWT Token for asp.net core Application
-
-	1.Create asp.net coer Web API Project.
-	2.Add JWT Token Dependency Refernces
-			using Visual studio : 
-			Go to dependencies 
-			Add references of external libraries shown below using Nugget Package manager
-				Set of external packages to be installed:
-					a.Swashbuckle.AspNetCore.dll
-					b.Microsoft.AspNetCore.OpenApi.dll
-					c.System.IdentityModel.Tokens.Jwt.dll---------------------------**********
-					d.Microsoft.AspNetCore.Authentication.JwtBearer.dll
+1.Create asp.net coer Web API Project.
+2.Add JWT Token Dependency Refernces
+	using Visual studio : 
+	Go to dependencies 
+	Add references of external libraries shown below using Nugget Package manager
+	Set of external packages to be installed:
+		a.Swashbuckle.AspNetCore.dll
+		b.Microsoft.AspNetCore.OpenApi.dll
+		c.System.IdentityModel.Tokens.Jwt.dll---------------------------**********
+		d.Microsoft.AspNetCore.Authentication.JwtBearer.dll
 			
-			If you are using Visual Code 
+	If you are using Visual Code 
 			us command dotnet add package command"
+	dotnet add package Swashbuckle.AspNetCore
+	dotnet add package Microsoft.AspNetCore.OpenApi
+	dotnet add package System.IdentityModel.Tokens.Jwt
+	dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+3.Add WebAPI Controller UsersController
 
-			dotnet add package Swashbuckle.AspNetCore
-			dotnet add package Microsoft.AspNetCore.OpenApi
-			dotnet add package System.IdentityModel.Tokens.Jwt
-			dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
-
-	3.Add WebAPI Controller UsersController
-
-	4.Add POST, GET action methods to UsersController
-			Authenticate
-			GetAll
-			GetById
+4.Add POST, GET action methods to UsersController
+		Authenticate
+		GetAll
+		GetById
 			
-	5.Add Entities to Web API project
-			User.cs
-			Role.cs file
-	6.Add Services folder to UsersController
-			a.Add IUserService Interface with method declaration
-			b.Add UserService class implementing IUserService Inteface
-			c.Implemnt logic for each Interface method.
-			d.Define List<Users> with their personal details and password
-			e.Add Logic to generate JWTToken after validating user credential from users List
-			
- 
+5.Add Entities to Web API project
+		User.cs
+		Role.cs file
+6.Add Services folder to UsersController
+	a.Add IUserService Interface with method declaration
+	b.Add UserService class implementing IUserService Inteface
+	c.Implemnt logic for each Interface method.
+	d.Define List<Users> with their personal details and password
+	e.Add Logic to generate JWTToken after validating user credential from users List
+	
+Passport Authentication
+	(Facebook authentication,
+	 Google authentication,
+	 Outlook authentication)
 
+_____________________________________________________________
 
-
-
-
-
-
-
-
-					
-
-
-
- 
-
-
-
-		
-			Passport Authentication
-					(Facebook authentication,
-					 Google authentication,
-					 Outlook authentication)
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	_____________________________________________________________
-
-	Software Development Methodologies
-
-		Software Testing
-		STLC
-		Why Software
-		V-Model
-		Testing Related Templates
-		Software Testing Types
-
+Software Development Methodologies
+	Software Testing
+	STLC
+	Why Software
+	V-Model
+	Testing Related Templates
+	Software Testing Types

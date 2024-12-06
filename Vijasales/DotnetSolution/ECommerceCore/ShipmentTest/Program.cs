@@ -9,14 +9,35 @@ Console.WriteLine("TESTING SHIPMENT!");
 IShipmentRepository repo = new ShipmentRepository();
 
 
-foreach (Delivery sh in repo.GetByStatus("Order Confirmed"))
+DateTime dateTime = new DateTime(2024, 12, 14);
+/*
+foreach (Delivery sh in repo.GetAll())
 {
-    Console.WriteLine($"{sh.Id} {sh.ShipmentDate} {sh.Status}");
-}
+    Console.WriteLine(sh);
+}*/
 
+//bool status = repo.Delete(17);
+
+//Console.WriteLine(status);
 
 Console.WriteLine("Giving One Shipment");
 
-Delivery theshipment = repo.GetById(4);
-Console.WriteLine($"{theshipment.Id} {theshipment.ShipmentDate}");
+
+
+//Console.WriteLine(theshipment);
+
+Delivery updatedshipment=repo.GetById(4);
+//updatedshipment.Id=theshipment.Id;
+//updatedshipment.OrderId=theshipment.OrderId;
+updatedshipment.Status="Pending";
+//updatedshipment.ShipmentDate=theshipment.ShipmentDate;
+
+bool res=repo.Update(updatedshipment);
+
+Console.WriteLine(res);
+foreach (Delivery sh in repo.GetAll())
+{
+    Console.WriteLine(sh);
+}
+
 

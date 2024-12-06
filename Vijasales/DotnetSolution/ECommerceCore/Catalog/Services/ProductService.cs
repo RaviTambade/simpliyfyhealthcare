@@ -10,8 +10,8 @@ namespace Catalog.Services
     public class ProductService : IProductService
     {
         //Sampling data for testing purpose
-        private IDataRepository _repo;
-        public ProductService(IDataRepository repo) {
+        private IProductRepository _repo;
+        public ProductService(IProductRepository repo) {
             _repo = repo;
         }
 
