@@ -17,5 +17,14 @@ namespace Repositories
                 return products;
             }
         }
+
+        public Product GetById(int id)
+        {
+            using (var ctx = new ProductContext())
+            {
+                var product = ctx.Products.Find(id);
+                return product;
+            }
+        }
     }
 }
