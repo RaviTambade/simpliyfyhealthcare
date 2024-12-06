@@ -35,7 +35,8 @@ namespace OrdersProcessing.Services.ORM
 
         public bool Insert(Order order)
         {
-            throw new NotImplementedException();
+            IOrderRepository _repo = new OrderRepository();
+            return _repo.Insert(order);
         }
 
         public bool Update(Order order)
