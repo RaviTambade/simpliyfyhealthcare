@@ -18,7 +18,7 @@ namespace Shipment.Repositories.ORM
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+            string conString = @"";
             optionsBuilder.UseSqlServer(conString);
         }
 
