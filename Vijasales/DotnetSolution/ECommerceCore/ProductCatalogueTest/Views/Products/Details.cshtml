@@ -39,13 +39,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-       
         let url = "http://localhost:5218/api/products/" + @id;
-        console.log(url);
+
         // Make an AJAX request to get product details
         $.ajax({
-            url:url,
-           
+            url: url,
             method: 'GET',
             success: function (data) {
                 // Update the DOM with the product details
@@ -60,13 +58,16 @@
                 } else {
                     $('#stockStatus').text('In stock: ' + data.stock);
                 }
+
+                // Store product data in window.productData for later use
+                window.productData = data; // Set the global productData object
             },
             error: function (xhr, status, error) {
                 console.error("Error loading product details:", error);
             }
         });
 
-        // Add to Cart functionality (this is a placeholder)
+        // Add to Cart functionality
         $('#addToCartButton').click(function () {
             if (window.productData) {
                 var productToAdd = {
@@ -95,8 +96,5 @@
                 alert("Product details are not available.");
             }
         });
-   
     });
-
-
 </script>
