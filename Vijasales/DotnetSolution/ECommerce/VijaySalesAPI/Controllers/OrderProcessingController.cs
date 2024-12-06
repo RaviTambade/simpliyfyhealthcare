@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace VijaySalesAPI.Controllers
 {
+    [RoutePrefix("api/OrderProcessing")]
     public class OrderProcessingController : ApiController
     {
         // GET api/values
@@ -30,5 +31,38 @@ namespace VijaySalesAPI.Controllers
             return  order;
 
         }
+
+        [HttpPost]
+        public void Post([FromBody] Order o)
+        {
+            IOrderService svc = new OrderService(); 
+            svc.Insert(o);  
+            
+        }
+
+        [HttpPut]  
+        public void Put(int id, [FromBody] Order o)
+        {
+            IOrderService svc = new OrderService(); 
+            svc.Update(o);  
+        }
+
+        // DELETE api/values/5
+        [HttpDelete]
+        public void Delete(int id)
+        {
+            IOrderService svc = new OrderService(); 
+            svc.Delete(id); 
+        }
+
+        [HttpGet]
+        [Route("customerorders/{id}")]
+        public IEnumerable<Order> GetOrders(int id) 
+        {
+            IOrderService svc = new OrderService();
+            List<Order> orders = svc.GetCustomerOrders(id);  
+            return orders;
+        }
+
     }
 }
