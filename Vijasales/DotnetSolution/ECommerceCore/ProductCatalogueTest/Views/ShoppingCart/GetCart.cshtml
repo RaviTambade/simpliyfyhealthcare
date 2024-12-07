@@ -187,6 +187,9 @@
             success: function (response) {
                 alert('Cart cleared successfully!');
                 loadCart();
+                $('#total-amount').text('Total: Rs 0');
+                
+
             },
             error: function (error) {
                 console.error('Error clearing the cart:', error);
