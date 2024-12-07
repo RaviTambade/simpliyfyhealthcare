@@ -46,6 +46,10 @@
         $.ajax({
             url: url,
             method: 'GET',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request 
+                },
+         
             success: function (data) {
                 // Update the DOM with the product details
                 $('#productTitle').text(data.title);
@@ -90,7 +94,11 @@
                     url: 'http://localhost:5218/api/shoppingcart',
                     method: 'POST',
                     contentType: 'application/json',
-                    data: JSON.stringify(productToAdd),
+                    xhrFields: {
+                        withCredentials: true  // Ensures cookies are sent with the request
+                    },
+
+                        data: JSON.stringify(productToAdd),
                     success: function (response) {
                         alert(response.message); // Show success message
                     },

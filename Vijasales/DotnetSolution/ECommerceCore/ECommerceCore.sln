@@ -37,11 +37,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipmentMVCTest", "Shipment
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{2DF4A270-A61A-4998-A556-592BB823FF3E}"
 EndProject
+<<<<<<< HEAD
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shipment", "Shipment\Shipment.csproj", "{D5FE931E-0A2C-4D29-9666-41C2F70467D4}"
+=======
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Banking", "Banking\Banking.csproj", "{67CFD051-09E2-4FBE-8CD6-A1A61D45B620}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shipment", "Shipment\Shipment.csproj", "{D5FE931E-0A2C-4D29-9666-41C2F70467D4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentProcessing", "PaymentProcessing\PaymentProcessing.csproj", "{645C1A67-8230-498B-AF9D-089C100FA260}"
+>>>>>>> b113f4cdf4e3acbe0c8b4422e0ef22147db03a7e
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +109,8 @@ Global
 		{2DF4A270-A61A-4998-A556-592BB823FF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DF4A270-A61A-4998-A556-592BB823FF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DF4A270-A61A-4998-A556-592BB823FF3E}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
 		{67CFD051-09E2-4FBE-8CD6-A1A61D45B620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67CFD051-09E2-4FBE-8CD6-A1A61D45B620}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67CFD051-09E2-4FBE-8CD6-A1A61D45B620}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -117,6 +123,7 @@ Global
 		{645C1A67-8230-498B-AF9D-089C100FA260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{645C1A67-8230-498B-AF9D-089C100FA260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{645C1A67-8230-498B-AF9D-089C100FA260}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> b113f4cdf4e3acbe0c8b4422e0ef22147db03a7e
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,9 +143,12 @@ Global
 		{C4F92240-9552-4697-8B37-81E3E41A77A5} = {E236737E-B1D2-4CAD-B93C-C06B7942A3C3}
 		{5DB96325-8B7F-4FA9-A1D7-3C076B1BFC2A} = {E236737E-B1D2-4CAD-B93C-C06B7942A3C3}
 		{2DF4A270-A61A-4998-A556-592BB823FF3E} = {76531FC2-513B-4F35-9D0A-03B545374308}
+<<<<<<< HEAD
+=======
 		{D5FE931E-0A2C-4D29-9666-41C2F70467D4} = {76531FC2-513B-4F35-9D0A-03B545374308}
 		{67CFD051-09E2-4FBE-8CD6-A1A61D45B620} = {76531FC2-513B-4F35-9D0A-03B545374308}
 		{645C1A67-8230-498B-AF9D-089C100FA260} = {76531FC2-513B-4F35-9D0A-03B545374308}
+>>>>>>> b113f4cdf4e3acbe0c8b4422e0ef22147db03a7e
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {517D2181-39AB-4105-8929-FAABF2E885E5}
