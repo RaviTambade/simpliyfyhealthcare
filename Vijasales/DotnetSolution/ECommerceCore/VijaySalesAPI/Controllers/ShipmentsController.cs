@@ -27,7 +27,7 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Delivery>> Get()
+        public async Task<List<Delivery>> GetAll()
         {
             List<Delivery> deliveryList = _shipmentService.GetAll();
 
@@ -35,7 +35,7 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ShipmentDetail> GetAsync(int id)
+        public async Task<ShipmentDetail> Get(int id)
         {
             return _shipmentService.GetById(id);
         }

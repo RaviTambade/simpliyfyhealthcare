@@ -7,25 +7,20 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
-<<<<<<< HEAD
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-=======
+
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
->>>>>>> 87a770e6a18280fbf28f3c09e974010ce5f91f5f
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddCors();
-<<<<<<< HEAD
-=======
 
->>>>>>> 43bbecea692f39f5dd0cc61ee0cd468d44b5feda
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
@@ -71,62 +66,12 @@ builder.Services.AddTransient<IShipmentService, ShipmentService>();
 
 var app = builder.Build();
 
-<<<<<<< HEAD
-=======
-// Configure the HTTP request pipeline.
-<<<<<<< HEAD
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
 
 app.UseCors("AllowLocalhost");
-
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-
 app.UseRouting();
 
-
-
-
-
-
-
-
-=======
-app.UseRouting();
-
->>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
->>>>>>> 87a770e6a18280fbf28f3c09e974010ce5f91f5f
->>>>>>> 43bbecea692f39f5dd0cc61ee0cd468d44b5feda
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 43bbecea692f39f5dd0cc61ee0cd468d44b5feda
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-<<<<<<< HEAD
-=======
->>>>>>> 39b54060ef2dfba8e3f5c219c6aec8b4c1cb01ab
->>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
->>>>>>> 87a770e6a18280fbf28f3c09e974010ce5f91f5f
->>>>>>> 43bbecea692f39f5dd0cc61ee0cd468d44b5feda
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
