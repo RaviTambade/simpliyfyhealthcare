@@ -29,6 +29,7 @@ namespace Shipment.Repositories.ORM
             using (var context = new ShipmentContext(_configuration))
             {
                 context.Shipments.Add(shipment);
+                context.SaveChanges();
                 status = true;
             }
             return status;
@@ -125,7 +126,6 @@ namespace Shipment.Repositories.ORM
             }
 
             return shipmentDetail;
-
         }
 
         public List<Delivery> GetByStatus(string status)
