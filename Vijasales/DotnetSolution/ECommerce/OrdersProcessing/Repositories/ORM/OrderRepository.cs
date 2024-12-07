@@ -14,7 +14,6 @@ namespace OrdersProcessing.Repositories.ORM
     public class OrderContext : DbContext
     {
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderResponse> OrderResponses { get; set; }
         public OrderContext() : base("name=conString") { }
     }
     public class OrderRepository : IOrderRepository

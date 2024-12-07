@@ -3,7 +3,7 @@ using System.Reflection.Emit;
 using Microsoft.EntityFrameworkCore;
 using Catalog.Entities;
 
-namespace Repositories
+namespace Catalog.Repositories.ORM
 {
     public class ProductContext : DbContext
     {

@@ -1,5 +1,5 @@
 using Catalog.Repositories;
-using Catalog.Repositories.Connected;
+using Catalog.Repositories.ORM;
 using Catalog.Services;
 using CRM.Repositories.ORM;
 using CRM.Repositories;
@@ -7,6 +7,9 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
+using Shipment.Repositories;
+using Shipment.Repositories.ORM;
+using Shipment.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,46 +60,48 @@ builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 
+builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
+builder.Services.AddTransient<IShipmentService, ShipmentService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
+
 app.UseCors("AllowLocalhost");
 
-<<<<<<< HEAD
-=======
-app.UseRouting();
-=======
-
 
 <<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> bbff611d82364f6732efe99291fbbadcba964e5a
-
-
-
->>>>>>> 0d556421f6b60cfaa63dfbd75ccb66f54485a6a1
->>>>>>> 26cfe542b815fb187ef90ad68732362284c96a93
-app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
-<<<<<<< HEAD
+
+
+
+
+
+
 
 =======
-<<<<<<< HEAD
+app.UseRouting();
 
-=======
-<<<<<<< HEAD
+>>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
+app.UseCors("AllowLocalhost");
 
+app.UseRouting();
+
+
+<<<<<<< HEAD
 =======
->>>>>>> 0d556421f6b60cfaa63dfbd75ccb66f54485a6a1
->>>>>>> d3295cd800749fadbfef7f74f1d634f8f2a13e53
->>>>>>> bbff611d82364f6732efe99291fbbadcba964e5a
->>>>>>> 26cfe542b815fb187ef90ad68732362284c96a93
+=======
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+>>>>>>> 39b54060ef2dfba8e3f5c219c6aec8b4c1cb01ab
+>>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
 app.UseAuthorization();
 
 app.UseSession();

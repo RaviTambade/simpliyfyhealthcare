@@ -86,6 +86,7 @@ namespace VijaySalesAPI.Controllers
             return Ok(new { message = "Item added to cart!" });
         }
 
+        /*
          // PUT api/<ShoppingCartController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] int quantity)
@@ -109,6 +110,36 @@ namespace VijaySalesAPI.Controllers
             existingItem.Quantity = existingItem.Quantity +quantity;
             SetCartInSession(cart);
         }
+        */
+        // PUT api/<ShoppingCartController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] int quantity)
+        {
+            var cart = GetCartFromSession();
+
+            if (cart == null)
+            {
+                return; // Cart not found, do nothing.
+            }
+
+            var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == id);
+            if (existingItem == null)
+            {
+                return; // Item not found, do nothing.
+            }
+
+            // Update the quantity of the item
+            existingItem.Quantity += quantity;
+
+            // If quantity is 0 or less, remove the item from the cart
+            if (existingItem.Quantity <= 0)
+            {
+                cart.Items.Remove(existingItem);
+            }
+
+            SetCartInSession(cart);
+        }
+
 
         // DELETE api/<ShoppingCartController>/5
         [HttpDelete("{id}")]

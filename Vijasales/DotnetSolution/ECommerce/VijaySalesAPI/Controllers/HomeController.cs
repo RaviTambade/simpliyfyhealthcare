@@ -23,6 +23,13 @@ namespace VijaySalesAPI.Controllers
             return View("CustomerOrderDetails");
         }
 
+        public ActionResult SalesOrderDetails()
+        {
+            ViewBag.Title = "Home Page";
+
+            return View();
+        }
+
         public ActionResult OrderSummary()
         {
             ViewBag.Title = "Home Page";

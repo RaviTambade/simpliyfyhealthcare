@@ -19,7 +19,7 @@ namespace VijaySalesAPI.Controllers
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> Get()
+       public async Task<ActionResult<List<Product>>> Get()
         {
             var products = await _productService.GetAllAsync(); 
             return Ok(products);
@@ -38,10 +38,10 @@ namespace VijaySalesAPI.Controllers
         }
 
         // GET api/<ProductsController>/category
-        [HttpGet("category/{category}")] 
+        [HttpGet("category/{category}")]
         public async Task<ActionResult<List<Product>>> GetByCategory(string category)
         {
-            var products = await _productService.GetByCategoryAsync(category); 
+            var products = await _productService.GetByCategoryAsync(category);
             return Ok(products);
         }
 
