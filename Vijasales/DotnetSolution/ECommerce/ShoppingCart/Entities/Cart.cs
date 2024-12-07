@@ -11,7 +11,8 @@ namespace ShoppingCart.Entities
         public List<Items> Items { get; set; }
         public Cart()
         {
-            this.Items = new List<Items>();
+            Items = new List<Items>();
         }
+
     }
 }
