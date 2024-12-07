@@ -18,7 +18,7 @@ namespace Shipment.Repositories
         // id refers to shipment id
         bool Delete(int id);
 
-        Delivery GetById(int id);
+        ShipmentDetail GetById(int shipmentId);
 
         bool Create(Delivery shipment);
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShipmentLib.Services
+namespace Shipment.Services
 {
     public interface IShipmentService
     {
@@ -21,7 +21,7 @@ namespace ShipmentLib.Services
 
         List<Delivery> GetByStatus(string status);
 
-        Delivery GetById(int id);
+        ShipmentDetail GetById(int id);
 
     }
 }

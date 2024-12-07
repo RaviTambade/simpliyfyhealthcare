@@ -20,6 +20,7 @@
                 <div class="col-md-6">
                     <h1 id="productTitle" class="card-title text-center mt-4 text-success"></h1>
                     <div class="product-details" style="padding-left: 20px;">
+                        <p id="productBrand"></p>
                         <h5 id="productPrice" class="text-center mt-3"></h5>
                         <p id="stockStatus" class="text-center"></p>
                         <p id="productDescription"></p>
@@ -45,6 +46,10 @@
         $.ajax({
             url: url,
             method: 'GET',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request 
+                },
+         
             success: function (data) {
                 // Update the DOM with the product details
                 $('#productTitle').text(data.title);
@@ -52,12 +57,14 @@
                 $('#productImage').attr('src', data.imageUrl);
                 $('#productImage').attr('alt', data.title);
                 $('#productDescription').text(data.description);
-                $('#productBrand').text(data.brand);
+                
+
+                
 
                 if (data.stock < 10) {
                     $('#stockStatus').html('<strong>Only ' + data.stock + ' left!</strong>');
                 } else {
-                    $('#stockStatus').text('In stock: ' + data.stock);
+                    $('#stockStatus').html('');
                 }
 
                 // Store product data in window.productData for later use
@@ -71,23 +78,27 @@
         // Add to Cart functionality
         $('#addToCartButton').click(function () {
             if (window.productData) {
+                // Ensure all properties are available in productToAdd
                 var productToAdd = {
                     id: window.productData.id,
                     title: window.productData.title,
                     description: window.productData.description,
                     price: window.productData.price,
                     stock: window.productData.stock,
-                    imageUrl: window.productData.imageUrl
-                    category:window.productData.category,
-                    brand:window.productData.brand
-
+                    imageUrl: window.productData.imageUrl,
+                    category: window.productData.category,  // Add category here
+                    brand: window.productData.brand         // Add brand here
                 };
 
                 $.ajax({
                     url: 'http://localhost:5218/api/shoppingcart',
                     method: 'POST',
                     contentType: 'application/json',
-                    data: JSON.stringify(productToAdd),
+                    xhrFields: {
+                        withCredentials: true  // Ensures cookies are sent with the request
+                    },
+
+                        data: JSON.stringify(productToAdd),
                     success: function (response) {
                         alert(response.message); // Show success message
                     },
@@ -100,5 +111,6 @@
                 alert("Product details are not available.");
             }
         });
+
     });
 </script>

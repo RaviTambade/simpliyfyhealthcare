@@ -11,7 +11,7 @@ namespace CRM.Services
 {
     public class UserService : IUserService
     {
-        private readonly IDataRepository _repoSvc;
+        private readonly IUserDataRepository _repoSvc;
         public UserService()
         {
             _repoSvc = new UserRepository();

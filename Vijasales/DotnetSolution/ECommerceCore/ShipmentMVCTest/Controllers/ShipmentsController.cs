@@ -1,10 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shipment.Entities;
+using Shipment.Repositories;
+using Shipment.Services;
+using Shipment.Repositories.ORM;
 
 namespace ShipmentMVCTest.Controllers
 {
     public class ShipmentsController : Controller
     {
+        private IShipmentService _shipmentService;
+        private ShipmentContext _context;
+
+        public ShipmentsController(IShipmentService service) { 
+            _context = new ShipmentContext();
+            _shipmentService = service;
+        }
         public IActionResult Index()
         {
             return View();
@@ -13,12 +23,7 @@ namespace ShipmentMVCTest.Controllers
         // list of shipments 
         public IActionResult List()
         {
-            List<Delivery> shipments = new List<Delivery>();
-            shipments.Add(new Delivery { Id = 1, ShipmentDate = DateTime.Now, OrderId = 17, Status= "Pending" });
-            shipments.Add(new Delivery { Id = 2, ShipmentDate = DateTime.Now, OrderId = 18, Status= "Pending" });
-            shipments.Add(new Delivery { Id = 3, ShipmentDate = DateTime.Now, OrderId = 19, Status= "Pending" });
-
-            return View(shipments);
+            return View(_shipmentService.GetAll());
         }
 
 
@@ -26,8 +31,7 @@ namespace ShipmentMVCTest.Controllers
         public IActionResult Details(int id)
         {
             // get the shipment using id
-
-            return View();
+            return View(_shipmentService.GetById(id));
         }
 
 

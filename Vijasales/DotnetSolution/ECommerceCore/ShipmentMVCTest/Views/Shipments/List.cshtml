@@ -131,23 +131,12 @@
                         <td>@shipment.OrderId</td>
                         <td>@shipment.ShipmentDate.ToString("yyyy-MM-dd HH:mm:ss")</td> <!-- Display the full date-time -->
                         <td>
-                            @* Dropdown for changing status *@
-                            <div class="dropdown">
-                                <button class="btn" id="dropdownStatusButton">@shipment.ShipmentStatus</button>
-
-                            </div>
+                            <p>@shipment.Status</p>
                         </td>
                         <td>
-                            <div class="">
-                                <button class="btn btn-danger update-status-btn" data-shipment-id="@shipment.Id">Update Status</button>
-                                // <div class="dropdown-content">
-                                //     <a href="#" class="update-status" data-shipment-id="@shipment.Id" data-status="Delivered">Order Delivered</a>
-                                //     <a href="#" class="update-status" data-shipment-id="@shipment.Id" data-status="Rejected">Order Rejected</a>
-                                // </div>
-
+                            <div class="details">
+                                <a href="/shipments/details/@shipment.Id">Details</a>
                             </div>
-
-
                         </td>
                     </tr>
                 }

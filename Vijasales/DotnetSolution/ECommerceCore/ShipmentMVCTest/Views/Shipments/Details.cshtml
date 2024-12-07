@@ -1,184 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Details";
-}
+﻿@using Shipment.Entities;
 
-@{
-    ViewData["Title"] = "Shipment Details";
-}
+<h2>Shipment Details</h2>
 
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f7fc;
-        margin: 0;
-        padding: 0;
-    }
+<div>
+    <p><strong>Customer Name:</strong> @Model.CustomerName</p>
+    <p><strong>Customer Address:</strong> @Model.CustomerAddress</p>
+    <p><strong>Total Amount:</strong> @Model.TotalAmount</p>
+    <p><strong>Delivery Date:</strong> @Model.DeliveryDate.ToShortDateString()</p>
 
-    h1, h3 {
-        text-align: center;
-        color: #333;
-        font-weight: 600;
-    }
+    <!-- Radio buttons for status change -->
+    <form method="POST" action="@Url.Action("UpdateStatus", "Shipments")">
+        <label for="DeliveryStatus">Change Status:</label><br />
 
-    .container {
-        width: 80%;
-        margin: 20px auto;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-    }
+        <!-- Hardcoded Radio Buttons for Delivery Status -->
+        <input type="radio" id="Pending" name="DeliveryStatus" value="Pending" @(Model.DeliveryStatus == "Pending" ? "checked" : "") />
+        <label for="Pending">Pending</label><br />
 
-    .user-info {
-        background-color: #e4e8f1;
-        padding: 15px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
+        <input type="radio" id="Shipped" name="DeliveryStatus" value="Shipped" @(Model.DeliveryStatus == "Shipped" ? "checked" : "") />
+        <label for="Shipped">Shipped</label><br />
 
-        .user-info p {
-            margin: 5px 0;
-        }
+        <input type="radio" id="Delivered" name="DeliveryStatus" value="Delivered" @(Model.DeliveryStatus == "Delivered" ? "checked" : "") />
+        <label for="Delivered">Delivered</label><br />
 
-    .table {
-        width: 100%;
-        margin: 20px 0;
-        border-collapse: collapse;
-        background-color: #fff;
-        border-radius: 8px;
-        overflow: hidden;
-    }
+        <input type="radio" id="Canceled" name="DeliveryStatus" value="Canceled" @(Model.DeliveryStatus == "Canceled" ? "checked" : "") />
+        <label for="Canceled">Canceled</label><br />
 
-        .table th {
-            background-color: #3498db;
-            color: white;
-            text-transform: uppercase;
-            padding: 15px;
-            font-size: 16px;
-        }
-
-        .table td {
-            padding: 15px;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        .table tr:nth-child(even) {
-            background-color: #f4f9fc;
-        }
-
-        .table tr:nth-child(odd) {
-            background-color: #fafafa;
-        }
-
-        .table tr:hover {
-            background-color: #f1c40f;
-            cursor: pointer;
-        }
-
-        .table td:first-child, .table th:first-child {
-            font-weight: bold;
-        }
-
-        .table td, .table th {
-            border-bottom: 1px solid #ddd;
-        }
-
-            .table th:first-child {
-                border-top-left-radius: 8px;
-            }
-
-            .table th:last-child {
-                border-top-right-radius: 8px;
-            }
-
-            .table td:first-child {
-                border-bottom-left-radius: 8px;
-            }
-
-            .table td:last-child {
-                border-bottom-right-radius: 8px;
-            }
-
-        .table td {
-            font-size: 14px;
-            color: #555;
-        }
-</style>
-
-<div class="container">
-    <h1>Shipment Details</h1>
-
-    <div class="user-info">
-        <h3>User Information</h3>
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Order Status:</strong> In Progress</p>
-    </div>
-    
+        <input type="hidden" name="ShipmentId" value="@Model.ShipmentId" />
+        <button type="submit">Update Status</button>
+    </form>
 </div>
-
-<script>
-    const orders = [
-        {
-            ID: 1,
-            OrderId: 1,
-            ProductName: "Laptop",
-            DeliveryAddress: "123 Main St, Springfield, IL",
-            ShipmentDate: "2024-12-08",
-            ShipmentStatus: "Shipped"
-        },
-        {
-            ID: 2,
-            OrderId: 2,
-            ProductName: "Smartphone",
-            DeliveryAddress: "456 Oak Rd, Chicago, IL",
-            ShipmentDate: "2024-12-07",
-            ShipmentStatus: "Out for Delivery"
-        },
-        {
-            ID: 3,
-            OrderId: 3,
-            ProductName: "Tablet",
-            DeliveryAddress: "789 Pine St, Orlando, FL",
-            ShipmentDate: "2024-12-09",
-            ShipmentStatus: "Processing"
-        }
-    ];
-
-    function populateOrderTable() {
-        const tableBody = document.getElementById("orderTableBody");
-        tableBody.innerHTML = "";
-
-        orders.forEach(order => {
-            const row = document.createElement("tr");
-
-            const idCell = document.createElement("td");
-            idCell.textContent = order.ID;
-            row.appendChild(idCell);
-
-            const orderIdCell = document.createElement("td");
-            orderIdCell.textContent = order.OrderId;
-            row.appendChild(orderIdCell);
-
-            const productNameCell = document.createElement("td");
-            productNameCell.textContent = order.ProductName;
-            row.appendChild(productNameCell);
-
-            const deliveryAddressCell = document.createElement("td");
-            deliveryAddressCell.textContent = order.DeliveryAddress;
-            row.appendChild(deliveryAddressCell);
-
-            const shipmentDateCell = document.createElement("td");
-            shipmentDateCell.textContent = order.ShipmentDate;
-            row.appendChild(shipmentDateCell);
-
-            const shipmentStatusCell = document.createElement("td");
-            shipmentStatusCell.textContent = order.ShipmentStatus;
-            row.appendChild(shipmentStatusCell);
-
-            tableBody.appendChild(row);
-        });
-    }
-
-    window.onload = populateOrderTable;
-</script>

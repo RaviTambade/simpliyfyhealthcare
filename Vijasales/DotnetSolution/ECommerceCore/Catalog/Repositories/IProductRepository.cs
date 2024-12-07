@@ -15,7 +15,7 @@ namespace Catalog.Repositories
         int GetCount();
         List<Product> GetAll();
         Product GetById(int id);
-
+        List<Product> GetByCategory(string category);
 
     }
 }
