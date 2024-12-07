@@ -7,14 +7,15 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
+using OrderProcessing.Repositories.Connected;
+using OrderProcessing.Services;
+using OrderProcessing.Services.Connected;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddCors();
-
-
 
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
@@ -45,17 +46,16 @@ builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 // Register IDataRepository and ProductRepository for dependency injection
 
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
-
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+
 
 // Register ProductService (already done in your code)
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IUserService, UserService>();
-
-
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
-
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 
 var app = builder.Build();
 
@@ -63,16 +63,11 @@ var app = builder.Build();
 
 
 
-
-<<<<<<< HEAD
-
-
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
-=======
->>>>>>> b91387299757ab9ed518071d3efe433dc368969b
+
 app.UseAuthorization();
 
 app.UseSession();
