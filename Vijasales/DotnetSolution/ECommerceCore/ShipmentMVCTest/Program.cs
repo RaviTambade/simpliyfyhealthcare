@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
+
+
 
 // connection string
 //builder.Services.AddDbContext<ShipmentContext>(options =>

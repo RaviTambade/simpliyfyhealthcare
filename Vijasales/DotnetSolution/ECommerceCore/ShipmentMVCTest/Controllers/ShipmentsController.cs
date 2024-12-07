@@ -31,7 +31,9 @@ namespace ShipmentMVCTest.Controllers
         public IActionResult Details(int id)
         {
             // get the shipment using id
-            return View(_shipmentService.GetById(id));
+            //return View(_shipmentService.GetById(id));
+
+            return View(new ShipmentDetail {ShipmentId=1, CustomerName="Ravi", CustomerAddress="Pune, 411023", DeliveryDate=DateTime.Now, DeliveryStatus="Pending", TotalAmount=9000});
         }
 
 

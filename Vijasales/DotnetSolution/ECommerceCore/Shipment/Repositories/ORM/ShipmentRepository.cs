@@ -16,11 +16,12 @@ namespace Shipment.Repositories.ORM
     public class ShipmentContext : DbContext
     {
         public DbSet<Delivery> Shipments { get; set; }
+        public ShipmentDetail ShDetail { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Add constring here to run  (@-------)
-            string conString = "PUT CONNECTION STRING HERE";
+            string conString = "data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
             optionsBuilder.UseSqlServer(conString);
         }
 
