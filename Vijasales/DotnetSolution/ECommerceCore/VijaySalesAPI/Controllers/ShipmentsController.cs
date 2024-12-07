@@ -65,6 +65,7 @@ namespace VijaySalesAPI.Controllers
             return status;
         }
 
+        // api/shipments/
         [HttpPut]
         public bool Update([FromBody] Delivery delivery)
         {
