@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Catalog\Catalog.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\cart\" />
+  </ItemGroup>
+
 </Project>

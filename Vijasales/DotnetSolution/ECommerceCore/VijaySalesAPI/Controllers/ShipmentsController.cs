@@ -19,6 +19,13 @@ namespace VijaySalesAPI.Controllers
             _shipmentService = shipmentService;
         }
 
+        [HttpGet("status/{Status}")]
+        public List<Delivery> GetByStatus(string status)
+        {
+            List<Delivery> deliverylistbystatus = _shipmentService.GetByStatus(status);
+            return deliverylistbystatus;
+        }
+
         [HttpGet]
         public List<Delivery> Get()
         {
@@ -30,21 +37,21 @@ namespace VijaySalesAPI.Controllers
         [HttpGet("{id:int}")]
         public ShipmentDetail Get(int id)
         {
-            ShipmentDetail newshipment = _shipmentService.GetById(id);
-            return newshipment;
+            return _shipmentService.GetById(id);
         }
 
-        [HttpGet("{Status}")]
-        public List<Delivery> GetByStatus(string status) {
-            List<Delivery>deliverylistbystatus=_shipmentService.GetByStatus(status);
-            return deliverylistbystatus;
-        
-        }
-        [HttpGet("{ShipmentDate}")]
-        public List<Delivery> GetByDate(DateTime date)
+
+        [HttpGet("date/{filterDate}")]
+        public IActionResult GetByDate(string filterDate)
         {
+            DateTime date;
+            if (!DateTime.TryParse(filterDate, out date))
+            {
+                return BadRequest("Invalid date format.");
+            }
+
             List<Delivery> deliverylistbydate = _shipmentService.GetByDate(date);
-            return deliverylistbydate;
+            return Ok(deliverylistbydate);
 
         }
 
@@ -71,7 +78,7 @@ namespace VijaySalesAPI.Controllers
         [HttpDelete("{id:int}")]
         public bool Delete(int id) { 
             bool status = false;
-            status= _shipmentService.DeleteShipment(id);
+            status = _shipmentService.DeleteShipment(id);
 
             return status;
         
