@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    public class  ProductRepository
+    public class  ProductRepository:I
     {
         public async Task<List<Product>> GetAll()
         {
