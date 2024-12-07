@@ -64,15 +64,11 @@ var app = builder.Build();
 
 
 
-<<<<<<< HEAD
-
 
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
-=======
->>>>>>> b91387299757ab9ed518071d3efe433dc368969b
 app.UseAuthorization();
 
 app.UseSession();

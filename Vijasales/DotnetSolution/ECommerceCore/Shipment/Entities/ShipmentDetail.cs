@@ -13,7 +13,7 @@ namespace Shipment.Entities
         public int ShipmentId { get; set; }
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
-        public double TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
         public DateTime DeliveryDate { get; set; }
         public string DeliveryStatus{ get; set; }
 
