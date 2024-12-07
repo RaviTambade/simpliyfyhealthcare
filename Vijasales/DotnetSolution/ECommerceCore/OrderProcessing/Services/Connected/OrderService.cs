@@ -14,9 +14,9 @@ namespace OrderProcessing.Services.Connected
             return await  _svc.DeleteAsync(id);
         }
 
-        public async Task<List<Order>> GetCustomerOrdersAsync(int id)
+        public async Task<List<Order>> GetCustomerOrdersAsync(int customerId)
         {
-            return await _svc.GetCustomerOrderAsync(id);
+            return await _svc.GetCustomerOrderAsync(customerId);
         }
 
 

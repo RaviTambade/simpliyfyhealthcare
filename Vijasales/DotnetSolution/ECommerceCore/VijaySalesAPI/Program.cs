@@ -7,17 +7,21 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
+<<<<<<< HEAD
+using OrderProcessing.Repositories.Connected;
+using OrderProcessing.Services;
+using OrderProcessing.Services.Connected;
+=======
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
+>>>>>>> 87a770e6a18280fbf28f3c09e974010ce5f91f5f
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddCors();
-
-
 
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
@@ -48,17 +52,16 @@ builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 // Register IDataRepository and ProductRepository for dependency injection
 
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
-
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+
 
 // Register ProductService (already done in your code)
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IUserService, UserService>();
-
-
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
-
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 
 builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
@@ -73,6 +76,8 @@ var app = builder.Build();
 
 app.UseCors("AllowLocalhost");
 
+<<<<<<< HEAD
+=======
 
 <<<<<<< HEAD
 
@@ -89,11 +94,14 @@ app.UseRouting();
 app.UseRouting();
 
 >>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
+>>>>>>> 87a770e6a18280fbf28f3c09e974010ce5f91f5f
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
 
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 =======
 =======
@@ -102,6 +110,7 @@ app.UseCors("AllowLocalhost");
 app.UseRouting();
 >>>>>>> 39b54060ef2dfba8e3f5c219c6aec8b4c1cb01ab
 >>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
+>>>>>>> 87a770e6a18280fbf28f3c09e974010ce5f91f5f
 app.UseAuthorization();
 
 app.UseSession();
