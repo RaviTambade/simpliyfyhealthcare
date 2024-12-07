@@ -1,5 +1,5 @@
 using Catalog.Repositories;
-using Catalog.Repositories.Connected;
+using Catalog.Repositories.ORM;
 using Catalog.Services;
 using CRM.Repositories.ORM;
 using CRM.Repositories;
@@ -66,23 +66,54 @@ builder.Services.AddTransient<IShipmentService, ShipmentService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+<<<<<<< HEAD
 
-
-app.UseCors("AllowLocalhost");
-
-
-app.UseRouting();
-
-app.UseCors("AllowLocalhost");
-
-app.UseRouting();
-
-
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
+>>>>>>> e28fb0987d729f34c1d31a241d9e25eb542055dd
 
 app.UseCors("AllowLocalhost");
 
+
+<<<<<<< HEAD
+
 app.UseRouting();
 
+
+
+
+
+
+
+
+=======
+app.UseRouting();
+
+>>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+
+
+<<<<<<< HEAD
+
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+
+=======
+<<<<<<< HEAD
+=======
+=======
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+>>>>>>> 39b54060ef2dfba8e3f5c219c6aec8b4c1cb01ab
+>>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
+>>>>>>> e28fb0987d729f34c1d31a241d9e25eb542055dd
 app.UseAuthorization();
 
 app.UseSession();
