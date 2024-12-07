@@ -21,8 +21,6 @@ namespace Shipment.Repositories.ORM
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Add constring here to run  (@-------)
-            //string conString = "";
             optionsBuilder.UseSqlServer(_connectionString);
         }
 
