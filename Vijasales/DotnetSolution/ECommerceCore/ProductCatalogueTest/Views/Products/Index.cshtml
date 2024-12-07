@@ -102,25 +102,52 @@
 
 
 <script>
-    const toggleViewBtn = document.getElementById('toggleViewBtn');
-    const gridView = document.getElementById('gridView');
-    const cardView = document.getElementById('cardView');
-    // Set initial state (Grid view)
-    let isGridView = true;
-    toggleViewBtn.addEventListener('click', () => {
-        // Toggle the view state
-        isGridView = !isGridView;
-        // Toggle visibility
-        if (isGridView) {
-            gridView.style.display = 'block'; // Show grid view
-            cardView.style.display = 'none';  // Hide card view
-            toggleViewBtn.innerHTML = '<i class="fas fa-th-large"></i>'; // Set Grid view icon
-        } else {
-            cardView.style.display = 'block'; // Show card view
-            gridView.style.display = 'none';  // Hide grid view
-            toggleViewBtn.innerHTML = '<i class="fas fa-list"></i>'; // Set List view icon
-        }
-    });
+    
 
+    $(document).ready(() => {
+
+        const toggleViewBtn = document.getElementById('toggleViewBtn');
+        const gridView = document.getElementById('gridView');
+        const cardView = document.getElementById('cardView');
+        // Set initial state (Grid view)
+        let isGridView = true;
+        toggleViewBtn.addEventListener('click', () => {
+            // Toggle the view state
+            isGridView = !isGridView;
+            // Toggle visibility
+            if (isGridView) {
+                gridView.style.display = 'block'; // Show grid view
+                cardView.style.display = 'none';  // Hide card view
+                toggleViewBtn.innerHTML = '<i class="fas fa-th-large"></i>'; // Set Grid view icon
+            } else {
+                cardView.style.display = 'block'; // Show card view
+                gridView.style.display = 'none';  // Hide grid view
+                toggleViewBtn.innerHTML = '<i class="fas fa-list"></i>'; // Set List view icon
+            }
+        });
+
+        let loadProducts = () => {
+            $.ajax({
+                url: "http://localhost:5218/api/products",
+                type: 'GET',
+                success: function (data) {
+                    var productHtml = '';
+
+
+                    data.forEach(function (card) {
+                        productHtml += ProductCard(card);
+                    });
+
+
+                    $('#productGridRow').html(productHtml);
+                },
+                error: function () {
+                    alert("An error occurred while loading products.");
+                }
+            });
+        }
+
+
+    });
 
 </script>

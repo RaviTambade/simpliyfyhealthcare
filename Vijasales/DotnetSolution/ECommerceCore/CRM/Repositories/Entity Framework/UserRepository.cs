@@ -9,7 +9,7 @@ using VijaySales.Security;
 
 namespace CRM.Repositories.ORM
 {
-    public class UserRepository : IDataRepository
+    public class UserRepository : IUserDataRepository
     {
         public bool Delete(int Id)
         {
