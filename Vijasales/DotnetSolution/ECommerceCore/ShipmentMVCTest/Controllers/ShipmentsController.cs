@@ -8,13 +8,14 @@ namespace ShipmentMVCTest.Controllers
 {
     public class ShipmentsController : Controller
     {
-        private IShipmentService _shipmentService;
-        private ShipmentContext _context;
+        private readonly IShipmentService _shipmentService;
 
-        public ShipmentsController(IShipmentService service) { 
-            _context = new ShipmentContext();
+        // Constructor to inject IShipmentService
+        public ShipmentsController(IShipmentService service)
+        {
             _shipmentService = service;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -31,9 +32,7 @@ namespace ShipmentMVCTest.Controllers
         public IActionResult Details(int id)
         {
             // get the shipment using id
-            //return View(_shipmentService.GetById(id));
-
-            return View(new ShipmentDetail {ShipmentId=1, CustomerName="Ravi", CustomerAddress="Pune, 411023", DeliveryDate=DateTime.Now, DeliveryStatus="Pending", TotalAmount=9000});
+            return View(_shipmentService.GetById(id));
         }
 
 

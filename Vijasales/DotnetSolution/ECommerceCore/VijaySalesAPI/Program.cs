@@ -7,6 +7,9 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
+using Shipment.Repositories;
+using Shipment.Repositories.ORM;
+using Shipment.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,22 +60,29 @@ builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 
+builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
+builder.Services.AddTransient<IShipmentService, ShipmentService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
-
-
-
 <<<<<<< HEAD
 
+app.UseCors("AllowLocalhost");
+
+
+app.UseRouting();
 
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
+
 =======
->>>>>>> b91387299757ab9ed518071d3efe433dc368969b
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+>>>>>>> 39b54060ef2dfba8e3f5c219c6aec8b4c1cb01ab
 app.UseAuthorization();
 
 app.UseSession();

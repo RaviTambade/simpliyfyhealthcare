@@ -1,4 +1,5 @@
 ﻿using OrdersProcessing.Entities;
+using OrdersProcessing.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace OrdersProcessing.Services.ORM
         bool Insert(Order order);
         bool Update(Order order);
         bool Delete(int id);
+        OrderResponse GetOrderDetails(int id);
     }
 }
