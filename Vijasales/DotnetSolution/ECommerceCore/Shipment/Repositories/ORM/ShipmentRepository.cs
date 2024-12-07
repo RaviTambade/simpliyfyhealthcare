@@ -9,40 +9,26 @@ using System.ComponentModel.DataAnnotations;
 using System.Net.NetworkInformation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
 
 namespace Shipment.Repositories.ORM
 {
 
-    public class ShipmentContext : DbContext
-    {
-        public DbSet<Delivery> Shipments { get; set; }
-        public ShipmentDetail ShDetail { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // Add constring here to run  (@-------)
-            string conString = "";
-            optionsBuilder.UseSqlServer(conString);
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Delivery>((e) =>
-            {
-                e.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<Delivery>().ToTable("VsShipments");
-        }
-
-        
-    }
+    
     public class ShipmentRepository : IShipmentRepository
     {
+        private IConfiguration _configuration;
+
+        // Inject ShipmentContext via constructor
+        public ShipmentRepository(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public bool Create(Delivery shipment)
         {
             bool status = false;
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 context.Shipments.Add(shipment);
             }
@@ -55,7 +41,7 @@ namespace Shipment.Repositories.ORM
         {
             bool flag = false;
             int ship_Id = id;
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 var shipment = context.Shipments.SingleOrDefault(s => s.Id == ship_Id);
                 if (shipment != null)
@@ -77,7 +63,7 @@ namespace Shipment.Repositories.ORM
         public List<Delivery> GetAll()
         {
             List<Delivery> shipments = new List<Delivery>();
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 var dbshipments = context.Shipments.ToList();
                 foreach (var shipment in dbshipments)
@@ -99,7 +85,7 @@ namespace Shipment.Repositories.ORM
 
             List<Delivery> shipments = new List<Delivery>();
 
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 var dbshipments = context.Shipments.ToList();
 
@@ -126,10 +112,11 @@ namespace Shipment.Repositories.ORM
         {
             ShipmentDetail shipmentDetail = null;
 
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 // call the stored procedure 
-                var query = @"EXEC GetShipmentDetails @ShipmentId, @CustomerId, @OrderId";
+                // @"EXEC GetShipmentDetails @ShipmentId, @CustomerId, @OrderId"
+                var query = @"EXEC GetShipmentDetails @ShipmentId";
 
                 // Execute the stored procedure
                 shipmentDetail = context.Set<ShipmentDetail>()
@@ -147,7 +134,7 @@ namespace Shipment.Repositories.ORM
         {
             List<Delivery>shipments= new List<Delivery>();
 
-            using (var context=new ShipmentContext())
+            using (var context=new ShipmentContext(_configuration))
             {
               var  dbshipments = context.Shipments.ToList();
 
@@ -176,7 +163,7 @@ namespace Shipment.Repositories.ORM
         {
             bool status = false;
 
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 var foundShipment = context.Shipments.SingleOrDefault(s => s.Id == shipment.Id);
                 if (foundShipment != null)
