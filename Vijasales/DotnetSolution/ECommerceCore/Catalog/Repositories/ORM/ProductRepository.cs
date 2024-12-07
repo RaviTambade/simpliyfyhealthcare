@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    public class ProductRepository
+    public class  ProductRepository
     {
-        public List<Product> GetAll()
+        public async Task<List<Product>> GetAll()
         {
             using (var ctx = new ProductContext())
             {
                 var products = ctx.Products.ToList();
-                return products;
+                 return products;
             }
         }
 
@@ -38,5 +38,31 @@ namespace Repositories
             }
             return status;
         }
+
+        public bool Delete(int Id)
+        {
+            bool status = false;
+            using (var ctx = new ProductContext())
+            {
+                ctx.Products.Remove(ctx.Products.Find(Id));
+                ctx.SaveChanges();
+                status = true;
+            }
+            return status;
+        }
+
+        public bool Update(Product product)
+        {
+            bool status = false;
+            using (var ctx = new ProductContext())
+            {
+
+                ctx.Products.Update(product);
+                ctx.SaveChanges();
+                status = true;
+            }
+            return status;
+        }
+
     }
 }

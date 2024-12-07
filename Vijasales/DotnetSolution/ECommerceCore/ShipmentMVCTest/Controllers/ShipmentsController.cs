@@ -8,13 +8,14 @@ namespace ShipmentMVCTest.Controllers
 {
     public class ShipmentsController : Controller
     {
-        private IShipmentService _shipmentService;
-        private ShipmentContext _context;
+        private readonly IShipmentService _shipmentService;
 
-        public ShipmentsController(IShipmentService service) { 
-            _context = new ShipmentContext();
+        // Constructor to inject IShipmentService
+        public ShipmentsController(IShipmentService service)
+        {
             _shipmentService = service;
         }
+
         public IActionResult Index()
         {
             return View();

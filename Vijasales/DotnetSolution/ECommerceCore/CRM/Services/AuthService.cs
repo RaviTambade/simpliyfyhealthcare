@@ -12,7 +12,7 @@ namespace CRM.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly IDataRepository repo;
+        private readonly IUserDataRepository repo;
         public AuthService()
         {
             repo = new UserRepository();

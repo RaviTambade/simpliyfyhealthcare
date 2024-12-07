@@ -5,16 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Shipment.Repositories.ORM;
 using Shipment.Repositories;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Shipment.Services
 {
     public class ShipmentService : IShipmentService
     {
         private readonly ShipmentContext _context;
+        private readonly IConfiguration _configuration;
 
-        public ShipmentService(ShipmentContext context)
+        public ShipmentService(IConfiguration configuration)
         {
-            _context = context;
+            _configuration = configuration;
         }
 
         public bool CreateShipment(Delivery shipment)
@@ -29,7 +32,7 @@ namespace Shipment.Services
 
         public List<Delivery> GetAll()
         {
-            IShipmentRepository repo = new ShipmentRepository();
+            IShipmentRepository repo = new ShipmentRepository(_configuration);
 
             return repo.GetAll();
         }
@@ -39,9 +42,10 @@ namespace Shipment.Services
             return null;
         }
 
-        public Delivery GetById(int id)
+        public ShipmentDetail GetById(int shipmentId)
         {
-            return null;
+            IShipmentRepository repo = new ShipmentRepository(_configuration);
+            return repo.GetById(shipmentId);
         }
 
         public List<Delivery> GetByStatus(string status)

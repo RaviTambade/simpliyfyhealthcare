@@ -8,54 +8,40 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Net.NetworkInformation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
 
 namespace Shipment.Repositories.ORM
 {
 
-    public class ShipmentContext : DbContext
-    {
-        public DbSet<Delivery> Shipments { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // Add constring here to run  (@-------)
-            string conString = "Not added because of Security Issues";
-            optionsBuilder.UseSqlServer(conString);
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Delivery>((e) =>
-            {
-                e.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<Delivery>().ToTable("VsShipments");
-        }
-
-        
-    }
+    
     public class ShipmentRepository : IShipmentRepository
     {
+        private IConfiguration _configuration;
+
+        // Inject ShipmentContext via constructor
+        public ShipmentRepository(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public bool Create(Delivery shipment)
         {
             bool status = false;
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 context.Shipments.Add(shipment);
             }
             status = true;
             return status;
 
-
-           // throw new NotImplementedException();
         }
 
         public bool Delete(int id)
         {
             bool flag = false;
             int ship_Id = id;
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 var shipment = context.Shipments.SingleOrDefault(s => s.Id == ship_Id);
                 if (shipment != null)
@@ -72,14 +58,12 @@ namespace Shipment.Repositories.ORM
             }
 
             return flag;
-
-           // throw new NotImplementedException();
         }
 
         public List<Delivery> GetAll()
         {
             List<Delivery> shipments = new List<Delivery>();
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 var dbshipments = context.Shipments.ToList();
                 foreach (var shipment in dbshipments)
@@ -94,7 +78,6 @@ namespace Shipment.Repositories.ORM
                 }
             }
             return shipments;
-            //throw new NotImplementedException();
         }
 
         public List<Delivery> GetByDate(DateTime date)
@@ -102,7 +85,7 @@ namespace Shipment.Repositories.ORM
 
             List<Delivery> shipments = new List<Delivery>();
 
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 var dbshipments = context.Shipments.ToList();
 
@@ -121,29 +104,37 @@ namespace Shipment.Repositories.ORM
 
                 }
                 return shipments;
-                //throw new NotImplementedException();
+               
             }
         }
 
-        public Delivery GetById(int id)
+        public ShipmentDetail GetById(int shipmentId)
         {
-            Delivery shipment = null;
-            int ship_Id = id;
-            using (var context = new ShipmentContext())
+            ShipmentDetail shipmentDetail = null;
+
+            using (var context = new ShipmentContext(_configuration))
             {
-                shipment = context.Shipments.SingleOrDefault(s => s.Id == ship_Id);
+                // call the stored procedure 
+                // @"EXEC GetShipmentDetails @ShipmentId, @CustomerId, @OrderId"
+                var query = @"EXEC GetShipmentDetails @ShipmentId";
 
+                // Execute the stored procedure
+                shipmentDetail = context.Set<ShipmentDetail>()
+                    .FromSqlRaw(query,
+                        new SqlParameter("@ShipmentId", (object)shipmentId))
+                    .AsEnumerable() // Execute and return results
+                    .FirstOrDefault();
             }
-            return shipment;
 
-            //throw new NotImplementedException();
+            return shipmentDetail;
+
         }
 
         public List<Delivery> GetByStatus(string status)
         {
             List<Delivery>shipments= new List<Delivery>();
 
-            using (var context=new ShipmentContext())
+            using (var context=new ShipmentContext(_configuration))
             {
               var  dbshipments = context.Shipments.ToList();
 
@@ -163,17 +154,16 @@ namespace Shipment.Repositories.ORM
                 }
 
                 return shipments;
-
             }
 
-            throw new NotImplementedException();
+            
         }
 
         public bool Update(Delivery shipment)
         {
             bool status = false;
 
-            using (var context = new ShipmentContext())
+            using (var context = new ShipmentContext(_configuration))
             {
                 var foundShipment = context.Shipments.SingleOrDefault(s => s.Id == shipment.Id);
                 if (foundShipment != null)
@@ -193,7 +183,6 @@ namespace Shipment.Repositories.ORM
 
 
             return status;
-           // throw new NotImplementedException();
         }
     }
 }

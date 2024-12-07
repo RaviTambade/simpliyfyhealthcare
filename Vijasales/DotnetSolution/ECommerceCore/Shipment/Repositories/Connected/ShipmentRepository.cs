@@ -30,7 +30,7 @@ namespace Shipment.Repositories.Connected
             throw new NotImplementedException();
         }
 
-        public Delivery GetById(int id)
+        public ShipmentDetail GetById(int id)
         {
             throw new NotImplementedException();
         }

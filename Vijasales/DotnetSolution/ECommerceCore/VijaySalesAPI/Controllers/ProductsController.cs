@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Catalog.Entities;
-using Catalog.Repositories;
 using Catalog.Services;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -11,50 +10,85 @@ namespace VijaySalesAPI.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        // GET: api/<ProductsController>
         private readonly IProductService _productService;
+
         public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
+
+        // GET: api/<ProductsController>
         [HttpGet]
-        public List<Product> Get()
+       public async Task<ActionResult<List<Product>>> Get()
         {
-           List< Product> product= _productService.GetAll();
-            return product;
+            var products = await _productService.GetAllAsync(); 
+            return Ok(products);
         }
 
         // GET api/<ProductsController>/5
         [HttpGet("{id:int}")]
-        public Product Get(int id)
+        public async Task<ActionResult<Product>> Get(int id)
         {
-            Product product= _productService.Get(id);
-            return product;
+            var product = await _productService.GetAsync(id); 
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
         }
 
-        [HttpGet("{category}")]
-        public List<Product> Get(string category)
+        // GET api/<ProductsController>/category
+        [HttpGet("category/{category}")]
+        public async Task<ActionResult<List<Product>>> GetByCategory(string category)
         {
-            List<Product> products = _productService.GetByCategory(category);
-            return products;
+            var products = await _productService.GetByCategoryAsync(category);
+            return Ok(products);
         }
 
         // POST api/<ProductsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] Product product)
         {
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            var success = await _productService.InsertAsync(product); 
+            if (!success)
+            {
+                return BadRequest("Product could not be inserted.");
+            }
+            return Ok();
         }
 
         // PUT api/<ProductsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] Product product)
         {
+            if (product == null )
+            {
+                return BadRequest();
+            }
+
+            var updatedProduct = await _productService.UpdateAsync(product); 
+            if (updatedProduct == null)
+            {
+                return NotFound();
+            }
+            return Ok(updatedProduct);
         }
 
         // DELETE api/<ProductsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var success = await _productService.DeleteAsync(id); 
+            if (!success)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }
