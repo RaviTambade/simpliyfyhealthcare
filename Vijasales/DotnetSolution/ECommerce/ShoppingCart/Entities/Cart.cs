@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Entities
 {
-    internal class Cart
+    public class Cart
     {
+        public List<Items> Items { get; set; }
+        public Cart()
+        {
+            this.Items = new List<Items>();
+        }
     }
 }
