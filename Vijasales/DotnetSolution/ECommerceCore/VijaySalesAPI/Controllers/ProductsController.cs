@@ -18,7 +18,7 @@ namespace VijaySalesAPI.Controllers
             _productService = productService;
         }
         [HttpGet]
-        public List< Product> Get()
+        public List<Product> Get()
         {
            List< Product> product= _productService.GetAll();
             return product;
