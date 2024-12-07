@@ -6,9 +6,6 @@ using CRM.Entities;
 IUserDataRepository _reposvc = new UserRepository();
 
 
-
-
-
 List<User> users = _reposvc.GetAll();
 foreach (User user in users)
 {

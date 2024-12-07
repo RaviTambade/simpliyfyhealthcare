@@ -1,68 +1,78 @@
 ﻿using Catalog.Entities;
+using Catalog.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositories
+namespace Catalog.Repositories.ORM
 {
-    public class  ProductRepository
+    public class  ProductRepository:IProductRepository
     {
-        public async Task<List<Product>> GetAll()
+        public async Task<List<Product>> GetAllAsync()
         {
             using (var ctx = new ProductContext())
             {
-                var products = ctx.Products.ToList();
+                var products =await  ctx.Products.ToListAsync();
                  return products;
             }
         }
 
-        public Product GetById(int id)
+        public async Task<Product> GetByIdAsync(int id)
         {
             using (var ctx = new ProductContext())
             {
-                var product = ctx.Products.Find(id);
+                var product = await ctx.Products.FindAsync(id);
                 return product;
             }
         }
 
-        public bool Insert(Product product)
+        public async Task<bool> InsertAsync(Product product)
         {
             bool status = false;
             using (var ctx = new ProductContext())
             {
                 ctx.Products.Add(product);
-                ctx.SaveChanges();
+               await ctx.SaveChangesAsync();
                 status = true;
             }
             return status;
         }
 
-        public bool Delete(int Id)
+        public async Task<bool> DeleteAsync(int Id)
         {
             bool status = false;
             using (var ctx = new ProductContext())
             {
-                ctx.Products.Remove(ctx.Products.Find(Id));
-                ctx.SaveChanges();
+                ctx.Products.Remove(await ctx.Products.FindAsync(Id));
+               await ctx.SaveChangesAsync();
                 status = true;
             }
             return status;
         }
 
-        public bool Update(Product product)
+        public async Task <bool> UpdateAsync(Product product)
         {
             bool status = false;
             using (var ctx = new ProductContext())
             {
 
-                ctx.Products.Update(product);
-                ctx.SaveChanges();
+               ctx.Products.Update(product);
+              await ctx.SaveChangesAsync();
                 status = true;
             }
             return status;
         }
+        public Task<int> GetCountAsync()
+        {
+            throw new NotImplementedException();
+        }
 
+        public Task<List<Product>> GetByCategoryAsync(string category)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
