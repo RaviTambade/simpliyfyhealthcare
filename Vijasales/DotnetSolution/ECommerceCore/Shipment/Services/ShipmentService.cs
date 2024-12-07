@@ -10,12 +10,12 @@ namespace Shipment.Services
 {
     public class ShipmentService : IShipmentService
     {
-        private readonly ShipmentContext _context;
+        //private readonly ShipmentContext _context;
 
-        public ShipmentService(ShipmentContext context)
-        {
-            _context = context;
-        }
+        //public ShipmentService(ShipmentContext context)
+        //{
+        //    _context = context;
+        //}
 
         public bool CreateShipment(Delivery shipment)
         {
@@ -39,9 +39,10 @@ namespace Shipment.Services
             return null;
         }
 
-        public Delivery GetById(int id)
+        public ShipmentDetail GetById(int shipmentId)
         {
-            return null;
+            IShipmentRepository repo = new ShipmentRepository();
+            return repo.GetById(shipmentId);
         }
 
         public List<Delivery> GetByStatus(string status)
