@@ -62,11 +62,20 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 0d556421f6b60cfaa63dfbd75ccb66f54485a6a1
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0d556421f6b60cfaa63dfbd75ccb66f54485a6a1
 app.UseAuthorization();
 
 app.UseSession();
