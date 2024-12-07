@@ -78,6 +78,29 @@
             outline: none !important;
         }
 
+    .add-to-cart-btn {
+        background-color: #007bff !important;
+        color: white !important;
+        border: none;
+    }
+
+        .add-to-cart-btn:hover {
+            background-color: #007bff !important;
+            color: white !important;
+        }
+
+    .view-details-btn {
+        background-color: transparent;
+        color: #28a745;
+        border: 1px solid #28a745;
+    }
+
+        .view-details-btn:hover {
+            background-color: #28a745;
+            color: white;
+            border: 1px solid #218838;
+        }
+
 </style>
 
 
@@ -92,7 +115,7 @@
             <ul class="dropdown-menu w-100">
 
                 <li class="dropdown-submenu">
-                    <button class="dropdown-item dropdown-toggle" type="button" id="btnSmartPhone">Smartphones</button>
+                    <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" id="btnSmartphone">SmartPhone</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Apple</a></li>
                         <li><a class="dropdown-item" href="#">Samsung</a></li>
@@ -101,7 +124,7 @@
                 </li>
 
                 <li class="dropdown-submenu">
-                    <button class="dropdown-item dropdown-toggle" type="button" id="btnLaptop">Laptops</button>
+                    <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" id="btnLaptop">Laptop</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Dell</a></li>
                         <li><a class="dropdown-item" href="#">HP</a></li>
@@ -110,7 +133,7 @@
                 </li>
 
                 <li class="dropdown-submenu">
-                    <button class="dropdown-item dropdown-toggle" type="button" id="btnTV">TVs</button>
+                    <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" id="btnTV">TV</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">LG</a></li>
                         <li><a class="dropdown-item" href="#">Sony</a></li>
@@ -126,9 +149,9 @@
         <div class="row d-flex justify-content-center my-3">
             <div class="col-md-6 d-flex">
 
-                <input type="text" class="form-control" placeholder="Search for products..." name="search">
+                <input type="text" class="form-control" placeholder="Search for products..." name="search" id="textSearch">
 
-                <button class="search-button btn btn-primary ms-2" type="button">Search</button>
+                <button class="search-button btn btn-primary ms-2" type="button" id="btnSearch">Search</button>
 
                 <button id="toggleViewBtn" class="btn btn-light ms-2">
                     <i class="fas fa-th-large"></i>
@@ -248,7 +271,24 @@
         });
     }
 
+    let loadProductsByCat = (category) => {
+        $.ajax({
+            url: "http://localhost:5218/api/products/category/" + category,
+            type: 'GET',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function (data) {
+                gridCard(data)
+                listCard(data)
+            },
+            error: function () {
+                alert("An error occurred while loading products.");
+            }
+        });
+    }
     $(document).ready(() => {
+
 
         const toggleViewBtn = document.getElementById('toggleViewBtn');
         const gridView = document.getElementById('gridView');
@@ -269,6 +309,8 @@
                 toggleViewBtn.innerHTML = '<i class="fas fa-list"></i>'; // Set List view icon
             }
         });
+
+
         loadAllProducts()
 
         // Handle Add to Cart button click
@@ -304,6 +346,25 @@
                     alert("Failed to add product to cart.");
                 }
             });
+        });
+
+        //function to route btn category
+        $("#btnSmartphone").click(() => {
+            loadProductsByCat("Smartphone")
+        });
+
+        $("#btnLaptop").click(() => {
+            loadProductsByCat("Laptop")
+        });
+
+        $("#btnTV").click(() => {
+            loadProductsByCat("TV")
+        });
+
+        $('#btnSearch').click(() => {
+            let searchQuery = $("#textSearch").val();
+            console.log(searchQuery)
+            loadProductsByCat(searchQuery)
         });
     });
 
