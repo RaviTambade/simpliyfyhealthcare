@@ -1,5 +1,5 @@
 using Catalog.Repositories;
-using Catalog.Repositories.Connected;
+using Catalog.Repositories.ORM;
 using Catalog.Services;
 using CRM.Repositories.ORM;
 using CRM.Repositories;
@@ -60,43 +60,25 @@ builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-<<<<<<< HEAD
+
 app.UseCors("AllowLocalhost");
 
-<<<<<<< HEAD
-=======
+
+
 app.UseRouting();
-=======
-
-
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> bbff611d82364f6732efe99291fbbadcba964e5a
 
 
 
->>>>>>> 0d556421f6b60cfaa63dfbd75ccb66f54485a6a1
->>>>>>> 26cfe542b815fb187ef90ad68732362284c96a93
+
+
+
+
+
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 0d556421f6b60cfaa63dfbd75ccb66f54485a6a1
->>>>>>> d3295cd800749fadbfef7f74f1d634f8f2a13e53
->>>>>>> bbff611d82364f6732efe99291fbbadcba964e5a
->>>>>>> 26cfe542b815fb187ef90ad68732362284c96a93
 app.UseAuthorization();
 
 app.UseSession();
