@@ -78,7 +78,7 @@ namespace VijaySalesAPI.Controllers
         [HttpDelete("{id:int}")]
         public bool Delete(int id) { 
             bool status = false;
-            status= _shipmentService.DeleteShipment(id);
+            status = _shipmentService.DeleteShipment(id);
 
             return status;
         

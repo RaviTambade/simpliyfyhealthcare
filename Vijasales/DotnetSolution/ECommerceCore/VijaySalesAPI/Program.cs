@@ -69,7 +69,6 @@ var app = builder.Build();
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.UseSession();
