@@ -23,5 +23,10 @@ namespace ProductCatalogueTest.Controllers
             ViewData["id"] = id;
             return View();
         }
+
+        public IActionResult Management()
+        {
+            return View();
+        }
     }
 }

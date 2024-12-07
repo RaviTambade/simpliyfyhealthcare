@@ -5,53 +5,66 @@ using System.Collections.Generic;
 using System.Linq;
 using Shipment.Repositories.ORM;
 using Shipment.Repositories;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace Shipment.Services
 {
     public class ShipmentService : IShipmentService
     {
-        //private readonly ShipmentContext _context;
+        private readonly IConfiguration _configuration;
+        private readonly IShipmentRepository _repo;
 
-        //public ShipmentService(ShipmentContext context)
-        //{
-        //    _context = context;
-        //}
+        public ShipmentService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _repo = new ShipmentRepository(configuration);
+        }
 
         public bool CreateShipment(Delivery shipment)
         {
+            if(_repo.Create(shipment))
+            {
+                return true;
+            }
             return false;
         }
 
         public bool DeleteShipment(int id)
         {
+            if (_repo.Delete(id))
+            {
+                return true;
+            }
             return false;
         }
 
         public List<Delivery> GetAll()
         {
-            IShipmentRepository repo = new ShipmentRepository();
-
-            return repo.GetAll();
+            return _repo.GetAll();
         }
 
         public List<Delivery> GetByDate(DateTime date)
         {
-            return null;
+            return _repo.GetByDate(date);
         }
 
         public ShipmentDetail GetById(int shipmentId)
         {
-            IShipmentRepository repo = new ShipmentRepository();
-            return repo.GetById(shipmentId);
+            return _repo.GetById(shipmentId);
         }
 
         public List<Delivery> GetByStatus(string status)
         {
-            return null;
+            return _repo.GetByStatus(status);
         }
 
         public bool UpdateShipment(Delivery shipment)
         {
+            if (_repo.Update(shipment))
+            {
+                return true;
+            }
             return false;
         }
     }

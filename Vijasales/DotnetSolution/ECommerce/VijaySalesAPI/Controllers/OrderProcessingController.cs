@@ -8,6 +8,7 @@ using OrdersProcessing.Services.ORM;
 using OrdersProcessing.Entities;
 using OrdersProcessing.Repositories.ORM;
 using System.Web.UI.WebControls;
+using OrdersProcessing.Models;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -24,11 +25,11 @@ namespace VijaySalesAPI.Controllers
         }
 
 
-        public Order Get(int id) 
+        public List<OrderList> Get(int id) 
         {
             IOrderService svc = new OrderService(); 
-            Order order= svc.GetOrder(id);
-            return  order;
+            OrderResponse orderResponse= svc.GetOrderDetails(id);
+            return  orderResponse.OrderLists;
 
         }
 
@@ -63,6 +64,7 @@ namespace VijaySalesAPI.Controllers
             List<Order> orders = svc.GetCustomerOrders(id);  
             return orders;
         }
+
 
     }
 }

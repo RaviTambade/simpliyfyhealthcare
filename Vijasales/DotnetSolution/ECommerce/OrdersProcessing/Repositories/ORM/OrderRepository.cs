@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
+using OrdersProcessing.Models;
 
 namespace OrdersProcessing.Repositories.ORM
 {
@@ -102,6 +104,18 @@ namespace OrdersProcessing.Repositories.ORM
             return order;
         }
 
+        public OrderResponse GetOrderDetails(int id)
+        {
+             OrderResponse response = new OrderResponse();
+
+            using(var ctx = new OrderContext())
+            {
+                response.OrderLists = ctx.Database.SqlQuery<OrderList>("EXEC VsGetCurrentOrderDetails @order_id",
+                    new SqlParameter("@order_id",id)).ToList();
+            }
+            return response;
+        }
+
         public bool Insert(Order order)
         {
             bool status = false;
@@ -135,5 +149,6 @@ namespace OrdersProcessing.Repositories.ORM
             }
             return status;
         }
+        
     }
 }
