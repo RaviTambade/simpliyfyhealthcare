@@ -37,7 +37,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-        policy.WithOrigins("http://localhost:5284")  // Allow your frontend's URL
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284")  // Allow your frontend's URL
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -66,19 +66,12 @@ builder.Services.AddTransient<IShipmentService, ShipmentService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
->>>>>>> e28fb0987d729f34c1d31a241d9e25eb542055dd
 
 app.UseCors("AllowLocalhost");
 
 
-<<<<<<< HEAD
+
 
 app.UseRouting();
 
@@ -89,31 +82,24 @@ app.UseRouting();
 
 
 
-=======
+
 app.UseRouting();
 
->>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
 
-<<<<<<< HEAD
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+
+
 
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
-=======
-<<<<<<< HEAD
-=======
-=======
-app.UseCors("AllowLocalhost");
-
-app.UseRouting();
->>>>>>> 39b54060ef2dfba8e3f5c219c6aec8b4c1cb01ab
->>>>>>> 5b5df5b5acbb51f09e99850b90fecf21fd86476c
->>>>>>> e28fb0987d729f34c1d31a241d9e25eb542055dd
 app.UseAuthorization();
 
 app.UseSession();
