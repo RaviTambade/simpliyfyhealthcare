@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Banking\Banking.csproj" />
     <ProjectReference Include="..\Catalog\Catalog.csproj" />
+    <ProjectReference Include="..\CRM\CRM.csproj" />
     <ProjectReference Include="..\PaymentProcessing\PaymentProcessing.csproj" />
     <ProjectReference Include="..\ShoppingCart\ShoppingCart.csproj" />
   </ItemGroup>

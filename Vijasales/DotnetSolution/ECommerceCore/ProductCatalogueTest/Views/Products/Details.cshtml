@@ -20,6 +20,7 @@
                 <div class="col-md-6">
                     <h1 id="productTitle" class="card-title text-center mt-4 text-success"></h1>
                     <div class="product-details" style="padding-left: 20px;">
+                        <p id="productBrand"></p>
                         <h5 id="productPrice" class="text-center mt-3"></h5>
                         <p id="stockStatus" class="text-center"></p>
                         <p id="productDescription"></p>
@@ -52,12 +53,14 @@
                 $('#productImage').attr('src', data.imageUrl);
                 $('#productImage').attr('alt', data.title);
                 $('#productDescription').text(data.description);
-               
+                
+
+                
 
                 if (data.stock < 10) {
                     $('#stockStatus').html('<strong>Only ' + data.stock + ' left!</strong>');
                 } else {
-                    $('#stockStatus').text('In stock: ' + data.stock);
+                    $('#stockStatus').html('');
                 }
 
                 // Store product data in window.productData for later use

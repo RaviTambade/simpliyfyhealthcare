@@ -151,8 +151,6 @@ namespace Catalog.Repositories.Connected
             return product;
         }
 
-       
-
         public int GetCount()
         {
             /*
@@ -243,5 +241,45 @@ namespace Catalog.Repositories.Connected
             return true;
         }
 
+        public List<Product> GetByCategory(string category)
+        {
+
+            List<Product> products = new List<Product>();
+
+            IDbConnection con = new SqlConnection(_conString);
+            string query = "SELECT * FROM VsProducts WHERE Category= '" + category +"'";
+            IDbCommand cmd = new SqlCommand(query, con as SqlConnection);
+            try
+            {
+                con.Open();
+                IDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    Product product = new Product();
+                    product.Id = Convert.ToInt32(dataReader["Id"]);
+                    product.Title = dataReader["Title"].ToString();
+                    product.Description = dataReader["Description"].ToString();
+                    product.Brand = dataReader["Brand"].ToString();
+                    product.Price = Convert.ToDecimal(dataReader["Price"]);
+                    product.Stock = Convert.ToInt32(dataReader["Stock"]);
+                    product.Category = dataReader["Category"].ToString();
+                    product.LastModified = Convert.ToDateTime(dataReader["LastModified"]);
+                    product.ImageUrl = dataReader["ImageUrl"].ToString();
+                    products.Add(product);
+
+                }
+                dataReader.Close();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+
+                con.Close();
+            }
+            return products;
+        }
     }
 }

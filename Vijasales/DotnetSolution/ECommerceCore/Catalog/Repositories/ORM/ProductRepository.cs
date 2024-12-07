@@ -38,5 +38,17 @@ namespace Repositories
             }
             return status;
         }
+
+        public bool Delete(int Id)
+        {
+            bool status = false;
+            using (var ctx = new ProductContext())
+            {
+                ctx.Products.Remove(ctx.Products.Find(Id));
+                ctx.SaveChanges();
+                status = true;
+            }
+            return status;
+        }
     }
 }
