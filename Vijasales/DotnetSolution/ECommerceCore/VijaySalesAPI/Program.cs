@@ -66,7 +66,7 @@ builder.Services.AddTransient<IShipmentService, ShipmentService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-<<<<<<< HEAD
+
 
 app.UseCors("AllowLocalhost");
 
@@ -78,11 +78,11 @@ app.UseCors("AllowLocalhost");
 app.UseRouting();
 
 
-=======
+
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
->>>>>>> 39b54060ef2dfba8e3f5c219c6aec8b4c1cb01ab
+
 app.UseAuthorization();
 
 app.UseSession();
