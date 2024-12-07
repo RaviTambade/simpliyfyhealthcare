@@ -21,7 +21,7 @@ namespace Shipment.Repositories.ORM
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Add constring here to run  (@-------)
-            string conString = "data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+            string conString = "";
             optionsBuilder.UseSqlServer(conString);
         }
 
@@ -49,8 +49,6 @@ namespace Shipment.Repositories.ORM
             status = true;
             return status;
 
-
-           // 
         }
 
         public bool Delete(int id)
