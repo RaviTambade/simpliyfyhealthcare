@@ -11,6 +11,8 @@ namespace Shipment.Entities
         // shiping details- user name and address, items, amount
 
         public int ShipmentId { get; set; }
+
+        public int OrderId { get; set; }
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
         public decimal TotalAmount { get; set; }

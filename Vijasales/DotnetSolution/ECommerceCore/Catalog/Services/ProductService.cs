@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Catalog.Repositories;
 
+
 namespace Catalog.Services
 {
     public class ProductService : IProductService

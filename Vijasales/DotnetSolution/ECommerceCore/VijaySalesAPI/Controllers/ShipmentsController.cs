@@ -20,14 +20,14 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpGet("status/{Status}")]
-        public List<Delivery> GetByStatus(string status)
+        public async Task<List<Delivery>> GetByStatus(string status)
         {
             List<Delivery> deliverylistbystatus = _shipmentService.GetByStatus(status);
             return deliverylistbystatus;
         }
 
         [HttpGet]
-        public List<Delivery> Get()
+        public async Task<List<Delivery>> GetAll()
         {
             List<Delivery> deliveryList = _shipmentService.GetAll();
 
@@ -35,14 +35,14 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public ShipmentDetail Get(int id)
+        public async Task<ShipmentDetail> Get(int id)
         {
             return _shipmentService.GetById(id);
         }
 
 
         [HttpGet("date/{filterDate}")]
-        public IActionResult GetByDate(string filterDate)
+        public async Task<IActionResult> GetByDate(string filterDate)
         {
             DateTime date;
             if (!DateTime.TryParse(filterDate, out date))
@@ -56,7 +56,7 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpPost]
-        public bool Insert([FromBody] Delivery delivery)
+        public async Task<bool> Insert([FromBody] Delivery delivery)
         {
             bool status = false;
 
@@ -67,7 +67,7 @@ namespace VijaySalesAPI.Controllers
 
         // api/shipments/
         [HttpPut]
-        public bool Update([FromBody] Delivery delivery)
+        public async Task<bool> Update([FromBody] Delivery delivery)
         {
             bool status = false;
             
@@ -77,7 +77,7 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public bool Delete(int id) { 
+        public async Task<bool> Delete(int id) { 
             bool status = false;
             status = _shipmentService.DeleteShipment(id);
 
