@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Entities
 {
-    public class Product
+    public class  Product
     {
 
 
