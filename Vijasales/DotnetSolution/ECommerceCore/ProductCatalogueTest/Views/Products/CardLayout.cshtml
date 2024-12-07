@@ -78,6 +78,9 @@
         $.ajax({
             url: "http://localhost:5218/api/products",
             type: "GET",
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
             success: function (data) {
                 addToCard(data);  // Call function to display products
             },
@@ -108,6 +111,9 @@
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(productData),
+                xhrFields: {
+                    withCredentials: true  // Ensures cookies are sent with the request
+                },
                 success: function (response) {
                     alert(response.message); // Show success message
                 },
