@@ -16,9 +16,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddCors();
-
-
-
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
@@ -66,25 +63,13 @@ builder.Services.AddTransient<IShipmentService, ShipmentService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-<<<<<<< HEAD
-
 app.UseCors("AllowLocalhost");
-
-
 app.UseRouting();
-
 app.UseCors("AllowLocalhost");
-
 app.UseRouting();
-
-
-=======
 app.UseCors("AllowLocalhost");
-
 app.UseRouting();
->>>>>>> 39b54060ef2dfba8e3f5c219c6aec8b4c1cb01ab
 app.UseAuthorization();
-
 app.UseSession();
 app.MapControllers();
 app.Run();
