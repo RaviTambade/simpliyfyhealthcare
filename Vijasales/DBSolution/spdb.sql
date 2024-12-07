@@ -167,3 +167,30 @@ BEGIN
         SELECT ERROR_MESSAGE() AS ErrorMessage;
     END CATCH
 END;
+
+
+-- Getting customer order details 
+
+
+CREATE PROCEDURE VsGetCurrentOrderDetails
+    @order_id INT
+AS
+BEGIN
+    SELECT 
+        o.Id AS OrderId,
+        (u.FirstName + ' ' + u.LastName) AS Name,
+        p.Brand AS Brand,
+        p.Title AS Title,
+        t.Quantity AS Quantity,
+        p.Price AS Price,
+        (t.Quantity * p.Price) AS TotalPrice,
+        o.OrderDate AS OrderDate,
+        o.Status AS OrderStatus
+    FROM 
+        VsProducts p
+        INNER JOIN VsOrderItems t ON p.Id = t.ProductId
+        INNER JOIN VsOrders o ON o.Id = t.OrderId
+        INNER JOIN VsUsers u ON u.Id = o.CustomerId
+    WHERE 
+        o.Id = @order_id;
+END;
