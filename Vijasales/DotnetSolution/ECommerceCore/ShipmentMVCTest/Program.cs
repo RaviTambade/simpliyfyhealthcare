@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
 
@@ -7,13 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
+builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 
-
-
-// connection string
-//builder.Services.AddDbContext<ShipmentContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

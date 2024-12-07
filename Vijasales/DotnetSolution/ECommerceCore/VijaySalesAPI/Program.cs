@@ -60,9 +60,28 @@ builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+<<<<<<< HEAD
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
+=======
+
+
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 0d556421f6b60cfaa63dfbd75ccb66f54485a6a1
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0d556421f6b60cfaa63dfbd75ccb66f54485a6a1
+>>>>>>> d3295cd800749fadbfef7f74f1d634f8f2a13e53
 app.UseAuthorization();
 
 app.UseSession();
