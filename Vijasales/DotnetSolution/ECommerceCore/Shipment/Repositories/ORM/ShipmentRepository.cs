@@ -14,8 +14,6 @@ using System.Configuration;
 
 namespace Shipment.Repositories.ORM
 {
-
-    
     public class ShipmentRepository : IShipmentRepository
     {
         private IConfiguration _configuration;
@@ -31,8 +29,8 @@ namespace Shipment.Repositories.ORM
             using (var context = new ShipmentContext(_configuration))
             {
                 context.Shipments.Add(shipment);
+                status = true;
             }
-            status = true;
             return status;
 
         }
