@@ -18,12 +18,24 @@ builder.Services.AddDistributedMemoryCache();  // This is the key line for in-me
 // Add session service
 builder.Services.AddSession(options =>
 {
-    options.Cookie.Name = ".ShoppingCart.Session";
+    options.Cookie.Name = "ShoppingCart.Session";
     options.IdleTimeout = TimeSpan.FromMinutes(600);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
-});
+    options.Cookie.SameSite = SameSiteMode.Lax;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
 
+});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost", policy =>
+    {
+        policy.WithOrigins("http://localhost:5284")  // Allow your frontend's URL
+              .AllowAnyHeader()  // Allow any headers
+              .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
+              .AllowCredentials();  // Allow cookies and credentials to be sent
+    });
+});
 // Adding services which are needed in the future
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
@@ -37,13 +49,16 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 
-app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 
- 
-app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
+
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
 
 app.UseAuthorization();
+
 app.UseSession();
 app.MapControllers();
 app.Run();
