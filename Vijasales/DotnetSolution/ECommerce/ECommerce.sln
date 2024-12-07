@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersProcessing", "OrdersP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VijaySalesAPI", "VijaySalesAPI\VijaySalesAPI.csproj", "{F903D1BF-B62E-4C8C-AB39-387D54DBBF89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{D5F628FB-19C9-45EB-9A1D-CA629F0DE1BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F903D1BF-B62E-4C8C-AB39-387D54DBBF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F903D1BF-B62E-4C8C-AB39-387D54DBBF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F903D1BF-B62E-4C8C-AB39-387D54DBBF89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5F628FB-19C9-45EB-9A1D-CA629F0DE1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5F628FB-19C9-45EB-9A1D-CA629F0DE1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5F628FB-19C9-45EB-9A1D-CA629F0DE1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5F628FB-19C9-45EB-9A1D-CA629F0DE1BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{EBB2A814-D36B-4FCA-82BD-E8B18BDB86D6} = {652F46DE-F325-4770-A0F0-10D635CDF910}
 		{0DFD67F9-4987-475E-ADB0-43ECE6D6F32E} = {67FAAE2A-D9CC-4023-9FFF-96C268A1AD81}
 		{F903D1BF-B62E-4C8C-AB39-387D54DBBF89} = {027BF7B4-D2AC-4CE5-B737-7B58EE132CAD}
+		{D5F628FB-19C9-45EB-9A1D-CA629F0DE1BB} = {67FAAE2A-D9CC-4023-9FFF-96C268A1AD81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09F9E268-0BA4-4291-90C6-1D38188729E4}
