@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OrdersProcessing.Entities;
+using OrdersProcessing.Models;
 
 namespace OrdersProcessing.Repositories.Connected
 {
@@ -15,5 +16,6 @@ namespace OrdersProcessing.Repositories.Connected
         bool Insert(Order order);
         bool Update(Order order);
         bool Delete(int id);
+        //List<OrderResponse> GetOrderDetails(int id);
     }
 }
