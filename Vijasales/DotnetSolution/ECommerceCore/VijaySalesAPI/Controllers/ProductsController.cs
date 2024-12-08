@@ -46,12 +46,12 @@ namespace VijaySalesAPI.Controllers
         }
 
         // GET api/<ProductsController>/brand
-        /*[HttpGet("brand/{brand}")]
+        [HttpGet("brand/{brand}")]
         public async Task<ActionResult<List<Product>>> GetByBrand(string brand)
         {
             var products = await _productService.GetByBrandAsync(brand);
             return Ok(products);
-        }*/
+        }
 
 
         // GET api/<ProductsController>/category/brand

@@ -1,5 +1,5 @@
 using Catalog.Repositories;
-using Catalog.Repositories.Connected;
+using Catalog.Repositories.ORM;
 using Catalog.Services;
 using CRM.Repositories.ORM;
 using CRM.Repositories;
@@ -21,7 +21,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddCors();
-
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
@@ -48,14 +47,14 @@ builder.Services.AddCors(options =>
 });
 // Adding services which are needed in the future
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-// Register IDataRepository and ProductRepository for dependency injection
+// Register IDataRepository 
 
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
 
-// Register ProductService (already done in your code)
+
 builder.Services.AddTransient<IProductService, ProductService>();
 
 builder.Services.AddTransient<IUserService, UserService>();
@@ -69,6 +68,8 @@ builder.Services.AddTransient<IShipmentService, ShipmentService>();
 builder.Services.AddTransient<ICardRepository, CardRepository>();
 
 builder.Services.AddTransient<ICardService, CardServices>();
+
+//Register context
 
 
 var app = builder.Build();
