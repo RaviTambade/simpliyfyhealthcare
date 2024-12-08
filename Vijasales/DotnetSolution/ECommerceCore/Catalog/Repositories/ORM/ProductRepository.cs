@@ -94,6 +94,7 @@ namespace Catalog.Repositories.ORM
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex);
                 return new List<Product>();
             }
         }
@@ -112,6 +113,7 @@ namespace Catalog.Repositories.ORM
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return new List<Product>();
             }
         }
@@ -130,10 +132,55 @@ namespace Catalog.Repositories.ORM
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return new List<Product>();
             }
         }
 
+        public async Task<List<string>> GetCategoriesAsync()
+        {
+            try
+            {
+                using (var ctx = new ProductContext(_conString))
+                {
+                    // Using LINQ to get distinct categories from the Products table
+                    var categories = await ctx.Products
+                                               .Select(p => p.Category)
+                                               .Distinct()
+                                               .ToListAsync();
 
+                    return categories;
+                }
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine(ex);
+                return new List<string>();
+            }
+        }
+
+        public async Task<List<string>> GetBrandsAsync(string category)
+        {
+            try
+            {
+                using (var ctx = new ProductContext(_conString))
+                {
+                    // Using LINQ to get distinct categories from the Products table
+                    var brands = await ctx.Products
+                                            .Where(p => p.Category == category)
+                                            .Select(p => p.Brand)
+                                            .Distinct()
+                                            .ToListAsync();
+
+
+                    return brands;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new List<string>();
+            }
+        }
     }
 }

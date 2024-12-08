@@ -13,6 +13,8 @@ namespace Shipment.Services
 
         Task<bool> UpdateShipmentAsync(Delivery shipment);
 
+        Task<bool> UpdateShipmentStatusAsync(int id, string updatedStatus);
+
         Task<bool> DeleteShipmentAsync(int id);
 
         Task<List<Delivery>> GetAllAsync();

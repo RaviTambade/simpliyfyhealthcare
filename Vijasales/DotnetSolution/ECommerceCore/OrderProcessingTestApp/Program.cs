@@ -8,9 +8,14 @@ using OrderProcessing.Repositories.Connected;
 OrderRepository _repo = new OrderRepository();
 List<Order> orders = await _repo.GetAllAsync();
 foreach (Order order in orders)
+=======
+public class Program
+>>>>>>> c36ac3c3dbb36435ddc36d333dec34be8c579314
 {
-    Console.WriteLine(order);
+    // Uncomment the following line to resolve.
+    static void Main() { }
 }
+<<<<<<< HEAD
 
 /*
 OrderRepository _orderRepository = new OrderRepository();
@@ -25,5 +30,6 @@ foreach(Order order in _orders)
     Console.WriteLine(order);
 }
 */
+
 =======
->>>>>>> 9b2a796986941dd7555008528c99c9e4b1581233
+>>>>>>> c36ac3c3dbb36435ddc36d333dec34be8c579314
