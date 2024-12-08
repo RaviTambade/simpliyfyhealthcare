@@ -22,17 +22,17 @@ namespace ShipmentMVCTest.Controllers
         }
 
         // list of shipments 
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            return View(_shipmentService.GetAllAsync());
+            return View(await _shipmentService.GetAllAsync());
         }
 
 
         // details
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             // get the shipment using id
-            return View(_shipmentService.GetByIdAsync(id));
+            return View(await _shipmentService.GetByIdAsync(id));
         }
 
 
