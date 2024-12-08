@@ -6,16 +6,12 @@ using CRM.Repositories;
 using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
-<<<<<<< HEAD
-
-=======
->>>>>>> 8f1a6c3a7a726d0c25db315c701a2a4a00589ebd
 using PaymentProcessing.Repositories.Connected;
 
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-<<<<<<< HEAD
+
 
 using Banking.Repositories.Connected;
 using Banking.Services;
@@ -23,7 +19,7 @@ using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
-<<<<<<< HEAD
+
 using Banking.Repositories.Connected;
 
 using Banking.Services;
@@ -33,14 +29,10 @@ using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
-=======
-
-=======
 using Banking.Repositories.Connected;
 using Banking.Services;
 using Banking.Repositories.Connected;
->>>>>>> 9b2a796986941dd7555008528c99c9e4b1581233
->>>>>>> 8f1a6c3a7a726d0c25db315c701a2a4a00589ebd
+
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -105,11 +97,6 @@ builder.Services.AddTransient<ICardService, CardServices>();
 
 var app = builder.Build();
 
-
-<<<<<<< HEAD
-// Configure the HTTP request pipeline.
-=======
->>>>>>> 8f1a6c3a7a726d0c25db315c701a2a4a00589ebd
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 app.UseRouting();
@@ -121,18 +108,12 @@ app.UseRouting();
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
-<<<<<<< HEAD
 
-=======
->>>>>>> 8f1a6c3a7a726d0c25db315c701a2a4a00589ebd
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 8f1a6c3a7a726d0c25db315c701a2a4a00589ebd
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
