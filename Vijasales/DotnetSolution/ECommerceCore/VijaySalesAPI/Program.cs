@@ -6,25 +6,13 @@ using CRM.Repositories;
 using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
-<<<<<<< HEAD
 using PaymentProcessing.Repositories.Connected;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-
 using Banking.Repositories.Connected;
-=======
->>>>>>> 7e76da7396105c063afaec95051ea91a2b533a6b
 using Banking.Services;
 using Banking.Repositories.Connected;
-using PaymentProcessing.Repositories.Connected;
-using OrderProcessing.Repositories.Connected;
-using OrderProcessing.Services;
-using OrderProcessing.Services.Connected;
-<<<<<<< HEAD
-
-=======
->>>>>>> 7e76da7396105c063afaec95051ea91a2b533a6b
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
