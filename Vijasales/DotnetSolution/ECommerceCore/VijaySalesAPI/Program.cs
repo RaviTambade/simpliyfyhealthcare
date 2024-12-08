@@ -7,6 +7,10 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
+<<<<<<< HEAD
+using Banking.Repositories.Connected;
+using Banking.Services;
+=======
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
@@ -14,6 +18,11 @@ using OrderProcessing.Services.Connected;
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
+>>>>>>> 51738e72e6c1534400cc595bc722174dd5d4d460
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,7 +65,13 @@ builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
 // Register ProductService (already done in your code)
 builder.Services.AddTransient<IProductService, ProductService>();
+<<<<<<< HEAD
+
 builder.Services.AddTransient<IUserService, UserService>();
+
+=======
+builder.Services.AddTransient<IUserService, UserService>();
+>>>>>>> 51738e72e6c1534400cc595bc722174dd5d4d460
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 builder.Services.AddTransient<IOrderService, OrderService>();
@@ -64,46 +79,74 @@ builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
 
+builder.Services.AddTransient<ICardRepository, CardRepository>();
+
+builder.Services.AddTransient<ICardService, CardServices>();
+
+
 var app = builder.Build();
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+
+app.UseCors("AllowLocalhost");
+
+
+
+app.UseRouting();
+=======
+<<<<<<< HEAD
+>>>>>>> 6fe8338d10e992de45d556b6df162021fb64e5b1
 // Configure the HTTP request pipeline.
 
 
 app.UseCors("AllowLocalhost");
-
-
-
-
+<<<<<<< HEAD
 app.UseRouting();
-
-
-
-
-
-
-
-
-
 app.UseRouting();
-
-app.UseCors("AllowLocalhost");
-
-app.UseRouting();
-
-
-app.UseCors("AllowLocalhost");
-
-app.UseRouting();
-
-
-
-app.UseCors("AllowLocalhost");
-
-app.UseRouting();
-
 =======
->>>>>>> 3e7d74c60a3b4e3520b607f1dfac3c64b7cb8b1c
+
+
+>>>>>>> f2b11bc1b37c218161e722235d5b6a7414e5d63d
+
+
+app.UseRouting();
+
+
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+app.UseRouting();
+
+>>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> f2b11bc1b37c218161e722235d5b6a7414e5d63d
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+
+
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
@@ -111,7 +154,19 @@ app.UseRouting();
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
+app.UseCors("AllowLocalhost");
+
+app.UseRouting();
+
+=======
+<<<<<<< HEAD
+
+=======
 >>>>>>> 3e7d74c60a3b4e3520b607f1dfac3c64b7cb8b1c
+>>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
+>>>>>>> f2b11bc1b37c218161e722235d5b6a7414e5d63d
+>>>>>>> 6fe8338d10e992de45d556b6df162021fb64e5b1
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();

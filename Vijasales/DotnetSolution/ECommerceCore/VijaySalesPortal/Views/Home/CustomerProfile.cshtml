@@ -19,6 +19,69 @@
     <input class="btn btn-info" type="button" id="btnAccountDetails" value="Account Details" />
     <input class="btn btn-info" type="button" id="btnLogout" value="Logout" />
 </div>
+<div id="DivAccountDetails" style="margin-top:50px;">
+    <form>
+        <table>
+            <tr>
+                <td>User Id</td>
+                <td><input type="number" name="UserId" id="txtUserId" /></td>
+
+
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="FirstName" id="txtUserFirstName" /></td>
+
+
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="lastname" id="txtUserLastName" /> </td>
+
+
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" id="UserEmail" /> </td>
+
+
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" id="UserPassword" /></td>
+
+
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" name="address" id="UserAddress" /></td>
+
+
+            </tr>
+            <tr>
+                <td>Conatct No </td>
+                <td><input type="tel" name="contactno" id="UserContact" /></td>
+
+
+            </tr>
+            <tr>
+                <td>Role </td>
+                <td><input type="text" name="role" id="UserRole" /></td>
+
+
+            </tr>
+
+
+
+            <tr>
+               
+                <td><button type="button" id="CloseDetails">Close</button></td>
+                
+            </tr>
+
+        </table>
+    </form>
+</div>
 
 <!-- Order History Chart -->
 
@@ -32,8 +95,12 @@
         <a href="#" class="list-group-item list-group-item-action" id="ChartVisuals">Charts</a>
     </div>
 
-    <div id="CustomerDetails" style="margin-top:50px;">
+    <div id="CustomerUpdateDetails" style="margin-top:50px;">
         <form class="row g-3">
+            <div class="col-md-4">
+                <label for="UserId" class="form-label"> User Id</label>
+                <input type="number" class="form-control" id="txtCustomerId" placeholder="User Id ">
+            </div>
             <div class="col-md-6">
                 <label for="txtFirstName" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="txtFirstName" placeholder="First Name">
@@ -72,6 +139,9 @@
     </div>
     
 </div>
+
+   
+
 <div id="OrderChart" class="card chart-container" style="margin-top:30px;">
     <canvas id="chart"></canvas>
     <div id="CloseChart" style="margin-top:10px;">
@@ -90,8 +160,9 @@
 <script>
     $(document).ready(() => {
         $("#OrderChart").hide();
-        $("#CustomerDetails").hide();
+        $("#CustomerUpdateDetails").hide();
         $("#chart").hide();
+        $("#DivAccountDetails").hide();
 
         $("#ChartVisuals").click(() => {
             $("#OrderChart").show();
@@ -111,15 +182,82 @@
         $("#EditProfile").click(() => {
             $("#DeleteAccount").hide();
             $("#ChartVisuals").hide();
-            $("#CustomerDetails").show();
+            $("#CustomerUpdateDetails").show();
+            $.ajax({
+                url: 'http://localhost:5218/api/Users/2',
+                type: "GET",
+                contentType: "application/json",
+                success: (user) => {
+                    console.log(user);
+                    $("#txtCustomerId").val(user.id);
+                    $("#txtFirstName  ").val(user.firstName);
+                    $("#txtLastName  ").val(user.lastName);
+                    $("#txtUserEmail ").val(user.email);
+                    $("#txtUserPassword").val(user.password);
+                    $("#txtUserAddress").val(user.address);
+                    $("#ContactNumber").val(user.contactNumber);
+                    $("#CustomerRole").val(user.role);
+                    console.log(user);
+
+                }
+            });
+
+            
         });
 
         $("#SubmitEditedProfile").click(() => {
             $("#DeleteAccount").show();
             $("#ChartVisuals").show();
-            $("#CustomerDetails").hide();
-        });
+            $("#CustomerUpdateDetails").hide();
+            let UserToUpdate = {
+                id: $("#txtCustomerId").val(),
+                firstName: $("#txtfirstName  ").val(),
+                lastName: $("#txtLastName  ").val(),
+                email: $("#txtUserEmail ").val(),
+                password: $("#txtUserPassword").val(),
+                address: $("#txtUserAddress").val(),
+                contactNumber: $("#ContactNumber").val(),
+                role: $("#CustomerRole ").val(),
+            };
+            $.ajax({
+                url: 'http://localhost:5218/api/Users',
+                type: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(UserToUpdate),
+                success: () => {
+                    console.log("user updated!!");
 
+                }
+            });
+        });
+        $("#btnAccountDetails").click(() => {
+            $("#DivAccountDetails").show();
+          
+                $.ajax({
+                url: 'http://localhost:5218/api/Users/2',
+                    type: "GET",
+                    contentType: "application/json",
+                    success: (user) => {
+                        console.log(user);
+                        $("#txtUserId").val(user.id);
+                        $("#txtUserFirstName").val(user.firstName);
+                        $("#txtUserLastName ").val(user.lastName);
+                        $("#UserEmail       ").val(user.email);
+                        $("#UserPassword    ").val(user.password);
+                        $("#UserAddress     ").val(user.address);
+                        $("#UserContact     ").val(user.contactNumber);
+                        $("#UserRole        ").val(user.role);
+                        console.log(user);
+
+                    }
+                });
+           
+            
+        });
+        $("#CloseDetails").click(() => {
+            $("#DivAccountDetails").hide();
+        });
+       
         // Chart.js integration
         const ctx = document.getElementById("chart").getContext('2d');
         const myChart = new Chart(ctx, {

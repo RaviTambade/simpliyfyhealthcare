@@ -11,5 +11,7 @@ namespace PaymentProcessing.Services
     {
         Task<List<Payment>> GetAllAsync();
         Task<Payment> GetPaymentAsync(int id);
+        Task<bool> InsertPaymentAsync(Payment payment);
+        Task<bool> UpdatePaymentAsync(Payment payment);
     }
 }
