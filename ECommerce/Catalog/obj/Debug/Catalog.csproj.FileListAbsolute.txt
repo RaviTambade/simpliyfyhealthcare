@@ -13,3 +13,12 @@ D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.pdb
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\POCOLib.dll
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\POCOLib.pdb
 D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.csproj.Up2Date
+D:\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\Catalog.dll
+D:\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\Catalog.pdb
+D:\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\POCOLib.dll
+D:\simpliyfyhealthcare\ECommerce\Catalog\bin\Debug\POCOLib.pdb
+D:\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.csproj.AssemblyReference.cache
+D:\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.csproj.CoreCompileInputs.cache
+D:\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.csproj.Up2Date
+D:\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.dll
+D:\simpliyfyhealthcare\ECommerce\Catalog\obj\Debug\Catalog.pdb
