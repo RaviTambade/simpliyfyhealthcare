@@ -17,12 +17,7 @@ namespace OrderProcessing.Repositories.Connected
         Task<bool> DeleteAsync(int id);
         Task<List<OrderList>> GetOrderDetailsAsync(int customerId);
 
-        Task<bool> InsertOrderItemAsync(OrderItem item);
-        Task<bool> UpdateOrderItemAsync(int customerId, OrderItem item);
-        Task<bool> DeleteOrderItemAsync(int orderId);
-        Task<OrderItem> GetOrderItemByIdAsync(int orderItemId);
-        Task<List<OrderItem>> GetAllOrderItemsAsync(int orderId);
-        Task<List<OrderItem>> GetAllOrderItemsByCustomerIdAsync(int orderId);
+        
     }
 
 }
