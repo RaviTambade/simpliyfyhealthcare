@@ -18,48 +18,46 @@ namespace Shipment.Repositories.ORM
     {
         private IConfiguration _configuration;
 
-        // Inject ShipmentContext via constructor
         public ShipmentRepository(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-        public bool Create(Delivery shipment)
+        public async Task<bool> CreateAsync(Delivery shipment)
         {
             bool status = false;
             using (var context = new ShipmentContext(_configuration))
             {
                 context.Shipments.Add(shipment);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 status = true;
             }
             return status;
 
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            bool flag = false;
+            bool status = false;
             int ship_Id = id;
             using (var context = new ShipmentContext(_configuration))
             {
-                var shipment = context.Shipments.SingleOrDefault(s => s.Id == ship_Id);
+                var shipment =  await context.Shipments.SingleOrDefaultAsync(s => s.Id == ship_Id);
                 if (shipment != null)
                 {
                     context.Shipments.Remove(shipment);
-                    context.SaveChanges();
-
+                    await context.SaveChangesAsync();
+                    status = true;
                 }
                 else
                 {
                     Console.WriteLine("Shipment not found.");
                 }
-                flag = true;
             }
 
-            return flag;
+            return status;
         }
 
-        public List<Delivery> GetAll()
+        public async Task<List<Delivery>> GetAllAsync()
         {
             List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext(_configuration))
@@ -79,7 +77,7 @@ namespace Shipment.Repositories.ORM
             return shipments;
         }
 
-        public List<Delivery> GetByDate(DateTime date)
+        public async Task<List<Delivery>> GetByDateAsync(DateTime date)
         {
 
             List<Delivery> shipments = new List<Delivery>();
@@ -107,34 +105,33 @@ namespace Shipment.Repositories.ORM
             }
         }
 
-        public ShipmentDetail GetById(int shipmentId)
+        public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
             ShipmentDetail shipmentDetail = null;
-
             using (var context = new ShipmentContext(_configuration))
             {
-                // call the stored procedure 
-                // @"EXEC GetShipmentDetails @ShipmentId, @CustomerId, @OrderId"
+                // Define the stored procedure query with the necessary parameter
                 var query = @"EXEC GetShipmentDetails @ShipmentId";
 
-                // Execute the stored procedure
-                shipmentDetail = context.Set<ShipmentDetail>()
-                    .FromSqlRaw(query,
-                        new SqlParameter("@ShipmentId", (object)shipmentId))
-                    .AsEnumerable() // Execute and return results
-                    .FirstOrDefault();
+                var param = new SqlParameter("@ShipmentId", shipmentId);
+
+                shipmentDetail = await context.Set<ShipmentDetail>()
+                    .FromSqlRaw(query, param)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync();
             }
 
             return shipmentDetail;
         }
 
-        public List<Delivery> GetByStatus(string status)
+
+        public async Task<List<Delivery>> GetByStatusAsync(string status)
         {
             List<Delivery>shipments= new List<Delivery>();
 
             using (var context=new ShipmentContext(_configuration))
             {
-              var  dbshipments = context.Shipments.ToList();
+              var  dbshipments = await context.Shipments.ToListAsync();
 
                 foreach (var shipment in dbshipments)
                 {
@@ -148,7 +145,6 @@ namespace Shipment.Repositories.ORM
 
                         shipments.Add(theShipment);
                     }
-                    
                 }
 
                 return shipments;
@@ -157,26 +153,26 @@ namespace Shipment.Repositories.ORM
             
         }
 
-        public bool Update(Delivery shipment)
+        public async Task<bool> UpdateAsync(Delivery shipment)
         {
             bool status = false;
 
             using (var context = new ShipmentContext(_configuration))
             {
-                var foundShipment = context.Shipments.SingleOrDefault(s => s.Id == shipment.Id);
+                var foundShipment = await context.Shipments.SingleOrDefaultAsync(s => s.Id == shipment.Id);
                 if (foundShipment != null)
                 {
                     foundShipment.ShipmentDate = shipment.ShipmentDate;
                     foundShipment.Status = shipment.Status;
                     foundShipment.OrderId = shipment.OrderId;
 
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
+                    status = true;
                 }
                 else
                 {
                     Console.WriteLine("Shipment not found.");
                 }
-                status = true;
             }
 
 

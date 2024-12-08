@@ -11,5 +11,8 @@ namespace PaymentProcessing.Repositories.Connected
     {
         Task<List<Payment>> GetAllAsync();
         Task<Payment> GetPaymentAsync(int id);
+        Task<bool> InsertAsync(Payment payment);
+        Task<bool> UpdateAsync(Payment payment);
+        Task<(string status, string Tid)> ExecuteFundTransferProcedure(int customerAccountId, int adminAccountId, decimal amount, string paymentMode);
     }
 }
