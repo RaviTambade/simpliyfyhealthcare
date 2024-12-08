@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Grid";
+}
+
+<h1>Product Information</h1>
+<style>
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid black;
+    }
+
+    th {
+        text-align: center;
+        padding: 8px;
+        background-color: #ff0000;
+        border: 1px solid black;
+    }
+
+    td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid black;
+    }
+
+    tr:nth-child(   even) {
+        background-color: #00ff90;
+    }
+</style>
+<table id="product">
+    <thead>
+        <tr>
+            <th>Product Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Data from JQuery-->
+    </tbody>
+
+</table>
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script>
+
+
+    $(document).ready
+        (
+            function () {
+
+                var product = [
+                    { ProductId: 1, Name: 'Mac', Description: 'Laptop', Quantity: 1, Price: 150000 },
+                    { ProductId: 2, Name: 'Iphone', Description: 'Mobile Phone', Quantity: 2, Price: 100000 },
+                    { ProductId: 3, Name: 'Mac Mini', Description: 'PC', Quantity: 3, Price: 60000 },
+                    { ProductId: 4, Name: 'Apple Watch', Description: 'Wristwatch', Quantity: 4, Price:10000 },
+                    { ProductId: 5, Name: 'Airpodes', Description: 'Earphones', Quantity: 5, Price: 40000 },
+                    { ProductId: 6, Name: 'AirTag', Description: 'GPS', Quantity: 6, Price: 3500 },
+                    { ProductId: 7, Name: 'IPad', Description: 'Tablet', Quantity: 7, Price: 70000 },
+                    { ProductId: 8, Name: 'Apple Tv', Description: 'Television', Quantity: 8, Price: 100000 },
+                    { ProductId: 9, Name: 'Apple Pencil', Description: 'Input Device', Quantity: 9, Price: 7000 },
+                    { ProductId: 10, Name: 'Apple HomePod', Description: 'Home Device', Quantity: 10, Price: 10000 }
+                ];
+
+                $.each(product, function (index, item) {
+                    var row = '<tr>' +
+                        '<td>' + item.ProductId + '</td>' +
+                        '<td>' + item.Name + '</td>' +
+                        '<td>' + item.Description + '</td>' +
+                        '<td>' + item.Quantity + '</td>' +
+                        '<td>' + item.Price + '</td>' +
+                        '</tr>';
+
+                    $('#product tbody').append(row);
+                });
+
+            }
+        );
+
+</script>

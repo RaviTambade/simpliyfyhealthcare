@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Promise";
+}
+
+<h2>Promise</h2>
+<script>
+
+    // A simple function that returns a Promise
+    function fetchData(success) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (success) {
+                    resolve("Data fetched successfully!");  
+                } else {
+                    reject("Error: Failed to fetch data.");  
+                }
+            }, 5000); 
+        });
+    }
+
+    // Using the Promise
+    fetchData(true)  
+        .then((message) => {
+            console.log(message); // This will log "Data fetched successfully!"
+        })
+        .catch((error) => {
+            console.log(error); // This would log an error message if the fetch fails
+        });
+</script>

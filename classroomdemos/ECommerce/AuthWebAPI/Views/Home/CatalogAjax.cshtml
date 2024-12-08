@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "CatalogAjax";
+}
+
+<h1> Products CRUD Operations using $.ajax</h1>
+<hr />
+
+
+<!-- Create Product Form -->
+<h2>Create Product</h2>
+
+<form id="createForm">
+    <input type="text" id="txtId" placeholder="Enter id" required>
+    <input type="text" id="txtName" placeholder="Enter Name" required>
+    <input type="text" id="txtDescription" placeholder="Enter Description" required>
+    <input type="text" id="txtUnitPrice" placeholder="Enter UnitPrice" required>
+    <input type="text" id="txtQuantity" placeholder="Enter Quantity" required>
+    <input type="text" id="txtImageUrl" placeholder="Enter Image Url" required>
+
+    <button type="submit">Create</button>
+</form>
+
+<!-- Show Products -->
+<h2>Show Products</h2>
+<button id="btnLoadProducts">Load Products</button>
+<ul id="productsList"></ul>
+
+<!-- Update Product Form -->
+<h2>Update Product</h2>
+<input type="text" id="txtProductId" placeholder="Product ID" required>
+<input type="text" id="txtUpdateName" placeholder="New name">
+<input type="text" id="txtUpdateDescription" placeholder="New Description">
+<input type="text" id="txtUpdateUnitPrice" placeholder="New Unit Price">
+<input type="text" id="txtUpdateQuantity" placeholder="New Quantity">
+<input type="text" id="txtUpdateImageUrl" placeholder="New Image Url">
+<button id="btnUpdateProduct">Update</button>
+
+<!-- Delete Product Form -->
+<h2>Delete Product</h2>
+<input type="text" id="txtDeleteId" placeholder="Product ID to delete" required>
+<button id="btnDeleteProduct">Delete</button>
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script>
+
+    var apiUrl = "/api/products";
+
+    $(document).ready(function () {
+        // Create Product
+        $('#createForm').submit(function (event) {
+            event.preventDefault();
+
+            const id = $('#txtId').val();
+            const name = $('#txtName').val();
+            const description = $('#txtDescription').val();
+            const unitPrice = $('#txtUnitPrice').val();
+            const quantity = $('#txtQuantity').val();
+            const imageUrl = $('#txtImageUrl').val();
+
+            let product = {
+                "Id": id,
+                "Name": name,
+                "Description": description,
+                "UnitPrice": unitPrice,
+                "quantity": quantity,
+                "imageUrl": imageUrl
+            }
+            //console.log(product);
+
+            createProduct(product);
+        });
+
+        // Load Products
+        $('#btnLoadProducts').click(function () {
+            loadProducts();
+        });
+
+        // Update Product
+        $('#btnUpdateProduct').click(function () {
+            const id = $('#txtProductId').val();
+            const name = $('#txtUpdateName').val();
+            const description = $('#txtUpdateDescription').val();
+            const unitPrice = $('#txtUpdateUnitPrice').val();
+            const quantity = $('#txtUpdateQuantity').val();
+            const imageUrl = $('#txtUpdateImageUrl').val();
+            let product = {
+                "Id": id,
+                "Name": name,
+                "Description": description,
+                "UnitPrice": unitPrice,
+                "quantity": quantity,
+                "imageUrl": imageUrl
+            }
+           updateProduct(id, product);
+        });
+
+        // Delete Product
+        $('#btnDeleteProduct').click(function () {
+            const id = $('#txtDeleteId').val();
+            deleteProduct(id);
+        });
+    });
+
+    // Create Product
+    function createProduct(product) {
+        $.ajax({
+            url: apiUrl,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(product),
+            success: function (response) {
+                alert('Product created successfully!');
+                loadProducts();  // Refresh the Product list
+            },
+            error: function (xhr, status, error) {
+                alert('Error creating Product: ' + error);
+            }
+        });
+    }
+
+    // Load Products
+    function loadProducts() {
+       
+        $.ajax({
+            url: apiUrl,
+            method: 'GET',
+            success: function (data) {
+                displayProducts(data);
+            },
+            error: function (xhr, status, error) {
+                alert('Error loading Products: ' + error);
+            }
+        });
+    }
+
+    // Display Products (Helper function)
+    function displayProducts(products) {
+        const productsList = $('#productsList');
+        productsList.empty();
+        products.forEach(function (Product) {
+            const li = $('<li>').text(`ID: ${Product.Id}, Name: ${Product.Name}`);
+            productsList.append(li);
+        });
+    }
+
+    // Update Product
+    function updateProduct(id, product) {
+        $.ajax({
+            url: apiUrl + '/' + id,
+            method: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(product),
+            success: function (response) {
+                alert('Product updated successfully!');
+                loadProducts();  // Refresh the Product list
+            },
+            error: function (xhr, status, error) {
+                alert('Error updating Product: ' + error);
+            }
+        });
+    }
+
+    // Delete Product
+    function deleteProduct(id) {
+        $.ajax({
+            url: apiUrl + '/' + id,
+            method: 'DELETE',
+            success: function (response) {
+                alert('Product deleted successfully!');
+                loadProducts();  // Refresh the Product list
+            },
+            error: function (xhr, status, error) {
+                alert('Error deleting Product: ' + error);
+            }
+        });
+    }
+
+</script>

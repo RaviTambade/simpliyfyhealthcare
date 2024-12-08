@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPerson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Person>
+    <Name>Ravi</Name>
+    <Age>20</Age>
+  </Person>
+  <Person>
+    <Name>Pragati</Name>
+    <Age>22</Age>
+  </Person>
+  <Person>
+    <Name>Ajinkya</Name>
+    <Age>21</Age>
+  </Person>
+</ArrayOfPerson>

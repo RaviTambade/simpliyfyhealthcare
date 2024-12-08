@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+<h2>Login</h2>
+<table>
+    <tr><td>Email:</td><td> <input type="text" id="txtEmail" /></td></tr>
+    <tr><td>Password:</td> <td> <input type="password" id="txtPassword" /></td></tr>
+    <tr><td>P </td><td> <button onclick="onSignIn()"> Login</button></td></tr>
+</table>
+
+<div id="div1"> Result will be shown here </div>
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script>
+    var onSignIn = () => {
+        //Dom programming
+        let txtUserEmail = document.getElementById("txtEmail");
+        let userEmail = txtUserEmail.value;
+        let txtUserPassword = document.getElementById("txtPassword");
+        let userPassword = txtUserPassword.value;
+        // Define the URL of the API endpoint
+        const url = '/home/login';
+
+        // Define the data to send in the request body (usually JSON)
+        const credential = {
+            email: userEmail,
+            password: userPassword
+        };
+
+        console.log(credential);
+        // Use fetch API to send a POST request
+       /* fetch(url, {
+            method: 'POST', // Specify the request method
+            headers: { 'Content-Type': 'application/json' }, // Set content type to JSON
+            body: JSON.stringify(credential), // Convert JavaScript object to JSON string
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse the JSON from the response body
+            })
+            .then(responseData => {
+                console.log('Success:', responseData); // Handle the response data
+            })
+            .catch(error => {
+                console.error('There was an error!', error); // Handle any errors
+            });
+
+            */
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType:"application/json",
+            data: JSON.stringify(credential),
+            success:  (result)=> {
+                $("#div1").html(result);
+                console.log(result);
+            },
+            error: () => {
+                console.log("something has gone wrong");
+            }
+        });
+    };
+</script>

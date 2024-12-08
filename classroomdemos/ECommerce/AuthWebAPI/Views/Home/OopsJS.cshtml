@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "OopsJS";
+}
+
+<h2>OopsJS</h2>
+<script src=""></script>
+<script>
+        /* Javascript Object Oriented Programming syntax */
+    class Person {
+        constructor(firstName, lastName) {
+            this.firstname = firstName;
+            this.lastname = lastName;
+        }
+
+        display() {
+            console.log(this.firstname + " "+ this.lastname);
+        }
+    }
+
+    const  prn = new Person("Sameer", "Gore");
+    prn.display();
+
+    class Employee extends Person {
+
+        constructor(firstName, lastName, basicSalary,
+                    dailyAllowance, workingDays) {
+            super(firstName, lastName);
+            this.basicSalary = basicSalary;
+            this.dailyAllowance = dailyAllowance;
+            this.workingDays = workingDays;
+        }
+
+        computePay() {
+            console.log("Employee ComoputePay");
+            return this.basicSalary + (this.workingDays * this.dailyAllowance);
+        }
+    }
+
+    let emp = new Employee("Meghana", "Gupte", 23000, 1000, 25);
+    let monthlySalary = emp.computePay();
+    console.log("Meghana's this month Salary=" + monthlySalary);
+
+
+    class SalesEmployee extends Employee {
+
+        constructor(firstName, lastName, basicSalary, dailyAllowance,
+                    workingDays,incentive) {
+            super(firstName, lastName, basicSalary, dailyAllowance, workingDays);
+            this.incentive =incentive;
+        }
+
+        computePay() {
+            console.log("Sales Employee ComoputePay");
+            return super.computePay() + this.incentive;
+        }
+    }
+
+    let employees = [
+        new Employee("Meghana", "Gupte", 23000, 1000, 25),
+        new SalesEmployee("Chirag", "Shinde", 23000, 1000, 25,8900)
+    ];
+
+    //Polymorphism
+    employees.forEach(emp => emp.computePay());
+
+   
+</script>

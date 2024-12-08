@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "JqueryProgressBar";
+}
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<h2>JqueryProgressBar</h2>
+<style>
+    #progressbar {
+        width: 0%;
+        border: 3px;
+        margin: 2px;
+        background-color: greenyellow;
+        height: 30px;
+    }
+</style>
+
+
+<form>
+    <table>
+        <tr>
+            <td>
+                Progress
+            </td>
+            <td>
+                <div id="progressbar">
+                    <div id="percentage">0%</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="firstname">First Name: </label>
+            </td>
+            <td>
+                <input type="text" id="txtfirstname" class="progress-input" name="firstname" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="lastname">Last Name: </label>
+            </td>
+            <td>
+                <input type="text" id="txtlastname" class="progress-input" name="lastname" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="address">Address: </label>
+            </td>
+            <td>
+                <input type="text" class="progress-input" id="txtaddress" name="address" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="contact">Contact: </label>
+            </td>
+            <td>
+                <input type="text" id="txtcontact" class="progress-input" name="contact" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="email">Email: </label>
+            </td>
+            <td>
+                <input type="email" id="txtemail" class="progress-input" name="email" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <button type="button" id="btnsubmit">Register</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    $(document).ready(() => {
+
+        /*$("#progressbar").progressbar({
+            value: 0
+        });*/
+
+        $(".progress-input").on("blur", function () {
+            var filledfields = 0;
+            var totalfields = 5;
+            $(".progress-input").each(function () {
+                if ($(this).val() !== "") {
+                    filledfields++;
+                    //console.log(filledfields);
+                }
+            });
+            var percentage = (filledfields / totalfields) * 100;
+            //console.log(percentage);
+            $("#progressbar").css("width", percentage + "%");
+            $("#percentage").text(percentage + "%");
+
+            /*$("#progressbar").progressbar({
+                value: percentage
+            });*/
+        });
+
+        $("#btnsubmit").on("click", function () {
+            let firstname = $("#txtfirstname").val();
+            let lastname = $("#txtlastname").val();
+            let address = $("#txtaddress").val();
+            let email = $("#txteamil").val();
+            let contact = $("#txtcontact").val();
+            let obj = {
+                fname: firstname,
+                lname: lastname,
+                add: address,
+                mail: email,
+                cont: contact
+            }
+            sessionStorage.setItem("obj", JSON.stringify(obj));
+            console.log(JSON.stringify(obj));
+
+        });
+    })
+</script>

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Gdi";
+}
+
+<h2>Gdi</h2>
+
+<canvas id="myCanvas" width="300" height="400" 
+        onmousedown="onCanvasMouseDown(event)"
+        onmouseup="onCanvasMouseUp(event)"
+        style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML canvas tag.
+</canvas>
+
+<script>
+
+    class Line {
+        constructor(p1, p2) {
+            this.startPoint = p1;
+            this.endPoint = p2;
+        }
+    }
+
+    let stPoint = {
+        x: 56, y: 67
+    };
+
+    let edPoint = {
+        x: 200, y: 200
+    };
+
+    var l = new Line(stPoint, edPoint);
+
+    console.log(l);
+
+
+
+    var startPoint = {
+        x: 0, y: 0
+    };
+
+    var endPoint = startPoint;
+    function onCanvasMouseDown(e) {
+        startPoint.x = e.x;
+        startPoint.y = e.y;
+        console.log(startPoint);
+
+    }
+
+    function onCanvasMouseUp(e) {
+        endPoint = {
+            x: e.x,
+            y: e.y
+        };
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.moveTo(startPoint.x, startPoint.y);
+        ctx.lineTo(endPoint.x, endPoint.y);
+        ctx.stroke();
+    }   
+</script>

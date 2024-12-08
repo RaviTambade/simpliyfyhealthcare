@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+}
+<h2>Reports data in tabular form</h2>
+<hr />
+<table id="tblUsers">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Data rows will be dynamically added here by jQuery -->
+    </tbody>
+</table>
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var data = [
+            { id: 1, name: "Chirag  Walawalkar", age: 28, city: "Kudal" },
+            { id: 2, name: "Sameer Patil", age: 24, city: "Kolhapur" },
+            { id: 3, name: "Manisha Nene", age: 23, city: "Pune" },
+            { id: 4, name: "Chitra Wagh", age: 25, city: "Nashik" }
+        ];
+             
+        $.each(data, function (index, item) {
+            var row = '<tr>' +
+                '<td>' + item.id + '</td>' +
+                '<td>' + item.name + '</td>' +
+                '<td>' + item.age + '</td>' +
+                '<td>' + item.city + '</td>' +
+                '</tr>';
+            $('#tblUsers tbody').append(row);
+        });
+    });
+
+
+</script>

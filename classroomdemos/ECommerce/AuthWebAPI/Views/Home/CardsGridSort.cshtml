@@ -1,0 +1,104 @@
+﻿﻿
+@{
+    ViewBag.Title = "SortedProducts";
+}
+
+<h2>SortedProducts</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th id="thId" role="button">ID</th>
+            <th id="thName" role="button">Name</th>
+            <th id="thUnitPrice" role="button">UnitPrice</th>
+        </tr>
+    </thead>
+    <tbody id="tblProducts">
+    </tbody>
+
+</table>
+<script src="~/Scripts//jquery-3.7.0.min.js"></script>
+<script>
+    var displaytable = () => {
+        $('#tblProducts').html('');/*
+        cars.forEach((product) => {
+            let rowNode = document.createElement('tr');
+            let dataNodeId = document.createElement('td');
+            let dataNodeName = document.createElement('td');
+            let dataNodePrice = document.createElement('td');
+            let textNodeId = document.createTextNode(product.id);
+            let textNodeName = document.createTextNode(product.name);
+            let textNodePrice = document.createTextNode(product.unitPrice);
+            dataNodeId.appendChild(textNodeId);
+            dataNodeName.appendChild(textNodeName);
+            dataNodePrice.appendChild(textNodePrice);
+            rowNode.appendChild(dataNodeId);
+            rowNode.appendChild(dataNodeName);
+            rowNode.appendChild(dataNodePrice);
+            table.appendChild(rowNode);
+        });*/
+
+        $.each(cars, (index,item) => {
+            var trBody =  '<tr>' +
+                '<td>' + item.id + '</td>' +
+                '<td>' + item.name + '</td>' +
+                '<td>' + item.unitPrice + '</td>' +
+                '</tr>';
+            $('#tblProducts').append(trBody);
+
+        });
+
+    };
+
+    var cars = [
+        { id: 2, name: "Mercedes AMG", unitPrice: 1200 },
+        { id: 1, name: "BMW M4", unitPrice: 1800 },
+        { id: 4, name: "Porche 911S", unitPrice: 900 },
+        { id: 3, name: "Aston Martin DBX", unitPrice: 900 }
+    ];
+    $(document).ready(() => {
+        displaytable();
+    
+
+
+
+    $('#thId').click(() => {
+        cars.sort((a, b) => {
+            return a.id - b.id;
+        });
+
+        console.log("ID CLiscked");
+
+        console.log(cars);
+        displaytable();
+    });
+
+
+    $('#thName').click(() => {
+        cars.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+        });
+
+        console.log("Name CLiscked");
+
+        console.log(cars);
+        displaytable();
+    });
+
+
+    $('#thUnitPrice').click(() => {
+        cars.sort((a, b) => {
+            if (a.unitPrice === b.unitPrice) {
+                if (a.id === b.id) return a.name.localeCompare(b.name);
+                return a.id - b.id;
+            }
+            return a.unitPrice - b.unitPrice;
+        });
+
+
+        console.log(cars);
+        displaytable();
+    });
+
+    });
+</script>

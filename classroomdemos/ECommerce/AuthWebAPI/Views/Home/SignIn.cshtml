@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "SignIn";
+}
+
+<h2>SignIn using  JSON Array of Credentials</h2>
+<hr />
+
+<div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+    <br><br>
+    <button id="btnSignIn">Sign In</button>
+
+</div>
+ 
+ <script src="app.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Sample JSON array of user credentials
+        const users = [
+            { email: "ravi.tambade@gmail.com", password: "seed" },
+            { email: "gagan.sharma@gmail.com", password: "ibm" },
+            { email: "chaitanya.josh@gmail.com", password: "simplify" }
+        ];
+
+        // Handle login form submission
+        $('#btnSignIn').click(function (e) {
+            e.preventDefault();
+
+            // Get email and password entered by the user
+            const email = $('#email').val();
+            const password = $('#password').val();
+
+            // Search for a user with matching email and password
+            const user = users.find(u => u.email === email && u.password === password);
+
+            // Check if a matching user was found
+            if (user) {
+                alert('Login Successful!');
+            } else {
+                alert('Invalid email or password!');
+            }
+
+         
+        });
+    });
+</script>
+

@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "RadioButton";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+
+<h2>Select Card membership type</h2>
+<br />
+<form>
+    <div class="mb-3">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="radioPlatinum" name="membershipType" value="Platinum" />
+            <lable class="form-check-label" for="radioPlatinum"> Platinum</lable>
+
+        </div>
+        <br />
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="radioGold" name="membershipType" value="Gold" />
+            <lable class="form-check-label" for="radioGold">Gold</lable>
+
+        </div>
+        <br />
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="radioSilver" name="membershipType" value="Silver" />
+            <lable class="form-check-label" for="radioSilver">Silver</lable>
+        </div>
+
+    </div>
+    <input class="btn btn-info" type="button" id="btnSubmit" value="Submit" />
+</form>
+
+<script>
+    $(document).ready(
+        () => {
+            $("#btnSubmit").click(() => {
+                var selectedMembership = $("input[name=membershipType]:checked").val();
+                console.log("Selected membership by user is  : " + selectedMembership);
+                $("input[name=membershipType]").next().css('color', 'black');
+                $("input[name=membershipType]:checked").next().css('color', 'red');
+            });
+        }
+    );
+</script>

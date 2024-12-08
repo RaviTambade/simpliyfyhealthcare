@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewBag.Title = "Catalog";
+}
+
+<h1>CRUD Operations using fetch  </h1>
+
+<hr />
+
+<!-- Create Product Form -->
+<h2>Create Product</h2>
+<form id="createForm">
+    <input type="text" id="txtId" placeholder="Enter id" required>
+    <input type="text" id="txtName" placeholder="Enter Name" required>
+    <input type="text" id="txtDescription" placeholder="Enter Description" required>
+    <input type="text" id="txtUnitPrice" placeholder="Enter UnitPrice" required>
+    <input type="text" id="txtQuantity" placeholder="Enter Quantity" required>
+    <input type="text" id="txtImageUrl" placeholder="Enter Image Url" required>
+</form>
+
+<!-- Read Products -->
+<h2>Read Products</h2>
+<button id="btnLoadProducts">Load Products</button>
+<ul id="productsList"></ul>
+
+<!-- Update Product Form -->
+<h2>Update Product</h2>
+<input type="text" id="txtProductId" placeholder="Product ID" required>
+<input type="text" id="txtUpdateName" placeholder="New name">
+<input type="text" id="txtUpdateDescription" placeholder="New Description">
+<input type="text" id="txtUpdateUnitPrice" placeholder="New Unit Price">
+<input type="text" id="txtUpdateQuantity" placeholder="New Quantity">
+<input type="text" id="txtUpdateImageUrl" placeholder="New Image Url">
+
+<button id="btnUpdateProduct">Update</button>
+
+<!-- Delete Product Form -->
+<h2>Delete Product</h2>
+<input type="text" id="txtDeleteId" placeholder="Product ID to delete" required>
+<button id="btnDeleteProduct">Delete</button>
+
+
+<script>
+    // CRUD Operations with Async/Await
+    const apiUrl = '/api/products';
+    document.addEventListener('DOMContentLoaded', () => {
+        const createForm = document.getElementById('createForm');
+        const loadProductsButton = document.getElementById('btnLoadProducts');
+        const updateProductButton = document.getElementById('btnUpdateProduct');
+        const deleteProductButton = document.getElementById('btnDeleteProduct');
+
+        createForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const id = document.getElementById('txtId').value;
+            const name = document.getElementById('txtName').value;
+            const description = document.getElementById('txtDescription').value;
+            const unitPrice = document.getElementById('txtUnitPrice').value;
+            const quantity = document.getElementById('txtQuantity').value;
+            const imageUrl = document.getElementById('txtImageUrl').value;
+
+            let product = {
+                "Id": id,
+                "Name": name,
+                "Description": description,
+                "UnitPrice": unitPrice,
+                "quantity": quantity,
+                "imageUrl": imageUrl
+            }
+            console.log(product);
+
+           // await createProduct(name);
+        });
+
+        loadProductsButton.addEventListener('click', async () => {
+            await loadProducts();
+        });
+
+        updateProductButton.addEventListener('click', async () => {
+
+            const id = document.getElementById('txtproductId').value;
+            const name = document.getElementById('txtUpdateName').value;
+            const description = document.getElementById('txtUpdateName').value;
+            const quantity = document.getElementById('txtUpdateName').value;
+            const unitPrice = document.getElementById('txtUpdateUnitPrice').value;
+            const imageUrl = document.getElementById('txtUpdateImageUrl').value;
+
+            let product = {
+                "Id": id,
+                "Name": name,
+                "Description": description,
+                "UnitPrice": unitPrice,
+                "quantity": quantity,
+                "imageUrl": imageUrl
+            }
+            console.log(product);
+           // await updateProduct(id, name);
+        });
+
+        deleteProductButton.addEventListener('click', async () => {
+            const id = document.getElementById('txtDeleteId').value;
+            await deleteProduct(id);
+        });
+    });
+
+    // Create Product
+    async function createProduct(product) {
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(product)
+            });
+
+            if (response.ok) {
+                alert('Product created successfully!');
+                loadProducts();  // Refresh the Product list
+            } else {
+                alert('Error creating Product.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    // Load Products (GET request)
+    async function loadProducts() {
+        try {
+            const response = await fetch(apiUrl);
+            if (response.ok) {
+                const data = await response.json();
+                displayProducts(data);
+            } else {
+                alert('Error loading Products.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    // Display Products (Helper function)
+    function displayProducts(products) {
+        const productsList = document.getElementById('productsList');
+        productsList.innerHTML = '';
+        console.log(products);
+        products.forEach(product => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${product.Id}, Name: ${product.Name}`;
+            productsList.appendChild(li);
+        });
+    }
+
+    // Update Product
+    async function updateProduct(id, product) {
+        try {
+            const response = await fetch(apiUrl + '/' + id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(product)
+            });
+
+            if (response.ok) {
+                alert('Product updated successfully!');
+                loadProducts();  // Refresh the Product list
+            } else {
+                alert('Error updating Product.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    // Delete Product
+    async function deleteProduct(id) {
+        try {
+            const response = await fetch(apiUrl + '/' + id, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                alert('Product deleted successfully!');
+                loadProducts();  // Refresh the Product list
+            } else {
+                alert('Error deleting Product.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>

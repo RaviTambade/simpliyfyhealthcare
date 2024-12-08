@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Product Grid";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+<style>
+    .product-image {
+        height: 200px;
+        object-fit: contain;
+        width: 100%;
+    }
+
+    .card {
+        height: 100%;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .btn {
+        margin-top: auto;
+    }
+
+    .view-details-btn {
+        margin-top: 10px;
+        background-color: #28a745;
+        color: white;
+    }
+
+        .view-details-btn:hover {
+            background-color: #218838;
+        }
+
+    .add-to-cart-btn {
+        margin-top: 10px;
+        background-color: #007bff !important;
+        color: white !important;
+        border: none;
+        transition: none;
+    }
+
+        .add-to-cart-btn:hover {
+            background-color: #007bff !important;
+            color: white !important;
+        }
+
+        .add-to-cart-btn:focus {
+            outline: none !important;
+        }
+</style>
+
+<div id="productGrid" class="container">
+    <div class="row" id="productGridRow">
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Load products from API
+        function loadProducts() {
+            $.ajax({
+                url: "http://localhost:5218/api/products",
+                type: 'GET',
+                xhrFields: {
+                    withCredentials: true  // Ensures cookies are sent with the request
+                },
+                success: function (data) {
+                    var productHtml = '';
+                    data.forEach(function (card) {
+                        productHtml += ProductCard(card);
+                    });
+                    $('#productGridRow').html(productHtml);
+                },
+                error: function () {
+                    alert("An error occurred while loading products.");
+                }
+            });
+        }
+
+        // Create HTML for each product card
+        function ProductCard(card) {
+            return `
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="${card.imageUrl}" class="card-img-top product-image" alt="${card.title}" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${card.title}</h5>
+                                <p class="card-text">₹ ${card.price}</p>
+                                <!-- View Details Button (Green) -->
+                                <a href="/Products/Details/${card.id}" class="btn view-details-btn mt-auto">View Details</a>
+                                <!-- Add to Cart Button (Blue) -->
+                                <button class="btn add-to-cart-btn mt-2"
+                                        data-id="${card.id}"
+                                        data-title="${card.title}"
+                                        data-price="${card.price}"
+                                        data-description="${card.description}"
+                                        data-imageUrl="${card.imageUrl}"
+                                        data-stock="${card.stock}"
+                                        data-category="${card.category}"
+                                        data-brand="${card.brand}">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        // Handle Add to Cart button click
+        $(document).on('click', '.add-to-cart-btn', function () {
+            // Get product details from data attributes
+            var productData = {
+                id: $(this).data('id'),
+                title: $(this).data('title'),
+                price: $(this).data('price'),
+                description: $(this).data('description'),
+                imageUrl: $(this).data('imageurl'),
+                stock: $(this).data('stock'),
+                category: $(this).data('category'),
+                brand: $(this).data('brand')
+            };
+
+            // Add product to cart via API
+            $.ajax({
+                url: 'http://localhost:5218/api/shoppingcart',
+                method: 'POST',
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: true  // Ensures cookies are sent with the request
+                },
+                data: JSON.stringify(productData),
+                success: function (response) {
+                    alert(response.message); // Show success message
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error adding product to cart:", error);
+                    alert("Failed to add product to cart.");
+                }
+            });
+        });
+
+        // Load products on page load
+        loadProducts();
+    });
+</script>

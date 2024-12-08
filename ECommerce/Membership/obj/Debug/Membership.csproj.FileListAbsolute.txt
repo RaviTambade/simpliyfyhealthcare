@@ -1,6 +1,0 @@
-D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Membership\obj\Debug\Membership.csproj.AssemblyReference.cache
-D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Membership\obj\Debug\Membership.csproj.CoreCompileInputs.cache
-D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Membership\bin\Debug\Membership.dll
-D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Membership\bin\Debug\Membership.pdb
-D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Membership\obj\Debug\Membership.dll
-D:\Ravi\TAP\TAP\simpliyfyhealthcare\ECommerce\Membership\obj\Debug\Membership.pdb

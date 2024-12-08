@@ -1,0 +1,44 @@
+﻿@model ShoppingCartTest.Models.Cart
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<h1>Your Shopping Cart</h1>
+
+<hr />
+
+@if (Model?.Items != null && Model.Items.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>
+                        <a href="@Url.Action("RemoveFromCart", "Cart", new { id = item.Id })" class="btn btn-danger">Remove</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Option to clear the cart -->
+    <div>
+        <a href="@Url.Action("Clear", "Cart")" class="btn btn-warning">Clear Cart</a>
+    </div>
+}
+else
+{
+    <p>Your cart is empty. <a href="@Url.Action("Index", "Cart")">Back to List</a></p>
+}
+

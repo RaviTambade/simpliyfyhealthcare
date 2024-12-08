@@ -1,0 +1,26 @@
+﻿@using System.Collections.Generic;
+@using ECommerceEntities;
+<h1>Orders History</h1>
+<hr/>
+ 
+    <table>
+        <tr>
+            <th>Order Date</th>
+            <th>OrderId</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+
+        @{
+            foreach (Order order in Model)
+            {
+                <tr>
+                    <td>@order.Created</td>
+                    <td>@order.Id</td>
+                    <td>@order.Amount</td>
+                    <td>@order.Status</td>
+                </tr>
+                }
+            }
+    </table>
+  .
