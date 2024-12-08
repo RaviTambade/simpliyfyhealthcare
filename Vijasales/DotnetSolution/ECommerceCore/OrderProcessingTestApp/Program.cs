@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿// See https://aka.ms/new-console-template for more information
 
 
@@ -25,5 +24,4 @@ foreach(Order order in _orders)
     Console.WriteLine(order);
 }
 */
-=======
->>>>>>> 9b2a796986941dd7555008528c99c9e4b1581233
+

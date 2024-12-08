@@ -23,9 +23,7 @@ namespace OrderProcessing.Services.Connected
         public async Task<List<Order>> GetAllAsync()
         {
             return await _svc.GetAllAsync();
-        }
-
-        
+        }      
 
         public async Task<Order> GetOrderAsync(int id)
         {
