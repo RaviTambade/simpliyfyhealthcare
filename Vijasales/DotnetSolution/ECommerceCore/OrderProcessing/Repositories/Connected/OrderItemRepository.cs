@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OrderProcessing.Repositories.Connected
 {
-    public class OrderItemRepository
+    public class OrderItemRepository:IOrderItemRepository
     {
         public string conString;
 

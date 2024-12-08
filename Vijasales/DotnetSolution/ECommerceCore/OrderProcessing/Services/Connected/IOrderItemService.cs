@@ -10,7 +10,7 @@ namespace OrderProcessing.Services.Connected
 {
     public interface IOrderItemService
     {
-        Task<bool> InsertOrderItemAsync(Cart cart);
+        Task<bool> InsertOrderItemAsync(OrderItem item);
         Task<bool> UpdateOrderItemAsync(int customerId, OrderItem item);
         Task<bool> DeleteOrderItemAsync(int orderId);
         Task<OrderItem> GetOrderItemByIdAsync(int orderItemId);

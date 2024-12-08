@@ -156,11 +156,11 @@ namespace OrderProcessing.Repositories.Connected
             return order;
         }
 
-        public async Task<bool> InsertAsync(Order order)
+        public async Task<int> InsertAsync(Order order)
         {
-            bool status = false;
+            int insertedId =0;
             SqlConnection conn = new SqlConnection(conString);
-            string query = "INSERT INTO VSORDERS(CUSTOMERID, STATUS, TOTALAMOUNT, ORDERDATE) VALUES(@CustomerId,@Status,@TotalAmount,@OrderDate)";
+            string query = @"INSERT INTO VSORDERS (CUSTOMERID, STATUS, TOTALAMOUNT, ORDERDATE) OUTPUT INSERTED.ID  VALUES (@CustomerId, @Status, @TotalAmount, @OrderDate)";
             SqlCommand cmd = new SqlCommand(query, conn as SqlConnection);
             
             //Set Parameter for insert Query
@@ -181,8 +181,8 @@ namespace OrderProcessing.Repositories.Connected
             try
             {
                 await conn.OpenAsync();
-                await cmd.ExecuteNonQueryAsync();
-                status = true;
+                insertedId = (int)await cmd.ExecuteScalarAsync();
+                if (insertedId == 0) throw new Exception("No order id found after insertion");
             }
             catch (Exception ex)
             {
@@ -192,7 +192,8 @@ namespace OrderProcessing.Repositories.Connected
             {
                 await conn.CloseAsync();
             }
-            return status;
+            
+            return insertedId;
         }
 
         public async Task<bool> UpdateAsync(Order order)
