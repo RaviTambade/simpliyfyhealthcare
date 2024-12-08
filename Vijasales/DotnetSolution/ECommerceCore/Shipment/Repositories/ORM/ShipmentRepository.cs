@@ -44,7 +44,7 @@ namespace Shipment.Repositories.ORM
                 var shipment =  await context.Shipments.SingleOrDefaultAsync(s => s.Id == ship_Id);
                 if (shipment != null)
                 {
-                   context.Shipments.Remove(shipment);
+                    context.Shipments.Remove(shipment);
                     await context.SaveChangesAsync();
                     status = true;
                 }
@@ -116,7 +116,8 @@ namespace Shipment.Repositories.ORM
                 var param = new SqlParameter("@ShipmentId", shipmentId);
 
                 shipmentDetail = await context.Set<ShipmentDetail>()
-                    .FromSqlRaw(query, param) 
+                    .FromSqlRaw(query, param)
+                    .AsNoTracking()
                     .FirstOrDefaultAsync();
             }
 

@@ -22,14 +22,14 @@ namespace VijaySalesAPI.Controllers
         [HttpGet("status/{Status}")]
         public async Task<List<Delivery>> GetByStatus(string status)
         {
-            List<Delivery> deliverylistbystatus = _shipmentService.GetByStatus(status);
+            List<Delivery> deliverylistbystatus = await _shipmentService.GetByStatusAsync(status);
             return deliverylistbystatus;
         }
 
         [HttpGet]
         public async Task<List<Delivery>> GetAll()
         {
-            List<Delivery> deliveryList = _shipmentService.GetAll();
+            List<Delivery> deliveryList = await _shipmentService.GetAllAsync();
 
             return deliveryList;
         }
@@ -37,7 +37,7 @@ namespace VijaySalesAPI.Controllers
         [HttpGet("{id:int}")]
         public async Task<ShipmentDetail> Get(int id)
         {
-            return _shipmentService.GetById(id);
+            return await _shipmentService.GetByIdAsync(id);
         }
 
 
@@ -50,7 +50,7 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest("Invalid date format.");
             }
 
-            List<Delivery> deliverylistbydate = _shipmentService.GetByDate(date);
+            List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date);
             return Ok(deliverylistbydate);
 
         }
@@ -60,7 +60,7 @@ namespace VijaySalesAPI.Controllers
         {
             bool status = false;
 
-            status=_shipmentService.CreateShipment(delivery);
+            status = await _shipmentService.CreateShipmentAsync(delivery);
 
             return status;
         }
@@ -71,7 +71,7 @@ namespace VijaySalesAPI.Controllers
         {
             bool status = false;
             
-            status= _shipmentService.UpdateShipment(delivery);
+            status = await _shipmentService.UpdateShipmentAsync(delivery);
             return status;
 
         }
@@ -79,16 +79,11 @@ namespace VijaySalesAPI.Controllers
         [HttpDelete("{id:int}")]
         public async Task<bool> Delete(int id) { 
             bool status = false;
-            status = _shipmentService.DeleteShipment(id);
+            status = await _shipmentService.DeleteShipmentAsync(id);
 
             return status;
         
         }
 
-
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }
