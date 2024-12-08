@@ -21,10 +21,11 @@ namespace Banking.Entities
 
         public string CardType { get; set; }
 
-        public double CardLimit { get; set; }
+        public double CreditLimit { get; set; }
 
         public string CardNumber { get; set; }
 
         public string ExpiryDate { get; set; }
+        public string AccountNumber { get; set; }
     }
 }

@@ -7,6 +7,10 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
+<<<<<<< HEAD
+using Banking.Repositories.Connected;
+using Banking.Services;
+=======
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
@@ -18,6 +22,7 @@ using Shipment.Services;
 
 =======
 >>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
+>>>>>>> 51738e72e6c1534400cc595bc722174dd5d4d460
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,13 +65,24 @@ builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
 // Register ProductService (already done in your code)
 builder.Services.AddTransient<IProductService, ProductService>();
+<<<<<<< HEAD
+
 builder.Services.AddTransient<IUserService, UserService>();
+
+=======
+builder.Services.AddTransient<IUserService, UserService>();
+>>>>>>> 51738e72e6c1534400cc595bc722174dd5d4d460
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 
 builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
+
+builder.Services.AddTransient<ICardRepository, CardRepository>();
+
+builder.Services.AddTransient<ICardService, CardServices>();
+
 
 var app = builder.Build();
 

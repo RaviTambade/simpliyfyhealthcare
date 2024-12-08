@@ -2,10 +2,11 @@
 
 namespace VijaySalesPortal.Controllers
 {
-    public class PaymentController : Controller
+    public class PaymentsController : Controller
     {
         public IActionResult Index()
         {
+
             return View();
         }
         public IActionResult PayNow()
@@ -13,5 +14,6 @@ namespace VijaySalesPortal.Controllers
             return View();
         }
         
+
     }
 }
