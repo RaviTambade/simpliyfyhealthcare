@@ -32,9 +32,9 @@ namespace VijaySalesAPI.Controllers
         [HttpPost]
         public async void Post([FromBody] Payment payment)
         {
-            await _paymentService.InsertPaymentAsync(payment);
+            //await _paymentService.InsertPaymentAsync(payment);
             //procedure
-            await _paymentService.UpdatePaymentAsync(payment);
+            //await _paymentService.UpdatePaymentAsync(payment);
         }
 
         // PUT api/<ProductsController>/5
