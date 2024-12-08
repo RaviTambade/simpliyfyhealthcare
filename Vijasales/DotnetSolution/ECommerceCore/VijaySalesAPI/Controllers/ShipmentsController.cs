@@ -88,14 +88,12 @@ namespace VijaySalesAPI.Controllers
             return BadRequest("Update failed");
         }
 
-
         [HttpDelete("{id:int}")]
-        public async Task<bool> Delete(int id) { 
+        public async Task<IActionResult> Delete(int id) { 
             bool status = false;
             status = await _shipmentService.DeleteShipmentAsync(id);
 
-            return status;
-        
+            return Ok(status);
         }
 
     }
