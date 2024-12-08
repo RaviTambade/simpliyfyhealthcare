@@ -1,4 +1,5 @@
 ﻿using OrderProcessing.Entities;
+using ShoppingCart.Entities;
 namespace OrderProcessing.Services.Connected
 {
     public interface IOrderService
@@ -11,7 +12,7 @@ namespace OrderProcessing.Services.Connected
         Task<bool> DeleteAsync(int id);
         Task<List<OrderList>> GetOrderDetailsAsync(int customerId);
 
-        Task<bool> InsertOrderItemAsync(OrderItem item);
+        Task<bool> InsertOrderItemAsync(Cart cart);
         Task<bool> UpdateOrderItemAsync(int customerId, OrderItem item);
         Task<bool> DeleteOrderItemAsync(int orderId);
         Task<OrderItem> GetOrderItemByIdAsync(int orderItemId);

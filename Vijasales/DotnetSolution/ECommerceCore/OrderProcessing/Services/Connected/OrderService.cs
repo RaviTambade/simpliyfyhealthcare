@@ -1,5 +1,6 @@
 ﻿using OrderProcessing.Entities;
 using OrderProcessing.Repositories.Connected;
+using ShoppingCart.Entities;
 
 namespace OrderProcessing.Services.Connected
 {
@@ -76,6 +77,11 @@ namespace OrderProcessing.Services.Connected
         public async Task<List<OrderItem>> GetAllOrderItemsByCustomerIdAsync(int orderId)
         {
             return await _svc.GetAllOrderItemsAsync(orderId);
+        }
+
+        public Task<bool> InsertOrderItemAsync(Cart item)
+        {
+            throw new NotImplementedException();
         }
     }
 }
