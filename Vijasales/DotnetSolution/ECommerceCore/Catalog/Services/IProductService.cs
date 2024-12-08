@@ -20,5 +20,9 @@ namespace Catalog.Services
 
         Task<List<Product>> GetByCategoryBrandAsync(string category, string brand);
 
+        Task<List<string>> GetCategoriesAsync();
+
+        Task<List<string>> GetBrandsAsync(string category);
+
     }
 }
