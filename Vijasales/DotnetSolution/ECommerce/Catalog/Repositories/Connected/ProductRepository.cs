@@ -4,82 +4,61 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 using Catalog.Entities;
-using Microsoft.Extensions.Configuration;
+using System.Configuration;
 
 namespace Catalog.Repositories.Connected
 {
     public class ProductRepository : IProductRepository
     {
-        public string _conString;
-        private IConfiguration _configuration;
-
-        public ProductRepository(IConfiguration configuration)
-        {
-            _configuration = configuration;
-            _conString = this._configuration.GetConnectionString("DefaultConnection");
-        }
+        public static string _conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
 
         // Async Delete method
         public async Task<bool> DeleteAsync(int id)
         {
-            
             using (SqlConnection conn = new SqlConnection(_conString))
             {
                 string query = "DELETE FROM VsProducts WHERE Id = @Id";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.Add(new SqlParameter("@Id", id));
-
                 try
                 {
-                   
-                    await conn.OpenAsync();
-                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                    await conn.OpenAsync();  // Open the connection asynchronously
+
+                    SqlCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = query;
+                    cmd.Parameters.Add(new SqlParameter("@Id", id));
+
+                    int rowsAffected = await cmd.ExecuteNonQueryAsync();  // Async execute
                     return rowsAffected > 0;
-                }
-                catch (SqlException ex)
-                {
-                  
-                    Console.WriteLine($"SQL Error: {ex.Message}");
-                    return false;
                 }
                 catch (Exception ex)
                 {
-                  
-                    Console.WriteLine($"General Error: {ex.Message}");
+                    Console.WriteLine($"Error: {ex.Message}");
                     return false;
-                }
-                finally
-                {
-                   
-                    await conn.CloseAsync();
                 }
             }
         }
 
-
-
         // Async GetAll method
         public async Task<List<Product>> GetAllAsync()
         {
-          
-            using (SqlConnection conn = new SqlConnection(_conString))
+            IDbConnection conn = new SqlConnection(_conString);
+            string query = "SELECT * FROM VsProducts";
+            List<Product> products = new List<Product>();
+
+            try
             {
-                string query = "SELECT * FROM VsProducts";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                List<Product> products = new List<Product>();
+                // Simulating async behavior for opening the connection using Task.Run
+                await Task.Run(() => conn.Open());  // Simulate async Open
 
-                try
+                IDbCommand cmd = conn.CreateCommand();
+                cmd.CommandText = query;
+
+                // Use Task.Run for ExecuteReader, simulating async behavior
+                using (IDataReader dataReader = await Task.Run(() => cmd.ExecuteReader()))  // Simulate async ExecuteReader
                 {
-                    
-                    await conn.OpenAsync();
-                    IDataReader dataReader = await cmd.ExecuteReaderAsync();
-
-
-                        while (dataReader.Read())  
+                    while (await Task.Run(() => dataReader.Read()))  // Simulate async Read
                     {
-                        
                         Product product = new Product
                         {
                             Id = Convert.ToInt32(dataReader["Id"]),
@@ -92,93 +71,89 @@ namespace Catalog.Repositories.Connected
                             LastModified = Convert.ToDateTime(dataReader["LastModified"]),
                             ImageUrl = dataReader["ImageUrl"].ToString()
                         };
-
-                        
                         products.Add(product);
                     }
                 }
-                
+            }
+            catch (Exception ex)
+            {
+                // Output the error message if something goes wrong
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+            }
+            finally
+            {
+                // Always ensure the connection is closed
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+
+            return products;
+        }
+
+
+        // Async GetById method
+        public async Task<Product> GetByIdAsync(int id)
+        {
+            using (IDbConnection conn = new SqlConnection(_conString))
+            {
+                string query = "SELECT * FROM VsProducts WHERE Id = @Id";
+                IDbCommand cmd = conn.CreateCommand();
+                cmd.CommandText = query;
+                cmd.Parameters.Add(new SqlParameter("@Id", id));
+                Product product = null;
+
+                try
+                {
+                    conn.Open();  // Using synchronous Open method
+                    using (IDataReader dataReader = cmd.ExecuteReader())
+                    {
+                        if (dataReader.Read())
+                        {
+                            product = new Product
+                            {
+                                Id = Convert.ToInt32(dataReader["Id"]),
+                                Title = dataReader["Title"].ToString(),
+                                Description = dataReader["Description"].ToString(),
+                                Brand = dataReader["Brand"].ToString(),
+                                Price = Convert.ToDecimal(dataReader["Price"]),
+                                Stock = Convert.ToInt32(dataReader["Stock"]),
+                                Category = dataReader["Category"].ToString(),
+                                LastModified = Convert.ToDateTime(dataReader["LastModified"]),
+                                ImageUrl = dataReader["ImageUrl"].ToString()
+                            };
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine($"SQL Exception: {ex.Message}");
+                }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString());
-                }
-                finally
-                {
-                   
-                    await conn.CloseAsync();
+                    Console.WriteLine($"General Exception: {ex.Message}");
                 }
 
-                return products;
+                return product;
             }
         }
 
-      
-        public async Task<Product> GetByIdAsync(int id)
-{
-    using (SqlConnection conn = new SqlConnection(_conString))
-    {
-        string query = "SELECT * FROM VsProducts WHERE Id = @Id";
-        SqlCommand cmd = new SqlCommand(query, conn);
-        cmd.Parameters.Add(new SqlParameter("@Id", id));
-        Product product = null;
-
-        try
-        {
-            // Open connection asynchronously
-            await conn.OpenAsync();
-
-            // Execute the query asynchronously and process the results
-            using (IDataReader dataReader = await cmd.ExecuteReaderAsync())
-            {
-                if ( dataReader.Read())  // Read asynchronously
-                {
-                    product = new Product
-                    {
-                        Id = Convert.ToInt32(dataReader["Id"]),
-                        Title = dataReader["Title"].ToString(),
-                        Description = dataReader["Description"].ToString(),
-                        Brand = dataReader["Brand"].ToString(),
-                        Price = Convert.ToDecimal(dataReader["Price"]),
-                        Stock = Convert.ToInt32(dataReader["Stock"]),
-                        Category = dataReader["Category"].ToString(),
-                        LastModified = Convert.ToDateTime(dataReader["LastModified"]),
-                        ImageUrl = dataReader["ImageUrl"].ToString()
-                    };
-                }
-            }
-        }
-        catch (SqlException ex)
-        {
-            Console.WriteLine($"SQL Exception: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"General Exception: {ex.Message}");
-        }
-        finally
-        {
-            // Close the connection asynchronously (although `using` takes care of it, but it's good practice to ensure)
-            await conn.CloseAsync();
-        }
-
-        return product;  // Return the found product or null if not found
-    }
-}
-
+        // Async GetCount method
         public async Task<int> GetCountAsync()
         {
-            using (SqlConnection conn = new SqlConnection(_conString))
+            using (IDbConnection conn = new SqlConnection(_conString))
             {
                 string query = "SELECT COUNT(*) FROM VsProducts";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                IDbCommand cmd = conn.CreateCommand();
+                cmd.CommandText = query;
                 int count = 0;
 
                 try
                 {
-                   
-                    await conn.OpenAsync();
-                   
-                    count = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                    conn.Open();  // Using synchronous Open method
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
                 }
                 catch (SqlException ex)
                 {
@@ -193,17 +168,16 @@ namespace Catalog.Repositories.Connected
             }
         }
 
-
-     
+        // Async Insert method
         public async Task<bool> InsertAsync(Product product)
         {
-            using (SqlConnection conn = new SqlConnection(_conString))
+            using (IDbConnection conn = new SqlConnection(_conString))
             {
-                string query = "INSERT INTO VsProducts (Title, Stock, Price, Description, Category, ImageUrl,Brand) " +
-                               "VALUES (@Title, @Stock, @Price, @Description, @Category, @ImageUrl,@Brand)";
+                string query = "INSERT INTO VsProducts (Title, Stock, Price, Description, Category, ImageUrl, Brand) " +
+                               "VALUES (@Title, @Stock, @Price, @Description, @Category, @ImageUrl, @Brand)";
 
-           
-                SqlCommand cmd = new SqlCommand(query, conn);
+                IDbCommand cmd = conn.CreateCommand();
+                cmd.CommandText = query;
                 cmd.Parameters.Add(new SqlParameter("@Title", product.Title));
                 cmd.Parameters.Add(new SqlParameter("@Stock", product.Stock));
                 cmd.Parameters.Add(new SqlParameter("@Price", product.Price));
@@ -212,16 +186,10 @@ namespace Catalog.Repositories.Connected
                 cmd.Parameters.Add(new SqlParameter("@ImageUrl", product.ImageUrl));
                 cmd.Parameters.Add(new SqlParameter("@Brand", product.Brand));
 
-
                 try
                 {
-                 
-                    await conn.OpenAsync();
-
-                  
-                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
-
-                
+                    conn.Open();  // Using synchronous Open method
+                    int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
                 }
                 catch (SqlException ex)
@@ -237,17 +205,16 @@ namespace Catalog.Repositories.Connected
             }
         }
 
-     // Async Update method
+        // Async Update method
         public async Task<bool> UpdateAsync(Product product)
         {
-            using (SqlConnection conn = new SqlConnection(_conString))
+            using (IDbConnection conn = new SqlConnection(_conString))
             {
-                
                 string query = "UPDATE VsProducts SET Title = @Title, Stock = @Stock, Price = @Price, " +
-                               "Description = @Description, Category = @Category, ImageUrl = @ImageUrl ,Brand=@brand WHERE Id = "+product.Id;
+                               "Description = @Description, Category = @Category, ImageUrl = @ImageUrl, Brand = @Brand WHERE Id = @Id";
 
-              
-                SqlCommand cmd = new SqlCommand(query, conn);
+                IDbCommand cmd = conn.CreateCommand();
+                cmd.CommandText = query;
                 cmd.Parameters.Add(new SqlParameter("@Id", product.Id));
                 cmd.Parameters.Add(new SqlParameter("@Title", product.Title));
                 cmd.Parameters.Add(new SqlParameter("@Stock", product.Stock));
@@ -255,70 +222,46 @@ namespace Catalog.Repositories.Connected
                 cmd.Parameters.Add(new SqlParameter("@Description", product.Description));
                 cmd.Parameters.Add(new SqlParameter("@Category", product.Category));
                 cmd.Parameters.Add(new SqlParameter("@ImageUrl", product.ImageUrl));
-                cmd.Parameters.Add(new SqlParameter("@brand", product.Brand));
+                cmd.Parameters.Add(new SqlParameter("@Brand", product.Brand));
 
                 try
                 {
-                   
-                    await conn.OpenAsync();
-                    int rowsAffected = await cmd.ExecuteNonQueryAsync();
+                    conn.Open();  // Using synchronous Open method
+                    int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
                 }
                 catch (SqlException ex)
                 {
-                    
                     Console.WriteLine($"SQL Error: {ex.Message}");
                     return false;
                 }
                 catch (Exception ex)
                 {
-                    
                     Console.WriteLine($"General Error: {ex.Message}");
                     return false;
                 }
             }
         }
 
-
         // Async GetByCategory method
         public async Task<List<Product>> GetByCategoryAsync(string category)
         {
-            using (var conn = new SqlConnection(_conString))
+            using (IDbConnection conn = new SqlConnection(_conString))
             {
                 string query = "SELECT * FROM VsProducts WHERE Category = @Category";
-                var cmd = new SqlCommand(query, conn);
-
-               
+                IDbCommand cmd = conn.CreateCommand();
+                cmd.CommandText = query;
                 cmd.Parameters.Add(new SqlParameter("@Category", category));
-
-                var products = new List<Product>();
+                List<Product> products = new List<Product>();
 
                 try
                 {
-                   
-                    if (string.IsNullOrEmpty(category))
+                    conn.Open();  // Using synchronous Open method
+                    using (IDataReader dataReader = cmd.ExecuteReader())
                     {
-                        Console.WriteLine("Category is empty or null");
-                        return products;
-                    }
-
-                  
-                    Console.WriteLine($"Query: {query}, Category: {category}");
-
-                 
-                    await conn.OpenAsync();
-
-                  
-                    using (var dataReader = await cmd.ExecuteReaderAsync())
-                    {
-                       
-                        Console.WriteLine($"Columns returned: {dataReader.FieldCount}");
-                        
-
-                     
-                        while (await dataReader.ReadAsync()) 
+                        while (dataReader.Read())
                         {
-                            var product = new Product
+                            Product product = new Product
                             {
                                 Id = Convert.ToInt32(dataReader["Id"]),
                                 Title = dataReader["Title"].ToString(),
@@ -330,7 +273,6 @@ namespace Catalog.Repositories.Connected
                                 LastModified = Convert.ToDateTime(dataReader["LastModified"]),
                                 ImageUrl = dataReader["ImageUrl"].ToString()
                             };
-
                             products.Add(product);
                         }
                     }
@@ -347,7 +289,5 @@ namespace Catalog.Repositories.Connected
                 return products;
             }
         }
-
-
     }
 }
