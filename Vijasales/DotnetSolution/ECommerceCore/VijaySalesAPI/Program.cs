@@ -19,10 +19,13 @@ using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
 =======
 >>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
 >>>>>>> 51738e72e6c1534400cc595bc722174dd5d4d460
+>>>>>>> 1bd1f1d3160d2d9bae453f8736c1b70bc257970a
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,6 +92,8 @@ var app = builder.Build();
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
 
 app.UseCors("AllowLocalhost");
@@ -142,10 +147,14 @@ app.UseRouting();
 
 
 >>>>>>> f2b11bc1b37c218161e722235d5b6a7414e5d63d
+>>>>>>> 1bd1f1d3160d2d9bae453f8736c1b70bc257970a
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
+<<<<<<< HEAD
+
+=======
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
@@ -167,6 +176,7 @@ app.UseRouting();
 >>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
 >>>>>>> f2b11bc1b37c218161e722235d5b6a7414e5d63d
 >>>>>>> 6fe8338d10e992de45d556b6df162021fb64e5b1
+>>>>>>> 1bd1f1d3160d2d9bae453f8736c1b70bc257970a
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
