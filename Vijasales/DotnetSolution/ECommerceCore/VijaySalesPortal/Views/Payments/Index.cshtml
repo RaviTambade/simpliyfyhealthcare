@@ -1,0 +1,102 @@
+﻿@{
+
+    ViewData["Title"] = "Payments";
+
+}
+
+<h1>Payments</h1>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<table class="table table-bordered" id="paymentsTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Order Id</th>
+            <th>Payment Date</th>
+            <th>Payment Amount</th>
+            <th>Payment Mode</th>
+            <th>Payment Status</th>
+            <th>Transaction Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Table rows will be inserted here dynamically -->
+    </tbody>
+</table>
+
+    <script>
+
+        $(document).ready(function () {
+
+            // Make an AJAX call to the API to get payment data
+
+            $.ajax({
+
+            url: 'http://localhost:5218/api/payments', // Replace with your API URL
+
+                type: 'GET',
+
+                dataType: 'json',
+
+                success: function (data) {
+                    console.log(data);
+
+                    var tableBody = $('#paymentsTable tbody');
+
+                    tableBody.empty(); // Clear existing rows
+
+                    // Check if data is not empty
+
+                    if (data.length > 0) {
+
+                        // Loop through the payment data and append rows to the table
+
+                        $.each(data, function (index, payment) {
+
+                            var row = '<tr>' +
+
+                                '<td>' + payment.id + '</td>' +
+
+                                '<td>' + payment.orderId + '</td>' +
+
+                                '<td>' + payment.paymentDate + '</td>' +
+
+                                '<td>' + payment.paymentAmount + '</td>' +
+
+                                '<td>' + payment.paymentMode + '</td>' +
+
+                                '<td>' + payment.paymentStatus + '</td>' +
+
+                                '<td>' + payment.transactionId + '</td>' +
+
+                                '</tr>';
+
+                            tableBody.append(row);
+
+                        });
+
+                    } 
+                    else 
+                    {
+
+                        // If no data, show a message
+
+                        tableBody.append('<tr><td colspan="7">No payments found.</td></tr>');
+
+                    }
+
+                },
+
+                error: function (xhr, status, error) {
+
+                    // Handle error
+
+                    alert('An error occurred: ' + error);
+
+                }
+
+            });
+
+        });
+    </script>
+
+

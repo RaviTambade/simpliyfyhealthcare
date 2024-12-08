@@ -26,5 +26,26 @@ namespace PaymentProcessing.Services
         {
             return await _repo.GetPaymentAsync(id);
         }
+
+        /*
+        public async Task<(string status)> PayNow(int orderId, string fromAccountNumber, string paymentMode)
+
+        {
+            Payment payment = new Payment { OrderId=orderId,PaymentMode=paymentMode };
+            return _repo.InsertAsync(payment);
+
+
+        }*/
+       
+
+        public Task<bool> InsertPaymentAsync(Payment payment)
+        {
+            return _repo.InsertAsync(payment);
+        }
+
+        public Task<bool> UpdatePaymentAsync(Payment payment)
+        {
+            return _repo.UpdateAsync(payment);
+        }
     }
 }

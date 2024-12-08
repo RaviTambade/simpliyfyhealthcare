@@ -41,5 +41,41 @@ namespace OrderProcessing.Services.Connected
         {
             return await _svc.UpdateAsync(order);
         }
+
+        public async Task<List<OrderList>> GetOrderDetailsAsync(int customerId)
+        {
+            return await _svc.GetOrderDetailsAsync(customerId);
+        }
+
+        //OrdersItems
+        public async Task<bool> InsertOrderItemAsync(OrderItem item)
+        {
+            return await _svc.InsertOrderItemAsync(item);
+        }
+
+        public async Task<bool> UpdateOrderItemAsync(int customerId, OrderItem item)
+        {
+            return await _svc.UpdateOrderItemAsync(customerId, item);
+        }
+
+        public async Task<bool> DeleteOrderItemAsync(int orderId)
+        {
+            return await _svc.DeleteOrderItemAsync(orderId);
+        }
+
+        public async Task<OrderItem> GetOrderItemByIdAsync(int orderItemId)
+        {
+            return await _svc.GetOrderItemByIdAsync(orderItemId);
+        }
+
+        public async Task<List<OrderItem>> GetAllOrderItemsAsync(int orderId)
+        {
+            return await _svc.GetAllOrderItemsAsync(orderId);
+        }
+
+        public async Task<List<OrderItem>> GetAllOrderItemsByCustomerIdAsync(int orderId)
+        {
+            return await _svc.GetAllOrderItemsAsync(orderId);
+        }
     }
 }
