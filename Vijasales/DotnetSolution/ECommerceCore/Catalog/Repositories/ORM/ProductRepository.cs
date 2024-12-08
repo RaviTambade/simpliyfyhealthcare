@@ -70,9 +70,60 @@ namespace Catalog.Repositories.ORM
             throw new NotImplementedException();
         }
 
-        public Task<List<Product>> GetByCategoryAsync(string category)
+        public async Task<List<Product>> GetByCategoryAsync(string category)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var ctx = new ProductContext())
+                {
+                    var products = await ctx.Products
+                                             .Where(p => p.Category == category)
+                                             .ToListAsync();
+                    return products;
+                }
+            }
+            catch(Exception ex)
+            {
+                return new List<Product>();
+            }
         }
+
+        public async Task<List<Product>> GetByBrandAsync(string brand)
+        {
+            try
+            {
+                using (var ctx = new ProductContext())
+                {
+                    var products = await ctx.Products
+                                             .Where(p => p.Brand == brand)
+                                             .ToListAsync();
+                    return products;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Product>();
+            }
+        }
+
+        public async Task<List<Product>> GetByCategoryBrandAsync(string category,string brand)
+        {
+            try
+            {
+                using (var ctx = new ProductContext())
+                {
+                    var products = await ctx.Products
+                                             .Where(p => p.Category == category && p.Brand == brand)
+                                             .ToListAsync();
+                    return products;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Product>();
+            }
+        }
+
+
     }
 }
