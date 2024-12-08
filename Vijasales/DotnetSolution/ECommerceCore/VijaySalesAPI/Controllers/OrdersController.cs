@@ -47,7 +47,7 @@ namespace VijaySalesAPI.Controllers
         [HttpPost]
         public async Task<bool> InsertAsync(Order order)
         {
-            bool status= await _orderService.InsertAsync(order);
+            bool status= await _orderService.InsertAsync(order);    
             return status;
         }
 
