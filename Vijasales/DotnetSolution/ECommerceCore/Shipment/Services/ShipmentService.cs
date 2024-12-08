@@ -68,5 +68,15 @@ namespace Shipment.Services
             }
             return false;
         }
+
+        public async Task<bool> UpdateShipmentStatusAsync(int id, string updatedStatus)
+        {
+            if(await _repo.UpdateStatusAsync(id, updatedStatus))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
