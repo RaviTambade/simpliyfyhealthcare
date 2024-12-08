@@ -1,8 +1,7 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Shipments";
 }
-
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 @{
 
     <div class="container">
@@ -24,7 +23,6 @@
             <button class="btn" id="applyFilterButton">Apply Filter</button>
         </div>
 
-        <!-- Shipments Table -->
         <table id="shipmentsTable">
             <thead>
                 <tr>
@@ -37,7 +35,7 @@
 
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-body-to-update" >
                 @foreach (var shipment in Model)
                 {
                     <tr>
@@ -58,7 +56,12 @@
         </table>
     </div>
 
-    @* Scripts to handle filtering and status update *@
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 }
+
+
+<script>
+    
+    // handle ajax calls
+
+</script>

@@ -1,5 +1,6 @@
 ﻿using Catalog.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using PaymentProcessing.Entities;
 using Shipment.Entities;
 using Shipment.Repositories;
@@ -75,6 +76,18 @@ namespace VijaySalesAPI.Controllers
             return status;
 
         }
+
+        [HttpPut("updateStatus/{id:int}")]
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] string status)
+        {
+            if (await _shipmentService.UpdateShipmentStatusAsync(id, status))
+            {
+                return Ok("Update success");
+            }
+
+            return BadRequest("Update failed");
+        }
+
 
         [HttpDelete("{id:int}")]
         public async Task<bool> Delete(int id) { 
