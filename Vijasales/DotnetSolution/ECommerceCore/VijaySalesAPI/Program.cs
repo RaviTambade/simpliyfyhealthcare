@@ -1,5 +1,5 @@
 using Catalog.Repositories;
-using Catalog.Repositories.ORM;
+using Catalog.Repositories.Connected;
 using Catalog.Services;
 using CRM.Repositories.ORM;
 using CRM.Repositories;

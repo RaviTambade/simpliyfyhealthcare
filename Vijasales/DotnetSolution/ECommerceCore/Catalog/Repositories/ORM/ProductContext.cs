@@ -10,6 +10,7 @@ namespace Catalog.Repositories.ORM
 
 
         public DbSet<Product> Products { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string conString = @"";

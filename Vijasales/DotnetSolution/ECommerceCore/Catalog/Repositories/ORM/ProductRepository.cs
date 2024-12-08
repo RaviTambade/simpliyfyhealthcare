@@ -1,6 +1,7 @@
 ﻿using Catalog.Entities;
 using Catalog.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Catalog.Repositories.ORM
 {
     public class  ProductRepository:IProductRepository
     {
+        
+
         public async Task<List<Product>> GetAllAsync()
         {
             using (var ctx = new ProductContext())
