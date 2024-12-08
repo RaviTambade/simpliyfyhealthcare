@@ -237,55 +237,76 @@ namespace OrderProcessing.Repositories.Connected
 
             return status;
         }
+
         public async Task<List<OrderList>> GetOrderDetailsAsync(int customerId)
         {
-            OrderResponse response = new OrderResponse();
-            SqlConnection conn = new SqlConnection(conString);
-            string query = "EXEC VsGetCurrentOrderDetails @CustomerId";
-            SqlCommand cmd = new SqlCommand(query,conn as SqlConnection);
-            SqlParameter customerIdParameter = new SqlParameter("@CustomerId",SqlDbType.Int);
-            cmd.CommandType = CommandType.StoredProcedure;
-            customerIdParameter.Value = customerId;
-            cmd.Parameters.Add(query);
-            try
-            {
-                await conn.OpenAsync();
-                IDataReader dr = await cmd.ExecuteReaderAsync();
-                while(dr.Read())
-                {
-                    int orderId = Convert.ToInt32(dr["OrderId"].ToString());
-                    string name = dr["Name"].ToString();
-                    string brand = dr["Brand"].ToString();
-                    string title = dr["Title"].ToString();
-                    int quantity = Convert.ToInt32(dr["Quantity"].ToString());
-                    decimal price = Convert.ToDecimal(dr["Price"].ToString());
-                    decimal totalPrice = Convert.ToDecimal(dr["TotalPrice"].ToString());
-                    DateTime orderdate = Convert.ToDateTime(dr["OrderDate"].ToString());
-                    string orderStatus = dr["OrderStatus"].ToString();
+            // Initialize an empty list to hold the order details
+            List<OrderList> orderLists = new List<OrderList>();
 
-                    OrderList orderList = new OrderList {
-                        OrderId = orderId,
-                        Name = name,
-                        Brand = brand,
-                        Title = title,
-                        Quantity = quantity,
-                        Price = price,
-                        TotalPrice = totalPrice,
-                        OrderDate = orderdate,
-                        OrderStatus = orderStatus,
-                    };
-                    response.OrderLists.Add(orderList);
+            // Initialize the SQL connection
+            using (SqlConnection conn = new SqlConnection(conString))
+            {
+                // Create the SqlCommand to execute the stored procedure
+                SqlCommand cmd = new SqlCommand("VsGetCurrentOrderDetails", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Add the parameter for customerId
+                cmd.Parameters.Add(new SqlParameter("@order_id", SqlDbType.Int) { Value = customerId });
+
+                try
+                {
+                    // Open the connection asynchronously
+                    await conn.OpenAsync();
+
+                    // Execute the query asynchronously and read the results
+                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await dr.ReadAsync()) // Use ReadAsync for async data reading
+                        {
+                            // Read each column value
+                            int orderId = Convert.ToInt32(dr["OrderId"]);
+                            string name = dr["Name"].ToString();
+                            string brand = dr["Brand"].ToString();
+                            string title = dr["Title"].ToString();
+                            int quantity = Convert.ToInt32(dr["Quantity"]);
+                            decimal price = Convert.ToDecimal(dr["Price"]);
+                            decimal totalPrice = Convert.ToDecimal(dr["TotalPrice"]);
+                            DateTime orderDate = Convert.ToDateTime(dr["OrderDate"]);
+                            string orderStatus = dr["OrderStatus"].ToString();
+
+                            // Create an OrderList object and populate it
+                            OrderList orderList = new OrderList
+                            {
+                                OrderId = orderId,
+                                Name = name,
+                                Brand = brand,
+                                Title = title,
+                                Quantity = quantity,
+                                Price = price,
+                                TotalPrice = totalPrice,
+                                OrderDate = orderDate,
+                                OrderStatus = orderStatus,
+                            };
+
+                            // Add the order to the list
+                            orderLists.Add(orderList);
+                        }
+                    }
                 }
-            }catch(Exception ex)
-            {
-                Console.Write(ex.Message);
+                catch (Exception ex)
+                {
+                    // Handle the exception (log it, rethrow, or show a message)
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    // Ensure the connection is closed
+                    await conn.CloseAsync();
+                }
             }
-            finally
-            {
-                await conn.CloseAsync();
-            }
-            
-            return response.OrderLists;
+
+            // Return the list of orders
+            return orderLists;
         }
 
         //OrderItems 
