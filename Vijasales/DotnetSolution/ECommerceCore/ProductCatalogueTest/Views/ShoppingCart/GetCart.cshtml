@@ -27,60 +27,67 @@
 </div>
 
 <script>
-    // Function to render cart items
+    
     let addToCart = (data) => {
         $('#cart-items-list').html('');  
-        let totalAmount = 0;  
+        let totalAmount = 0;
 
-        $.each(data.items, (index, item) => {
-            
-            $.ajax({
-                url: `http://localhost:5218/api/products/${item.productId}`, 
-                type: "GET",
-                success: function (product) {
-                    var cardHtml = `
-                                <li class="d-flex justify-content-center">
-                                    <div class="card mb-3 w-75">
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="${product.imageUrl || 'default-image.jpg'}" class="img-fluid rounded-start" alt="Product Image">
-                                            </div>
-                                            <div class="col-md-8 d-flex align-items-center">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${product.title}</h5>
-                                                    <p class="card-text text-secondary">${product.description}</p>
-                                                    <p class="card-text text-secondary">Price: Rs ${product.price}</p>
+        if (data.items && data.items.length > 0) {
+            $.each(data.items, (index, item) => {
+                $.ajax({
+                    url: `http://localhost:5218/api/products/${item.productId}`,
+                    type: "GET",
+                    success: function (product) {
+                        var cardHtml = `
+                            <li class="d-flex justify-content-center">
+                                <div class="card mb-3 w-75">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="${product.imageUrl || 'default-image.jpg'}" class="img-fluid rounded-start" alt="Product Image">
+                                        </div>
+                                        <div class="col-md-8 d-flex align-items-center">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${product.title}</h5>
+                                                <p class="card-text text-secondary">${product.description}</p>
+                                                <p class="card-text text-secondary">Price: Rs ${product.price}</p>
 
-                                                    <!-- Quantity Control with Quantity display -->
-                                                    <div class="d-flex align-items-center">
-                                                        <button class="btn btn-sm btn-info increase-quantity-btn" data-product-id="${item.productId}">+</button>
-                                                        <span class="mx-2" id="quantity-${item.productId}">${item.quantity}</span> <!-- Display Quantity -->
-                                                        <button class="btn btn-sm btn-warning decrease-quantity-btn" data-product-id="${item.productId}">-</button>
-                                                    </div>
-
-                                                    <!-- Delete Product (Trash Icon) -->
-                                                    <button class="w-25 btn btn-sm btn-danger remove-product-btn" data-product-id="${item.productId}">
-                                                            Delete
-                                                    </button>
+                                                <!-- Quantity Control with Quantity display -->
+                                                <div class="d-flex align-items-center">
+                                                    <button class="btn btn-sm btn-info increase-quantity-btn" data-product-id="${item.productId}">+</button>
+                                                    <span class="mx-2" id="quantity-${item.productId}">${item.quantity}</span> <!-- Display Quantity -->
+                                                    <button class="btn btn-sm btn-warning decrease-quantity-btn" data-product-id="${item.productId}">-</button>
                                                 </div>
+
+                                                <!-- Delete Product (Trash Icon) -->
+                                                <button class="w-25 btn btn-sm btn-danger remove-product-btn" data-product-id="${item.productId}">
+                                                    Delete
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                </li>`;
+                                </div>
+                            </li>`;
 
-                    $('#cart-items-list').append(cardHtml);  
+                        $('#cart-items-list').append(cardHtml);  
 
-                    // Update the total amount
-                    totalAmount += product.price * item.quantity;
-                    $('#total-amount').text(`Total: Rs ${totalAmount}`);  
-                },
-                error: function (error) {
-                    console.error('Error fetching product details:', error);
-                    alert('Error fetching product details.');
-                }
+                        
+                        totalAmount += product.price * item.quantity;
+                    },
+                    error: function (error) {
+                        console.error('Error fetching product details:', error);
+                        alert('Error fetching product details.');
+                    }
+                });
             });
-        });
+
+            
+            $('#total-amount').text(`Total: Rs ${totalAmount}`);
+        } else {
+            
+            $('#total-amount').text('Total: Rs 0');
+        }
     }
+
 
     $(document).ready(() => {
         loadCart();

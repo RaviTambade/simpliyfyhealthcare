@@ -1,22 +1,30 @@
 using Catalog.Repositories;
-using Catalog.Repositories.ORM;
+using Catalog.Repositories.Connected;
 using Catalog.Services;
 using CRM.Repositories.ORM;
 using CRM.Repositories;
 using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
+<<<<<<< HEAD
 using PaymentProcessing.Repositories.Connected;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
 using Banking.Repositories.Connected;
+=======
+>>>>>>> 7e76da7396105c063afaec95051ea91a2b533a6b
 using Banking.Services;
+using Banking.Repositories.Connected;
+using PaymentProcessing.Repositories.Connected;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7e76da7396105c063afaec95051ea91a2b533a6b
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -64,8 +72,6 @@ builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
 
 builder.Services.AddTransient<IUserService, UserService>();
-
-builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 builder.Services.AddTransient<IOrderService, OrderService>();
@@ -80,6 +86,7 @@ builder.Services.AddTransient<ICardService, CardServices>();
 
 var app = builder.Build();
 
+<<<<<<< HEAD
 // Configure the HTTP request pipeline.
 app.UseCors("AllowLocalhost");
 app.UseRouting();
@@ -92,10 +99,16 @@ app.UseRouting();
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
+=======
+>>>>>>> 7e76da7396105c063afaec95051ea91a2b533a6b
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7e76da7396105c063afaec95051ea91a2b533a6b
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();

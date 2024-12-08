@@ -20,21 +20,27 @@
     </div>
 
     <!-- Payment Form -->
-    <form id="paymentForm" class="p-4 border shadow-sm rounded bg-light">
+    < form id="paymentForm" class="p-4 border shadow-sm rounded bg-light">
         <!-- Credit/Debit Card Fields -->
         <div id="creditDebitCardForm" class="payment-method-form">
             <h4 class="mb-3">Card Details</h4>
             <div class="form-group mb-3">
                 <label for="cardType">Card Type</label>
                 <select class="form-control" id="cardType">
-                    <option value="creditCard">Credit Card</option>
-                    <option value="debitCard">Debit Card</option>
+                    <option value="default">Select</option>
+                    <option value="Credit">Credit Card</option>
+                    <option value="Debit">Debit Card</option>
                 </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="accountNumber">Account Number </label>
+                <input type="text" class="form-control" id="cardAccountNumber" placeholder="1234567891011" maxlength="12" required />
             </div>
             <div class="form-group mb-3">
                 <label for="cardNumber">Card Number</label>
                 <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number" required />
             </div>
+
             <div class="form-group mb-3">
                 <label for="cardExpiry">Expiry Date (MM/YY)</label>
                 <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5" required />
@@ -54,13 +60,17 @@
         <div id="netBankingForm" class="payment-method-form" style="display: none;">
             <h4 class="mb-3">Net Banking</h4>
             <div class="form-group mb-3">
+                <label for="accountNumber">Account Number </label>
+                <input type="text" class="form-control" id=bankingAccountNumber" placeholder="1234567891011" maxlength="12" required />
+            </div>
+            <div class="form-group mb-3">
                 <label for="bankName">Select Bank</label>
                 <select class="form-control" id="bankName">
                     <option value="default">Select</option>
-                    <option value="bank1">Bank 1</option>
-                    <option value="bank2">Bank 2</option>
-                    <option value="bank3">Bank 3</option>
-                    <option value="bank4">Bank 4</option>
+                    <option value="HDFC">HDFC</option>
+                    <option value="ICICI">ICICI</option>
+                    <option value="BankOfMaharashtra">BankOfMaharashtra</option>
+                    <option value="KOTAK">KOTAK</option>
                 </select>
             </div>
             <div class="form-group mb-3">
@@ -138,6 +148,8 @@
             $("#verifyCard").click(function () {
 
                 var cardData = {
+                    accountNumber: $("#cardAccountNumber").val(),
+
 
                     cardType: $("#cardType").val(),
 
@@ -165,6 +177,8 @@
             $("#verifyNetBanking").click(function () {
 
                 var netBankingData = {
+                accountNumber: $("#bankAccountNumber").val(),
+
 
                     bankName: $("#bankName").val(),
 
