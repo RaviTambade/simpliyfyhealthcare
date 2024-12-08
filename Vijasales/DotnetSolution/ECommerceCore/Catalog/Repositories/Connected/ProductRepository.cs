@@ -486,5 +486,15 @@ namespace Catalog.Repositories.Connected
                 return new List<Product>();
             }
         }
+
+        public async Task<List<string>> GetCategoriesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<string>> GetBrandsAsync(string category)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
