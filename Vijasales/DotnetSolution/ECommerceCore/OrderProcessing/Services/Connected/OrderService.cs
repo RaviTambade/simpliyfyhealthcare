@@ -41,5 +41,10 @@ namespace OrderProcessing.Services.Connected
         {
             return await _svc.UpdateAsync(order);
         }
+
+        public async Task<List<OrderList>> GetOrderDetailsAsync(int customerId)
+        {
+            return await _svc.GetOrderDetailsAsync(customerId);
+        }
     }
 }

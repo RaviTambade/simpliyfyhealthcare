@@ -11,6 +11,7 @@ using PaymentProcessing.Repositories.Connected;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
+<<<<<<< HEAD
 
 using Banking.Repositories.Connected;
 using Banking.Services;
@@ -19,6 +20,11 @@ using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
 
+=======
+using Banking.Repositories.Connected;
+using Banking.Services;
+using Banking.Repositories.Connected;
+>>>>>>> 9b2a796986941dd7555008528c99c9e4b1581233
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -28,7 +34,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddCors();
-
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
@@ -55,14 +60,14 @@ builder.Services.AddCors(options =>
 });
 // Adding services which are needed in the future
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-// Register IDataRepository and ProductRepository for dependency injection
+// Register IDataRepository 
 
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 
 
-// Register ProductService (already done in your code)
+
 builder.Services.AddTransient<IProductService, ProductService>();
 
 builder.Services.AddTransient<IUserService, UserService>();
@@ -78,6 +83,8 @@ builder.Services.AddTransient<IShipmentService, ShipmentService>();
 builder.Services.AddTransient<ICardRepository, CardRepository>();
 
 builder.Services.AddTransient<ICardService, CardServices>();
+
+//Register context
 
 
 var app = builder.Build();
@@ -97,7 +104,6 @@ app.UseRouting();
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-
 
 app.UseAuthorization();
 app.UseSession();
