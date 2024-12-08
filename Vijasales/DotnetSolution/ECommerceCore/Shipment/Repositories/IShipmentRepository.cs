@@ -9,20 +9,20 @@ namespace Shipment.Repositories
 {
     public interface IShipmentRepository
     {
-        List<Delivery> GetAll();
+        Task<List<Delivery>> GetAllAsync();
 
-        List<Delivery> GetByDate(DateTime date);
+        Task<List<Delivery>> GetByDateAsync(DateTime date);
 
-        List<Delivery> GetByStatus(string status);
+        Task<List<Delivery>> GetByStatusAsync(string status);
 
         // id refers to shipment id
-        bool Delete(int id);
+        Task<bool> DeleteAsync(int id);
 
-        ShipmentDetail GetById(int shipmentId);
+        Task<ShipmentDetail> GetByIdAsync(int shipmentId);
 
-        bool Create(Delivery shipment);
+        Task<bool> CreateAsync(Delivery shipment);
 
-        bool Update(Delivery shipment);
+        Task<bool> UpdateAsync(Delivery shipment);
 
 
     }
