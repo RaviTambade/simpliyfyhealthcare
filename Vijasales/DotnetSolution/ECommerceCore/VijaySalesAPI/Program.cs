@@ -7,18 +7,16 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
-<<<<<<< HEAD
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-=======
+
 using Banking.Repositories.Connected;
 using Banking.Services;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
->>>>>>> 176e8a087db0eb4ddcc2f754afc62fb5257f870b
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -82,7 +80,6 @@ builder.Services.AddTransient<ICardService, CardServices>();
 
 var app = builder.Build();
 
-<<<<<<< HEAD
 // Configure the HTTP request pipeline.
 app.UseCors("AllowLocalhost");
 app.UseRouting();
@@ -95,12 +92,10 @@ app.UseRouting();
 app.UseCors("AllowLocalhost");
 
 app.UseRouting();
-=======
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
->>>>>>> 176e8a087db0eb4ddcc2f754afc62fb5257f870b
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
