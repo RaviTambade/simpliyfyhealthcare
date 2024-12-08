@@ -36,11 +36,43 @@ namespace Catalog.Services
             return product;
         }
 
+        public async Task<List<Product>> GetByBrandAsync(string brand)
+        {
+            try
+            {
+                List<Product> products = await _repo.GetByBrandAsync(brand);
+                return products;
+            }
+            catch(Exception ex)
+            {
+                return new List<Product>();
+            }
+        }
 
         public  async Task<List<Product>> GetByCategoryAsync(string category)
         {
-            List<Product> products = await _repo.GetByCategoryAsync(category);
-            return products;
+            try
+            {
+                List<Product> products = await _repo.GetByCategoryAsync(category);
+                return products;
+            }
+            catch (Exception ex)
+            {
+                return new List<Product>();
+            }
+        }
+
+        public async Task<List<Product>> GetByCategoryBrandAsync(string category, string brand)
+        {
+            try
+            {
+                List<Product> products = await _repo.GetByCategoryBrandAsync(category, brand);
+                return products;
+            }
+            catch( Exception ex)
+            {
+                return new List<Product>();
+            }
         }
 
         public async Task<bool> InsertAsync(Product product)
