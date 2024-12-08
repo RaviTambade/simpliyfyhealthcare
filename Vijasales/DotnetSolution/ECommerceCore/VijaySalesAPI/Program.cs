@@ -6,13 +6,12 @@ using CRM.Repositories;
 using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
-using PaymentProcessing.Repositories.Connected;
-using Banking.Repositories.Connected;
 using Banking.Services;
+using Banking.Repositories.Connected;
+using PaymentProcessing.Repositories.Connected;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -60,8 +59,6 @@ builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
 
 builder.Services.AddTransient<IUserService, UserService>();
-
-builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 builder.Services.AddTransient<IOrderService, OrderService>();
@@ -79,6 +76,7 @@ var app = builder.Build();
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
+
 
 app.UseAuthorization();
 app.UseSession();
