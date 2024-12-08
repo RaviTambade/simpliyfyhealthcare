@@ -62,6 +62,22 @@ namespace VijaySalesAPI.Controllers
             return Ok(products);
         }
 
+        // GET api/<ProductsController>/
+        [HttpGet("categoryList/")]
+        public async Task<ActionResult<List<Product>>> GetCategories()
+        {
+            var categories = await _productService.GetCategoriesAsync();
+            return Ok(categories);
+        }
+
+        [HttpGet("brandList/{category}")]
+        public async Task<ActionResult<List<Product>>> GetBrands(string category)
+        {
+            var brands = await _productService.GetBrandsAsync(category);
+            return Ok(brands);
+        }
+
+
         // POST api/<ProductsController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Product product)

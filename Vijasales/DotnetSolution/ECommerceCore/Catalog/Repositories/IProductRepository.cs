@@ -26,6 +26,10 @@ namespace Catalog.Repositories
 
         Task<List<Product>> GetByCategoryBrandAsync(string category, string Brand);
 
+        Task<List<string>> GetCategoriesAsync();
+
+        Task<List<string>> GetBrandsAsync(string category);
+
 
     }
 }

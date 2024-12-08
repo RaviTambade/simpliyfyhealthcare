@@ -1,6 +1,6 @@
 ﻿using Catalog.Entities;
 using Catalog.Repositories;
-using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +13,16 @@ namespace Catalog.Repositories.ORM
     {
         public async Task<List<Product>> GetAllAsync()
         {
-            using (var ctx = new ProductContext())
+            using (var ctx = new ECommerceContext())
             {
-                var products =await  ctx.Products.ToListAsync();
-                 return products;
+                var products = await ctx.Products.ToListAsync();
+                return products;
             }
         }
 
         public async Task<Product> GetByIdAsync(int id)
         {
-            using (var ctx = new ProductContext())
+            using (var ctx = new ECommerceContext())
             {
                 var product = await ctx.Products.FindAsync(id);
                 return product;
@@ -32,7 +32,7 @@ namespace Catalog.Repositories.ORM
         public async Task<bool> InsertAsync(Product product)
         {
             bool status = false;
-            using (var ctx = new ProductContext())
+            using (var ctx = new ECommerceContext())
             {
                 ctx.Products.Add(product);
                await ctx.SaveChangesAsync();
@@ -44,7 +44,7 @@ namespace Catalog.Repositories.ORM
         public async Task<bool> DeleteAsync(int Id)
         {
             bool status = false;
-            using (var ctx = new ProductContext())
+            using (var ctx = new ECommerceContext())
             {
                 ctx.Products.Remove(await ctx.Products.FindAsync(Id));
                await ctx.SaveChangesAsync();
@@ -53,14 +53,20 @@ namespace Catalog.Repositories.ORM
             return status;
         }
 
-        public async Task <bool> UpdateAsync(Product product)
+        public async Task<bool> UpdateAsync(Product product)
         {
             bool status = false;
-            using (var ctx = new ProductContext())
+            using (var ctx = new ECommerceContext())
             {
+                // Attach the entity to the context if it's not already tracked
+                ctx.Products.Attach(product);
 
-               ctx.Products.Update(product);
-              await ctx.SaveChangesAsync();
+                // Mark the entity as modified
+                ctx.Entry(product).State = EntityState.Modified;
+
+                // Save changes to the database
+                await ctx.SaveChangesAsync();
+
                 status = true;
             }
             return status;

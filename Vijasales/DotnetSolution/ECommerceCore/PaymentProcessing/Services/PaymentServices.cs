@@ -26,22 +26,10 @@ namespace PaymentProcessing.Services
         {
             return await _repo.GetPaymentAsync(id);
         }
-        /*
-
-<<<<<<< HEAD
-        public async Task<(string status)> PayNow(int orderId)
-=======
-
-<<<<<<< HEAD
-        /*public async Task<(string status)> PayNow(int orderId, string fromAccountNumber, string paymentMode)
-=======
-  
->>>>>>> 9b2a796986941dd7555008528c99c9e4b1581233
 
         /*
         public async Task<(string status)> PayNow(int orderId, string fromAccountNumber, string paymentMode)
->>>>>>> 3f6c8ede93d69fab84664e5cd5e552d0ed3eb2ee
->>>>>>> e2c15e103f327f26c785c03fb9723bc38518ff42
+
         {
             Payment payment = new Payment { OrderId=orderId,PaymentMode=paymentMode };
             return _repo.InsertAsync(payment);
