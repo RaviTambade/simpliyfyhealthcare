@@ -14,17 +14,17 @@
         position: relative;
     }
 
-    .dropdown-submenu .dropdown-menu {
-        top: 0;
-        left: 100%;
-        margin-top: -6px;
-        margin-left: 0;
-        display: none;
-    }
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: 0;
+            display: none;
+        }
 
-    .dropdown-submenu:hover .dropdown-menu {
-        display: block;
-    }
+        .dropdown-submenu:hover .dropdown-menu {
+            display: block;
+        }
 
 
     .dropdown-item {
@@ -57,9 +57,9 @@
         color: white;
     }
 
-    .view-details-btn:hover {
-        background-color: #218838;
-    }
+        .view-details-btn:hover {
+            background-color: #218838;
+        }
 
     .add-to-cart-btn {
         margin-top: 10px;
@@ -69,14 +69,14 @@
         transition: none;
     }
 
-    .add-to-cart-btn:hover {
-        background-color: #007bff !important;
-        color: white !important;
-    }
+        .add-to-cart-btn:hover {
+            background-color: #007bff !important;
+            color: white !important;
+        }
 
-    .add-to-cart-btn:focus {
-        outline: none !important;
-    }
+        .add-to-cart-btn:focus {
+            outline: none !important;
+        }
 
     .add-to-cart-btn {
         background-color: #007bff !important;
@@ -84,10 +84,10 @@
         border: none;
     }
 
-    .add-to-cart-btn:hover {
-        background-color: #007bff !important;
-        color: white !important;
-    }
+        .add-to-cart-btn:hover {
+            background-color: #007bff !important;
+            color: white !important;
+        }
 
     .view-details-btn {
         background-color: transparent;
@@ -95,11 +95,11 @@
         border: 1px solid #28a745;
     }
 
-    .view-details-btn:hover {
-        background-color: #28a745;
-        color: white;
-        border: 1px solid #218838;
-    }
+        .view-details-btn:hover {
+            background-color: #28a745;
+            color: white;
+            border: 1px solid #218838;
+        }
 
 </style>
 
@@ -133,7 +133,7 @@
                 </li>
 
                 <li class="dropdown-submenu">
-                    <button class="dropdown-item dropdown-toggle" name="btn-category" type="button"  id="btnTV">TV</button>
+                    <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" id="btnTV">TV</button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">LG</a></li>
                         <li><a class="dropdown-item" href="#">Sony</a></li>
@@ -183,30 +183,30 @@
         var productHtml = '';
         data.forEach(function (card) {
             productHtml += `
-                <div class="col-12 col-sm-6 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="${card.imageUrl}" class="card-img-top product-image" alt="${card.title}" />
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${card.title}</h5>
-                            <p class="card-text">₹ ${card.price}</p>
-                            <!-- View Details Button (Green) -->
-                            <a href="/Products/Details/${card.id}" class="btn view-details-btn mt-auto">View Details</a>
-                            <!-- Add to Cart Button (Blue) -->
-                            <button class="btn add-to-cart-btn mt-2"
-                                    data-id="${card.id}"
-                                    data-title="${card.title}"
-                                    data-price="${card.price}"
-                                    data-description="${card.description}"
-                                    data-imageUrl="${card.imageUrl}"
-                                    data-stock="${card.stock}"
-                                    data-category="${card.category}"
-                                    data-brand="${card.brand}">
-                                Add to Cart
-                            </button>
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="${card.imageUrl}" class="card-img-top product-image" alt="${card.title}" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${card.title}</h5>
+                                <p class="card-text">₹ ${card.price}</p>
+                                <!-- View Details Button (Green) -->
+                                <a href="/Products/Details/${card.id}" class="btn view-details-btn mt-auto">View Details</a>
+                                <!-- Add to Cart Button (Blue) -->
+                                <button class="btn add-to-cart-btn mt-2"
+                                        data-id="${card.id}"
+                                        data-title="${card.title}"
+                                        data-price="${card.price}"
+                                        data-description="${card.description}"
+                                        data-imageUrl="${card.imageUrl}"
+                                        data-stock="${card.stock}"
+                                        data-category="${card.category}"
+                                        data-brand="${card.brand}">
+                                    Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
         });
 
         // Update the product grid in the DOM with the generated HTML
@@ -217,39 +217,39 @@
         $('ul.list-unstyled').html('');  // Clear the list before appending
         $.each(products, (index, item) => {
             var cardHtml = `
-                                <li class="d-flex justify-content-center">
-                                    <div class="card mb-3 w-75">
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="${item.imageUrl}" class="img-fluid rounded-start" alt="${item.title}">
-                                            </div>
-                                            <div class="col-md-8 d-flex align-items-center">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${item.title}</h5>
-                                                    <p class="card-text text-secondary">Rs ${item.price}</p>
+                                    <li class="d-flex justify-content-center">
+                                        <div class="card mb-3 w-75">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    <img src="${item.imageUrl}" class="img-fluid rounded-start" alt="${item.title}">
+                                                </div>
+                                                <div class="col-md-8 d-flex align-items-center">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">${item.title}</h5>
+                                                        <p class="card-text text-secondary">Rs ${item.price}</p>
 
-                                                    <!-- More Details Button (Only Green on Hover) -->
-                                                    <a class="w-25 btn view-details-btn btn-sm btn-soft-secondary rounded-5" href="/Products/Details/${item.id}">More Details</a>
+                                                        <!-- More Details Button (Only Green on Hover) -->
+                                                        <a class="w-25 btn view-details-btn btn-sm btn-soft-secondary rounded-5" href="/Products/Details/${item.id}">More Details</a>
 
 
-                                                    <!-- Add to Cart Button (Always Blue) -->
-                                                    <a class=" w-25 btn add-to-cart-btn btn-sm btn-sm-wide rounded-5"
-                                                       href="#"
-                                                       data-id="${item.id}"
-                                                       data-title="${item.title}"
-                                                       data-price="${item.price}"
-                                                       data-description="${item.description}"
-                                                       data-imageUrl="${item.imageUrl}"
-                                                       data-stock="${item.stock}"
-                                                       data-category="${item.category}"
-                                                       data-brand="${item.brand}">
-                                                       Add to Cart
-                                                    </a>
+                                                        <!-- Add to Cart Button (Always Blue) -->
+                                                        <a class=" w-25 btn add-to-cart-btn btn-sm btn-sm-wide rounded-5"
+                                                           href="#"
+                                                           data-id="${item.id}"
+                                                           data-title="${item.title}"
+                                                           data-price="${item.price}"
+                                                           data-description="${item.description}"
+                                                           data-imageUrl="${item.imageUrl}"
+                                                           data-stock="${item.stock}"
+                                                           data-category="${item.category}"
+                                                           data-brand="${item.brand}">
+                                                           Add to Cart
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>`;
+                                    </li>`;
             $('ul.list-unstyled').append(cardHtml);
         });
     }
@@ -262,8 +262,8 @@
                 withCredentials: true  // Ensures cookies are sent with the request
             },
             success: function (data) {
-                    gridCard(data)
-                    listCard(data)
+                gridCard(data)
+                listCard(data)
             },
             error: function () {
                 alert("An error occurred while loading products.");
@@ -288,8 +288,8 @@
         });
     }
     $(document).ready(() => {
-        
-        
+
+
         const toggleViewBtn = document.getElementById('toggleViewBtn');
         const gridView = document.getElementById('gridView');
         const cardView = document.getElementById('cardView');
@@ -311,7 +311,7 @@
         });
 
 
-        loadAllProducts()        
+        loadAllProducts()
 
         // Handle Add to Cart button click
         $(document).on('click', '.add-to-cart-btn', function (e) {
@@ -365,7 +365,7 @@
             let searchQuery = $("#textSearch").val();
             console.log(searchQuery)
             loadProductsByCat(searchQuery)
-        }); 
+        });
     });
 
 </script>

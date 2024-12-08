@@ -7,6 +7,7 @@ using Shipment.Repositories.ORM;
 using Shipment.Repositories;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
+using System.Runtime.CompilerServices;
 
 namespace Shipment.Services
 {
@@ -21,47 +22,47 @@ namespace Shipment.Services
             _repo = new ShipmentRepository(configuration);
         }
 
-        public bool CreateShipment(Delivery shipment)
+        public async Task<bool> CreateShipmentAsync(Delivery shipment)
         {
-            if(_repo.Create(shipment))
+            if(await _repo.CreateAsync(shipment))
             {
                 return true;
             }
             return false;
         }
 
-        public bool DeleteShipment(int id)
+        public async Task<bool> DeleteShipmentAsync(int id)
         {
-            if (_repo.Delete(id))
+            if (await _repo.DeleteAsync(id))
             {
                 return true;
             }
             return false;
         }
 
-        public List<Delivery> GetAll()
+        public async Task<List<Delivery>> GetAllAsync()
         {
-            return _repo.GetAll();
+            return await _repo.GetAllAsync();
         }
 
-        public List<Delivery> GetByDate(DateTime date)
+        public async Task<List<Delivery>> GetByDateAsync(DateTime date)
         {
-            return _repo.GetByDate(date);
+            return await _repo.GetByDateAsync(date);
         }
 
-        public ShipmentDetail GetById(int shipmentId)
+        public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
-            return _repo.GetById(shipmentId);
+            return await _repo.GetByIdAsync(shipmentId);
         }
 
-        public List<Delivery> GetByStatus(string status)
+        public async Task<List<Delivery>> GetByStatusAsync(string status)
         {
-            return _repo.GetByStatus(status);
+            return await _repo.GetByStatusAsync(status);
         }
 
-        public bool UpdateShipment(Delivery shipment)
+        public async Task<bool> UpdateShipmentAsync(Delivery shipment)
         {
-            if (_repo.Update(shipment))
+            if (await _repo.UpdateAsync(shipment))
             {
                 return true;
             }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shipment.Repositories.Connected
 {
-    public class ShipmentRepository : IShipmentRepository
+    public class ShipmentRepository
     {
 
         public bool Create(Delivery shipment)

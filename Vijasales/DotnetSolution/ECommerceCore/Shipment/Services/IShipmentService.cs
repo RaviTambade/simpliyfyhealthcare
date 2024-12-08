@@ -9,19 +9,19 @@ namespace Shipment.Services
 {
     public interface IShipmentService
     {
-        bool CreateShipment(Delivery shipment);
+        Task<bool> CreateShipmentAsync(Delivery shipment);
 
-        bool UpdateShipment(Delivery shipment);
+        Task<bool> UpdateShipmentAsync(Delivery shipment);
 
-        bool DeleteShipment(int id);
+        Task<bool> DeleteShipmentAsync(int id);
 
-        List<Delivery> GetAll();
+        Task<List<Delivery>> GetAllAsync();
 
-        List<Delivery> GetByDate(DateTime date);
+        Task<List<Delivery>> GetByDateAsync(DateTime date);
 
-        List<Delivery> GetByStatus(string status);
+        Task<List<Delivery>> GetByStatusAsync(string status);
 
-        ShipmentDetail GetById(int id);
+        Task<ShipmentDetail> GetByIdAsync(int id);
 
     }
 }
