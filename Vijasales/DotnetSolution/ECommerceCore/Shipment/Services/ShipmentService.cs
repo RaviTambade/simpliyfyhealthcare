@@ -5,53 +5,67 @@ using System.Collections.Generic;
 using System.Linq;
 using Shipment.Repositories.ORM;
 using Shipment.Repositories;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using System.Runtime.CompilerServices;
 
 namespace Shipment.Services
 {
     public class ShipmentService : IShipmentService
     {
-        //private readonly ShipmentContext _context;
+        private readonly IConfiguration _configuration;
+        private readonly IShipmentRepository _repo;
 
-        //public ShipmentService(ShipmentContext context)
-        //{
-        //    _context = context;
-        //}
-
-        public bool CreateShipment(Delivery shipment)
+        public ShipmentService(IConfiguration configuration)
         {
+            _configuration = configuration;
+            _repo = new ShipmentRepository(configuration);
+        }
+
+        public async Task<bool> CreateShipmentAsync(Delivery shipment)
+        {
+            if(await _repo.CreateAsync(shipment))
+            {
+                return true;
+            }
             return false;
         }
 
-        public bool DeleteShipment(int id)
+        public async Task<bool> DeleteShipmentAsync(int id)
         {
+            if (await _repo.DeleteAsync(id))
+            {
+                return true;
+            }
             return false;
         }
 
-        public List<Delivery> GetAll()
+        public async Task<List<Delivery>> GetAllAsync()
         {
-            IShipmentRepository repo = new ShipmentRepository();
-
-            return repo.GetAll();
+            return await _repo.GetAllAsync();
         }
 
-        public List<Delivery> GetByDate(DateTime date)
+        public async Task<List<Delivery>> GetByDateAsync(DateTime date)
         {
-            return null;
+            return await _repo.GetByDateAsync(date);
         }
 
-        public ShipmentDetail GetById(int shipmentId)
+        public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
-            IShipmentRepository repo = new ShipmentRepository();
-            return repo.GetById(shipmentId);
+            return await _repo.GetByIdAsync(shipmentId);
         }
 
-        public List<Delivery> GetByStatus(string status)
+        public async Task<List<Delivery>> GetByStatusAsync(string status)
         {
-            return null;
+            return await _repo.GetByStatusAsync(status);
         }
 
-        public bool UpdateShipment(Delivery shipment)
+        public async Task<bool> UpdateShipmentAsync(Delivery shipment)
         {
+            if (await _repo.UpdateAsync(shipment))
+            {
+                return true;
+            }
             return false;
         }
     }

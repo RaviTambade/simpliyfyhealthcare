@@ -1,0 +1,21 @@
+﻿<main>
+     
+  
+    
+</main>
+<script>
+
+  
+    fetch("/api/secure/data", {
+    method: "GET",
+    headers: {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InJhdmkiLCJyb2xlIjoiVXNlciIsIm5iZiI6MTczMzU2MjMwNCwiZXhwIjoxNzMzNTY1OTAzLCJpYXQiOjE3MzM1NjIzMDQsImlzcyI6InlvdXJJc3N1ZXIiLCJhdWQiOiJ5b3VyQXVkaWVuY2UifQ.bT1PRqjYrEmtF5kjQhQEM2oqAwJgIgpjLDqC-FrgszU"
+    }
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error("Error:", error));
+
+ 
+
+</script>

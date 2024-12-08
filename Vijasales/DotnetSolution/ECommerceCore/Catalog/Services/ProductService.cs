@@ -1,78 +1,58 @@
 ﻿using Catalog.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Catalog.Repositories;
+
+
 namespace Catalog.Services
 {
     public class ProductService : IProductService
     {
-        //Sampling data for testing purpose
-        private IProductRepository _repo;
-        public ProductService(IProductRepository repo) {
+        private readonly IProductRepository _repo;
+
+        public ProductService(IProductRepository repo)
+        {
             _repo = repo;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            Product theProduct = Get(id);
-            if (theProduct != null)
-            {
-                List<Product> allProducts = GetAll();
-                
-            }
-            return false;
+           bool status= await _repo.DeleteAsync(id);
+            return status;
         }
 
-        public Product Get(int id)
+        public async Task<List<Product>> GetAllAsync()
         {
-            Product product = _repo.GetById(id);
-
-            return product;
-        }
-
-        public List<Product> GetAll()
-        {
-            List<Product> products = new List<Product>();
-            products=_repo.GetAll();
+            
+            List<Product> products = await _repo.GetAllAsync();
             return products;
         }
 
-        public bool Insert(Product product)
-        {
-            List<Product> allProducts = GetAll();
-            allProducts.Add(product);
-           
 
-            return false;
+        public async Task<Product> GetAsync(int id)
+        {
+            Product product = await _repo.GetByIdAsync(id);
+            return product;
         }
 
-        public bool Update(Product productTobeUpdated)
+
+        public  async Task<List<Product>> GetByCategoryAsync(string category)
         {
-            Product theProduct = Get(productTobeUpdated.Id);
-            if (theProduct != null)
-            {
-                List<Product> allProducts = GetAll();
-                allProducts.Remove(theProduct);
-                allProducts.Add(productTobeUpdated);
-                
-            }
-            return false;
+            List<Product> products = await _repo.GetByCategoryAsync(category);
+            return products;
         }
 
-        public List<Product> GetByCategory(string category)
+        public async Task<bool> InsertAsync(Product product)
         {
-            try
-            {
-                List<Product> products = _repo.GetByCategory(category);
-                return products;
-            }
-            catch(Exception ex)
-            {
-                return new List<Product>();
-            }
+            bool status = await _repo.InsertAsync(product);
+            return status;
+        }
+
+        public async Task<bool> UpdateAsync(Product product)
+        {
+            bool status = await _repo.UpdateAsync(product);
+            return status;
         }
     }
 }
