@@ -1,24 +1,17 @@
 using Catalog.Repositories;
-using Catalog.Repositories.ORM;
+using Catalog.Repositories.Connected;
 using Catalog.Services;
 using CRM.Repositories.ORM;
 using CRM.Repositories;
 using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories;
-using PaymentProcessing.Repositories.Connected;
-<<<<<<< HEAD
-using OrderProcessing.Repositories.Connected;
-using OrderProcessing.Services;
-using OrderProcessing.Services.Connected;
-=======
-using Banking.Repositories.Connected;
 using Banking.Services;
+using Banking.Repositories.Connected;
+using PaymentProcessing.Repositories.Connected;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-
->>>>>>> 176e8a087db0eb4ddcc2f754afc62fb5257f870b
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -66,8 +59,6 @@ builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
 
 builder.Services.AddTransient<IUserService, UserService>();
-
-builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 builder.Services.AddTransient<IOrderService, OrderService>();
@@ -82,25 +73,11 @@ builder.Services.AddTransient<ICardService, CardServices>();
 
 var app = builder.Build();
 
-<<<<<<< HEAD
-// Configure the HTTP request pipeline.
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-app.UseRouting();
-
-app.UseCors("AllowLocalhost");
-
-app.UseRouting();
-
-app.UseCors("AllowLocalhost");
-
-app.UseRouting();
-=======
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
->>>>>>> 176e8a087db0eb4ddcc2f754afc62fb5257f870b
+
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();

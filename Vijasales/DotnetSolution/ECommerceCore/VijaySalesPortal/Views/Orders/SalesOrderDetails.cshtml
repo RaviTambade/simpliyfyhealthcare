@@ -1,0 +1,77 @@
+﻿
+@{
+}
+<h3>Orders for SalesPerson</h3>
+
+
+
+    <div class="container mt-4">
+        <h1 class="text-center">Order Details for Salesperson</h1>
+
+        <!-- List of Orders -->
+        <div id="ordersList">
+            <!-- Example Order Card 1 -->
+            <div class="card order-card">
+                <div class="card-header order-card-header">
+                    Order #12345
+                </div>
+                <div class="card-body">
+                    <p><strong>Customer Name:</strong> Raj Jadhav</p>
+                    <p><strong>Total:</strong> $200.00</p>
+                    <p><strong>Date:</strong> 2023-12-07</p>
+                    <p>
+                        <strong>Status:</strong>
+                        <select class="form-select status-dropdown" id="status12345" onchange="changeStatus(12345)">
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Example Order Card 2 -->
+            <div class="card order-card">
+                <div class="card-header order-card-header">
+                    Order #12346
+                </div>
+                <div class="card-body">
+                    <p><strong>Customer Name:</strong> vivek Kolambe</p>
+                    <p><strong>Total:</strong> $150.00</p>
+                    <p><strong>Date:</strong> 2023-12-06</p>
+                    <p>
+                        <strong>Status:</strong>
+                        <select class="form-select status-dropdown" id="status12346" onchange="changeStatus(12346)">
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Example Order Card 3 -->
+            <div class="card order-card">
+                <div class="card-header order-card-header">
+                    Order #12347
+                </div>
+                <div class="card-body">
+                    <p><strong>Customer Name:</strong> Shruti Kadam</p>
+                    <p><strong>Total:</strong> $150.00</p>
+                    <p><strong>Date:</strong> 2023-12-06</p>
+                    <p>
+                        <strong>Status:</strong>
+                        <select class="form-select status-dropdown" id="status12347" onchange="changeStatus(12347)">
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Add more orders here -->
+        </div>
+    </div>
+
+   

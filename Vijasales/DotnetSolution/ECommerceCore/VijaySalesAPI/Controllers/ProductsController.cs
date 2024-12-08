@@ -45,6 +45,23 @@ namespace VijaySalesAPI.Controllers
             return Ok(products);
         }
 
+        // GET api/<ProductsController>/brand
+        /*[HttpGet("brand/{brand}")]
+        public async Task<ActionResult<List<Product>>> GetByBrand(string brand)
+        {
+            var products = await _productService.GetByBrandAsync(brand);
+            return Ok(products);
+        }*/
+
+
+        // GET api/<ProductsController>/category/brand
+        [HttpGet("{category}/{brand}")]
+        public async Task<ActionResult<List<Product>>> GetByCategoryBrand(string category,string brand)
+        {
+            var products = await _productService.GetByCategoryBrandAsync(category,brand);
+            return Ok(products);
+        }
+
         // POST api/<ProductsController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Product product)

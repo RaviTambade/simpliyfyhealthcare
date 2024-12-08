@@ -1,6 +1,7 @@
 ﻿using Catalog.Entities;
 using Catalog.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Catalog.Repositories.ORM
 {
     public class  ProductRepository:IProductRepository
     {
+        
+
         public async Task<List<Product>> GetAllAsync()
         {
             using (var ctx = new ProductContext())
@@ -70,9 +73,60 @@ namespace Catalog.Repositories.ORM
             throw new NotImplementedException();
         }
 
-        public Task<List<Product>> GetByCategoryAsync(string category)
+        public async Task<List<Product>> GetByCategoryAsync(string category)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var ctx = new ProductContext())
+                {
+                    var products = await ctx.Products
+                                             .Where(p => p.Category == category)
+                                             .ToListAsync();
+                    return products;
+                }
+            }
+            catch(Exception ex)
+            {
+                return new List<Product>();
+            }
         }
+
+        public async Task<List<Product>> GetByBrandAsync(string brand)
+        {
+            try
+            {
+                using (var ctx = new ProductContext())
+                {
+                    var products = await ctx.Products
+                                             .Where(p => p.Brand == brand)
+                                             .ToListAsync();
+                    return products;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Product>();
+            }
+        }
+
+        public async Task<List<Product>> GetByCategoryBrandAsync(string category,string brand)
+        {
+            try
+            {
+                using (var ctx = new ProductContext())
+                {
+                    var products = await ctx.Products
+                                             .Where(p => p.Category == category && p.Brand == brand)
+                                             .ToListAsync();
+                    return products;
+                }
+            }
+            catch (Exception ex)
+            {
+                return new List<Product>();
+            }
+        }
+
+
     }
 }
