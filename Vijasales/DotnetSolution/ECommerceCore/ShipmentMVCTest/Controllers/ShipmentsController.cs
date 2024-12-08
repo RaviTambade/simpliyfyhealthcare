@@ -24,7 +24,7 @@ namespace ShipmentMVCTest.Controllers
         // list of shipments 
         public IActionResult List()
         {
-            return View(_shipmentService.GetAll());
+            return View(_shipmentService.GetAllAsync());
         }
 
 
@@ -32,7 +32,7 @@ namespace ShipmentMVCTest.Controllers
         public IActionResult Details(int id)
         {
             // get the shipment using id
-            return View(_shipmentService.GetById(id));
+            return View(_shipmentService.GetByIdAsync(id));
         }
 
 
