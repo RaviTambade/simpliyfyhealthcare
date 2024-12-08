@@ -73,9 +73,10 @@ builder.Services.AddTransient<ICardService, CardServices>();
 
 var app = builder.Build();
 
-app.UseCors("AllowLocalhost");
 
+app.UseCors("AllowLocalhost");
 app.UseRouting();
+
 
 app.UseAuthorization();
 app.UseSession();

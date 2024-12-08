@@ -15,9 +15,9 @@ namespace VijaySalesAPI.Controllers
 
 
 
-        public OrdersController(IOrderService orderdervice)
+        public OrdersController(IOrderService orderService)
         {
-            _orderService = orderdervice;
+            _orderService = orderService;
         }
 
         // GET api/orders
