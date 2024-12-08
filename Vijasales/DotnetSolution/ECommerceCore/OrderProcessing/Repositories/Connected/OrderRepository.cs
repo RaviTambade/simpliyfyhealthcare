@@ -7,12 +7,21 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace OrderProcessing.Repositories.Connected
 {
     public class OrderRepository : IOrderRepository
     {
-        string conString = string.Empty;
+        public string conString;
+
+        private IConfiguration _configuration;
+        public OrderRepository(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            conString = this._configuration.GetConnectionString("DefaultConnection");
+        }
 
         public async Task<bool> DeleteAsync(int id)
         {
@@ -158,7 +167,7 @@ namespace OrderProcessing.Repositories.Connected
             CustomeridParameter.Value = order.CustomerId;
             SqlParameter TotalAmountParameter = new SqlParameter("@TotalAmount", SqlDbType.Decimal);
             TotalAmountParameter.Value = order.TotalAmount;
-            SqlParameter OrderDateParameter = new SqlParameter("OrderDate", SqlDbType.DateTime);
+            SqlParameter OrderDateParameter = new SqlParameter("@OrderDate", SqlDbType.DateTime);
             OrderDateParameter.Value = order.OrderDate;
             SqlParameter StatusParameter = new SqlParameter("@Status", SqlDbType.VarChar);
             StatusParameter.Value = order.Status;

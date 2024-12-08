@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProductCatalogueTest.Models;
 
-
-namespace ProductCatalogueTest.Controllers
+namespace VijaySalesPortal.Controllers
 {
     public class ProductsController : Controller
+   
     {
 
-       
         public IActionResult Index()
         {
             return View();
         }
-        
+     
 
         public IActionResult Details(int id)
         {

@@ -20,29 +20,29 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpGet("status/{Status}")]
-        public List<Delivery> GetByStatus(string status)
+        public async Task<List<Delivery>> GetByStatus(string status)
         {
-            List<Delivery> deliverylistbystatus = _shipmentService.GetByStatus(status);
+            List<Delivery> deliverylistbystatus = await _shipmentService.GetByStatusAsync(status);
             return deliverylistbystatus;
         }
 
         [HttpGet]
-        public List<Delivery> Get()
+        public async Task<List<Delivery>> GetAll()
         {
-            List<Delivery> deliveryList = _shipmentService.GetAll();
+            List<Delivery> deliveryList = await _shipmentService.GetAllAsync();
 
             return deliveryList;
         }
 
         [HttpGet("{id:int}")]
-        public ShipmentDetail Get(int id)
+        public async Task<ShipmentDetail> Get(int id)
         {
-            return _shipmentService.GetById(id);
+            return await _shipmentService.GetByIdAsync(id);
         }
 
 
         [HttpGet("date/{filterDate}")]
-        public IActionResult GetByDate(string filterDate)
+        public async Task<IActionResult> GetByDate(string filterDate)
         {
             DateTime date;
             if (!DateTime.TryParse(filterDate, out date))
@@ -50,44 +50,40 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest("Invalid date format.");
             }
 
-            List<Delivery> deliverylistbydate = _shipmentService.GetByDate(date);
+            List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date);
             return Ok(deliverylistbydate);
 
         }
 
         [HttpPost]
-        public bool Insert([FromBody] Delivery delivery)
+        public async Task<bool> Insert([FromBody] Delivery delivery)
         {
             bool status = false;
 
-            status=_shipmentService.CreateShipment(delivery);
+            status = await _shipmentService.CreateShipmentAsync(delivery);
 
             return status;
         }
 
+        // api/shipments/
         [HttpPut]
-        public bool Update([FromBody] Delivery delivery)
+        public async Task<bool> Update([FromBody] Delivery delivery)
         {
             bool status = false;
             
-            status= _shipmentService.UpdateShipment(delivery);
+            status = await _shipmentService.UpdateShipmentAsync(delivery);
             return status;
 
         }
 
         [HttpDelete("{id:int}")]
-        public bool Delete(int id) { 
+        public async Task<bool> Delete(int id) { 
             bool status = false;
-            status = _shipmentService.DeleteShipment(id);
+            status = await _shipmentService.DeleteShipmentAsync(id);
 
             return status;
         
         }
 
-
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

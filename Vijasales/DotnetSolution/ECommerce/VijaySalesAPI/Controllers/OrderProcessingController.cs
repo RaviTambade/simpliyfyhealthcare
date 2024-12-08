@@ -57,7 +57,7 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpGet]
-        [Route("customerorders/{id}")]
+
         public IEnumerable<Order> GetOrders(int id) 
         {
             IOrderService svc = new OrderService();
