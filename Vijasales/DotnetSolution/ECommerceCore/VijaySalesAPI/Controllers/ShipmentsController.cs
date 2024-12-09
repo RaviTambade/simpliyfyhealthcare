@@ -51,7 +51,23 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest("Invalid date format.");
             }
 
-            List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date);
+            List<Delivery> deliverylistbydaterange = await _shipmentService.GetByDateAsync(date);
+            return Ok(deliverylistbydaterange);
+
+        }
+
+        [HttpGet("dates/{startDate}/{endDate}")]
+        public async Task<IActionResult> GetByDate(string startDate,string endDate)
+        {
+            DateTime date1,date2;
+
+           
+            if ((!DateTime.TryParse(startDate, out date1) || (!DateTime.TryParse(endDate, out date2))))
+            {
+                return BadRequest("Invalid date format.");
+            }
+
+            List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date1,date2);
             return Ok(deliverylistbydate);
 
         }

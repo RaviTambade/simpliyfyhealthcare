@@ -104,6 +104,35 @@ namespace Shipment.Repositories.ORM
                
             }
         }
+        public async Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate)
+        {
+            List<Delivery> shipments = new List<Delivery>();
+
+            using (var context = new ShipmentContext(_configuration))
+            {
+                // Query to get shipments within the date range
+                var dbShipments = await context.Shipments
+                    .Where(s => s.ShipmentDate >= startdate && s.ShipmentDate <= enddate)
+                    .ToListAsync();
+
+                foreach (var shipment in dbShipments)
+                {
+                    // Mapping the shipment to Delivery object
+                    Delivery theShipment = new Delivery
+                    {
+                        Id = shipment.Id,
+                        OrderId = shipment.OrderId,
+                        ShipmentDate = shipment.ShipmentDate,
+                        Status = shipment.Status
+                    };
+
+                    shipments.Add(theShipment);
+                }
+            }
+
+            return shipments;
+        }
+
 
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {

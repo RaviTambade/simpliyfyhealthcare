@@ -26,6 +26,7 @@ namespace Shipment.Repositories
 
         Task<bool> UpdateStatusAsync(int id,  string status);
 
+         Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate);
 
     }
 }
