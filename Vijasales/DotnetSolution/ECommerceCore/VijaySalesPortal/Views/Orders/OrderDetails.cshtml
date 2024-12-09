@@ -110,7 +110,7 @@
 
     var fetchCustomerDetails = () => {
         $.ajax({
-            url: 'http://localhost:5218/api/Orders/customer/17',  //orderId hard coded
+            url: 'http://localhost:5218/api/Orders/OrderItem/17',  //orderId hard coded
             method: "GET",
             dataType: 'json',
             xhrFields: {
@@ -150,7 +150,7 @@
         $('#loadingSpinner').show();
         $('#tblOrderItemsList').empty(); //clear spinner to load order item
         $.ajax({
-            url: 'http://localhost:5218/api/Orders/customer/17',  //orderId hard coded
+            url: 'http://localhost:5218/api/Orders/OrderItem/17',  //orderId hard coded
             method: "GET",
             dataType: 'json',
             xhrFields: {
