@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrderProcessing.Entities;
 
 namespace PaymentProcessing.Repositories.Connected
 {
@@ -97,34 +98,30 @@ namespace PaymentProcessing.Repositories.Connected
         {
             bool status = false;
             SqlConnection conn = new SqlConnection(_conString);
-            string query = "INSERT INTO VsPayments(Id, OrderId, PaymentDate, PaymentAmount,PaymentMode, PaymentStatus, TransactionId ) VALUES(@Id,@OrderId,@PaymentDate,@PaymentAmount, @PaymentMode, @PaymentStatus, @TransactionId)";
+            string query = "INSERT INTO VsPayments( OrderId, PaymentDate, PaymentAmount,PaymentMode, PaymentStatus ) VALUES(@OrderId,@PaymentDate,@PaymentAmount, @PaymentMode, @PaymentStatus)";
             SqlCommand cmd = new SqlCommand(query, conn as SqlConnection);
 
             //Set Parameter for insert Query
-            SqlParameter IdParameter = new SqlParameter("@Id", SqlDbType.Int);
-            IdParameter.Value = payment.Id;
             SqlParameter OrderIdParameter = new SqlParameter("@OrderId", SqlDbType.Decimal);
             OrderIdParameter.Value = payment.OrderId;
+            DateTime currentDate = DateTime.Now.Date;
+            string formattedDate = currentDate.ToString("yyyy-MM-dd");
             SqlParameter PaymentDateParameter = new SqlParameter("PaymentDate", SqlDbType.DateTime);
-            PaymentDateParameter.Value = payment.PaymentDate;
+
+            PaymentDateParameter.Value = formattedDate;
             SqlParameter PaymentAmountParameter = new SqlParameter("@PaymentAmount", SqlDbType.VarChar);
             PaymentAmountParameter.Value = payment.PaymentAmount;
 
             SqlParameter PaymentModeParameter = new SqlParameter("@PaymentMode", SqlDbType.VarChar);
             PaymentModeParameter.Value = payment.PaymentMode;
             SqlParameter PaymentStatusParameter = new SqlParameter("@PaymentStatus", SqlDbType.VarChar);
-            PaymentStatusParameter.Value = payment.PaymentStatus;
-            SqlParameter TransactionIdParameter = new SqlParameter("@TransactionId", SqlDbType.VarChar);
-            TransactionIdParameter.Value = payment.TransactionId;
-
+            PaymentStatusParameter.Value = "Pending";
             //Add Parameter to Query/Command
-            cmd.Parameters.Add(IdParameter);
             cmd.Parameters.Add(OrderIdParameter);
             cmd.Parameters.Add(PaymentDateParameter);
             cmd.Parameters.Add(PaymentAmountParameter);
             cmd.Parameters.Add(PaymentModeParameter);
             cmd.Parameters.Add(PaymentStatusParameter);
-            cmd.Parameters.Add(TransactionIdParameter);
             try
             {
                 await conn.OpenAsync();
@@ -191,7 +188,79 @@ namespace PaymentProcessing.Repositories.Connected
 
             return status;
         }
-        public async Task<(string status, string Tid)> ExecuteFundTransferProcedure(int customerAccountId, int adminAccountId, decimal amount, string paymentMode)
+
+        public async Task<double> GetAmount(int OrderId)
+
+        {
+
+            double amount = -1;
+
+            using (SqlConnection conn = new SqlConnection(_conString))
+
+            {
+
+                string query = "SELECT TotalAmount FROM VsOrders WHERE Id=@Id";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                SqlParameter IdParameter = new SqlParameter("@Id", SqlDbType.Int);
+
+                IdParameter.Value = OrderId;
+
+                cmd.Parameters.Add(IdParameter);
+
+                try
+
+                {
+
+                    await conn.OpenAsync();
+
+                    using (SqlDataReader data = await cmd.ExecuteReaderAsync()) // Use SqlDataReader
+
+                    {
+
+                        // Check if there's at least one record returned
+
+                        if (await data.ReadAsync()) // Read the first row (if exists)
+
+                        {
+
+                            // Get the value of 'TotalAmount' column and convert it to int
+
+                            amount = data.GetDouble(data.GetOrdinal("TotalAmount"));
+
+                        }
+
+                    }
+
+                }
+
+                catch (Exception ex)
+
+                {
+
+                    Console.WriteLine(ex.Message);
+
+                }
+
+                finally
+
+                {
+
+                    await conn.CloseAsync();
+
+                }
+
+            }
+
+            return amount;
+
+        }
+
+
+
+
+        public async Task<(string status, string Tid)> ExecuteFundTransferProcedure(string customerAccountId, string adminAccountId, double amount, string paymentMode)
 
         {
 
@@ -258,7 +327,6 @@ namespace PaymentProcessing.Repositories.Connected
                     catch (Exception ex)
 
                     {
-
                         // Handle general exceptions
 
                         status = $"Error: {ex.Message}";
@@ -270,13 +338,7 @@ namespace PaymentProcessing.Repositories.Connected
             }
 
             return (status, Tid);
-
         }
-
-
-
-
-
 
     }
 }
