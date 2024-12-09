@@ -335,6 +335,10 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Catalog\Catalog.csproj">
+      <Project>{716f59fc-f8f7-4150-b7bc-9d8ef4ef08f9}</Project>
+      <Name>Catalog</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OrderProcessingTestApp\OrderProcessingTestApp.csproj">
       <Project>{ebb2a814-d36b-4fca-82bd-e8b18bdb86d6}</Project>
       <Name>OrderProcessingTestApp</Name>
