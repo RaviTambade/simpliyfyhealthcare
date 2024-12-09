@@ -9,12 +9,12 @@ namespace CRM.Services
 {
     public interface IUserService
     {
-        List<User> GetAll();
-        User GetUser(int Id);
-        bool Delete(int Id);
-        bool Insert(User user);
-        bool Update(User user);
-        int GetCount();
+        Task <List<User>> GetAllAsync();
+        Task <User> GetUserAsync(int Id);
+        Task<bool> DeleteAsync(int Id);
+        Task<bool> InsertAsync(User user);
+        Task<bool> UpdateAsync(User user);
+        Task<int> GetCountAsync();
 
 
     }
