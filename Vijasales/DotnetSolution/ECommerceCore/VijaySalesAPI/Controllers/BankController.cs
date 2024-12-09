@@ -1,12 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Banking.Entities;
+using Banking.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace VijaySalesAPI.Controllers
 {
-    public class BankController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BankController : ControllerBase
     {
-        public IActionResult Index()
+        
+        private readonly IBankService _bankService;
+        public BankController(IBankService bankService)
         {
-            return View();
+            _bankService = bankService;
+        }
+        [HttpGet]
+        public async Task<List<Account>> Get()
+        {
+            List<Account> accounts = await _bankService.GetAllAsync();
+            return accounts;
+        }
+        // GET api/<accountsController>/5
+        [HttpGet("{accountNumber}")]
+        public async Task<Account> Get(string accountNumber)
+        {
+            Account account = await _bankService.GetAccountAsync(accountNumber);
+            return account;
         }
     }
 }

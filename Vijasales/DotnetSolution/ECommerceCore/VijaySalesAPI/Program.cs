@@ -88,6 +88,10 @@ builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddTransient<ICardRepository, CardRepository>();
 builder.Services.AddTransient<ICardService, CardServices>();
 
+builder.Services.AddTransient<IBankRepository, BankRepository>();
+
+builder.Services.AddTransient<IBankService, BankService>();
+
 
 //Register context
 
