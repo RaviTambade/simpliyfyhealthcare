@@ -1,0 +1,48 @@
+﻿
+<h2>Shipment Details</h2>
+
+<div>
+    <p id="orderid" ><strong>Order Id:</strong> </p>
+    <p id="customername"><strong>Customer Name:</strong> </p>
+    <p id="customeraddress"><strong>Customer Address:</strong> </p>
+    <p id="totalamount"><strong>Total Amount:</strong></p>
+    <p id="deliverydate"><strong>Delivery Date:</strong> </p>
+
+
+    <div id="radio-buttons-div" >
+
+        <!-- Radio buttons for status change -->
+       @*  <form method="POST" action="@Url.Action("UpdateStatus", "Shipments")">
+            <label for="DeliveryStatus">Change Status:</label><br />
+
+            <!-- Hardcoded Radio Buttons for Delivery Status -->
+            <input type="radio" id="Pending" name="DeliveryStatus" value="Pending" @(Model.DeliveryStatus == "Pending" ? "checked" : "") />
+            <label for="Pending">Pending</label><br />
+
+            <input type="radio" id="Shipped" name="DeliveryStatus" value="Shipped" @(Model.DeliveryStatus == "Shipped" ? "checked" : "") />
+            <label for="Shipped">Shipped</label><br />
+
+            <input type="radio" id="Delivered" name="DeliveryStatus" value="Delivered" @(Model.DeliveryStatus == "Delivered" ? "checked" : "") />
+            <label for="Delivered">Delivered</label><br />
+
+            <input type="radio" id="Canceled" name="DeliveryStatus" value="Canceled" @(Model.DeliveryStatus == "Canceled" ? "checked" : "") />
+            <label for="Canceled">Canceled</label><br />
+
+            <input type="hidden" name="ShipmentId" value="@Model.ShipmentId" />
+            <button type="submit">Update Status</button>
+
+        </form> *@
+    </div>
+
+    @* back to list button *@
+
+    <button class="btn ">
+        <a href="/shipments/list">Back to List</a>
+    </button>
+
+
+</div>
+
+
+
+    

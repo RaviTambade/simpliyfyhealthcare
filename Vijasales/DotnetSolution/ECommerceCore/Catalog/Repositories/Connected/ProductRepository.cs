@@ -13,7 +13,7 @@ namespace Catalog.Repositories.Connected
     public class ProductRepository : IProductRepository
     {
         public string _conString;
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public ProductRepository(IConfiguration configuration)
         {
@@ -283,71 +283,218 @@ namespace Catalog.Repositories.Connected
         // Async GetByCategory method
         public async Task<List<Product>> GetByCategoryAsync(string category)
         {
-            using (var conn = new SqlConnection(_conString))
+            try
             {
-                string query = "SELECT * FROM VsProducts WHERE Category = @Category";
-                var cmd = new SqlCommand(query, conn);
-
-               
-                cmd.Parameters.Add(new SqlParameter("@Category", category));
-
-                var products = new List<Product>();
-
-                try
+                using (var conn = new SqlConnection(_conString))
                 {
-                   
-                    if (string.IsNullOrEmpty(category))
+                    string query = "SELECT * FROM VsProducts WHERE Category = @Category";
+                    var cmd = new SqlCommand(query, conn);
+
+                    cmd.Parameters.Add(new SqlParameter("@Category", category));
+
+                    var products = new List<Product>();
+
+                    try
                     {
-                        Console.WriteLine("Category is empty or null");
-                        return products;
-                    }
 
-                  
-                    Console.WriteLine($"Query: {query}, Category: {category}");
-
-                 
-                    await conn.OpenAsync();
-
-                  
-                    using (var dataReader = await cmd.ExecuteReaderAsync())
-                    {
-                       
-                        Console.WriteLine($"Columns returned: {dataReader.FieldCount}");
-                        
-
-                     
-                        while (await dataReader.ReadAsync()) 
+                        if (string.IsNullOrEmpty(category))
                         {
-                            var product = new Product
-                            {
-                                Id = Convert.ToInt32(dataReader["Id"]),
-                                Title = dataReader["Title"].ToString(),
-                                Description = dataReader["Description"].ToString(),
-                                Brand = dataReader["Brand"].ToString(),
-                                Price = Convert.ToDecimal(dataReader["Price"]),
-                                Stock = Convert.ToInt32(dataReader["Stock"]),
-                                Category = dataReader["Category"].ToString(),
-                                LastModified = Convert.ToDateTime(dataReader["LastModified"]),
-                                ImageUrl = dataReader["ImageUrl"].ToString()
-                            };
+                            Console.WriteLine("Category is empty or null");
+                            return products;
+                        }
 
-                            products.Add(product);
+                        Console.WriteLine($"Query: {query}, Category: {category}");
+
+                        await conn.OpenAsync();
+
+                        using (var dataReader = await cmd.ExecuteReaderAsync())
+                        {
+
+                            Console.WriteLine($"Columns returned: {dataReader.FieldCount}");
+
+
+
+                            while (await dataReader.ReadAsync())
+                            {
+                                var product = new Product
+                                {
+                                    Id = Convert.ToInt32(dataReader["Id"]),
+                                    Title = dataReader["Title"].ToString(),
+                                    Description = dataReader["Description"].ToString(),
+                                    Brand = dataReader["Brand"].ToString(),
+                                    Price = Convert.ToDecimal(dataReader["Price"]),
+                                    Stock = Convert.ToInt32(dataReader["Stock"]),
+                                    Category = dataReader["Category"].ToString(),
+                                    LastModified = Convert.ToDateTime(dataReader["LastModified"]),
+                                    ImageUrl = dataReader["ImageUrl"].ToString()
+                                };
+
+                                products.Add(product);
+                            }
                         }
                     }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+                    
+                    return products;
                 }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine($"SQL Error: {ex.Message}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"General Error: {ex.Message}");
-                }
-
-                return products;
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error: {ex.Message}");
+                return new List<Product>();
+            }
+
         }
 
 
+        // Async GetByBrand method
+        public async Task<List<Product>> GetByBrandAsync(string brand)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_conString))
+                {
+                    string query = "SELECT * FROM VsProducts WHERE Brand = @Brand";
+                    var cmd = new SqlCommand(query, conn);
+
+                    cmd.Parameters.Add(new SqlParameter("@Brand", brand));
+
+                    var products = new List<Product>();
+
+                    try
+                    {
+
+                        if (string.IsNullOrEmpty(brand))
+                        {
+                            Console.WriteLine("brand is empty or null");
+                            return products;
+                        }
+
+                        Console.WriteLine($"Query: {query}, Brand: {brand}");
+
+                        await conn.OpenAsync();
+
+                        using (var dataReader = await cmd.ExecuteReaderAsync())
+                        {
+
+                            Console.WriteLine($"Columns returned: {dataReader.FieldCount}");
+
+
+
+                            while (await dataReader.ReadAsync())
+                            {
+                                var product = new Product
+                                {
+                                    Id = Convert.ToInt32(dataReader["Id"]),
+                                    Title = dataReader["Title"].ToString(),
+                                    Description = dataReader["Description"].ToString(),
+                                    Brand = dataReader["Brand"].ToString(),
+                                    Price = Convert.ToDecimal(dataReader["Price"]),
+                                    Stock = Convert.ToInt32(dataReader["Stock"]),
+                                    Category = dataReader["Category"].ToString(),
+                                    LastModified = Convert.ToDateTime(dataReader["LastModified"]),
+                                    ImageUrl = dataReader["ImageUrl"].ToString()
+                                };
+
+                                products.Add(product);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+
+                    return products;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error: {ex.Message}");
+                return new List<Product>();
+            }
+            
+
+        }
+
+        public async Task<List<Product>> GetByCategoryBrandAsync(string category, string brand)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_conString))
+                {
+                    
+                    string query = "SELECT * FROM VsProducts WHERE Category = @Category AND Brand = @Brand";
+
+                    var cmd = new SqlCommand(query, conn);
+
+                    
+                    cmd.Parameters.Add(new SqlParameter("@Category", category));
+                    cmd.Parameters.Add(new SqlParameter("@Brand", brand));
+
+                    var products = new List<Product>();
+
+                    try
+                    {
+                        if (string.IsNullOrEmpty(category) || string.IsNullOrEmpty(brand))
+                        {
+                            Console.WriteLine("Category or Brand is empty or null");
+                            return products;
+                        }
+
+                        Console.WriteLine($"Query: {query}, Category: {category}, Brand: {brand}");
+
+                        await conn.OpenAsync();
+
+                        using (var dataReader = await cmd.ExecuteReaderAsync())
+                        {
+                            Console.WriteLine($"Columns returned: {dataReader.FieldCount}");
+
+                            while (await dataReader.ReadAsync())
+                            {
+                                var product = new Product
+                                {
+                                    Id = Convert.ToInt32(dataReader["Id"]),
+                                    Title = dataReader["Title"].ToString(),
+                                    Description = dataReader["Description"].ToString(),
+                                    Brand = dataReader["Brand"].ToString(),
+                                    Price = Convert.ToDecimal(dataReader["Price"]),
+                                    Stock = Convert.ToInt32(dataReader["Stock"]),
+                                    Category = dataReader["Category"].ToString(),
+                                    LastModified = Convert.ToDateTime(dataReader["LastModified"]),
+                                    ImageUrl = dataReader["ImageUrl"].ToString()
+                                };
+
+                                products.Add(product);
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+
+                    return products;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error: {ex.Message}");
+                return new List<Product>();
+            }
+        }
+
+        public async Task<List<string>> GetCategoriesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<string>> GetBrandsAsync(string category)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Shipments";
+}
+<!-- Your HTML content here -->
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+
+    <!-- Filter by date and status -->
+    <div class="filter-container">
+        <label for="shipmentDateFilter">Filter by Shipment Date:</label>
+        <input type="date" id="shipmentDateFilter" name="shipmentDateFilter" class="form-control" />
+
+        <label for="shipmentStatusFilter">Filter by Shipment Status:</label>
+        <select id="shipmentStatusFilter" class="form-control">
+            <option value="">All</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Pending">Pending</option>
+        </select>
+
+        <button class="btn" id="applyFilterButton">Apply Filter</button>
+    </div>
+
+    <table id="shipmentsTable">
+        <thead>
+            <tr>
+                <th>Shipment ID</th>
+                <th>Order ID</th>
+                <th>Shipment Date</th>
+                <th>Shipment Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="table-body-to-update">
+            <!-- Table rows will be dynamically populated here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Ensure jQuery is loaded before the custom script -->
+
+
+<script>
+
+    $(document).ready(function () {
+        console.log("Document is ready!");
+        alert("Hello! Script loaded correctly.");
+        GetAllShipments(); // Call this function to fetch all shipments
+
+        $('#applyDateRangeFilterButton').click(function () {
+            var startDate = $('#shipmentStartDateFilter').val();
+            var endDate = $('#shipmentEndDateFilter').val();
+
+            $.ajax({
+                url: apiUrl,  // Endpoint for filtering shipments
+                type: 'GET',
+                data: {
+                    startDate: startDate,
+                    endDate: endDate
+                },
+                success: function (response) {
+                    // Clear existing table rows
+                    $('#shipmentsTable tbody').empty();
+
+                    // Populate table with filtered shipments
+                    response.forEach(function (shipment) {
+                        var row = `<tr>
+                                            <td>${shipment.Id}</td>
+                                            <td>${shipment.OrderId}</td>
+                                            <td>${shipment.ShipmentDate}</td>
+                                            <td>${shipment.Status}</td>
+                                            <td><div class="details"><a href="/shipments/details/${shipment.Id}">Details</a></div></td>
+                                        </tr>`;
+                        $('#shipmentsTable tbody').append(row);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    alert('Error fetching shipments: ' + error);
+                }
+            });
+        });
+
+    });
+
+    let apiUrl = 'http://localhost:5218/api/shipments/';
+
+    const GetAllShipments = () => {
+        $.ajax({
+            url: apiUrl,
+            type: 'GET',
+            success: function (response) {
+                console.log(response);
+                $('#table-body-to-update').empty();
+                response.forEach(function (shipment) {
+                    var row = `<tr>
+                                <td>${shipment.id}</td>
+                                <td>${shipment.orderId}</td>
+                                <td>${shipment.shipmentDate}</td>
+                                <td>${shipment.status}</td>
+                                <td><div class="details"><a href="/shipments/details/${shipment.id}">Details</a></div></td>
+                                <td><div class="delete"><button class="btn btn-danger" onclick="deleteShipment(${shipment.id})">Delete</button></div></td>
+                            </tr>`;
+                    $('#table-body-to-update').append(row);
+                });
+            },
+            error: function (xhr, status, error) {
+                alert('Error fetching shipments: ' + error);
+            }
+        });
+    }
+
+
+</script>

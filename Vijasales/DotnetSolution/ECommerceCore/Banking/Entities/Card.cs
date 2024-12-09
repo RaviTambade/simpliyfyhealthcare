@@ -13,18 +13,19 @@ namespace Banking.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Pass { get; set; }
+
+        public string AccountNumber { get; set; }
 
         public string CVV { get; set; }
 
-        public string AccountId { get; set; }
-
         public string CardType { get; set; }
 
-        public double CardLimit { get; set; }
+        public double CreditLimit { get; set; }
 
         public string CardNumber { get; set; }
 
         public string ExpiryDate { get; set; }
+
+        public string Pass { get; set; }
     }
 }

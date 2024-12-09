@@ -1,0 +1,425 @@
+﻿@{
+
+    Layout = "_Layout";  // Assuming you have a layout page
+
+}
+<script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Payment Processing</h2>
+    <!-- Payment Method Toggle -->
+    <div class="form-group mb-4">
+        <label for="paymentMethod">Select Payment Method</label>
+        <div>
+            <input type="radio" id="creditDebitCard" name="paymentMethod" value="creditDebitCard" checked>
+            <label for="creditDebitCard" class="mx-2" name="paymentMethod">Credit/Debit Card</label>
+            <input type="radio" id="netBanking" name="paymentMethod" value="netBanking">
+            <label for="netBanking" class="mx-2" name="paymentMethod">Net Banking</label>
+        </div>
+    </div>
+
+    <!-- Payment Form -->
+    <form id="paymentForm" class="p-4 border shadow-sm rounded bg-light">
+    <!-- Credit/Debit Card Fields -->
+    <div id="creditDebitCardForm" class="payment-method-form">
+        <h4 class="mb-3">Card Details</h4>
+        <div class="form-group mb-3">
+            <label for="cardType">Card Type</label>
+            <select class="form-control" id="cardType">
+                <option value="default">Select</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="accountNumber">Account Number </label>
+            <input type="text" class="form-control" id="cardAccountNumber" placeholder="1234567891011"  required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number" required />
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="cardExpiry">Expiry Date (MM/YY)</label>
+            <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="cardCVV">CVV</label>
+            <input type="text" class="form-control" id="cardCVV" placeholder="Enter CVV" required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="cardPassword">Password</label>
+            <input type="password" class="form-control" id="cardPassword" placeholder="Enter card password" required />
+        </div>
+        <button type="button" class="btn btn-outline-primary" id="verifyCard">Verify Card</button>
+    </div>
+
+    <!-- Net Banking Fields -->
+    <div id="netBankingForm" class="payment-method-form" style="display: none;">
+        <h4 class="mb-3">Net Banking</h4>
+        <div class="form-group mb-3">
+            <label for="accountNumber">Account Number </label>
+            <input type="text" class="form-control" id="bankingAccountNumber" placeholder="1234567891011"  required />
+        </div>
+        <div class="form-group mb-3">
+            <label for="bankName">Select Bank</label>
+            <select class="form-control" id="bankName">
+                <option value="default">Select</option>
+                <option value="HDFC">HDFC</option>
+                <option value="ICICI">ICICI</option>
+                <option value="BankOfMaharashtra">BankOfMaharashtra</option>
+                <option value="KOTAK">KOTAK</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="netBankingPassword">Password</label>
+            <input type="password" class="form-control" id="netBankingPassword" placeholder="Enter net banking password" required />
+        </div>
+        <button type="button" class="btn btn-outline-primary" id="verifyNetBanking">Verify Bank</button>
+    </div>
+
+    <!-- Pay Now Button -->
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-success btn-lg w-100" id="payNowButton" disabled>Pay Now</button>
+    </div>
+    </form>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        // Initially show the Credit/Debit Card form
+
+            // Listen to payment method change
+
+        $("input[name='paymentMethod']").on("change", function () {
+
+                var selectedMethod = $("input[name='paymentMethod']:checked").val();
+
+                // Hide or show payment method forms
+
+                $(".payment-method-form").hide();
+
+                $("#" + selectedMethod + "Form").show();
+
+                // Dynamically set required fields
+
+                if (selectedMethod === "creditDebitCard") {
+
+                    $("#cardNumber").prop("required", true);
+
+                    $("#cardExpiry").prop("required", true);
+
+                    $("#cardCVV").prop("required", true);
+
+                    $("#cardPassword").prop("required", true);
+
+                    $("#bankingAccountNumber").prop("required", false);
+
+                    $("#netBankingPassword").prop("required", false);
+
+                } else if (selectedMethod === "netBanking") {
+
+                    $("#bankingAccountNumber").prop("required", true);
+
+                    $("#netBankingPassword").prop("required", true);
+
+                    $("#cardNumber").prop("required", false);
+
+                    $("#cardExpiry").prop("required", false);
+
+                    $("#cardCVV").prop("required", false);
+
+                    $("#cardPassword").prop("required", false);
+
+                }
+
+            });
+
+       
+        // Trigger the change event on page load to show the correct form
+
+        $("input[name='paymentMethod']:checked").trigger("change");
+
+        // Disable payment method toggle when verification is triggered
+
+        function disablePaymentMethodToggle() {
+
+            $("input[name='paymentMethod']").hide();
+            $("label[name='paymentMethod']").hide();
+
+        }
+
+        // Enable payment method toggle after verification is successful
+
+        function enablePaymentMethodToggle() {
+
+            $("input[name='paymentMethod']").show();
+
+        }
+
+        // Disable Pay Now button
+
+        function disablePayNowButton() {
+
+            $("#payNowButton").prop("disabled", true);
+
+        }
+
+        // Enable Pay Now button
+
+        function enablePayNowButton() {
+
+            $("#payNowButton").prop("disabled", false);
+
+        }
+
+        // Verify Card Action
+        $("#verifyCard").click(function () {
+
+            
+            let cardNumber =  $("#cardNumber").val();
+            // Corrected the URL concatenation
+
+            var url = 'http://localhost:5218/api/cards/'+ cardNumber;
+
+            $.ajax({
+
+                url: url, // Replace with your API URL
+
+                type: 'GET',
+
+                xhrFields: {
+
+                    withCredentials: true  // Ensures cookies are sent with the request
+
+                },
+
+                dataType: 'json',
+
+                success: function (data) {
+
+                    console.log(data);
+                    verifyCard(data);
+
+                },
+
+                error: function (xhr, status, error) {
+
+                    // Handle error
+
+                    alert('An error occurred: ' + error);
+
+                }
+
+            });
+
+        //ajax code
+
+            // Disable toggle and start verification
+            disablePaymentMethodToggle();
+
+            enablePayNowButton();// Ensure Pay Now button remains disabled until verification
+
+            
+
+        });
+
+        // Verify Net Banking Action
+
+        $("#verifyNetBanking").click(function () {
+
+            let bankingAccountNumber = $("#bankingAccountNumber").val();
+            // Corrected the URL concatenation
+
+            var url = 'http://localhost:5218/api/bank/' + bankingAccountNumber;
+
+            $.ajax({
+
+                url: url, // Replace with your API URL
+
+                type: 'GET',
+
+                xhrFields: {
+
+                    withCredentials: true  // Ensures cookies are sent with the request
+
+                },
+
+                dataType: 'json',
+
+                success: function (data) {
+
+                    console.log(data);
+                    verifyNetBanking(data);
+
+                },
+
+                error: function (xhr, status, error) {
+
+                    // Handle error
+
+                    alert('An error occurred: ' + error);
+
+                }
+
+            });
+
+            
+
+            // Disable toggle and start verification
+
+            disablePaymentMethodToggle();
+
+            enablePayNowButton(); // Ensure Pay Now button remains disabled until verification
+
+     
+
+        });
+
+        // Expiry Date Formatting
+        $('#cardExpiry').on('input', function () {
+
+            var input = $(this).val();
+
+            // Remove non-numeric characters and limit to 4 digits
+
+            input = input.replace(/\D/g, '').slice(0, 4);
+
+            // Format the input to MM/YY with a slash after 2 digits
+
+            if (input.length >= 3) {
+
+                input = input.slice(0, 2) + '/' + input.slice(2, 4); // Add slash after MM
+
+            }
+
+            $(this).val(input);
+
+        });
+
+        // Card verification function
+        function verifyCard(data) {
+
+            console.log("Verifying Card.....");
+            console.log(data);
+            var cardData = {
+
+                cardType: $("#cardType").val(),
+
+                accountNumber: $("#cardAccountNumber").val(),
+
+                cardNumber: $("#cardNumber").val(),
+
+                cardExpiry: $("#cardExpiry").val(),
+
+                cardCVV: $("#cardCVV").val(),
+
+                cardPassword: $("#cardPassword").val()
+
+            };
+            console.log(cardData);
+            if(data.cardType == cardData.cardType && 
+                data.cvv == cardData.cardCVV && 
+                data.expiryDate == cardData.cardExpiry && 
+                data.cardNumber == cardData.cardNumber &&
+                data.pass == cardData.cardPassword  &&
+                data.accountNumber == cardData.accountNumber
+            ){
+                alert("Card verification successful!");
+            }
+
+        }
+
+        // Net Banking verification function
+        function verifyNetBanking(data) {
+
+            console.log("Verifying Net Banking:", data);
+            var netBankingData = {
+
+                accountNumber: $("#bankingAccountNumber").val(),
+
+
+                bankName: $("#bankName").val(),
+
+                netBankingPassword: $("#netBankingPassword").val()
+
+            };
+            // Simulate a successful verification
+            console.log(netBankingData);
+            if (data.accountNumber == netBankingData.accountNumber &&
+                data.bankName == netBankingData.bankName &&
+                data.passcode == netBankingData.netBankingPassword) {
+                alert("Net Banking verification successful!");
+                
+                }
+
+        }
+
+        // Handle form submission (for now, prevent actual submission)
+        $("#paymentForm").submit(function (e) {
+
+                        e.preventDefault();  // Prevent the form from submitting normally
+
+                        // Gather form data
+
+                        var paymentData = {
+
+                            orderId: 22,  // Get the orderId passed from the view
+
+                            accountNumber: $("#cardAccountNumber").val(),
+
+                            paymentMethod: $("input[name='paymentMethod']:checked").val(),  // Get selected payment method
+
+                        };
+
+
+                        // Make AJAX request to PaymentController's PayNow method
+            console.log(paymentData);
+
+                        $.ajax({
+
+                url: 'http://localhost:5218/api/payments/paynow',  // Assuming 'PayNow' API endpoint in PaymentController
+
+                            type: 'POST',
+
+                            contentType: 'application/json',
+
+                            data: JSON.stringify(paymentData),
+
+                            success: function (response) {
+
+                                if (response.success) {
+
+                                    alert("Payment successful!");
+
+                                    // Redirect to a success page or confirmation page
+
+                                    window.location.href = '/payment/success';  // Example redirection
+
+                                } else {
+
+                                    alert("Payment failed: " + response.message);
+
+                                }
+
+                            },
+
+                            error: function (xhr, status, error) {
+
+                                alert("An error occurred during payment processing: " + error);
+
+                            }
+
+                        });
+
+
+        });
+
+    });
+</script>
+
+

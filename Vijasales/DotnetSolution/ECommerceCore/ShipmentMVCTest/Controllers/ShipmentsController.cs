@@ -22,18 +22,22 @@ namespace ShipmentMVCTest.Controllers
         }
 
         // list of shipments 
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            return View(_shipmentService.GetAll());
+           // DateTime startdate = new DateTime(2024, 12, 8);
+           // DateTime enddate = new DateTime(2024, 12, 14);
+           // return View(await _shipmentService.GetByDateAsync(startdate,enddate));
+            return View(await _shipmentService.GetAllAsync());
         }
 
 
         // details
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             // get the shipment using id
-            return View(_shipmentService.GetById(id));
+            return View(await _shipmentService.GetByIdAsync(id));
         }
+
 
 
     }
