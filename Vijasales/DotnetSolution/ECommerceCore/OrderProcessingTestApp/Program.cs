@@ -7,10 +7,15 @@ using OrderProcessing.Repositories.Connected;
 
 OrderRepository _repo = new OrderRepository();
 List<Order> orders = await _repo.GetAllAsync();
-foreach (Order order in orders)
+foreach (Order order in orders) ;
+
+public class Program
+
 {
-    Console.WriteLine(order);
+    // Uncomment the following line to resolve.
+    static void Main() { }
 }
+
 
 /*
 OrderRepository _orderRepository = new OrderRepository();
@@ -25,4 +30,5 @@ foreach(Order order in _orders)
     Console.WriteLine(order);
 }
 */
+
 
