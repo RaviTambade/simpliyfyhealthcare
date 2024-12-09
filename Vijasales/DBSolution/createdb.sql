@@ -52,7 +52,9 @@ CREATE TABLE VsShipments (
     ShipmentDate DATETIME NOT NULL,
     OrderId INT NOT NULL,
     Status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (OrderId) REFERENCES VsOrders(Id),
+    FOREIGN KEY (OrderId) REFERENCES VsOrders(Id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
 CREATE TABLE VsAccounts (     

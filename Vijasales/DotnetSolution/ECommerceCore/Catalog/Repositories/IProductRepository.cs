@@ -21,5 +21,15 @@ namespace Catalog.Repositories
         Task<Product> GetByIdAsync(int id);
 
         Task<List<Product>> GetByCategoryAsync(string category);
+
+        Task<List<Product>> GetByBrandAsync(string brand);
+
+        Task<List<Product>> GetByCategoryBrandAsync(string category, string Brand);
+
+        Task<List<string>> GetCategoriesAsync();
+
+        Task<List<string>> GetBrandsAsync(string category);
+
+
     }
 }

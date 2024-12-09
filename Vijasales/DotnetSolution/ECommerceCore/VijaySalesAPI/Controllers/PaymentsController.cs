@@ -29,5 +29,18 @@ namespace VijaySalesAPI.Controllers
             Payment payment = await _paymentService.GetPaymentAsync(id);
             return payment;
         }
+        [HttpPost]
+        public async void Post([FromBody] Payment payment)
+        {
+            //await _paymentService.InsertPaymentAsync(payment);
+            //procedure
+            //await _paymentService.UpdatePaymentAsync(payment);
+        }
+
+        // PUT api/<ProductsController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
     }
 }
