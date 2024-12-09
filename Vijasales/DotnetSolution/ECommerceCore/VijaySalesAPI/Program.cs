@@ -7,14 +7,22 @@ using CRM.Repositories;
 using CRM.Services;
 
 using PaymentProcessing.Services;
-using PaymentProcessing.Repositories;
 using PaymentProcessing.Repositories.Connected;
 
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
+
+
+
+
+
 using Banking.Repositories.Connected;
 using Banking.Services;
+
+
+
+
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -64,6 +72,8 @@ builder.Services.AddTransient<IProductService, ProductService>();
 
 
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
+builder.Services.AddTransient<IOrderItemService, OrderItemService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 
 
@@ -83,7 +93,13 @@ builder.Services.AddTransient<ICardService, CardServices>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+app.UseRouting();
+
+
+
+
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 using Shipment.Entities;
 using System.Data.SqlClient;
 using System.Data.Entity;
+using System.Runtime.Remoting.Contexts;
+using System.Xml.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
 namespace Shipment.Repositories.ORM
 {
     public class ShipmentRepository : IShipmentRepository
@@ -50,7 +55,7 @@ namespace Shipment.Repositories.ORM
             List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext())
             {
-                var dbshipments = context.Shipments.ToList();
+                var dbshipments = await context.Shipments.ToListAsync();
                 foreach (var shipment in dbshipments)
                 {
                     Delivery theShipment = new Delivery();
