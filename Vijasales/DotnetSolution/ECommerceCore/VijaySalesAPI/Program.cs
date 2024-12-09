@@ -16,20 +16,12 @@ using Banking.Services;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-<<<<<<< HEAD
-=======
 
 
 
 
 
-using Banking.Repositories.Connected;
-using Banking.Services;
 
-
-
-
->>>>>>> 161ff82bb30462960e946923b4c809146cb3f28d
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -110,7 +102,6 @@ builder.Services.AddTransient<IBankService, BankService>();
 
 var app = builder.Build();
 
-<<<<<<< HEAD
 
 
 
@@ -126,8 +117,7 @@ var app = builder.Build();
 
 
 
-=======
->>>>>>> 161ff82bb30462960e946923b4c809146cb3f28d
+
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
