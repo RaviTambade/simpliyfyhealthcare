@@ -1,17 +1,28 @@
 using Catalog.Repositories;
-using Catalog.Repositories.Connected;
+using Catalog.Repositories.ORM;
 using Catalog.Services;
+
 using CRM.Repositories.ORM;
 using CRM.Repositories;
 using CRM.Services;
+
 using PaymentProcessing.Services;
-using PaymentProcessing.Repositories;
-using Banking.Services;
-using Banking.Repositories.Connected;
 using PaymentProcessing.Repositories.Connected;
+
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
+
+
+
+
+
+using Banking.Repositories.Connected;
+using Banking.Services;
+
+
+
+
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -21,7 +32,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddCors();
-
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
@@ -36,6 +46,7 @@ builder.Services.AddSession(options =>
     options.Cookie.SecurePolicy = CookieSecurePolicy.None;
 
 });
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
@@ -46,37 +57,51 @@ builder.Services.AddCors(options =>
               .AllowCredentials();  // Allow cookies and credentials to be sent
     });
 });
+
 // Adding services which are needed in the future
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-// Register IDataRepository and ProductRepository for dependency injection
+
+// Register IDataRepository 
 
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
+builder.Services.AddTransient<IUserService, UserService>();
+
+
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
-builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-
-
-// Register ProductService (already done in your code)
 builder.Services.AddTransient<IProductService, ProductService>();
 
-builder.Services.AddTransient<IUserService, UserService>();
+
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
+builder.Services.AddTransient<IOrderItemService, OrderItemService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+
+
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
-builder.Services.AddTransient<IOrderService, OrderService>();
+
 
 builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
 
-builder.Services.AddTransient<ICardRepository, CardRepository>();
 
+builder.Services.AddTransient<ICardRepository, CardRepository>();
 builder.Services.AddTransient<ICardService, CardServices>();
 
 
+//Register context
+
 var app = builder.Build();
+
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+app.UseRouting();
+
+
 
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-
 
 app.UseAuthorization();
 app.UseSession();

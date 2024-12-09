@@ -5,7 +5,6 @@
 
 <div class="container mt-5">
     <div class="row">
-        
         <div class="col-md-8">
             <ul class="list-unstyled" id="cart-items-list"></ul>
         </div>
@@ -13,13 +12,12 @@
         <!-- Cart Summary Section -->
         <div class="col-md-4">
             <div class="text-center mt-3">
-               
                 <h4 id="total-amount">Total Cart Value: Rs 0</h4>
 
-              
+
                 <button class="btn btn-success w-100 mt-3" id="buy-now-btn">Proceed To Buy</button>
 
-                
+
                 <button class="btn btn-danger w-100 mt-3" id="clear-cart-btn">Clear Cart</button>
             </div>
         </div>
@@ -27,208 +25,324 @@
 </div>
 
 <script>
-    
+
+    // Function to render cart items
+
     let addToCart = (data) => {
-        $('#cart-items-list').html('');  
+
+        $('#cart-items-list').html('');
+
         let totalAmount = 0;
 
-        if (data.items && data.items.length > 0) {
-            $.each(data.items, (index, item) => {
-                $.ajax({
-                    url: `http://localhost:5218/api/products/${item.productId}`,
-                    type: "GET",
-                    success: function (product) {
-                        var cardHtml = `
-                            <li class="d-flex justify-content-center">
-                                <div class="card mb-3 w-75">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="${product.imageUrl || 'default-image.jpg'}" class="img-fluid rounded-start" alt="Product Image">
-                                        </div>
-                                        <div class="col-md-8 d-flex align-items-center">
-                                            <div class="card-body">
-                                                <h5 class="card-title">${product.title}</h5>
-                                                <p class="card-text text-secondary">${product.description}</p>
-                                                <p class="card-text text-secondary">Price: Rs ${product.price}</p>
+        $.each(data.items, (index, item) => {
 
-                                                <!-- Quantity Control with Quantity display -->
-                                                <div class="d-flex align-items-center">
-                                                    <button class="btn btn-sm btn-info increase-quantity-btn" data-product-id="${item.productId}">+</button>
-                                                    <span class="mx-2" id="quantity-${item.productId}">${item.quantity}</span> <!-- Display Quantity -->
-                                                    <button class="btn btn-sm btn-warning decrease-quantity-btn" data-product-id="${item.productId}">-</button>
-                                                </div>
+            $.ajax({
 
-                                                <!-- Delete Product (Trash Icon) -->
-                                                <button class="w-25 btn btn-sm btn-danger remove-product-btn" data-product-id="${item.productId}">
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>`;
+                url: `http://localhost:5218/api/products/${item.productId}`,
 
-                        $('#cart-items-list').append(cardHtml);  
+                type: "GET",
 
-                        
-                        totalAmount += product.price * item.quantity;
-                    },
-                    error: function (error) {
-                        console.error('Error fetching product details:', error);
-                        alert('Error fetching product details.');
-                    }
-                });
+                success: function (product) {
+
+                    var cardHtml = `
+    <li class="d-flex justify-content-center">
+    <div class="card mb-3 w-75">
+    <div class="row g-0">
+    <div class="col-md-4">
+    <img src="${product.imageUrl || 'default-image.jpg'}" class="img-fluid rounded-start" alt="Product Image">
+    </div>
+    <div class="col-md-8 d-flex align-items-center">
+    <div class="card-body">
+    <h5 class="card-title">${product.title}</h5>
+    <p class="card-text text-secondary">${product.description}</p>
+    <p class="card-text text-secondary">Price: Rs ${product.price}</p>
+
+                                                        <!-- Quantity Control with Quantity display -->
+    <div class="d-flex align-items-center">
+    <button class="btn btn-sm btn-info increase-quantity-btn" data-product-id="${item.productId}">+</button>
+    <span class="mx-2" id="quantity-${item.productId}">${item.quantity}</span> <!-- Display Quantity -->
+    <button class="btn btn-sm btn-warning decrease-quantity-btn" data-product-id="${item.productId}">-</button>
+    </div>
+
+                                                        <!-- Delete Product (Trash Icon) -->
+    <button class="w-25 btn btn-sm btn-danger remove-product-btn" data-product-id="${item.productId}">
+
+                                                                Delete
+    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    </li>`;
+
+                    $('#cart-items-list').append(cardHtml);
+
+                    // Update the total amount
+
+                    totalAmount += product.price * item.quantity;
+
+                    $('#total-amount').text(`Total: Rs ${totalAmount}`);
+
+                },
+
+                error: function (error) {
+
+                    console.error('Error fetching product details:', error);
+
+                    alert('Error fetching product details.');
+
+                }
+
             });
 
-            
-            $('#total-amount').text(`Total: Rs ${totalAmount}`);
-        } else {
-            
-            $('#total-amount').text('Total: Rs 0');
-        }
+        });
+
     }
 
-
     $(document).ready(() => {
+
         loadCart();
+
     });
 
     // Load cart from API
+
     function loadCart() {
+
         $.ajax({
+
             url: "http://localhost:5218/api/shoppingcart",
+
             type: "GET",
+
             xhrFields: {
+
                 withCredentials: true  // Ensures cookies are sent with the request
+
             },
+
             success: function (data) {
+
                 console.log(data);
+
                 addToCart(data);
+
             },
+
             error: function (error) {
+
                 console.error('Error fetching updated cart:', error);
+
             }
+
         });
+
     }
 
     // Remove product from cart (using delete)
+
     $(document).on('click', '.remove-product-btn', function (e) {
+
         e.preventDefault();
 
         var productId = $(this).data('product-id');
 
         $.ajax({
+
             url: `http://localhost:5218/api/shoppingcart/${productId}`,
+
             type: 'DELETE',
+
             xhrFields: {
+
                 withCredentials: true  // Ensures cookies are sent with the request
+
             },
+
             success: function (response) {
+
                 alert('Product removed successfully!');
+
                 loadCart();
+
             },
+
             error: function (error) {
+
                 console.error('Error removing product:', error);
+
                 alert('Error removing product.');
+
             }
+
         });
+
     });
 
     // Increase product quantity
+
     $(document).on('click', '.increase-quantity-btn', function (e) {
+
         e.preventDefault();
+
         var productId = $(this).data('product-id');
+
         updateQuantity(productId, 1);
+
     });
 
     // Decrease product quantity
+
     $(document).on('click', '.decrease-quantity-btn', function (e) {
+
         e.preventDefault();
+
         var productId = $(this).data('product-id');
+
         updateQuantity(productId, -1);
+
     });
 
 
     // Update product quantity
+
     function updateQuantity(productId, change) {
+
         $.ajax({
+
             url: `http://localhost:5218/api/shoppingcart/${productId}`,
+
             type: 'PUT',
+
             xhrFields: {
+
                 withCredentials: true  // Ensures cookies are sent with the request
+
             },
+
             data: JSON.stringify(change),
+
             contentType: 'application/json',
+
             success: function (response) {
-                
+
                 $.ajax({
+
                     url: `http://localhost:5218/api/shoppingcart/count`,
+
                     type: 'GET',
+
                     success: function (count) {
-                        
+
                         loadCart();
-                        
+
                     },
+
                     error: function (error) {
+
                         console.error('Error checking cart count:', error);
+
                         alert('Error checking cart count.');
+
                     }
+
                 });
+
             },
+
             error: function (error) {
+
                 console.error('Error updating quantity:', error);
+
                 alert('Error updating quantity.');
+
             }
+
         });
+
     }
 
 
     // Clear cart
+
     $('#clear-cart-btn').click(function () {
+
         $.ajax({
+
             url: "http://localhost:5218/api/shoppingcart",
+
             type: 'DELETE',
+
             xhrFields: {
+
                 withCredentials: true  // Ensures cookies are sent with the request
-            },
-            success: function (response) {
-                alert('Cart cleared successfully!');
-                loadCart();
-                $('#total-amount').text('Total: Rs 0');
-                
 
             },
+
+            success: function (response) {
+
+                alert('Cart cleared successfully!');
+
+                loadCart();
+
+                $('#total-amount').text('Total: Rs 0');
+
+
+            },
+
             error: function (error) {
+
                 console.error('Error clearing the cart:', error);
+
                 alert('Error clearing the cart.');
+
             }
+
         });
+
     });
 
     // Buy Now button click handler
-    //Order Processing peeps Do your work here 
+
+    //Order Processing peeps Do your work here
+
     $('#buy-now-btn').click(function () {
-        
+
         $.ajax({
+
             url: "http://localhost:5218/api/checkout",
+
             type: 'POST',
+
             xhrFields: {
+
                 withCredentials: true
+
             },
+
             success: function (response) {
+
                 alert('Checkout successful! Proceed to payment.');
-                
+
             },
+
             error: function (error) {
+
                 console.error('Error processing checkout:', error);
+
                 alert('Error processing checkout.');
+
             }
+
         });
+
     });
 </script>
 
 <style>
+
     /* General Styles */
+
     body {
         background-color: #f8f9fa;
         color: #333;
@@ -257,6 +371,7 @@
     }
 
     /* Button Styles */
+
     .remove-product-btn {
         background-color: steelblue;
         color: white;
@@ -276,5 +391,3 @@
         .decrease-quantity-btn:hover {
             background-color: dimgrey;
         }
-
-    

@@ -12,10 +12,12 @@ namespace OrderProcessing.Repositories.Connected
         Task<List<Order>> GetAllAsync();           
         Task<Order> GetOrderAsync(int id);         
         Task<List<Order>> GetCustomerOrderAsync(int customerId);  
-        Task<bool> InsertAsync(Order order);       
+        Task<int> InsertAsync(Order order);       
         Task<bool> UpdateAsync(Order order);      
         Task<bool> DeleteAsync(int id);
         Task<List<OrderList>> GetOrderDetailsAsync(int customerId);
+
+        
     }
 
 }

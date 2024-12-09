@@ -62,7 +62,7 @@ namespace Shipment.Repositories.ORM
             List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext(_configuration))
             {
-                var dbshipments = context.Shipments.ToList();
+                var dbshipments = await context.Shipments.ToListAsync();
                 foreach (var shipment in dbshipments)
                 {
                     Delivery theShipment = new Delivery();
@@ -84,7 +84,7 @@ namespace Shipment.Repositories.ORM
 
             using (var context = new ShipmentContext(_configuration))
             {
-                var dbshipments = context.Shipments.ToList();
+                var dbshipments =await context.Shipments.ToListAsync();
 
                 foreach (var shipment in dbshipments)
                 {
@@ -177,6 +177,32 @@ namespace Shipment.Repositories.ORM
 
 
             return status;
+        }
+
+        public async Task<bool> UpdateStatusAsync(int id, string updatedStatus)
+        {
+            bool updateSuccessful = false;
+            using (var context = new ShipmentContext(_configuration))
+            {
+                // Find the shipment by its ID
+                var foundShipment = await context.Shipments.SingleOrDefaultAsync(s => s.Id == id);
+
+                if (foundShipment != null)
+                {
+                    // Only update the status
+                    foundShipment.Status = updatedStatus;
+
+                    // Save the changes
+                    await context.SaveChangesAsync();
+                    updateSuccessful = true;
+                }
+                else
+                {
+                    Console.WriteLine("Shipment not found.");
+                }
+            }
+
+            return updateSuccessful;
         }
     }
 }

@@ -46,12 +46,12 @@ namespace VijaySalesAPI.Controllers
         }
 
         // GET api/<ProductsController>/brand
-        /*[HttpGet("brand/{brand}")]
+        [HttpGet("brand/{brand}")]
         public async Task<ActionResult<List<Product>>> GetByBrand(string brand)
         {
             var products = await _productService.GetByBrandAsync(brand);
             return Ok(products);
-        }*/
+        }
 
 
         // GET api/<ProductsController>/category/brand
@@ -61,6 +61,22 @@ namespace VijaySalesAPI.Controllers
             var products = await _productService.GetByCategoryBrandAsync(category,brand);
             return Ok(products);
         }
+
+        // GET api/<ProductsController>/
+        [HttpGet("categoryList/")]
+        public async Task<ActionResult<List<Product>>> GetCategories()
+        {
+            var categories = await _productService.GetCategoriesAsync();
+            return Ok(categories);
+        }
+
+        [HttpGet("brandList/{category}")]
+        public async Task<ActionResult<List<Product>>> GetBrands(string category)
+        {
+            var brands = await _productService.GetBrandsAsync(category);
+            return Ok(brands);
+        }
+
 
         // POST api/<ProductsController>
         [HttpPost]

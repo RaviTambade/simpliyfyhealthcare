@@ -24,6 +24,8 @@ namespace Shipment.Repositories
 
         Task<bool> UpdateAsync(Delivery shipment);
 
+        Task<bool> UpdateStatusAsync(int id,  string status);
+
 
     }
 }

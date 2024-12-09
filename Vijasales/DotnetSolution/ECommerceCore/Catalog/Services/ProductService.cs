@@ -36,6 +36,20 @@ namespace Catalog.Services
             return product;
         }
 
+        public async Task<List<string>> GetBrandsAsync(string category)
+        {
+            try
+            {
+                List<string> brands = await _repo.GetBrandsAsync(category);
+                return brands;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new List<string>();
+            }
+        }
+
         public async Task<List<Product>> GetByBrandAsync(string brand)
         {
             try
@@ -45,6 +59,7 @@ namespace Catalog.Services
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex);
                 return new List<Product>();
             }
         }
@@ -58,6 +73,7 @@ namespace Catalog.Services
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return new List<Product>();
             }
         }
@@ -71,7 +87,22 @@ namespace Catalog.Services
             }
             catch( Exception ex)
             {
+                Console.WriteLine(ex);
                 return new List<Product>();
+            }
+        }
+
+        public async Task<List<string>> GetCategoriesAsync()
+        {
+            try
+            {
+                List<string> categories = await _repo.GetCategoriesAsync();
+                return categories;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new List<string>();
             }
         }
 
