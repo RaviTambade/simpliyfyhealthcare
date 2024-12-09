@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Shipments";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@{
+
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+
+        <!-- Filter by date and status -->
+        <div class="filter-container">
+            <label for="shipmentDateFilter">Filter by Shipment Date:</label>
+            <input type="date" id="shipmentDateFilter" name="shipmentDateFilter" class="form-control" />
+
+            <label for="shipmentStatusFilter">Filter by Shipment Status:</label>
+            <select id="shipmentStatusFilter" class="form-control">
+                <option value="">All</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+            </select>
+
+            <button class="btn" id="applyFilterButton">Apply Filter</button>
+        </div>
+
+        <table id="shipmentsTable">
+            <thead>
+                <tr>
+                    <th>Shipment ID</th>
+                    <th>Order ID</th>
+                    <th>Shipment Date</th>
+                    <th>Shipment Status</th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody class="table-body-to-update" >
+                @foreach (var shipment in Model)
+                {
+                    <tr>
+                        <td>@shipment.Id</td>
+                        <td>@shipment.OrderId</td>
+                        <td>@shipment.ShipmentDate.ToString("yyyy-MM-dd HH:mm:ss")</td> <!-- Display the full date-time -->
+                        <td>
+                            <p>@shipment.Status</p>
+                        </td>
+                        <td>
+                            <div class="details">
+                                <a href="/shipments/details/@shipment.Id">Details</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+}
+
+
+<script>
+    
+    // handle ajax calls
+
+</script>

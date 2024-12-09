@@ -44,7 +44,7 @@ namespace VijaySalesAPI.Controllers
                 return "Cart not found.";
             }
 
-            var item = myCart.Items.FirstOrDefault(i =>i.Id == id);
+            var item = myCart.Items.FirstOrDefault(i =>i.ProductId == id);
             if (item == null)
             {
                 return "Item not found in the cart.";

@@ -15,9 +15,9 @@ namespace VijaySalesAPI.Controllers
 
 
 
-        public OrdersController(IOrderService orderdervice)
+        public OrdersController(IOrderService orderService)
         {
-            _orderService = orderdervice;
+            _orderService = orderService;
         }
 
         // GET api/orders
@@ -30,9 +30,9 @@ namespace VijaySalesAPI.Controllers
 
         // GET api/orders/customer/{customerId}  -> Fetch orders for a specific customer
         [HttpGet("customer/{customerId}")]
-        public async Task<List<Order>> GetCustomerOrdersAsync(int customerId)
+        public async Task<List<OrderList>> GetCustomerOrdersAsync(int customerId)
         {
-            List<Order> orders = await _orderService.GetCustomerOrdersAsync(customerId);
+            List<OrderList> orders = await _orderService.GetOrderDetailsAsync(customerId);
             return orders;
         }
 
@@ -47,7 +47,7 @@ namespace VijaySalesAPI.Controllers
         [HttpPost]
         public async Task<bool> InsertAsync(Order order)
         {
-            bool status= await _orderService.InsertAsync(order);
+            bool status= await _orderService.InsertAsync(order);    
             return status;
         }
 
