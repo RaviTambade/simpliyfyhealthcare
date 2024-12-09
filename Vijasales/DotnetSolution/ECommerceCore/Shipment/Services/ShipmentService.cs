@@ -49,6 +49,10 @@ namespace Shipment.Services
         {
             return await _repo.GetByDateAsync(date);
         }
+        public async Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate)
+        {
+            return await _repo.GetByDateAsync(startdate, enddate);
+        }
 
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {

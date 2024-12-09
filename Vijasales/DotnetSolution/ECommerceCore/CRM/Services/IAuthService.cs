@@ -10,10 +10,10 @@ namespace CRM.Services
 {
     public interface IAuthService
     {
-        bool Login(string email, string password);
-        bool Register(User user);
+        Task <bool> LoginAsync(string email, string password);
+        Task<bool> RegisterAsync(User user);
         //string ForgotPassword(string email);
-        bool ResetPassword(string email, string oldpassword, string newpassword);
-        bool Logout();
+        Task<bool> ResetPasswordAsync(string email, string oldpassword, string newpassword);
+        Task<bool> LogoutAsync();
     }
 }

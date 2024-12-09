@@ -14,11 +14,12 @@
 <h2>User Profile</h2>
 <br />
 
-<div id="FirstRow">
+@* <div id="FirstRow">
     <input class="btn btn-info" type="button" id="btnOrderHistory" value="Order History" />
     <input class="btn btn-info" type="button" id="btnAccountDetails" value="Account Details" />
+    <input class="btn btn-info" type="button" id="btnPaymentHistory" value="Payment History" />
     <input class="btn btn-info" type="button" id="btnLogout" value="Logout" />
-</div>
+    </div> *@
 <div id="DivAccountDetails" style="margin-top:50px;">
     <form>
         <table>
@@ -87,14 +88,41 @@
 
 
 <!-- Account Settings Section -->
-<div class="col-md-6" style="margin-top:50px;">
-    <h4>Account Settings</h4>
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action" id="EditProfile">Edit Profile</a>
-        <a href="#" class="list-group-item list-group-item-action" id="DeleteAccount">Delete Account</a>
-        <a href="#" class="list-group-item list-group-item-action" id="ChartVisuals">Charts</a>
-    </div>
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;height:100vh;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 
+        <span class="fs-4">Sidebar</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <button class="nav-link btn btn-link active" id="btnAccountDetails" aria-current="page" onclick="setActive(this)">
+                Customer Details
+            </button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link " id="btnOrderHistory" onclick="setActive(this)">
+                Order History
+            </button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link " onclick="setActive(this)">
+                Orders Chart
+            </button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link " onclick="setActive(this)">
+                Edit Profile
+            </button>
+        </li>
+
+    </ul>
+    <hr>
+
+</div>
+
+<div class="col-md-6" style="margin-top:50px;">
+   
     <div id="CustomerUpdateDetails" style="margin-top:50px;">
         <form class="row g-3">
             <div class="col-md-4">
@@ -257,6 +285,7 @@
         $("#CloseDetails").click(() => {
             $("#DivAccountDetails").hide();
         });
+        
        
         // Chart.js integration
         const ctx = document.getElementById("chart").getContext('2d');
@@ -282,4 +311,14 @@
             },
         });
     });
+    
+        // Function to set the active class to the clicked button
+        function setActive(button) {
+            // Remove 'active' class from all buttons
+            const buttons = document.querySelectorAll('.nav-link');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Add 'active' class to the clicked button
+            button.classList.add('active');
+        }
 </script>

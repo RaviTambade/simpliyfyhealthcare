@@ -70,6 +70,22 @@ namespace VijaySalesAPI.Controllers
 
         }
 
+        [HttpGet("dates/{startDate}/{endDate}")]
+        public async Task<IActionResult> GetByDate(string startDate,string endDate)
+        {
+            DateTime date1,date2;
+
+           
+            if ((!DateTime.TryParse(startDate, out date1) || (!DateTime.TryParse(endDate, out date2))))
+            {
+                return BadRequest("Invalid date format.");
+            }
+
+            List<Delivery> deliverylistbydaterange = await _shipmentService.GetByDateAsync(date1,date2);
+            return Ok(deliverylistbydaterange);
+
+        }
+
         [HttpPost]
         public async Task<bool> Insert([FromBody] Delivery delivery)
         {

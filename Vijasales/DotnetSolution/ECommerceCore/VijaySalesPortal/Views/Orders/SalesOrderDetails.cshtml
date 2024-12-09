@@ -74,4 +74,75 @@
         </div>
     </div>
 
-   
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    // Function to create an order card HTML structure
+    function createOrderCard(order) {
+        return `
+                <div class="card order-card" id="order-${order.id}">
+                    <div class="card-header order-card-header">
+                        Order #${order.id}
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Customer Name:</strong> ${order.customerName}</p>
+                        <p><strong>Total:</strong> $${order.totalAmount.toFixed(2)}</p>
+                        <p><strong>Date:</strong> ${order.date}</p>
+                        <p>
+                            <strong>Status:</strong>
+                            <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id})">
+                                <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                <option value="completed" ${order.status === 'completed' ? 'selected' : ''}>Completed</option>
+                                <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                        </p>
+                    </div>
+                </div>
+            `;
+    }
+
+    // Fetch orders for the salesperson from the server
+    function fetchOrders() {
+        $.ajax({
+            url: 'http://localhost:5218/api/Orders',  // Endpoint for fetching orders (replace with your real API URL)
+            method: 'GET',
+            dataType: 'json',
+            success: function (orders) {
+                // Clear existing orders in the list
+                $('#ordersList').empty();
+
+                // Loop through the orders and generate HTML for each
+                orders.forEach(function (order) {
+                    var orderCard = createOrderCard(order);
+                    $('#ordersList').append(orderCard);
+                });
+            },
+            error: function () {
+                alert('Failed to load orders');
+            }
+        });
+    }
+
+    // Handle the change of order status
+    function changeStatus(orderId) {
+        var status = $('#status' + orderId).val();
+
+        $.ajax({
+            url: `/api/orders/${orderId}`,  // Endpoint for updating the order status (replace with your real API URL)
+            method: 'PUT',
+            dataType: 'json',
+            data: { status: status },
+            success: function () {
+                alert(`Order #${orderId} status updated to ${status}`);
+            },
+            error: function () {
+                alert('Failed to update order status');
+            }
+        });
+    }
+
+    // Fetch orders when the page is loaded
+    $(document).ready(function () {
+        fetchOrders();
+    });
+</script>
