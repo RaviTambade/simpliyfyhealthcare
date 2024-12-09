@@ -4,6 +4,7 @@ using OrderProcessing.Services;
 using OrderProcessing.Repositories;
 using OrderProcessing.Entities;
 using OrderProcessing.Services.Connected;
+using ShoppingCart.Entities;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -29,10 +30,10 @@ namespace VijaySalesAPI.Controllers
         }
 
         // GET api/orders/customer/{customerId}  -> Fetch orders for a specific customer
-        [HttpGet("customer/{customerId}")]
-        public async Task<List<OrderList>> GetCustomerOrdersAsync(int customerId)
+        [HttpGet("OrderItem/{orderId}")]
+        public async Task<List<OrderList>> GetOrderDetailsAsync(int orderId)
         {
-            List<OrderList> orders = await _orderService.GetOrderDetailsAsync(customerId);
+            List<OrderList> orders = await _orderService.GetOrderDetailsAsync(orderId);
             return orders;
         }
 
@@ -45,9 +46,9 @@ namespace VijaySalesAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<bool> InsertAsync(Order order)
+        public async Task<bool> InsertAsync(Cart cart)
         {
-            bool status= await _orderService.InsertAsync(order);    
+            bool status= await _orderService.InsertOrderAsync(cart);    
             return status;
         }
 
@@ -55,7 +56,7 @@ namespace VijaySalesAPI.Controllers
         [HttpPut("{id}")]
         public async Task<bool> UpdateAsync(int id,[FromBody]Order order)
         {
-            return await _orderService.UpdateAsync(order);
+            return await _orderService.UpdateOrderAsync(order);
         }
 
         [HttpDelete("{id}")]
