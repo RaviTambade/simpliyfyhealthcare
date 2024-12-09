@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -10,31 +11,84 @@ namespace VijaySalesAPI.Controllers
     [RoutePrefix("api/products")]
     public class ProductsController : ApiController
     {
-       
+
 
         // GET: api/products
         [HttpGet]
-        public async Task< List<Product>> Get()
+        [Route("")]
+        public async Task<IHttpActionResult> GetAllProducts()
         {
-            IProductService _productService=new ProductService();
+            IProductService _productService = new ProductService();
             var products = await _productService.GetAllAsync();
-            return products;
-             
+            
+            // Simulating async operation
+            return Ok(await Task.FromResult(products));
         }
 
-        // GET api/products/5
+        // GET: api/products/5
         [HttpGet]
-        public async Task<Product>  Get(int id)
+        [Route("{id:int}")]
+        public async Task<IHttpActionResult> GetProduct(int id)
         {
             IProductService _productService = new ProductService();
 
             var product = await _productService.GetAsync(id);
+            
+
+            return Ok(await Task.FromResult(product));
+        }
+
+        // POST: api/products
+        [HttpPost]
+        [Route("")]
+        public async Task<IHttpActionResult> CreateProduct([FromBody] Product product)
+        {
             if (product == null)
             {
-                return null ;
+                return BadRequest("Invalid data.");
             }
-            return product;
+
+         
+            IProductService _productService = new ProductService();
+
+            var success = await _productService.InsertAsync(product);
+            return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
         }
+
+        // PUT: api/products/5
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<IHttpActionResult> UpdateProduct(int id, [FromBody] Product product)
+        {
+            if (product == null || id != product.Id)
+            {
+                return BadRequest("Product ID mismatch.");
+            }
+            IProductService _productService = new ProductService();
+
+            var updatedProduct = await _productService.UpdateAsync(product);
+
+            return Ok(updatedProduct);
+
+           // return Ok(await Task.FromResult(existingProduct));
+        }
+
+        // DELETE: api/products/5
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IHttpActionResult> DeleteProduct(int id)
+        {
+            IProductService _productService = new ProductService();
+
+            var success = await _productService.DeleteAsync(id);
+
+           var product=await _productService.GetAsync(id);
+            return Ok(await Task.FromResult(product));
+        }
+    }
+   
+
+       /*
 
         // GET api/products/category/{category}
         [HttpGet]
@@ -45,47 +99,12 @@ namespace VijaySalesAPI.Controllers
             var products = await _productService.GetByCategoryAsync(category);
             return;  
         }
+       */
+     
 
-        // POST api/products
-        [HttpPost]
-        public async void Post([FromBody] Product product)
-        {
-            if (product == null)
-            {
-                return;  // Returns 400 Bad Request if the product is null
-            }
-            IProductService _productService = new ProductService();
+    
+       
+      
 
-            var success = await _productService.InsertAsync(product);
-            if (!success)
-            {
-                    return;  // Returns 400 Bad Request if insertion fails
-            }
-            return ;  // Returns 200 OK if the product is successfully created
-        }
-
-        // PUT api/products/5
-        [HttpPut]
-        [Route("{id=int}")]
-        public async Task<IHttpActionResult> Update (int id, [FromBody] Product product)
-        {
-            
-            IProductService _productService = new ProductService();
-
-            var updatedProduct = await _productService.UpdateAsync(product); 
-            
-            return Ok(updatedProduct);
-        }
-
-        // DELETE api/products/5
-        [HttpDelete]
-        public async void Delete(int id)
-        {
-            IProductService _productService = new ProductService();
-
-            var success = await _productService.DeleteAsync(id);
-            
-            return;
-        }
     }
-}
+
