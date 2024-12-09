@@ -41,6 +41,18 @@ namespace VijaySalesAPI.Controllers
             return await _shipmentService.GetByIdAsync(id);
         }
 
+        [HttpGet("order/{orderId:int}")]
+        public async Task<IActionResult> GetOrderDeliveryStatus(int orderId)
+        {
+            string status = await _shipmentService.GetStatusByOrderIdAsync(orderId);
+            var obj = new
+            {
+                orderId = orderId,
+                status = status,
+            };
+            return Ok(obj);
+        }
+
 
         [HttpGet("date/{filterDate}")]
         public async Task<IActionResult> GetByDate(string filterDate)
