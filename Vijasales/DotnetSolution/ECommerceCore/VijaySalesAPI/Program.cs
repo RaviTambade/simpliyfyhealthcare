@@ -70,6 +70,10 @@ builder.Services.AddTransient<ICardRepository, CardRepository>();
 
 builder.Services.AddTransient<ICardService, CardServices>();
 
+builder.Services.AddTransient<IBankRepository, BankRepository>();
+
+builder.Services.AddTransient<IBankService, BankService>();
+
 
 var app = builder.Build();
 
