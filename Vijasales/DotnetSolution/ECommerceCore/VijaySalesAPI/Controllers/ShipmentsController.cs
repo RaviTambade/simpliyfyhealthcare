@@ -41,6 +41,8 @@ namespace VijaySalesAPI.Controllers
             return await _shipmentService.GetByIdAsync(id);
         }
 
+
+        //  /api/shipments/order/{id}
         [HttpGet("order/{orderId:int}")]
         public async Task<IActionResult> GetOrderDeliveryStatus(int orderId)
         {
