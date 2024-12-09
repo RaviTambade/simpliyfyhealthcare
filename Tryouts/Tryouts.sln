@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryWebAppMVC", "TryWebAppMVC\TryWebAppMVC.csproj", "{820811D7-894F-4073-9F34-C4501878A71F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryWebAPI", "TryWebAPI\TryWebAPI.csproj", "{A49CCD97-D591-4AD9-AE7E-C7BDB93DEA97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryModuleFilterApp", "TryModuleFilterApp\TryModuleFilterApp.csproj", "{74123E6F-7C1D-4963-B814-92DC09339F60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A49CCD97-D591-4AD9-AE7E-C7BDB93DEA97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A49CCD97-D591-4AD9-AE7E-C7BDB93DEA97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A49CCD97-D591-4AD9-AE7E-C7BDB93DEA97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74123E6F-7C1D-4963-B814-92DC09339F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74123E6F-7C1D-4963-B814-92DC09339F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74123E6F-7C1D-4963-B814-92DC09339F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74123E6F-7C1D-4963-B814-92DC09339F60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

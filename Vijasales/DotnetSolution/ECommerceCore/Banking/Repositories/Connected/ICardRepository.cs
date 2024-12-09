@@ -10,6 +10,6 @@ namespace Banking.Repositories.Connected
     public interface ICardRepository
     {
         Task<List<Card>> GetAllAsync();
-        Task<Card> GetCardAsync(int id);
+        Task<Card> GetCardAsync(string cardNumber);
     }
 }

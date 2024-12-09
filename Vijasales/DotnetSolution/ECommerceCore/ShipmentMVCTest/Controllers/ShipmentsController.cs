@@ -24,6 +24,9 @@ namespace ShipmentMVCTest.Controllers
         // list of shipments 
         public async Task<IActionResult> List()
         {
+           // DateTime startdate = new DateTime(2024, 12, 8);
+           // DateTime enddate = new DateTime(2024, 12, 14);
+           // return View(await _shipmentService.GetByDateAsync(startdate,enddate));
             return View(await _shipmentService.GetAllAsync());
         }
 
@@ -34,6 +37,7 @@ namespace ShipmentMVCTest.Controllers
             // get the shipment using id
             return View(await _shipmentService.GetByIdAsync(id));
         }
+
 
 
     }

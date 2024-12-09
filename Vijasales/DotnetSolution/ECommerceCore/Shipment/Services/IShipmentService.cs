@@ -21,9 +21,12 @@ namespace Shipment.Services
 
         Task<List<Delivery>> GetByDateAsync(DateTime date);
 
+        Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate);
+
         Task<List<Delivery>> GetByStatusAsync(string status);
 
         Task<ShipmentDetail> GetByIdAsync(int id);
+        Task<string> GetStatusByOrderIdAsync(int id);
 
     }
 }
