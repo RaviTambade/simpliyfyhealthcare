@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaymentProcessing.Entities;
+using OrderProcessing.Entities;
 
 namespace PaymentProcessing.Repositories.Connected
 {
@@ -13,6 +14,7 @@ namespace PaymentProcessing.Repositories.Connected
         Task<Payment> GetPaymentAsync(int id);
         Task<bool> InsertAsync(Payment payment);
         Task<bool> UpdateAsync(Payment payment);
-        Task<(string status, string Tid)> ExecuteFundTransferProcedure(int customerAccountId, int adminAccountId, decimal amount, string paymentMode);
+        Task<double> GetAmount(int OrderId);
+        Task<(string status, string Tid)> ExecuteFundTransferProcedure(string customerAccountId, string adminAccountId, double amount, string paymentMode);
     }
 }

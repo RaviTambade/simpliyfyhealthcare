@@ -20,12 +20,15 @@ namespace Shipment.Repositories
 
         Task<ShipmentDetail> GetByIdAsync(int shipmentId);
 
+        Task<string> GetStatusByOrderIdAsync(int orderId);
+
         Task<bool> CreateAsync(Delivery shipment);
 
         Task<bool> UpdateAsync(Delivery shipment);
 
         Task<bool> UpdateStatusAsync(int id,  string status);
 
+         Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate);
 
     }
 }

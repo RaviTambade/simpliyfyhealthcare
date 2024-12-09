@@ -1,0 +1,53 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;height:100vh;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        
+        <span class="fs-4">Sidebar</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <button class="nav-link btn btn-link active" aria-current="page" onclick="setActive(this)">
+                Customer Details
+            </button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link active" onclick="setActive(this)">
+               Order History
+            </button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link " onclick="setActive(this)">
+                Orders Chart
+            </button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link " onclick="setActive(this)">
+                Edit Profile
+            </button>
+        </li>
+       
+    </ul>
+    <hr>
+    
+</div>
+
+<script>
+    // Function to set the active class to the clicked button
+    function setActive(button) {
+        // Remove 'active' class from all buttons
+        const buttons = document.querySelectorAll('.nav-link');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // Add 'active' class to the clicked button
+        button.classList.add('active');
+    }
+</script>
+
+
+
+

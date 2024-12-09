@@ -9,9 +9,15 @@ using CRM.Services;
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories.Connected;
 
+
+using Banking.Repositories.Connected;
+using Banking.Services;
+
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
+<<<<<<< HEAD
+=======
 
 
 
@@ -23,6 +29,7 @@ using Banking.Services;
 
 
 
+>>>>>>> 161ff82bb30462960e946923b4c809146cb3f28d
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -71,37 +78,72 @@ builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
 
 
+
+
+
+
+
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
 builder.Services.AddTransient<IOrderItemService, OrderItemService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 
 
+
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 
 
-builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
+builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 
 
 builder.Services.AddTransient<ICardRepository, CardRepository>();
 builder.Services.AddTransient<ICardService, CardServices>();
+
+builder.Services.AddTransient<IBankRepository, BankRepository>();
+
+builder.Services.AddTransient<IBankService, BankService>();
 
 
 //Register context
 
 var app = builder.Build();
 
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> 161ff82bb30462960e946923b4c809146cb3f28d
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-app.UseRouting();
 
 
 
 
-app.UseCors("AllowLocalhost");
-app.UseRouting();
+
+
+
+
+
+
+
+
+
+
 
 app.UseAuthorization();
 app.UseSession();

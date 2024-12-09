@@ -30,10 +30,10 @@ namespace VijaySalesAPI.Controllers
         }
 
         // GET api/orders/customer/{customerId}  -> Fetch orders for a specific customer
-        [HttpGet("customer/{customerId}")]
-        public async Task<List<OrderList>> GetOrderDetailsAsync(int customerId)
+        [HttpGet("OrderItem/{orderId}")]
+        public async Task<List<OrderList>> GetOrderDetailsAsync(int orderId)
         {
-            List<OrderList> orders = await _orderService.GetOrderDetailsAsync(customerId);
+            List<OrderList> orders = await _orderService.GetOrderDetailsAsync(orderId);
             return orders;
         }
 

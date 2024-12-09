@@ -25,23 +25,27 @@ namespace Banking.Repositories.Connected
         {
             SqlConnection conn = new SqlConnection(_conString);
             string query = "SELECT * FROM VsCards";
+
             SqlCommand cmd = new SqlCommand(query, conn);
             List<Card> cards = new List<Card>();
             try
             {
                 await conn.OpenAsync();
                 IDataReader data = await cmd.ExecuteReaderAsync();
+                Console.WriteLine(data);
                 while (data.Read())
                 {
+
                     Card card = new Card();
                     card.Id = Convert.ToInt32(data["Id"].ToString());
                     card.Pass = (data["Pass"].ToString());
                     card.CVV = data["CVV"].ToString();
-                    card.AccountId = data["AccountId"].ToString();
                     card.CardType = data["CardType"].ToString();
-                    card.CreditLimit = Convert.ToDouble(data["CardStatus"].ToString());
+                   
+                    card.CreditLimit = Convert.ToDouble(data["CreditLimit"].ToString());
+
                     card.CardNumber = data["CardNumber"].ToString();
-                    card.ExpiryDate = data["CardNumber"].ToString();
+                    card.ExpiryDate = data["ExpiryDate"].ToString();
                     card.AccountNumber = data["AccountNumber"].ToString();
 
                     cards.Add(card);
@@ -59,15 +63,15 @@ namespace Banking.Repositories.Connected
             return cards;
         }
 
-        public async Task<Card> GetCardAsync(int id)
+        public async Task<Card> GetCardAsync(string cardNumber)
         {
             Card card = new Card();
             SqlConnection conn = new SqlConnection(_conString);
-            string query = "SELECT * FROM VsCards WHERE Id=@Id";
+            string query = "SELECT * FROM VsCards WHERE CardNumber=@CardNumber";
             SqlCommand cmd = new SqlCommand(query, conn);
-            SqlParameter IdParameter = new SqlParameter("@Id", SqlDbType.Int);
-            IdParameter.Value = id;
-            cmd.Parameters.Add(IdParameter);
+            SqlParameter CardNumberParameter = new SqlParameter("@CardNumber", SqlDbType.VarChar);
+            CardNumberParameter.Value = cardNumber;
+            cmd.Parameters.Add(CardNumberParameter);
 
             try
             {
@@ -75,15 +79,13 @@ namespace Banking.Repositories.Connected
                 IDataReader data = await cmd.ExecuteReaderAsync();
                 if (data.Read())
                 {
-
                     card.Id = Convert.ToInt32(data["Id"].ToString());
                     card.Pass = (data["Pass"].ToString());
                     card.CVV = data["CVV"].ToString();
-                    card.AccountId = data["AccountId"].ToString();
                     card.CardType = data["CardType"].ToString();
-                    card.CreditLimit = Convert.ToDouble(data["CardStatus"].ToString());
+                    card.CreditLimit = Convert.ToDouble(data["CreditLimit"].ToString());
                     card.CardNumber = data["CardNumber"].ToString();
-                    card.ExpiryDate = data["CardNumber"].ToString();
+                    card.ExpiryDate = data["ExpiryDate"].ToString();
                     card.AccountNumber = data["AccountNumber"].ToString();
                 }
             }
