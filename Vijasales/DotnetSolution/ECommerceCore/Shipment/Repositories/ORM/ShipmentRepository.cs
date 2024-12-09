@@ -62,7 +62,7 @@ namespace Shipment.Repositories.ORM
             List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext(_configuration))
             {
-                var dbshipments = context.Shipments.ToList();
+                var dbshipments = await context.Shipments.ToListAsync();
                 foreach (var shipment in dbshipments)
                 {
                     Delivery theShipment = new Delivery();
@@ -84,7 +84,7 @@ namespace Shipment.Repositories.ORM
 
             using (var context = new ShipmentContext(_configuration))
             {
-                var dbshipments = context.Shipments.ToList();
+                var dbshipments =await context.Shipments.ToListAsync();
 
                 foreach (var shipment in dbshipments)
                 {

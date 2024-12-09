@@ -13,7 +13,7 @@ namespace Shipment.Repositories.ORM
     {
         public DbSet<Delivery> Shipments { get; set; }
 
-        public ShipmentContext() : base("name=consString") { }
+        public ShipmentContext() : base("name=conString") { }
 
     }
 }
