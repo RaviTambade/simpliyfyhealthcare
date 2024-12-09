@@ -14,7 +14,7 @@
         <div class="card-header">
             <h4>Customer Details</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body shadow">
             <table class="table table-bordered table-striped" id="tblCustomerSummary">
                 <thead>
                     <tr>
@@ -35,15 +35,7 @@
         <div class="card-header">
             <h4>Order Details</h4>
         </div>
-        <div id="tblOrderItemsList" class="card-body">
-        
-        <div id="loadingSpinner" class="text-center" style="display: none;">
-            <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-
-        </div>
+        <div id="tblOrderItemsList" class="card-body overflow-auto"> </div>
         
         <div class="card-footer bg-light text-end">
             <h5 class="mb-0 text-secondary">Total Amount: <strong id="totalOrderAmount" class="fs-3 text-dark"></strong></h5>
@@ -68,12 +60,12 @@
         var orderItemRow = `
                 <div class="card-body p-3 row border ">
                     <div class="col-2 text-center">
-                            <img src="https://via.placeholder.com/100" class="img-fluid rounded" alt="Product Image" />
+                                <img src="${item.productImage}" class="img-fluid rounded" alt="Product Image" width="80px" />
                     </div>
                     <div class="col-5">
                         <h6 class="mb-1">${item.name}</h6>
                             <p class="text-muted mb-1">Brand: <strong>&#8377;${item.brand}</strong></p>
-                        <p class="mb-0">Description: Best value product with durabiltiy</p>
+                        <p class="mb-0">Description: ${item.desc}</p>
                     </div>
                     <div class="col-2 mx-auto">
                             <h6 class="mb-1">Price :&#8377;${item.price}</h6>
@@ -147,7 +139,7 @@
     }
 
     var fetchOrderitems = () => {
-        $('#loadingSpinner').show();
+        
         $('#tblOrderItemsList').empty(); //clear spinner to load order item
         $.ajax({
             url: 'http://localhost:5218/api/Orders/OrderItem/17',  //orderId hard coded
@@ -167,6 +159,8 @@
                     let brand = order.brand;
                     let productPrice = parseFloat(order.price).toFixed(2);
                     let itemSubTotal = parseFloat(order.totalPrice).toFixed(2);
+                    let productImage = order.imageUrl;
+                    let desc = order.description;
                     itemSubTotal = parseFloat(itemSubTotal);
                     console.log(typeof itemSubTotal);
                     itemTotal += itemSubTotal;
@@ -179,17 +173,19 @@
                         subtotal: itemSubTotal.toFixed(2),
                         brand: brand,
                         itemTotal: itemTotal.toFixed(2),
+                        productImage:productImage,
+                        desc:desc
                     };
                     
                     displayOrderItems(context);
                 
                     
                 });
-                $('#loadingSpinner').hide();
+                
             },
             error: function () {
                 console.log("Error occurred while fetching order items");
-                $('#loadingSpinner').hide();
+                
             }
         });
     };
@@ -201,6 +197,7 @@
 
 
     document.addEventListener("DOMContentLoaded",()=>{
+        
         fetchOrderitems();
         fetchCustomerDetails();
     });
