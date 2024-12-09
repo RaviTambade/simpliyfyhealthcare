@@ -115,10 +115,10 @@ namespace Shipment.Repositories.ORM
 
                 var param = new SqlParameter("@ShipmentId", shipmentId);
 
-                shipmentDetail = await context.Set<ShipmentDetail>()
-                    .FromSqlRaw(query, param)
-                    .AsNoTracking()
-                    .FirstOrDefaultAsync();
+                shipmentDetail = context.Set<ShipmentDetail>()
+                            .FromSqlRaw(query, param)
+                            .AsEnumerable()
+                            .FirstOrDefault();
             }
 
             return shipmentDetail;
