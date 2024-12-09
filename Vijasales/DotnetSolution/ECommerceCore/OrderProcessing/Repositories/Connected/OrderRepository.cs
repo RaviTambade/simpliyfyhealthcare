@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using OrderProcessing.Responses;
 
 namespace OrderProcessing.Repositories.Connected
 {
@@ -155,11 +156,11 @@ namespace OrderProcessing.Repositories.Connected
             return order;
         }
 
-        public async Task<bool> InsertAsync(Order order)
+        public async Task<int> InsertAsync(Order order)
         {
-            bool status = false;
+            int insertedId =0;
             SqlConnection conn = new SqlConnection(conString);
-            string query = "INSERT INTO VSORDERS(CUSTOMERID, STATUS, TOTALAMOUNT, ORDERDATE) VALUES(@CustomerId,@Status,@TotalAmount,@OrderDate)";
+            string query = @"INSERT INTO VSORDERS (CUSTOMERID, STATUS, TOTALAMOUNT, ORDERDATE) OUTPUT INSERTED.ID  VALUES (@CustomerId, @Status, @TotalAmount, @OrderDate)";
             SqlCommand cmd = new SqlCommand(query, conn as SqlConnection);
             
             //Set Parameter for insert Query
@@ -180,8 +181,8 @@ namespace OrderProcessing.Repositories.Connected
             try
             {
                 await conn.OpenAsync();
-                await cmd.ExecuteNonQueryAsync();
-                status = true;
+                insertedId = (int)await cmd.ExecuteScalarAsync();
+                if (insertedId == 0) throw new Exception("No order id found after insertion");
             }
             catch (Exception ex)
             {
@@ -191,7 +192,8 @@ namespace OrderProcessing.Repositories.Connected
             {
                 await conn.CloseAsync();
             }
-            return status;
+            
+            return insertedId;
         }
 
         public async Task<bool> UpdateAsync(Order order)
@@ -236,5 +238,79 @@ namespace OrderProcessing.Repositories.Connected
 
             return status;
         }
+
+        public async Task<List<OrderList>> GetOrderDetailsAsync(int customerId)
+        {
+            // Initialize an empty list to hold the order details
+            List<OrderList> orderLists = new List<OrderList>();
+
+            // Initialize the SQL connection
+            using (SqlConnection conn = new SqlConnection(conString))
+            {
+                // Create the SqlCommand to execute the stored procedure
+                SqlCommand cmd = new SqlCommand("VsGetCurrentOrderDetails", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Add the parameter for customerId
+                cmd.Parameters.Add(new SqlParameter("@order_id", SqlDbType.Int) { Value = customerId });
+
+                try
+                {
+                    // Open the connection asynchronously
+                    await conn.OpenAsync();
+
+                    // Execute the query asynchronously and read the results
+                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await dr.ReadAsync()) // Use ReadAsync for async data reading
+                        {
+                            // Read each column value
+                            int orderId = Convert.ToInt32(dr["OrderId"]);
+                            string name = dr["Name"].ToString();
+                            string brand = dr["Brand"].ToString();
+                            string title = dr["Title"].ToString();
+                            int quantity = Convert.ToInt32(dr["Quantity"]);
+                            decimal price = Convert.ToDecimal(dr["Price"]);
+                            decimal totalPrice = Convert.ToDecimal(dr["TotalPrice"]);
+                            DateTime orderDate = Convert.ToDateTime(dr["OrderDate"]);
+                            string orderStatus = dr["OrderStatus"].ToString();
+
+                            // Create an OrderList object and populate it
+                            OrderList orderList = new OrderList
+                            {
+                                OrderId = orderId,
+                                Name = name,
+                                Brand = brand,
+                                Title = title,
+                                Quantity = quantity,
+                                Price = price,
+                                TotalPrice = totalPrice,
+                                OrderDate = orderDate,
+                                OrderStatus = orderStatus,
+                            };
+
+                            // Add the order to the list
+                            orderLists.Add(orderList);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception (log it, rethrow, or show a message)
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    // Ensure the connection is closed
+                    await conn.CloseAsync();
+                }
+            }
+
+            // Return the list of orders
+            return orderLists;
+        }
+
+        //OrderItems 
+       
     }
 }

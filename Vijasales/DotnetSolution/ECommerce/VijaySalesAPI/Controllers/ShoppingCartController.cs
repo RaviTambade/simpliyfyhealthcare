@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.UI.WebControls;
 using ShoppingCart.Entities;
 using VijaySalesAPI.Filters;
+using Catalog.Entities;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -44,18 +45,18 @@ namespace VijaySalesAPI.Controllers
                 return "Cart not found.";
             }
 
-            var item = myCart.Items.FirstOrDefault(i =>i.Id == id);
+            var item = myCart.Items.FirstOrDefault(i =>i.ProductId == id);
             if (item == null)
             {
                 return "Item not found in the cart.";
             }
-            return "";
-            //return $"ProductId: {item.ProductId}, Quantity: {item.Quantity}, Price: {item.Price}";
+           
+            return $"ProductId: {item.ProductId}, Quantity: {item.Quantity}, Price: {item.Price}";
         }
 
         // POST api/ShoppingCart
         [HttpPost]
-       /* public IHttpActionResult Post([FromBody] Product product)
+       public IHttpActionResult Post([FromBody] Product product)
         {
             if (product == null || product.Price <= 0 || product.Stock <= 0)
             {
@@ -90,11 +91,11 @@ namespace VijaySalesAPI.Controllers
             }
 
             return Ok(new { message = "Item added to cart!" });
-        }*/
+        }
 
         // PUT api/ShoppingCart/5
         [HttpPut]
-       /* public IHttpActionResult Put(int id, [FromBody] int quantity)
+        public IHttpActionResult Put(int id, [FromBody] int quantity)
         {
             // Access session
             Cart myCart = (Cart)HttpContext.Current.Session["cart"];
@@ -114,11 +115,11 @@ namespace VijaySalesAPI.Controllers
             existingItem.Quantity = quantity;
 
             return Ok(new { message = "Item quantity updated!" });
-        }*/
+        }
 
         // DELETE api/ShoppingCart/5
         [HttpDelete]
-        /*public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
             // Access session
             Cart myCart = (Cart)HttpContext.Current.Session["cart"];
@@ -137,10 +138,10 @@ namespace VijaySalesAPI.Controllers
             myCart.Items.Remove(itemToRemove);  // Remove item from the cart
 
             return Ok(new { message = "Item removed from cart!" });
-        }*/
+        }
 
         // DELETE api/ShoppingCart/clear
-        //[HttpDelete]
+        [HttpDelete]
         [Route("api/ShoppingCart/clear")]
         public IHttpActionResult Clear()
         {

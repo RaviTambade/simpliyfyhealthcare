@@ -16,5 +16,13 @@ namespace Catalog.Services
         Task<bool> DeleteAsync(int id);
 
         Task<List<Product>> GetByCategoryAsync(string category);
+        Task<List<Product>> GetByBrandAsync(string brand);
+
+        Task<List<Product>> GetByCategoryBrandAsync(string category, string brand);
+
+        Task<List<string>> GetCategoriesAsync();
+
+        Task<List<string>> GetBrandsAsync(string category);
+
     }
 }
