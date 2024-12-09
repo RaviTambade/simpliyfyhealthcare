@@ -1,17 +1,26 @@
 // See https://aka.ms/new-console-template for more information
 
 
+<<<<<<< HEAD
+using OrderProcessing.Entities;
+using OrderProcessing.Repositories.Connected;
+/*
+OrderRepository _repo = new OrderRepository();
+List<Order> orders = await _repo.GetAllAsync();
+foreach (Order order in orders)
+=======
 //using OrderProcessing.Entities;
 //using OrderProcessing.Repositories.Connected;
 
 //OrderRepository _repo = new OrderRepository();
 //List<Order> orders = await _repo.GetAllAsync();
 public class Program
+>>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
 {
     // Uncomment the following line to resolve.
     static void Main() { }
 }
-
+*/
 /*
 OrderRepository _orderRepository = new OrderRepository();
 Order _newOrder = new Order { CustomerId=12,Status="Shipped",OrderDate=DateTime.Now,TotalAmount=decimal.Parse("8800")};
