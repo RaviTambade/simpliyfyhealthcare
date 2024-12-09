@@ -153,6 +153,23 @@ namespace Shipment.Repositories.ORM
             return shipmentDetail;
         }
 
+        public async Task<string> GetStatusByOrderIdAsync(int orderId)
+        {
+            using (var context = new ShipmentContext(_configuration))
+            {
+                var query = @"EXEC GetShipmentDetails @OrderId";
+
+                var param = new SqlParameter("@OrderId", orderId);
+
+                var result = context.Set<ShipmentDetail>()
+                            .FromSqlRaw(query, param)
+                            .AsEnumerable()  
+                            .FirstOrDefault();
+
+                // Assuming ShipmentDetail has a Status property
+                return result?.DeliveryStatus ?? "Shipment status not found.";
+            }
+        }
 
         public async Task<List<Delivery>> GetByStatusAsync(string status)
         {

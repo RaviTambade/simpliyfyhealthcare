@@ -81,8 +81,8 @@ builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
 
 
-builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
+builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 
 
 builder.Services.AddTransient<ICardRepository, CardRepository>();
@@ -96,13 +96,6 @@ builder.Services.AddTransient<IBankService, BankService>();
 //Register context
 
 var app = builder.Build();
-
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-app.UseRouting();
-
-
-
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();

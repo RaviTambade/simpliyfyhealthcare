@@ -64,6 +64,11 @@ namespace Shipment.Services
             return await _repo.GetByStatusAsync(status);
         }
 
+        public async Task<string> GetStatusByOrderIdAsync(int orderId)
+        {
+            return await _repo.GetStatusByOrderIdAsync(orderId);
+        }
+
         public async Task<bool> UpdateShipmentAsync(Delivery shipment)
         {
             if (await _repo.UpdateAsync(shipment))
