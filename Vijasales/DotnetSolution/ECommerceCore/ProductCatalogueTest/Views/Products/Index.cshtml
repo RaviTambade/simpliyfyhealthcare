@@ -8,6 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
+
 <style>
 
     .dropdown-submenu {
@@ -106,7 +107,8 @@
 
 <div class="row">
 
-    <div class="col-md-2 bg-light p-3 h-100">
+    <!--Code for displaying dropdown list -->  
+    <div class="col-md-2 bg-light p-3">
 
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -144,8 +146,10 @@
         </div>
     </div>
 
+    <!-- Code for displaying Search bar, Toggle View button, ProductLayout -->
     <div class="col-md-10">
 
+        <!-- Code for search bar and toggle btn -->
         <div class="row d-flex justify-content-center my-3">
             <div class="col-md-6 d-flex">
 
@@ -159,6 +163,7 @@
             </div>
         </div>
 
+        <!-- Code for productLayout-->
         <div id="productLayout">
 
             <div id="gridView" class="view" style="display: block;">
@@ -176,8 +181,8 @@
 </div>
 
 
-<script>
-
+<script>0
+    // function for dynaiclly rendering gridLayout
     let gridCard = (data) => {
         // Generate the product HTML for all cards and update the product grid
         var productHtml = '';
@@ -213,6 +218,7 @@
         $('#productGridRow').html(productHtml);
     };
 
+    //function for dynamically rendering listCard layout
     let listCard = (products) => {
         $('ul.list-unstyled').html('');  // Clear the list before appending
         $.each(products, (index, item) => {
@@ -254,6 +260,7 @@
         });
     }
 
+    //function to load all products
     let loadAllProducts = () => {
         $.ajax({
             url: "http://localhost:5218/api/products",
@@ -271,6 +278,7 @@
         });
     }
 
+    // function to load products by categories
     let loadProductsByCat = (category) => {
         $.ajax({
             url: "http://localhost:5218/api/products/category/" + category,
@@ -287,6 +295,8 @@
             }
         });
     }
+
+
     $(document).ready(() => {
         
         
@@ -361,6 +371,7 @@
             loadProductsByCat("TV")
         });
 
+        //function to handle search button click
         $('#btnSearch').click(() => {
             let searchQuery = $("#textSearch").val();
             console.log(searchQuery)

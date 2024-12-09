@@ -1,16 +1,15 @@
-<<<<<<< HEAD
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 
 
 using OrderProcessing.Entities;
 using OrderProcessing.Repositories.Connected;
-
+/*
 OrderRepository _repo = new OrderRepository();
 List<Order> orders = await _repo.GetAllAsync();
 foreach (Order order in orders)
 {
     Console.WriteLine(order);
-}
+}*/
 
 /*
 OrderRepository _orderRepository = new OrderRepository();
@@ -25,5 +24,4 @@ foreach(Order order in _orders)
     Console.WriteLine(order);
 }
 */
-=======
->>>>>>> 9b2a796986941dd7555008528c99c9e4b1581233
+
