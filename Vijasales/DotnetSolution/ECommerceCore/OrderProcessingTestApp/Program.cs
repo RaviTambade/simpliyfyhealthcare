@@ -1,7 +1,6 @@
 // See https://aka.ms/new-console-template for more information
 
 
-<<<<<<< HEAD
 using OrderProcessing.Entities;
 using OrderProcessing.Repositories.Connected;
 /*
