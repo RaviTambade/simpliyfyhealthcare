@@ -165,7 +165,7 @@
                 <div id="productGrid" class="container">
                     <div class="row" id="productGridRow">
                     </div>
-                </div> <!-- Grid View  -->w
+                </div> <!-- Grid View  -->
             </div>
             <div id="cardView" class="view" style="display: none;">
                 <ul class="list-unstyled">
@@ -255,6 +255,7 @@
     }
 
     let loadAllProducts = () => {
+        console.log("hello")
         $.ajax({
             url: "http://localhost:5218/api/products",
             type: 'GET',
@@ -262,6 +263,7 @@
                 withCredentials: true  // Ensures cookies are sent with the request
             },
             success: function (data) {
+                console.log(data)
                     gridCard(data)
                     listCard(data)
             },

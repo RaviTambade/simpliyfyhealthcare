@@ -161,7 +161,7 @@
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Connected\ProductRepository.cs" />
-    <Compile Include="Repositories\ORM\IProductRepository.cs" />
+    <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\ORM\ProductContext.cs" />
     <Compile Include="Repositories\ORM\ProductRepository.cs" />
     <Compile Include="Services\IProductService.cs" />
