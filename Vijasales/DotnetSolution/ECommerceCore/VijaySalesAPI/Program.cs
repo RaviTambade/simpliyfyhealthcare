@@ -14,10 +14,6 @@ using OrderProcessing.Services.Connected;
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
-<<<<<<< HEAD
-
-=======
->>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +39,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284")  // Allow your frontend's URL
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890")  // Allow your frontend's URL
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -70,24 +66,11 @@ builder.Services.AddTransient<IShipmentService, ShipmentService>();
 
 var app = builder.Build();
 
-<<<<<<< HEAD
-// Configure the HTTP request pipeline.
 
 
 app.UseCors("AllowLocalhost");
-<<<<<<< HEAD
 app.UseRouting();
 app.UseRouting();
-=======
-
-
-
-
-app.UseRouting();
-
-
-
-
 
 
 
@@ -95,18 +78,25 @@ app.UseRouting();
 
 app.UseRouting();
 
->>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
+
+
+
+
+
+
+
+
+app.UseRouting();
+
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-<<<<<<< HEAD
-=======
+ 
 
 
->>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
+
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-<<<<<<< HEAD
-=======
+
 
 
 
@@ -114,17 +104,11 @@ app.UseCors("AllowLocalhost");
 
 app.UseRouting();
 
-=======
->>>>>>> 3e7d74c60a3b4e3520b607f1dfac3c64b7cb8b1c
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3e7d74c60a3b4e3520b607f1dfac3c64b7cb8b1c
->>>>>>> 1c3e562c2a702c3bb0a317f72bf044c2174b191c
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
