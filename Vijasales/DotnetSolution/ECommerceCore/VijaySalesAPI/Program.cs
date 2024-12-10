@@ -19,13 +19,6 @@ using OrderProcessing.Services.Connected;
 
 
 
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 2eed54d59fd97ad39b293b2ee686711b1c73379e
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -54,11 +47,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-<<<<<<< HEAD
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890")  // Allow your frontend's URL
-=======
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890");  // Allow your frontend's URL
+
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
+
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -110,89 +102,26 @@ builder.Services.AddTransient<IBankService, BankService>();
 
 var app = builder.Build();
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-
->>>>>>> ff16f1fcf1ab48bdaa5cce99d6e950f9a0c94232
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-app.UseRouting();
-
-<<<<<<< HEAD
-=======
-
-
-
-
-app.UseRouting();
-=======
-<<<<<<< HEAD
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
->>>>>>> 2eed54d59fd97ad39b293b2ee686711b1c73379e
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-app.UseRouting();
-
-app.UseCors("AllowLocalhost");
-app.UseRouting();
- 
-
 
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 161ff82bb30462960e946923b4c809146cb3f28d
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
->>>>>>> 2eed54d59fd97ad39b293b2ee686711b1c73379e
+app.UseRouting();
+app.UseRouting();
+app.UseRouting();
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
->>>>>>> ff16f1fcf1ab48bdaa5cce99d6e950f9a0c94232
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+app.UseCors("AllowLocalhost");
+app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
 app.Run();
+
+
+
+
+
+

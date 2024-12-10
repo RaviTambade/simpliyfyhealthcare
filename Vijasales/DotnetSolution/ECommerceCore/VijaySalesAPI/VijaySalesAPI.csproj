@@ -17,6 +17,7 @@
     <ProjectReference Include="..\OrderProcessing\OrderProcessing.csproj" />
     <ProjectReference Include="..\PaymentProcessing\PaymentProcessing.csproj" />
     <ProjectReference Include="..\Shipment\Shipment.csproj" />
+    <ProjectReference Include="..\ShoppingCartTest\ShoppingCartTest.csproj" />
     <ProjectReference Include="..\ShoppingCart\ShoppingCart.csproj" />
   </ItemGroup>
 
