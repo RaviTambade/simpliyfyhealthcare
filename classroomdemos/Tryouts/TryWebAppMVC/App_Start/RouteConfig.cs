@@ -13,6 +13,17 @@ namespace TryWebAppMVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
+
+            // Custom route example
+            routes.MapRoute(
+                name: "CustomRoute",
+                url: "products/{category}/{id}",
+                defaults: new { controller = "Products", action = "Details", id = UrlParameter.Optional },
+                constraints: new { category = @"\w+" } // Constraints for category (only letters/numbers)
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

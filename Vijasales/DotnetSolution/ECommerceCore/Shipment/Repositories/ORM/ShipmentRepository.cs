@@ -93,6 +93,10 @@ namespace Shipment.Repositories.ORM
                     // Define the stored procedure query with the necessary parameter
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
                     var param = new SqlParameter("@ShipmentId", shipmentId);
 
                     shipmentDetail =  context.Set<ShipmentDetail>()
@@ -102,6 +106,11 @@ namespace Shipment.Repositories.ORM
                 }
 
                 return shipmentDetail;
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
             }
 
         public async Task<string> GetStatusByOrderIdAsync(int orderId)

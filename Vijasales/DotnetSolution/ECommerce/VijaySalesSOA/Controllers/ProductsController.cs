@@ -12,7 +12,7 @@ using System.Web.Http.Cors;
 
 namespace VijaySalesSOA.Controllers
 {
-    [EnableCors(origins: "http://localhost:52741", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:49997", headers: "*", methods: "*")]
     public class ProductsController : ApiController
     {
         // GET: api/Products
