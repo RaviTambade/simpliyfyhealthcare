@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 using OrderProcessing.Entities;
 using OrderProcessing.Repositories.Connected;
@@ -12,28 +13,26 @@ public class Program
 OrderRepository _repo = new OrderRepository();
 List<Order> orders = await _repo.GetAllAsync();
 public class Program
-{
-    // Uncomment the following line to resolve.
-    static void Main() { }
-}
+=======
+class Program
 
+>>>>>>> aa1406039e17989ef2623f9057b4bfef0636db93
+{
+
+<<<<<<< HEAD
 
 
 /*
 OrderRepository _orderRepository = new OrderRepository();
 Order _newOrder = new Order { CustomerId=12,Status="Shipped",OrderDate=DateTime.Now,TotalAmount=decimal.Parse("8800")};
+=======
+    static void Main(string[] args)
 
-if(_orderRepository.Insert(_newOrder)) 
-        Console.WriteLine("Inserted");
-List<Order> _orders = _orderRepository.GetCustomerOrder(2);
+    {
+>>>>>>> aa1406039e17989ef2623f9057b4bfef0636db93
 
-foreach(Order order in _orders)
-{
-    Console.WriteLine(order);
+        Console.WriteLine("Hello, World!");
+
+    }
+
 }
-*/
-
-
-
-
- 

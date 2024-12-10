@@ -45,8 +45,8 @@ namespace VijaySalesAPI.Controllers
             return order;
         }
 
-        [HttpPost]
-        public async Task<bool> InsertAsync(Cart cart)
+        [HttpPost("{customerId}")]
+        public async Task<bool> InsertAsyncint(int customerId,[FromBody]Cart cart)
         {
             bool status= await _orderService.InsertOrderAsync(cart);    
             return status;
@@ -63,6 +63,12 @@ namespace VijaySalesAPI.Controllers
         public async Task<bool> DeleteAsync(int id)
         {
             return await _orderService.DeleteAsync(id);
+        }
+        [HttpGet("Customer/{customerId}")]
+        public async Task<List<OrderList>> GetCustomerPastOrders(int customerId)
+        {
+            List<OrderList> orders = await _orderService.GetCustomerOrdersAsync(customerId);
+            return orders;
         }
     }
 }
