@@ -5,23 +5,45 @@
 <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
-
 <div class="container">
     <h2>@ViewData["Title"]</h2>
 
-    <!-- Filter by date and status -->
     <div class="filter-container">
-        <label for="shipmentDateFilter">Filter by Shipment Date:</label>
-        <input type="date" id="shipmentDateFilter" name="shipmentDateFilter" class="form-control" />
+        <!-- Single Date Filter -->
+        <div class="filter-row">
+            <label for="shipmentDateFilter">Filter by Single Date:</label>
+            <input type="date" id="shipmentDateFilter" name="shipmentDateFilter" class="form-control" />
+            <button class="btn" id="applySingleDateFilterButton">Apply Single Date</button>
+        </div>
 
-        <label for="shipmentStatusFilter">Filter by Shipment Status:</label>
-        <select id="shipmentStatusFilter" class="form-control">
-            <option value="">All</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Rejected">Rejected</option>
-            <option value="Pending">Pending</option>
-        </select>
+        <!-- Date Range Filter -->
+        <div class="filter-row">
+            <label for="shipmentStartDateFilter">Start Date:</label>
+            <input type="date" id="shipmentStartDateFilter" name="shipmentStartDateFilter" class="form-control" />
 
+            <label for="shipmentEndDateFilter">End Date:</label>
+            <input type="date" id="shipmentEndDateFilter" name="shipmentEndDateFilter" class="form-control" />
+
+            <button class="btn" id="applyDateRangeFilterButton">Apply Date Range</button>
+        </div>
+
+        <!-- Status Filter -->
+        <div class="filter-row">
+            <label for="shipmentStatusFilter">Filter by Shipment Status:</label>
+            <select id="shipmentStatusFilter" class="form-control">
+                <option value="">All</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+            </select>
+
+            <button class="btn" id="applyFilterButton">Apply Status Filter</button>
+        </div>
+
+        <!-- Clear Filters Button -->
+        <div class="filter-row">
+            <button class="btn btn-warning" id="clearFiltersButton">Clear Filters</button>
+        </div>
     </div>
 
     <table id="shipmentsTable">
@@ -41,68 +63,18 @@
     </table>
 </div>
 
-<!-- Ensure jQuery is loaded before the custom script -->
-
 
 <script>
-
-    $(document).ready(function () {
-        GetAllShipments(); // Call this function to fetch all shipments
-
-        $('#applyDateRangeFilterButton').click(function () {
-            var startDate = $('#shipmentStartDateFilter').val();
-            var endDate = $('#shipmentEndDateFilter').val();
-
-            $.ajax({
-                url: apiUrl,  // Endpoint for filtering shipments
-                type: 'GET',
-                data: {
-                    startDate: startDate,
-                    endDate: endDate
-                },
-                success: function (response) {
-                    // Clear existing table rows
-                    $('#shipmentsTable tbody').empty();
-
-                    // Populate table with filtered shipments
-                    response.forEach(function (shipment) {
-                        var row = `<tr>
-                                            <td>${shipment.Id}</td>
-                                            <td>${shipment.OrderId}</td>
-                                            <td>${shipment.ShipmentDate}</td>
-                                            <td>${shipment.Status}</td>
-                                            <td><div class="details"><a href="/shipments/details/${shipment.Id}">Details</a></div></td>
-                                        </tr>`;
-                        $('#shipmentsTable tbody').append(row);
-                    });
-                },
-                error: function (xhr, status, error) {
-                    alert('Error fetching shipments: ' + error);
-                }
-            });
-        });
-
-    });
-
     let apiUrl = 'http://localhost:5218/api/shipments';
+    let allShipments = [];
 
     const GetAllShipments = () => {
         $.ajax({
             url: apiUrl,
             type: 'GET',
             success: function (response) {
-                console.log(response);
-                $('#table-body-to-update').empty();
-                response.forEach(function (shipment) {
-                    var row = `<tr>
-                                <td>${shipment.id}</td>
-                                <td>${shipment.orderId}</td>
-                                <td>${shipment.shipmentDate}</td>
-                                <td>${shipment.status}</td>
-                                <td><div class="details"><a href="/shipments/details/${shipment.id}">Details</a></div></td>
-                            </tr>`;
-                    $('#table-body-to-update').append(row);
-                });
+                allShipments = response; 
+                UpdateShipmentTable(allShipments); 
             },
             error: function (xhr, status, error) {
                 alert('Error fetching shipments: ' + error);
@@ -110,5 +82,70 @@
         });
     }
 
+    const UpdateShipmentTable = (shipments) => {
+        $('#table-body-to-update').empty();  // Clear the current table rows
+
+        shipments.forEach(function (shipment) {
+            var row = `<tr>
+                            <td>${shipment.id}</td>
+                            <td>${shipment.orderId}</td>
+                            <td>${shipment.shipmentDate}</td>
+                            <td>${shipment.status}</td>
+                            <td><div class="details"><a href="/shipments/details/${shipment.id}">Details</a></div></td>
+                        </tr>`;
+            $('#table-body-to-update').append(row);
+        });
+    }
+
+    // Function to apply all filters (status, single date, and date range)
+    const FilterShipments = () => {
+        const selectedDate = $('#shipmentDateFilter').val(); 
+        const startDate = $('#shipmentStartDateFilter').val(); 
+        const endDate = $('#shipmentEndDateFilter').val(); 
+        const status = $('#shipmentStatusFilter').val(); 
+
+        const filteredShipments = allShipments.filter((shipment) => {
+            const shipmentDate = new Date(shipment.shipmentDate).toISOString().split('T')[0]; 
+
+            const dateMatches = (selectedDate && shipmentDate === selectedDate) ||
+                (startDate && endDate && shipmentDate >= startDate && shipmentDate <= endDate) ||
+                (!selectedDate && !startDate && !endDate);
+
+            const statusMatches = status ? shipment.status === status : true;
+
+            return dateMatches && statusMatches;
+        });
+
+        UpdateShipmentTable(filteredShipments);
+    }
+
+    const ClearFilters = () => {
+        $('#shipmentDateFilter').val('');
+        $('#shipmentStartDateFilter').val('');
+        $('#shipmentEndDateFilter').val('');
+        $('#shipmentStatusFilter').val('');
+
+        UpdateShipmentTable(allShipments);
+    }
+
+    $(document).ready(function () {
+        GetAllShipments();  
+
+        $('#applySingleDateFilterButton').click(function () {
+            FilterShipments();  
+        });
+
+        $('#applyDateRangeFilterButton').click(function () {
+            FilterShipments();  
+        });
+
+        $('#applyFilterButton').click(function () {
+            FilterShipments();  
+        });
+
+        $('#clearFiltersButton').click(function () {
+            ClearFilters();  
+        });
+    });
 
 </script>
