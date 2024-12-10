@@ -264,6 +264,7 @@
 
     //function to load all products
     let loadAllProducts = () => {
+        console.log("hello")
         $.ajax({
             url: "http://localhost:5218/api/products",
             type: 'GET',
@@ -271,6 +272,7 @@
                 withCredentials: true  // Ensures cookies are sent with the request
             },
             success: function (data) {
+                console.log(data)
                     gridCard(data)
                     listCard(data)
             },

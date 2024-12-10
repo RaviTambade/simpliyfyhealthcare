@@ -1,4 +1,4 @@
-﻿using Shipment.Entities;
+using Shipment.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +22,7 @@ namespace Shipment.Repositories.ORM
         {
             _configuration = configuration;
         }
+
         public async Task<bool> CreateAsync(Delivery shipment)
         {
             bool status = false;
@@ -41,117 +42,95 @@ namespace Shipment.Repositories.ORM
             int ship_Id = id;
             using (var context = new ShipmentContext(_configuration))
             {
-                var shipment =  await context.Shipments.SingleOrDefaultAsync(s => s.Id == ship_Id);
+                var shipment = await context.Shipments.SingleOrDefaultAsync(s => s.Id == ship_Id);
                 if (shipment != null)
                 {
                     context.Shipments.Remove(shipment);
                     await context.SaveChangesAsync();
                     status = true;
                 }
-                else
-                {
-                    Console.WriteLine("Shipment not found.");
-                }
             }
-
             return status;
         }
 
         public async Task<List<Delivery>> GetAllAsync()
         {
-            List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext(_configuration))
             {
-                var dbshipments = context.Shipments.ToList();
-                foreach (var shipment in dbshipments)
-                {
-                    Delivery theShipment = new Delivery();
-                    theShipment.Id = shipment.Id;
-                    theShipment.OrderId = shipment.OrderId;
-                    theShipment.ShipmentDate=shipment.ShipmentDate;
-                    theShipment.Status=shipment.Status;
-                    
-                    shipments.Add(theShipment);
-                }
-            }
-            return shipments;
+                var dbshipments = await context.Shipments.ToListAsync();
+                return dbshipments;
+            } 
         }
 
         public async Task<List<Delivery>> GetByDateAsync(DateTime date)
         {
-
-            List<Delivery> shipments = new List<Delivery>();
-
             using (var context = new ShipmentContext(_configuration))
             {
-                var dbshipments = context.Shipments.ToList();
+                var dbShipments = await context.Shipments
+                    .Where(s => s.ShipmentDate == date)
+                    .ToListAsync();
+                return dbShipments;
+            }
+        }
 
-                foreach (var shipment in dbshipments)
-                {
-                    Delivery theShipment = new Delivery();
-                    if (shipment.ShipmentDate == date)
-                    {
-                        theShipment.Id = shipment.Id;
-                        theShipment.OrderId = shipment.OrderId;
-                        theShipment.ShipmentDate = shipment.ShipmentDate;
-                        theShipment.Status = shipment.Status;
+        public async Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate)
+        {
+            using (var context = new ShipmentContext(_configuration))
+            {
+                var dbShipments = await context.Shipments
+                    .Where(s => s.ShipmentDate >= startdate && s.ShipmentDate <= enddate)
+                    .ToListAsync();
 
-                        shipments.Add(theShipment);
-                    }
-
-                }
-                return shipments;
-               
+                return dbShipments;
             }
         }
 
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
-            ShipmentDetail shipmentDetail = null;
-            using (var context = new ShipmentContext(_configuration))
-            {
-                // Define the stored procedure query with the necessary parameter
-                var query = @"EXEC GetShipmentDetails @ShipmentId";
+                ShipmentDetail shipmentDetail = null;
+                using (var context = new ShipmentContext(_configuration))
+                {
+                    // Define the stored procedure query with the necessary parameter
+                    var query = @"EXEC GetShipmentDetails @ShipmentId";
 
-                var param = new SqlParameter("@ShipmentId", shipmentId);
+                    var param = new SqlParameter("@ShipmentId", shipmentId);
 
-                var results = await context.Set<ShipmentDetail>()
-                                .FromSqlRaw(query, param)
-                                .ToListAsync();
+                    shipmentDetail =  context.Set<ShipmentDetail>()
+                               .FromSqlRaw(query, param)
+                               .AsEnumerable()
+                               .FirstOrDefault();
+                }
 
-                shipmentDetail = results.FirstOrDefault();
+                return shipmentDetail;
             }
 
-            return shipmentDetail;
+        public async Task<string> GetStatusByOrderIdAsync(int orderId)
+        {
+            using (var context = new ShipmentContext(_configuration))
+            {
+                var query = @"EXEC GetShipmentDetails @OrderId";
+ 
+                var param = new SqlParameter("@OrderId", orderId);
+ 
+                var result = context.Set<ShipmentDetail>()
+                            .FromSqlRaw(query, param)
+                            .AsEnumerable()  
+                            .FirstOrDefault();
+ 
+                // Assuming ShipmentDetail has a Status property
+                return result?.DeliveryStatus ?? "Shipment status not found.";
+            }
         }
-
 
         public async Task<List<Delivery>> GetByStatusAsync(string status)
         {
-            List<Delivery>shipments= new List<Delivery>();
 
-            using (var context=new ShipmentContext(_configuration))
+            using (var context = new ShipmentContext(_configuration))
             {
-              var  dbshipments = await context.Shipments.ToListAsync();
-
-                foreach (var shipment in dbshipments)
-                {
-                    Delivery theShipment = new Delivery();
-                    if(shipment.Status==status)
-                    {
-                        theShipment.Id = shipment.Id;
-                        theShipment.OrderId = shipment.OrderId;
-                        theShipment.ShipmentDate = shipment.ShipmentDate;
-                        theShipment.Status = shipment.Status;
-
-                        shipments.Add(theShipment);
-                    }
-                }
-
-                return shipments;
+                var dbshipments = await context.Shipments
+                    .Where(s=> s.Status == status).ToListAsync();
+                return dbshipments;
             }
-
-            
         }
 
         public async Task<bool> UpdateAsync(Delivery shipment)
@@ -170,14 +149,27 @@ namespace Shipment.Repositories.ORM
                     await context.SaveChangesAsync();
                     status = true;
                 }
-                else
+                
+            }
+            return status;
+        }
+
+        public async Task<bool> UpdateStatusAsync(int id, string shipmentStatus)
+        {
+            bool status = false;
+            using (var context = new ShipmentContext(_configuration))
+            {
+                var foundShipment = await context.Shipments.SingleOrDefaultAsync(s => s.Id == id);
+                if (foundShipment != null)
                 {
-                    Console.WriteLine("Shipment not found.");
+                    // Only update the status
+                    foundShipment.Status = shipmentStatus;
+                    await context.SaveChangesAsync();
+                    status = true;
                 }
             }
-
-
             return status;
+
         }
     }
 }

@@ -22,9 +22,9 @@ namespace Banking.Services
 
 
 
-        public async Task<Card> GetCardAsync(int id)
+        public async Task<Card> GetCardAsync(string cardNumber)
         {
-            return await _repo.GetCardAsync(id);
+            return await _repo.GetCardAsync(cardNumber);
         }
     }
 }

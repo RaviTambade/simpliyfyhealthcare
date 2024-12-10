@@ -8,7 +8,7 @@ namespace Shipment.Entities
 {
     public class ShipmentDetail
     {
-        // shiping details- user name and address, items, amount
+        // shipping details- user name and address, items, amount
 
         public int ShipmentId { get; set; }
 

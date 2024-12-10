@@ -1,5 +1,6 @@
 ﻿using Catalog.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using PaymentProcessing.Entities;
 using Shipment.Entities;
 using Shipment.Repositories;
@@ -41,6 +42,20 @@ namespace VijaySalesAPI.Controllers
         }
 
 
+        //  /api/shipments/order/{id}
+        [HttpGet("order/{orderId:int}")]
+        public async Task<IActionResult> GetOrderDeliveryStatus(int orderId)
+        {
+            string status = await _shipmentService.GetStatusByOrderIdAsync(orderId);
+            var obj = new
+            {
+                orderId = orderId,
+                status = status,
+            };
+            return Ok(obj);
+        }
+
+
         [HttpGet("date/{filterDate}")]
         public async Task<IActionResult> GetByDate(string filterDate)
         {
@@ -52,6 +67,22 @@ namespace VijaySalesAPI.Controllers
 
             List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date);
             return Ok(deliverylistbydate);
+
+        }
+
+        [HttpGet("dates/{startDate}/{endDate}")]
+        public async Task<IActionResult> GetByDate(string startDate,string endDate)
+        {
+            DateTime date1,date2;
+
+           
+            if ((!DateTime.TryParse(startDate, out date1) || (!DateTime.TryParse(endDate, out date2))))
+            {
+                return BadRequest("Invalid date format.");
+            }
+
+            List<Delivery> deliverylistbydaterange = await _shipmentService.GetByDateAsync(date1,date2);
+            return Ok(deliverylistbydaterange);
 
         }
 
@@ -76,13 +107,23 @@ namespace VijaySalesAPI.Controllers
 
         }
 
+        [HttpPut("updateStatus/{id:int}")]
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] string status)
+        {
+            if (await _shipmentService.UpdateShipmentStatusAsync(id, status))
+            {
+                return Ok("Update success");
+            }
+
+            return BadRequest("Update failed");
+        }
+
         [HttpDelete("{id:int}")]
-        public async Task<bool> Delete(int id) { 
+        public async Task<IActionResult> Delete(int id) { 
             bool status = false;
             status = await _shipmentService.DeleteShipmentAsync(id);
 
-            return status;
-        
+            return Ok(status);
         }
 
     }

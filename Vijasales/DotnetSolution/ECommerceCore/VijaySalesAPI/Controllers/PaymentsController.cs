@@ -29,6 +29,46 @@ namespace VijaySalesAPI.Controllers
             Payment payment = await _paymentService.GetPaymentAsync(id);
             return payment;
         }
+
+
+        // POST api/payment/paynow
+        [HttpPost("paynow")]
+        public async Task<IActionResult> PayNow([FromBody] PaymentData paymentData)
+        {
+            // Extract data from the dynamic object
+
+            if (paymentData == null)
+            { return BadRequest("Invalid payment data."); }
+
+            int orderId = Convert.ToInt32(paymentData.OrderId.ToString());
+            // Ensure it's properly handled
+            string accountNumber = paymentData.AccountNumber.ToString();
+            string paymentMethod = paymentData.PaymentMethod.ToString();
+            if(paymentMethod == "creditDebitCard")
+            {
+
+            }
+            if (orderId<=0 || string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(paymentMethod))
+            {
+                return BadRequest(new { success = false, message = "Invalid payment data" });
+            }
+            // Validate the incoming request data (for example, check for required fields)
+      
+
+            // Call your payment processing logic here (e.g., verifying the card or processing the payment)
+            bool paymentSuccessful = await _paymentService.PayNow(orderId,accountNumber,paymentMethod);
+
+            if (paymentSuccessful)
+            {
+                return Ok(new { success = true, message = "Payment successful" });
+            }
+            else
+            {
+                return Ok(new { success = false, message = "Payment failed" });
+            }
+        }
+
+
         [HttpPost]
         public async void Post([FromBody] Payment payment)
         {

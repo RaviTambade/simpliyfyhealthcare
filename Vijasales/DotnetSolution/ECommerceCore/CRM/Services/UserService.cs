@@ -16,34 +16,35 @@ namespace CRM.Services
         {
             _repoSvc = new UserRepository();
         }
-        public bool Delete(int Id)
+        public async Task <bool> DeleteAsync(int Id)
         {
-            return _repoSvc.Delete(Id);
+            return await _repoSvc.DeleteAsync(Id);
         }
 
-        public List<User> GetAll()
+        public async Task <List<User>> GetAllAsync()
         {
-            return _repoSvc.GetAll();
+            return await _repoSvc.GetAllAsync();
         }
 
-        public int GetCount()
-        {
-            return _repoSvc.GetAll().Count;
+        public async Task  <int> GetCountAsync()
+        {    
+            var users=await _repoSvc.GetAllAsync();
+            return  users.Count();
         }
 
-        public User GetUser(int Id)
+        public async Task <User> GetUserAsync(int Id)
         {
-            return _repoSvc.GetUser(Id);
+            return await _repoSvc.GetUserAsync(Id);
         }
 
-        public bool Insert(User user)
+        public async Task <bool> InsertAsync (User user)
         {
-            return _repoSvc.Insert(user);
+            return await  _repoSvc.InsertAsync(user);
         }
 
-        public bool Update(User user)
+        public async Task <bool> UpdateAsync(User user)
         {
-            return _repoSvc.Update(user);
+            return await _repoSvc.UpdateAsync(user);
         }
     }
 }

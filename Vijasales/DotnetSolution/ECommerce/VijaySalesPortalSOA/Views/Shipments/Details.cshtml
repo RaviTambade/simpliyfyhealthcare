@@ -1,0 +1,122 @@
+﻿<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<div class="container mt-5">
+    <!-- Back to List Button -->
+    <div class="mb-4">
+        <a href="/shipments/list" class="btn btn-secondary">
+            <i class="bi bi-arrow-left-circle"></i> Back to List
+        </a>
+    </div>
+
+    <h2 class="text-center mb-4">Shipment Details</h2>
+
+    <div class="row">
+        <!-- Left Column: Shipment Information -->
+        <div class="col-md-8">
+            <div class="card p-4 mb-4">
+                <h5 class="card-title">Shipment Information</h5>
+                <p id="orderid"><strong>Order ID:</strong> </p>
+                <p id="customername"><strong>Customer Name:</strong> </p>
+                <p id="customeraddress"><strong>Customer Address:</strong> </p>
+                <p id="totalamount"><strong>Total Amount:</strong></p>
+                <p id="deliverydate"><strong>Delivery Date:</strong> </p>
+            </div>
+        </div>
+
+        <!-- Right Column: Delivery Status Update -->
+        <div class="col-md-4">
+            <div class="card p-4 mb-4">
+                <h5 class="card-title">Update Delivery Status</h5>
+
+                <!-- Radio Buttons for Status -->
+                <div id="radio-buttons-div" class="form-group">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="Pending" name="DeliveryStatus" value="Pending" />
+                        <label class="form-check-label" for="Pending">Pending</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="Dispatched" name="DeliveryStatus" value="Dispatched" />
+                        <label class="form-check-label" for="Dispatched">Dispatched</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="Delivered" name="DeliveryStatus" value="Delivered" />
+                        <label class="form-check-label" for="Delivered">Delivered</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="Canceled" name="DeliveryStatus" value="Canceled" />
+                        <label class="form-check-label" for="Canceled">Canceled</label>
+                    </div>
+                </div>
+
+                <!-- Update Status Button -->
+                <div class="text-center">
+                    <button id="btn-update-status" class="btn btn-primary">Update Status</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let apiUrl = 'http://localhost:5218/api/shipments';
+
+    const PopulateShipmentDetails = (shipmentId) => {
+        console.log(`${apiUrl}/${shipmentId}`)
+
+        // Call the API to fetch shipment details
+        $.ajax({
+            url: `${apiUrl}/${shipmentId}`,
+            type: 'GET',
+            success: function (response) {
+                console.log("Shipment data:", response);
+
+                // Populate the page with the fetched shipment data
+                $('#orderid').append(response.orderId);
+                $('#customername').append(response.customerName);
+                $('#customeraddress').append(response.customerAddress);
+                $('#totalamount').append(response.totalAmount);
+                $('#deliverydate').append(new Date(response.deliveryDate).toLocaleDateString()); // Format the date
+
+                const status = response.deliveryStatus;
+                console.log(status);
+                if (status) {
+                    $(`#${status}`).prop('checked', true);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching shipment details:', error);
+                alert('Error fetching shipment details. Please try again.');
+            }
+        });
+    }
+
+    const UpdateStatus = (shipmentId) => {
+        // Get the selected delivery status
+        const status = $("input[name='DeliveryStatus']:checked").val();
+
+        $.ajax({
+            url: `${apiUrl}/updatestatus/${shipmentId}`,
+            type: 'PUT',
+            contentType: 'application/json', // Ensure the server knows you're sending JSON
+            data: JSON.stringify(status), // Send the status as a plain string in the body
+            success: function (response) {
+                alert('Shipment status updated successfully.');
+            },
+            error: function (xhr, status, error) {
+                alert('Error updating shipment status. Please try again.');
+            }
+        });
+    }
+
+    $(document).ready(() => {
+        const shipmentId = window.location.pathname.split('/').pop(); // e.g. /shipments/details/3 -> 3
+
+        PopulateShipmentDetails(shipmentId);
+
+        $('#btn-update-status').click(() => {
+            console.log("update clicked")
+            UpdateStatus(shipmentId);
+        })
+    })
+</script>

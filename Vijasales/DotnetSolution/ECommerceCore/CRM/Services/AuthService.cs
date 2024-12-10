@@ -18,9 +18,9 @@ namespace CRM.Services
             repo = new UserRepository();
         }
 
-        public bool Login(string email, string password)
+        public async Task < bool> LoginAsync(string email, string password)
         {
-            List<User> users = repo.GetAll();
+            List<User> users = await repo.GetAllAsync();
             foreach (var user in users)
             {
                 if (user.Email == email && PasswordEncryptionManager.Verify(password, user.Password))
@@ -31,26 +31,26 @@ namespace CRM.Services
             return false;
         }
 
-        public bool Logout()
+        public async Task< bool> LogoutAsync()
         {
             throw new NotImplementedException();
         }
 
-        public bool Register(User user)
+        public async Task<bool> RegisterAsync(User user)
         {
             ;
-            return repo.Insert(user);
+            return await repo.InsertAsync(user);
         }
 
-        public bool ResetPassword(string email, string oldpassword, string newpassword)
+        public async Task<bool> ResetPasswordAsync(string email, string oldpassword, string newpassword)
         {
-            List<User> users = repo.GetAll();
+            List<User> users = await repo.GetAllAsync();
             foreach (var user in users)
             {
                 if (user.Email == email && PasswordEncryptionManager.Verify(oldpassword, user.Password))
                 {
                     user.Password = newpassword;
-                    repo.Update(user);
+                    await repo.UpdateAsync(user);
                     return true;
                 }
             }
