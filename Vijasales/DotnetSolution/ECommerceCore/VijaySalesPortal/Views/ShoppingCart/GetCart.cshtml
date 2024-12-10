@@ -13,7 +13,7 @@
             <div class="text-center mt-3">
                 <h4 id="total-amount">Total Cart Value: Rs 0</h4>
 
-                <a class="btn btn-success w-100 mt-3" id="buy-now-btn" href="/Orders/OrderDetails">Proceed To Buy</a>
+                <a class="btn btn-success w-100 mt-3" id="buy-now-btn" href="">Proceed To Buy</a>
 
                 <button class="btn btn-danger w-100 mt-3" id="clear-cart-btn">Clear Cart</button>
             </div>
@@ -107,14 +107,21 @@
                 withCredentials: true  // Ensures cookies are sent with the request
             },
             success: function (data) {
-                let cartData = [];
+                let orderCart = {
+                    UserId: 2,  // This is just an example. You can dynamically get this based on the current user.
+                    OrderCart: {
+                        Items: []  // Initialize an empty array for items
+                    }
+                };
+                
                 $.each(data.items, function (index, item) {
-                    cartData.push({
-                        productId: item.productId,
-                        quantity: item.quantity
+                    orderCart.OrderCart.Items.push({
+                        ProductId: item.productId,
+                        Quantity: item.quantity,
+                        Price: item.price
                     });
-                    createOrder(data);
                 });
+                createOrder(orderCart);
 
                 // Proceed with order creation
                
@@ -131,7 +138,7 @@
         
         console.log("HI");
         $.ajax({
-            url: url, // API endpoint to create an order
+            url: `http://localhost:5218/api/orders`, // API endpoint to create an order
             type: 'POST',
             xhrFields: {
                 withCredentials: true // Ensures cookies are sent with the request
@@ -140,7 +147,13 @@
             contentType: 'application/json', // Set content type to JSON
             success: function (response) {
                 // Handle success: Redirect to the order details page
-                alert('Checkout successful! Proceed to payment.');
+                console.log(response);
+                if (response) {
+                    window.location.href = "/Orders/OrderDetails/"+response;
+                    alert('Checkout successful! Proceed to payment.');
+                } else {
+                    console.log("Error occured");
+                }
                
                 // Redirect to order details with the orderId
             },
@@ -230,6 +243,7 @@
     // Buy Now button click handler
     $('#buy-now-btn').click(function () {
         // Fetch the cart data before proceeding with order creation
+        event.preventDefault();
         console.log("btn clicked");
         getCartData();
     });
