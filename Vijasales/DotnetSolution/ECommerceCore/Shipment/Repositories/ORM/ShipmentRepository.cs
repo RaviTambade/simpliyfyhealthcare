@@ -85,7 +85,6 @@ namespace Shipment.Repositories.ORM
             }
         }
 
-
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
                 ShipmentDetail shipmentDetail = null;
@@ -95,10 +94,6 @@ namespace Shipment.Repositories.ORM
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
 
                     var param = new SqlParameter("@ShipmentId", shipmentId);
-<<<<<<< HEAD
-
-=======
->>>>>>> 6988351d78f90c20312067e8d2bedbc499a51f76
 
                     shipmentDetail =  context.Set<ShipmentDetail>()
                                .FromSqlRaw(query, param)
@@ -107,12 +102,6 @@ namespace Shipment.Repositories.ORM
                 }
 
                 return shipmentDetail;
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 6988351d78f90c20312067e8d2bedbc499a51f76
             }
 
         public async Task<string> GetStatusByOrderIdAsync(int orderId)
@@ -162,7 +151,6 @@ namespace Shipment.Repositories.ORM
                 }
                 
             }
-
             return status;
         }
 
@@ -184,5 +172,4 @@ namespace Shipment.Repositories.ORM
 
         }
     }
-    }
-
+}
