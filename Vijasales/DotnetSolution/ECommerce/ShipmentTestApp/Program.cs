@@ -7,6 +7,7 @@ using Shipment.Entities;
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
+using System.Data.Entity;
 
 namespace ShipmentTestApp
 {
@@ -23,7 +24,7 @@ namespace ShipmentTestApp
             {
                 Console.WriteLine(delivery);
             }
-
+            Console.ReadLine();
 
 
         }

@@ -10,67 +10,6 @@
 
         <!-- List of Orders -->
         <div id="ordersList">
-            <!-- Example Order Card 1 -->
-            <div class="card order-card">
-                <div class="card-header order-card-header">
-                    Order #12345
-                </div>
-                <div class="card-body">
-                    <p><strong>Customer Name:</strong> Raj Jadhav</p>
-                    <p><strong>Total:</strong> $200.00</p>
-                    <p><strong>Date:</strong> 2023-12-07</p>
-                    <p>
-                        <strong>Status:</strong>
-                        <select class="form-select status-dropdown" id="status12345" onchange="changeStatus(12345)">
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Example Order Card 2 -->
-            <div class="card order-card">
-                <div class="card-header order-card-header">
-                    Order #12346
-                </div>
-                <div class="card-body">
-                    <p><strong>Customer Name:</strong> vivek Kolambe</p>
-                    <p><strong>Total:</strong> $150.00</p>
-                    <p><strong>Date:</strong> 2023-12-06</p>
-                    <p>
-                        <strong>Status:</strong>
-                        <select class="form-select status-dropdown" id="status12346" onchange="changeStatus(12346)">
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Example Order Card 3 -->
-            <div class="card order-card">
-                <div class="card-header order-card-header">
-                    Order #12347
-                </div>
-                <div class="card-body">
-                    <p><strong>Customer Name:</strong> Shruti Kadam</p>
-                    <p><strong>Total:</strong> $150.00</p>
-                    <p><strong>Date:</strong> 2023-12-06</p>
-                    <p>
-                        <strong>Status:</strong>
-                        <select class="form-select status-dropdown" id="status12347" onchange="changeStatus(12347)">
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Add more orders here -->
         </div>
     </div>
 
@@ -91,9 +30,9 @@
                     <p>
                         <strong>Status:</strong>
                             <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id},new Date('${order.orderDate}'),${order.customerId},${order.totalAmount})">
-                            <option value="pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
-                            <option value="completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
-                            <option value="cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                            <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                         </select>
                     </p>
                 </div>
@@ -149,14 +88,14 @@
             CustomerId:customerid,
             Status:status,
             OrderDate:orderDate,
-            totalAmount:totalAmount
+            TotalAmount:totalAmount
         };
         console.log(context);
         $.ajax({
             url: `http://localhost:5218/api/Orders/`+ orderId,  
-            method: 'PUT',
-            dataType: 'json',
-            data: { status: status },
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(context),
             success: function () {
                 alert(`Order #${orderId} status updated to ${status}`);
             },
@@ -165,7 +104,7 @@
             }
         });
     }
-
+   
     
     $(document).ready(function () {
         fetchOrders();

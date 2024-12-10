@@ -98,6 +98,35 @@ namespace Shipment.Repositories.ORM
             }
         }
 
+        public async Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate)
+        {
+            List<Delivery> shipments = new List<Delivery>();
+
+            using (var context = new ShipmentContext())
+            {
+                // Query to get shipments within the date range
+                var dbShipments = await context.Shipments
+                    .Where(s => s.ShipmentDate >= startdate && s.ShipmentDate <= enddate)
+                    .ToListAsync();
+
+                foreach (var shipment in dbShipments)
+                {
+                    // Mapping the shipment to Delivery object
+                    Delivery theShipment = new Delivery
+                    {
+                        Id = shipment.Id,
+                        OrderId = shipment.OrderId,
+                        ShipmentDate = shipment.ShipmentDate,
+                        Status = shipment.Status
+                    };
+
+                    shipments.Add(theShipment);
+                }
+            }
+
+            return shipments;
+        }
+
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
             ShipmentDetail shipmentDetail = null;
@@ -116,8 +145,25 @@ namespace Shipment.Repositories.ORM
             return shipmentDetail;
         }
 
+        public async Task<string> GetStatusByOrderIdAsync(int orderId)
+        {
+            ShipmentDetail shipmentDetail = null;
+            using (var context = new ShipmentContext())
+            {
+                var query = @"EXEC GetShipmentDetails @OrderId";
 
-        public async Task<List<Delivery>> GetByStatusAsync(string status)
+                var param = new SqlParameter("@OrderId", orderId);
+
+                var results = await context.Database.SqlQuery<ShipmentDetail>(query, param).ToListAsync();
+
+                shipmentDetail = results.FirstOrDefault();
+            }
+
+            return shipmentDetail.DeliveryStatus;
+        }
+
+
+            public async Task<List<Delivery>> GetByStatusAsync(string status)
         {
             List<Delivery> shipments = new List<Delivery>();
 
@@ -170,5 +216,7 @@ namespace Shipment.Repositories.ORM
 
             return status;
         }
+
+
     }
 }

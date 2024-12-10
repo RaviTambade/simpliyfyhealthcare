@@ -50,38 +50,65 @@ namespace OrderProcessing.Repositories.Connected
             return status;
         }
 
-        public async Task<List<Order>> GetCustomerOrderAsync(int customerId)
+        public async Task<List<OrderList>> GetCustomerOrderAsync(int customerId)
         {
-            List<Order> orders = new List<Order>();
-            SqlConnection conn = new SqlConnection(conString);
-            string query = "SELECT * FROM VSORDERS WHERE CUSTOMERID=@CustomerId";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            //Set Parameter for insert Query
-            SqlParameter CustomeridParameter = new SqlParameter("@CustomerId", SqlDbType.Int);
-            CustomeridParameter.Value = customerId;
-            cmd.Parameters.Add(CustomeridParameter);
-            try
+            List<OrderList> orders = new List<OrderList>();
+            using(var conn = new SqlConnection(conString))
             {
-                await conn.OpenAsync();
-                IDataReader data = await cmd.ExecuteReaderAsync();
-                while (data.Read())
+                SqlCommand cmd = new SqlCommand("VsGetCustomerOrderDetails", conn);
+                cmd.CommandType= CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@customer_id", SqlDbType.Int) { Value=customerId});
+
+                try
                 {
-                    Order order = new Order();
-                    order.Id = Convert.ToInt32(data["Id"].ToString());
-                    order.CustomerId = Convert.ToInt32(data["CustomerId"].ToString());
-                    order.Status = data["Status"].ToString();
-                    order.OrderDate = DateTime.Parse(data["OrderDate"].ToString());
-                    order.TotalAmount = Convert.ToDecimal(data["TotalAmount"].ToString());
-                    orders.Add(order);
+                    await conn.OpenAsync();
+                    using(SqlDataReader dr = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await dr.ReadAsync()) // Use ReadAsync for async data reading
+                        {
+                            // Read each column value
+                            int orderId = Convert.ToInt32(dr["OrderId"]);
+                            int theCustomerId = Convert.ToInt32(dr["CustomerId"]);
+                            string name = dr["Name"].ToString();
+                            string brand = dr["Brand"].ToString();
+                            string title = dr["Title"].ToString();
+                            int quantity = Convert.ToInt32(dr["Quantity"]);
+                            decimal price = Convert.ToDecimal(dr["Price"]);
+                            decimal totalPrice = Convert.ToDecimal(dr["TotalPrice"]);
+                            DateTime orderDate = Convert.ToDateTime(dr["OrderDate"]);
+                            string orderStatus = dr["OrderStatus"].ToString();
+                            string description = dr["Description"].ToString();
+                            string imageUrl = dr["ImageUrl"].ToString();
+
+                            // Create an OrderList object and populate it
+                            OrderList orderList = new OrderList
+                            {
+                                OrderId = orderId,
+                                Name = name,
+                                Brand = brand,
+                                Title = title,
+                                Quantity = quantity,
+                                Price = price,
+                                TotalPrice = totalPrice,
+                                OrderDate = orderDate,
+                                OrderStatus = orderStatus,
+                                CustomerId = theCustomerId,
+                                Description = description,
+                                ImageUrl = imageUrl
+                            };
+
+                            // Add the order to the list
+                            orders.Add(orderList);
+                        }
+                    }
+                }catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                //Catch exception
-            }
-            finally
-            {
-                await conn.CloseAsync();
+                finally
+                {
+                    await conn.CloseAsync();
+                }
             }
             return orders;
         }
