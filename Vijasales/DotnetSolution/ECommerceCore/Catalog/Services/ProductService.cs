@@ -1,78 +1,121 @@
 ﻿using Catalog.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Catalog.Repositories;
+
+
 namespace Catalog.Services
 {
     public class ProductService : IProductService
     {
-        //Sampling data for testing purpose
-        private IProductRepository _repo;
-        public ProductService(IProductRepository repo) {
+        private readonly IProductRepository _repo;
+
+        public ProductService(IProductRepository repo)
+        {
             _repo = repo;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            Product theProduct = Get(id);
-            if (theProduct != null)
-            {
-                List<Product> allProducts = GetAll();
-                
-            }
-            return false;
+           bool status= await _repo.DeleteAsync(id);
+            return status;
         }
 
-        public Product Get(int id)
+        public async Task<List<Product>> GetAllAsync()
         {
-            Product product = _repo.GetById(id);
-
-            return product;
-        }
-
-        public List<Product> GetAll()
-        {
-            List<Product> products = new List<Product>();
-            products=_repo.GetAll();
+            
+            List<Product> products = await _repo.GetAllAsync();
             return products;
         }
 
-        public bool Insert(Product product)
-        {
-            List<Product> allProducts = GetAll();
-            allProducts.Add(product);
-           
 
-            return false;
+        public async Task<Product> GetAsync(int id)
+        {
+            Product product = await _repo.GetByIdAsync(id);
+            return product;
         }
 
-        public bool Update(Product productTobeUpdated)
-        {
-            Product theProduct = Get(productTobeUpdated.Id);
-            if (theProduct != null)
-            {
-                List<Product> allProducts = GetAll();
-                allProducts.Remove(theProduct);
-                allProducts.Add(productTobeUpdated);
-                
-            }
-            return false;
-        }
-
-        public List<Product> GetByCategory(string category)
+        public async Task<List<string>> GetBrandsAsync(string category)
         {
             try
             {
-                List<Product> products = _repo.GetByCategory(category);
+                List<string> brands = await _repo.GetBrandsAsync(category);
+                return brands;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new List<string>();
+            }
+        }
+
+        public async Task<List<Product>> GetByBrandAsync(string brand)
+        {
+            try
+            {
+                List<Product> products = await _repo.GetByBrandAsync(brand);
                 return products;
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex);
                 return new List<Product>();
             }
+        }
+
+        public  async Task<List<Product>> GetByCategoryAsync(string category)
+        {
+            try
+            {
+                List<Product> products = await _repo.GetByCategoryAsync(category);
+                return products;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new List<Product>();
+            }
+        }
+
+        public async Task<List<Product>> GetByCategoryBrandAsync(string category, string brand)
+        {
+            try
+            {
+                List<Product> products = await _repo.GetByCategoryBrandAsync(category, brand);
+                return products;
+            }
+            catch( Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new List<Product>();
+            }
+        }
+
+        public async Task<List<string>> GetCategoriesAsync()
+        {
+            try
+            {
+                List<string> categories = await _repo.GetCategoriesAsync();
+                return categories;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return new List<string>();
+            }
+        }
+
+        public async Task<bool> InsertAsync(Product product)
+        {
+            bool status = await _repo.InsertAsync(product);
+            return status;
+        }
+
+        public async Task<bool> UpdateAsync(Product product)
+        {
+            bool status = await _repo.UpdateAsync(product);
+            return status;
         }
     }
 }

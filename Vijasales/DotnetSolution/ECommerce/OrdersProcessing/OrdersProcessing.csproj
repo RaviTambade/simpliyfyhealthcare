@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\OrderList.cs" />
+    <Compile Include="Responses\OrderResponse.cs" />
     <Compile Include="Repositories\ORM\IOrderRepository.cs" />
     <Compile Include="Repositories\ORM\OrderRepository.cs" />
     <Compile Include="Services\Connected\IOrderService.cs.cs" />

@@ -12,6 +12,7 @@ namespace VijaySalesAPI.Controllers
         {
             ViewBag.Title = "Home Page";
 
+           
             return View();
         }
 
@@ -20,6 +21,13 @@ namespace VijaySalesAPI.Controllers
             ViewBag.Title = "Home Page";
 
             return View("CustomerOrderDetails");
+        }
+
+        public ActionResult SalesOrderDetails()
+        {
+            ViewBag.Title = "Home Page";
+
+            return View();
         }
 
         public ActionResult OrderSummary()
@@ -36,4 +44,5 @@ namespace VijaySalesAPI.Controllers
             return View();
         }
     }
-}
+    }
+

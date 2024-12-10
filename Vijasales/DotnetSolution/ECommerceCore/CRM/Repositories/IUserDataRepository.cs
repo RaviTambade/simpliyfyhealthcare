@@ -9,11 +9,11 @@ namespace CRM.Repositories
 {
     public interface IUserDataRepository
     {
-        List<User> GetAll();
-        bool Insert(User user);
-        bool Update(User user);
-        bool Delete(int Id);
+       Task< List<User> >GetAllAsync();
+        Task<bool> InsertAsync(User user);
+       Task< bool> UpdateAsync(User user);
+       Task< bool> DeleteAsync(int Id);
 
-        User GetUser(int id);
+        Task<User> GetUserAsync(int id);
     }
 }

@@ -3,6 +3,7 @@
 <h2>Shipment Details</h2>
 
 <div>
+    <p><strong>Order Id:</strong>@Model.OrderId</p>
     <p><strong>Customer Name:</strong> @Model.CustomerName</p>
     <p><strong>Customer Address:</strong> @Model.CustomerAddress</p>
     <p><strong>Total Amount:</strong> @Model.TotalAmount</p>
@@ -25,7 +26,54 @@
         <input type="radio" id="Canceled" name="DeliveryStatus" value="Canceled" @(Model.DeliveryStatus == "Canceled" ? "checked" : "") />
         <label for="Canceled">Canceled</label><br />
 
-        <input type="hidden" name="ShipmentId" value="@Model.ShipmentId" />
-        <button type="submit">Update Status</button>
+        <input type="hidden" name="ShipmentId" id="ShipmentId" value="@Model.ShipmentId" />
+        <button type="submit" id="updateButton">Update Status</button>
+
     </form>
+
+    @* back to list button *@
+
+    <button class="btn btn-primary">
+        <a href="/shipments/list" >Back to List</a>
+    </button>
+
+
 </div>
+<script>
+    $(document).ready(function () {
+        $('#updateButton').click(function (e) {
+            e.preventDefault();
+
+            var selectedStatus = $("input[name='DeliveryStatus']:checked").val();
+            var shipmentId = $('#ShipmentId').val();
+
+            if (!selectedStatus) {
+                alert('Please select a delivery status.');
+                return;
+            }
+
+            var delivery = {
+                id: shipmentId,
+                status: selectedStatus
+            };
+
+            $.ajax({
+                url: '/api/Shipments',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(delivery),
+                success: function (response) {
+                    if (response) {
+                        alert('Update Successful');
+                    } else {
+                        alert('Update Failed');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        });
+    });
+
+</script>

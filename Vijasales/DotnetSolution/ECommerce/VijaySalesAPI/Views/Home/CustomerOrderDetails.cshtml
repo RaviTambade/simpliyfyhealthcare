@@ -3,76 +3,194 @@
     ViewBag.Title = "CustomerOrderDetails";
 }
 
-<h2>CustomerOrderDetails</h2>
+<h2>OrderProcessing</h2>
 
-<main class="container">
-    <h1>Hello, world!</h1>
-    <!--For Sales View-->
-    <div class="card w-50">
+
+
+<div class="container mt-4">
+    <h1 class="text-center">@ViewBag.Title</h1>
+
+    <!-- Order Summary Section -->
+    <div class="card mb-4">
         <div class="card-header">
-            Order #12345
-            <h6 class="card-subtitle mb-2 text-muted">06 Dec 2024</h6>
+            <h4>Customer Details</h4>
         </div>
-        <div class="card-body d-flex justify-content-between">
-            <div class="divOrderInfo">
-                <h5 class="card-title">Vivek Kolambe</h5>
-                <p class="card-text">Status: <span class="text-success">Completed</span></p>
-                <a href="#" class="btn btn-info text-dark">View Details</a>
-            </div>
-            <div class="divOrderPrice">
-                <p class="card-text ">$125.50</p>
-            </div>
-        </div>
-    </div>
-    <hr />
-    <!--For CUstomer View-->
-    <div class="card w-50">
-        <div class="card-header">
-            Order #12345
-            <h6 class="card-subtitle mb-2 text-muted">06 Dec 2024</h6>
-        </div>
-        <div class="card-body d-flex justify-content-between">
-            <div class="divOrderInfo">
-                <h5 class="card-title">Lenevo Thinkpad E16</h5>
-                <p class="card-text ">$125.50</p>
-                <a href="#" class="btn btn-info text-dark">View Details</a>
-            </div>
-            <div class="divOrderPrice">
-                <p class="card-text">Status: <span class="text-success">Completed</span></p>
-            </div>
-        </div>
-    </div>
-    <hr />
-    <div class="OrderDisplay">
-        <div class="ordersList">
-            <table class="table">
+        <div class="card-body">
+            <table class="table table-bordered table-striped" id="tblCustomerSummary">
                 <thead>
                     <tr>
-                        <th scope="col">Sr</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Total Price</th>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <!-- <td>mdo</td> -->
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                    </tr>
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
     </div>
-</main>
+
+    <!-- Order Details Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>Order Details</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped" id="tblOrderItemsList">
+                <thead>
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>SubTotal Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-end"><strong>Total Price</strong></td>
+                        <td>$
+                            <strong id="txtOrderTotal">
+                                
+                            </strong>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="card-body row">
+        <div class="col-2 text-center">
+            <img src="https://via.placeholder.com/100" class="img-fluid rounded" alt="Product Image"/>
+        </div>
+        <div class="col-5">
+            <h6 class="mb-1">Product Name</h6>
+            <p class="text-muted mb-1">Brand: <strong>Brand A</strong></p>
+            <p class="mb-0">Description: ABCD BCD</p>
+        </div>
+        <div class="col-2 text-center">
+            <p class="mb-1 price-tag">$10.00</p>
+            <p>Qty: <strong>3</strong></p>
+        </div>
+        <div class="col-3 text-end">
+            <p class="mb-0">Subtotal: $30.00</p>
+        </div>
+    </div>
+
+    <!-- Action Buttons Section -->
+    <div class="d-flex justify-content-between">
+        <button class="btn btn-danger" id="cancelOrderButton" onclick="cancelOrder()">Cancel Order</button>
+        <button class="btn btn-success" id="proceedToPaymentButton" onclick="proceedToPayment()">Proceed to Payment</button>
+    </div>
+</div>
+<script>
+    
+    
+    // To fetrch the customer detail in the summary section
+    var fetchCustomerDetails = () => {
+        $.ajax({
+            url: '/api/OrderProcessing/17',  //orderId hard coded
+            method: "GET",
+            dataType: 'json', 
+            success: function (data) {
+                //get individual values
+                let customer_name = data[0].Name;
+                let order_id = data[0].OrderId;
+                let order_date = data[0].OrderDate;
+                // Create a JavaScript Date object from the ISO string
+                order_date = new Date(order_date);
+                // Format the date as "Dec 1, 2024"
+                var options = { year: 'numeric', month: 'short', day: 'numeric' };
+                var formattedDate = order_date.toLocaleDateString('en-US', options);
+                let order_status = data[0].OrderStatus;
+                let price = 0;
+                data.forEach(order => price += order.TotalPrice);
+                let context = {
+                    name: customer_name,
+                    orderid: order_id,
+                    orderdate: formattedDate,
+                    orderstatus: order_status,
+                    price: price
+                };
+
+                displayCustomerSummary(context);
+
+            },
+            error: () => {
+                console.log("an Error Occured");
+            }
+        });
+        }   
+        var fetchOrderitems = () => {
+            $.ajax({
+                url: '/api/OrderProcessing/17',  //orderId hard coded
+                method: "GET",
+                dataType: 'json', 
+                success: function (data) {
+                    let itemTotal = 0;
+                    data.forEach((order, index) => {
+                        let srno = index + 1;
+                        let productName = order.Title;
+                        let productQuantity = order.Quantity;
+                        let productPrice = parseFloat(order.Price).toFixed(2);
+                        let itemSubTotal = parseFloat(order.TotalPrice).toFixed(2);
+                        itemTotal += order.TotalPrice;
+
+                    context = {
+                        srno: srno,
+                        name: productName,
+                        quantity: productQuantity,
+                        price: productPrice,
+                        subtotal: itemSubTotal
+                    };
+                        console.log(data);
+                        displayOrderItems(context);
+                    });
+                    $('#txtOrderTotal').text(itemTotal);
+                },
+                error: function () {
+                    console.log("Error has occured");
+                }
+            });
+        };
+
+        //display the customer in the table
+        var displayCustomerSummary = (item) => {
+            var customerSummaryRow = `
+                <tr>
+                    <td>#${item.orderid}</td>
+                    <td>${item.name}</td>
+                    <td>${item.orderdate}</td>
+                    <td>\$${item.price}</td>
+                    <td>${item.orderstatus}</td>
+                </tr>
+            `;
+            $('#tblCustomerSummary tbody').append(customerSummaryRow);
+        };
+
+        var displayOrderItems = (item) => {
+            var orderItemRow = `
+                <tr>
+                    <td>${item.srno}</td>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>\$${item.price}</td>
+                    <td>\$${item.subtotal}</td>
+                </tr>
+            `;
+            $('#tblOrderItemsList tbody').append(orderItemRow);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("Dom Loaded");
+            fetchCustomerDetails();
+            fetchOrderitems();
+
+
+        });
+    
+</script>

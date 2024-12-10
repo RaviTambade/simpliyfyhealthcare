@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OrdersProcessing.Repositories.ORM;
+using OrdersProcessing.Models;
 
 namespace OrdersProcessing.Services.ORM
 {
@@ -44,6 +45,11 @@ namespace OrdersProcessing.Services.ORM
         {
             IOrderRepository _repo = new OrderRepository();
             return _repo.Update(order);
+        }
+        public OrderResponse GetOrderDetails(int id)
+        {
+            IOrderRepository _repo = new OrderRepository();
+            return _repo.GetOrderDetails(id);
         }
     }
 }

@@ -50,19 +50,24 @@ namespace VijaySalesAPI.Controllers
 
         // POST api/<ShoppingCartController>
         [HttpPost]
-        public void Post([FromBody] Product product)
+        public IActionResult Post([FromBody] Product product)
         {
-            Items item = new Items();
-            item.Price = product.Price;
-
-            if ( item.Quantity <= 0 || item.Price <= 0)
+            if (product == null || product.Price <= 0 || product.Stock <= 0)
             {
-                return; // Invalid item data, do nothing.
+                return BadRequest("Invalid product data.");
             }
 
+           
+            var item = new Items
+            {
+                ProductId = product.Id,    
+                Quantity = 1,             
+                Price = product.Price     
+            };
+
+            
             var cart = GetCartFromSession() ?? new Cart();
 
-            // Check if the item already exists in the cart
             var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == item.ProductId);
             if (existingItem != null)
             {
@@ -76,16 +81,17 @@ namespace VijaySalesAPI.Controllers
             }
 
             SetCartInSession(cart);
+
+           
+            return Ok(new { message = "Item added to cart!" });
         }
 
-        // PUT api/<ShoppingCartController>/5
+        /*
+         // PUT api/<ShoppingCartController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] int quantity)
         {
-            if (quantity <= 0)
-            {
-                return; // Invalid quantity, do nothing.
-            }
+           
 
             var cart = GetCartFromSession();
 
@@ -101,9 +107,39 @@ namespace VijaySalesAPI.Controllers
             }
 
             // Update the quantity of the item
-            existingItem.Quantity = quantity;
+            existingItem.Quantity = existingItem.Quantity +quantity;
             SetCartInSession(cart);
         }
+        */
+        // PUT api/<ShoppingCartController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] int quantity)
+        {
+            var cart = GetCartFromSession();
+
+            if (cart == null)
+            {
+                return; // Cart not found, do nothing.
+            }
+
+            var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == id);
+            if (existingItem == null)
+            {
+                return; // Item not found, do nothing.
+            }
+
+            // Update the quantity of the item
+            existingItem.Quantity += quantity;
+
+            // If quantity is 0 or less, remove the item from the cart
+            if (existingItem.Quantity <= 0)
+            {
+                cart.Items.Remove(existingItem);
+            }
+
+            SetCartInSession(cart);
+        }
+
 
         // DELETE api/<ShoppingCartController>/5
         [HttpDelete("{id}")]

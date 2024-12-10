@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shipment.Repositories.Connected
 {
-    public class ShipmentRepository : IShipmentRepository
+    public class ShipmentRepository
     {
 
         public bool Create(Delivery shipment)
@@ -30,7 +30,7 @@ namespace Shipment.Repositories.Connected
             throw new NotImplementedException();
         }
 
-        public Delivery GetById(int id)
+        public ShipmentDetail GetById(int id)
         {
             throw new NotImplementedException();
         }
