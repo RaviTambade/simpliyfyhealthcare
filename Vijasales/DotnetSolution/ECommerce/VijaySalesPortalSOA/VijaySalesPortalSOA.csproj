@@ -122,11 +122,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-<<<<<<< HEAD
+
     <Compile Include="Controllers\ProductsController.cs" />
-=======
+
     <Compile Include="Controllers\ShipmentsController.cs" />
->>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
+
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,10 +213,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ShoppingCart\ShowCart.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
-=======
+
     <Content Include="Views\Shipments\List.cshtml" />
     <Content Include="Views\Shipments\Details.cshtml" />
 >>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
