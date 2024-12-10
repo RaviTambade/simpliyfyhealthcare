@@ -52,6 +52,7 @@ namespace Shipment.Repositories.ORM
 
         public async Task<List<Delivery>> GetAllAsync()
         {
+            //// changes needed
             List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext())
             {
