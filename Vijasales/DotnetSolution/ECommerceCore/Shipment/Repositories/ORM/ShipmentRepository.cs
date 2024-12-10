@@ -146,10 +146,19 @@ namespace Shipment.Repositories.ORM
 
 <<<<<<< HEAD
 
+<<<<<<< HEAD
                  shipmentDetail = context.Set<ShipmentDetail>()
 
 =======
                 shipmentDetail = context.Set<ShipmentDetail>()
+=======
+                shipmentDetail = context.Set<ShipmentDetail>()
+
+                
+                 shipmentDetail = context.Set<ShipmentDetail>()
+=======
+                shipmentDetail = context.Set<ShipmentDetail>()
+>>>>>>> 4c7c0f36f032f24949b6261d7d3ed7bd8fbffca1
 >>>>>>> e0234d6a7594804d1649daed26c9b112e6dc3e42
                             .FromSqlRaw(query, param)
                             .AsEnumerable()
