@@ -251,6 +251,7 @@
     <ProjectReference Include="..\Catalog\Catalog.csproj">
       <Project>{716f59fc-f8f7-4150-b7bc-9d8ef4ef08f9}</Project>
       <Name>Catalog</Name>
+	</ProjectReference>
     <ProjectReference Include="..\Shipment\Shipment.csproj">
       <Project>{5e813d94-5c9b-4710-a6ef-3da01381e0c2}</Project>
       <Name>Shipment</Name>
