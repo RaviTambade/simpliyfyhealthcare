@@ -122,11 +122,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-
     <Compile Include="Controllers\ProductsController.cs" />
-
     <Compile Include="Controllers\ShipmentsController.cs" />
-
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,13 +212,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ShoppingCart\ShowCart.cshtml" />
-
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
-
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Shipments\List.cshtml" />
     <Content Include="Views\Shipments\Details.cshtml" />
->>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -254,15 +252,13 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ProjectReference Include="..\Catalog\Catalog.csproj">
       <Project>{716f59fc-f8f7-4150-b7bc-9d8ef4ef08f9}</Project>
       <Name>Catalog</Name>
-=======
+	</ProjectReference>
     <ProjectReference Include="..\Shipment\Shipment.csproj">
       <Project>{5e813d94-5c9b-4710-a6ef-3da01381e0c2}</Project>
       <Name>Shipment</Name>
->>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
