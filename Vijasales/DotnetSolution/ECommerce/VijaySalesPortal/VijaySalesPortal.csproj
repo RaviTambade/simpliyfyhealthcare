@@ -124,10 +124,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Controllers\ShoppingCartController.cs" />
->>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,10 +181,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-<<<<<<< HEAD
-=======
     <Content Include="Views\ShoppingCart\ShowCart.cshtml" />
->>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
     <Content Include="Views\Details.cshtml" />
     <Content Include="Views\Index.cshtml" />
   </ItemGroup>
