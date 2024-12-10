@@ -47,13 +47,8 @@ namespace Shipment.Repositories.ORM
                     context.Shipments.Remove(shipment);
                     await context.SaveChangesAsync();
                     status = true;
-                }
-                else
-                {
-                    Console.WriteLine("Shipment not found.");
-                }
+                } 
             }
-
             return status;
         }
 
@@ -110,14 +105,14 @@ namespace Shipment.Repositories.ORM
 
             using (var context = new ShipmentContext(_configuration))
             {
-                // Query to get shipments within the date range
+                
                 var dbShipments = await context.Shipments
                     .Where(s => s.ShipmentDate >= startdate && s.ShipmentDate <= enddate)
                     .ToListAsync();
 
                 foreach (var shipment in dbShipments)
                 {
-                    // Mapping the shipment to Delivery object
+                    
                     Delivery theShipment = new Delivery
                     {
                         Id = shipment.Id,
@@ -144,22 +139,7 @@ namespace Shipment.Repositories.ORM
 
                 var param = new SqlParameter("@ShipmentId", shipmentId);
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
                  shipmentDetail = context.Set<ShipmentDetail>()
-
-=======
-                shipmentDetail = context.Set<ShipmentDetail>()
-=======
-                shipmentDetail = context.Set<ShipmentDetail>()
-
-                
-                 shipmentDetail = context.Set<ShipmentDetail>()
-=======
-                shipmentDetail = context.Set<ShipmentDetail>()
->>>>>>> 4c7c0f36f032f24949b6261d7d3ed7bd8fbffca1
->>>>>>> e0234d6a7594804d1649daed26c9b112e6dc3e42
                             .FromSqlRaw(query, param)
                             .AsEnumerable()
                             .FirstOrDefault();
@@ -240,30 +220,21 @@ namespace Shipment.Repositories.ORM
             return status;
         }
 
-        public async Task<bool> UpdateStatusAsync(int id, string updatedStatus)
+        public async Task<bool> UpdateStatusAsync(int id, string shipmentStatus)
         {
-            bool updateSuccessful = false;
+            bool status = false;
             using (var context = new ShipmentContext(_configuration))
             {
-                // Find the shipment by its ID
-                var foundShipment = await context.Shipments.SingleOrDefaultAsync(s => s.Id == id);
-
+               var foundShipment = await context.Shipments.SingleOrDefaultAsync(s => s.Id == id);
                 if (foundShipment != null)
                 {
                     // Only update the status
-                    foundShipment.Status = updatedStatus;
-
-                    // Save the changes
+                    foundShipment.Status = shipmentStatus;
                     await context.SaveChangesAsync();
-                    updateSuccessful = true;
-                }
-                else
-                {
-                    Console.WriteLine("Shipment not found.");
-                }
+                    status = true;
+                }  
             }
-
-            return updateSuccessful;
+            return status;
         }
     }
 }
