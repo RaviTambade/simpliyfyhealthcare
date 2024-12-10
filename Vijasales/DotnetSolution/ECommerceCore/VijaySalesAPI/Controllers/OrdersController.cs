@@ -64,5 +64,11 @@ namespace VijaySalesAPI.Controllers
         {
             return await _orderService.DeleteAsync(id);
         }
+        [HttpGet("Customer/{customerId}")]
+        public async Task<List<OrderList>> GetCustomerPastOrders(int customerId)
+        {
+            List<OrderList> orders = await _orderService.GetCustomerOrdersAsync(customerId);
+            return orders;
+        }
     }
 }

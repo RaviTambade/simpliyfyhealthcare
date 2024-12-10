@@ -20,8 +20,14 @@ using OrderProcessing.Services.Connected;
 
 <<<<<<< HEAD
 
+
+
+=======
+<<<<<<< HEAD
+
 =======
 >>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
+>>>>>>> c1f93641034418c03e3e45c12037a357dd8902e3
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -51,6 +57,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowLocalhost", policy =>
     {
 <<<<<<< HEAD
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890")  // Allow your frontend's URL
+=======
+<<<<<<< HEAD
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890");  // Allow your frontend's URL
 
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
@@ -65,6 +74,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
 >>>>>>> e0234d6a7594804d1649daed26c9b112e6dc3e42
 >>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
+>>>>>>> c1f93641034418c03e3e45c12037a357dd8902e3
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -111,6 +121,38 @@ var app = builder.Build();
 var app = builder.Build();
 
 <<<<<<< HEAD
+app.UseCors("AllowLocalhost");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+<<<<<<< HEAD
 
 
 app.UseCors("AllowLocalhost");
@@ -130,6 +172,7 @@ app.UseCors("AllowLocalhost");
 app.UseRouting();
 
 >>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
+>>>>>>> c1f93641034418c03e3e45c12037a357dd8902e3
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
