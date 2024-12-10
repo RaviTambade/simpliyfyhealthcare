@@ -94,13 +94,18 @@ namespace PaymentProcessing.Repositories.Connected
             return payment;
         }
 
-        public async Task<bool> InsertAsync(Payment payment)
+        public async Task<int> InsertAsync(Payment payment)
         {
-            bool status = false;
+            int insertedId = 0;
             SqlConnection conn = new SqlConnection(_conString);
-            string query = "INSERT INTO VsPayments( OrderId, PaymentDate, PaymentAmount,PaymentMode, PaymentStatus ) VALUES(@OrderId,@PaymentDate,@PaymentAmount, @PaymentMode, @PaymentStatus)";
-            SqlCommand cmd = new SqlCommand(query, conn as SqlConnection);
+            
+            string query = @"INSERT INTO VsPayments (OrderId, PaymentDate, PaymentAmount, PaymentMode, PaymentStatus)
+        
+                            VALUES (@OrderId, @PaymentDate, @PaymentAmount, @PaymentMode, @PaymentStatus);
 
+                            SELECT SCOPE_IDENTITY();"; // This retrieves the last inserted identity value SqlCommand cmd = new SqlCommand(query, conn as SqlConnection);
+
+            SqlCommand cmd = new SqlCommand(query, conn);
             //Set Parameter for insert Query
             SqlParameter OrderIdParameter = new SqlParameter("@OrderId", SqlDbType.Decimal);
             OrderIdParameter.Value = payment.OrderId;
@@ -126,7 +131,8 @@ namespace PaymentProcessing.Repositories.Connected
             {
                 await conn.OpenAsync();
                 await cmd.ExecuteNonQueryAsync();
-                status = true;
+                insertedId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                return insertedId;
             }
             catch (Exception ex)
             {
@@ -136,8 +142,7 @@ namespace PaymentProcessing.Repositories.Connected
             {
                 await conn.CloseAsync();
             }
-            return status;
-            throw new NotImplementedException();
+            return insertedId;
         }
 
         public async Task<bool> UpdateAsync(Payment payment)
@@ -153,7 +158,7 @@ namespace PaymentProcessing.Repositories.Connected
             OrderIdParameter.Value = payment.OrderId;
             SqlParameter PaymentDateParameter = new SqlParameter("@PaymentDate", SqlDbType.DateTime);
             PaymentDateParameter.Value = payment.PaymentDate;
-            SqlParameter PaymentAmountParameter = new SqlParameter("@PaymentAmount", SqlDbType.VarChar);
+            SqlParameter PaymentAmountParameter = new SqlParameter("@PaymentAmount", SqlDbType.Decimal);
             PaymentAmountParameter.Value = payment.PaymentAmount;
 
             SqlParameter PaymentModeParameter = new SqlParameter("@PaymentMode", SqlDbType.VarChar);

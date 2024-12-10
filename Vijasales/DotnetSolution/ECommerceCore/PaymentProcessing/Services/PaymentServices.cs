@@ -34,9 +34,9 @@ namespace PaymentProcessing.Services
 
         public async Task<bool> PayNow(int orderId, string fromAccountNumber, string paymentMode)
         {
-            Payment payment = new Payment { OrderId=orderId,PaymentMode=paymentMode};
+            Payment payment = new Payment { OrderId=orderId,PaymentMode=paymentMode, Id=0};
             string toAccountNumber = "918888926475";
-             await _repo.InsertAsync(payment);
+            payment.Id  = await _repo.InsertAsync(payment);
             double amount = await _repo.GetAmount(orderId);
             var (status, transactionId) = await _repo.ExecuteFundTransferProcedure(fromAccountNumber, toAccountNumber, amount, paymentMode);
             // Update the Payment object with the status and transaction ID    
@@ -49,27 +49,7 @@ namespace PaymentProcessing.Services
             // Update the Payment record with the new information
             bool updateSuccess = await _repo.UpdateAsync(payment);
             return updateSuccess;
-
-
         }
 
-<<<<<<< HEAD
-
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
->>>>>>> c1f93641034418c03e3e45c12037a357dd8902e3
-        public Task<bool> InsertPaymentAsync(Payment payment)
-        {
-            return _repo.InsertAsync(payment);
-        }
-
-        public Task<bool> UpdatePaymentAsync(Payment payment)
-        {
-            return _repo.UpdateAsync(payment);
-        }
     }
 }
