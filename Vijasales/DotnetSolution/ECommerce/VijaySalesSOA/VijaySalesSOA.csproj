@@ -177,6 +177,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\SessionStateAttribute.cs" />
@@ -205,6 +206,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\iphone_13.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -254,8 +256,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Shipments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
@@ -332,6 +336,10 @@
     <ProjectReference Include="..\Catalog\Catalog.csproj">
       <Project>{716f59fc-f8f7-4150-b7bc-9d8ef4ef08f9}</Project>
       <Name>Catalog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shipment\Shipment.csproj">
+      <Project>{5e813d94-5c9b-4710-a6ef-3da01381e0c2}</Project>
+      <Name>Shipment</Name>
     </ProjectReference>
     <ProjectReference Include="..\ShoppingCart\ShoppingCart.csproj">
       <Project>{d5f628fb-19c9-45eb-9a1d-ca629f0de1bb}</Project>

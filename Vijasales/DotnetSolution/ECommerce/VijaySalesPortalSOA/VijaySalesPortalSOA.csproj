@@ -118,9 +118,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\ProductsController.cs" />
+=======
+    <Compile Include="Controllers\ShipmentsController.cs" />
+>>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -144,6 +150,34 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="images\cart\Delete.jfif" />
+    <Content Include="images\products\laptops\dell_inspiron_3412.jpg" />
+    <Content Include="images\products\laptops\dell_inspiron_5310.jpg" />
+    <Content Include="images\products\laptops\dell_inspiron_5410.jpg" />
+    <Content Include="images\products\laptops\hp_elite_dragonfly.jpg" />
+    <Content Include="images\products\laptops\hp_envy_13.jpg" />
+    <Content Include="images\products\laptops\hp_pavilion_x360.jpg" />
+    <Content Include="images\products\laptops\lenovo_e14.jpg" />
+    <Content Include="images\products\laptops\lenovo_e15.jpg" />
+    <Content Include="images\products\laptops\lenovo_l14.jpg" />
+    <Content Include="images\products\smartphones\galaxy_M05.jpg" />
+    <Content Include="images\products\smartphones\galaxy_S22.jpg" />
+    <Content Include="images\products\smartphones\galaxy_S23.jpg" />
+    <Content Include="images\products\smartphones\iphone_13.jpg" />
+    <Content Include="images\products\smartphones\iphone_14.jpg" />
+    <Content Include="images\products\smartphones\iphone_16.jpg" />
+    <Content Include="images\products\smartphones\oneplus_11.jpg" />
+    <Content Include="images\products\smartphones\oneplus_12.jpg" />
+    <Content Include="images\products\smartphones\oneplus_nord_ce4.jpg" />
+    <Content Include="images\products\tvs\lg_65_4k.jpg" />
+    <Content Include="images\products\tvs\lg_nano_75.jpg" />
+    <Content Include="images\products\tvs\lg_oled_55.jpg" />
+    <Content Include="images\products\tvs\samsung_crystal_65.jpg" />
+    <Content Include="images\products\tvs\samsung_qled_55.jpg" />
+    <Content Include="images\products\tvs\samsung_qled_75.jpg" />
+    <Content Include="images\products\tvs\vu_50_4k.jpg" />
+    <Content Include="images\products\tvs\vu_55_4k.jpg" />
+    <Content Include="images\products\tvs\vu_65_4k.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -179,9 +213,17 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ShoppingCart\ShowCart.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+=======
+    <Content Include="Views\Shipments\List.cshtml" />
+    <Content Include="Views\Shipments\Details.cshtml" />
+>>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +252,18 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+<<<<<<< HEAD
+    <ProjectReference Include="..\Catalog\Catalog.csproj">
+      <Project>{716f59fc-f8f7-4150-b7bc-9d8ef4ef08f9}</Project>
+      <Name>Catalog</Name>
+=======
+    <ProjectReference Include="..\Shipment\Shipment.csproj">
+      <Project>{5e813d94-5c9b-4710-a6ef-3da01381e0c2}</Project>
+      <Name>Shipment</Name>
+>>>>>>> f5f4d40a2c3f3b3fb38117054d7616ad9621a124
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
