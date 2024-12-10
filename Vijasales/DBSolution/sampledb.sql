@@ -160,3 +160,53 @@ VALUES
 (DATEADD(DAY, 7, '2024-12-16'), 32, 'Dispatched'),
 (DATEADD(DAY, 7, '2024-12-17'), 33, 'Pending');
 
+
+
+INSERT INTO VsReviews (ProductId, UserId, Rating, ReviewText) VALUES
+(1, 2, 5, 'Fantastic smartphone with amazing features!'),
+(1, 2, 3, 'Good'),
+(2, 2, 4, 'Very powerful laptop, but a bit heavy.'),
+(3, 3, 5, 'Great book, could not put it down!'),
+(4, 4, 3, 'Jeans are good, but the fit was not perfect.'),
+(5, 5, 5, 'Smartwatch with excellent features .'),
+(6, 6, 4, 'Tablet is good but battery life could be better.'),
+(7, 7, 5, 'E-book reader is very convenient.'),
+(8, 8, 4, 'Shirt material is good but color faded after wash.'),
+(9, 9, 5, 'Headphones have great sound quality.'),
+(10, 10, 4, 'Bluetooth speaker is portable and has good bass.'),
+(11, 12, 5, 'Historical novel was very engaging.'),
+(12, 12, 3, 'Trousers are comfortable but the size was a bit off.'),
+(13, 13, 5, 'Camera quality is superb.'),
+(14, 14, 4, 'Smart TV has excellent picture quality.'),
+(15, 16, 5, 'Cookbook has some amazing recipes.'),
+(16, 16, 3, 'Dress is nice but fitting could be better.'),
+(17, 12, 5, 'Wireless charger is very convenient.'),
+(18, 19, 5, 'Mystery novel kept me hooked till the end.'),
+(19, 19, 4, 'Sneakers are comfortable for running.'),
+(20, 19, 5, 'Bluetooth earbuds have excellent sound quality.');
+
+
+
+
+INSERT INTO VsPriceChanges (ProductId,OldPrice, NewPrice, ChangeDate) VALUES
+(1, 699.99, 649.99, '2024-08-01 10:00:00'),
+(2, 1199.99, 1149.99, '2024-08-01 11:00:00'),
+(3, 19.99, 17.99, '2024-08-02 09:00:00'),
+(4, 39.99, 34.99, '2024-08-02 10:00:00'),
+(5, 199.99, 179.99, '2024-08-03 14:00:00'),
+(6, 329.99, 299.99, '2024-08-03 15:00:00'),
+(7, 89.99, 79.99, '2024-08-04 12:00:00'),
+(8, 29.99, 24.99, '2024-08-04 13:00:00'),
+(9, 149.99, 139.99, '2024-08-05 16:00:00'),
+(10, 49.99, 44.99, '2024-08-05 17:00:00'),
+(11, 25.99, 22.99, '2024-08-06 10:00:00'),
+(12, 34.99, 29.99, '2024-08-06 11:00:00'),
+(13, 299.99, 279.99, '2024-08-07 12:00:00'),
+(14, 599.99, 569.99, '2024-08-07 13:00:00'),
+(15, 15.99, 14.99, '2024-08-08 14:00:00'),
+(16, 49.99, 44.99, '2024-08-08 15:00:00'),
+(17, 29.99, 24.99, '2024-08-09 16:00:00'),
+(18, 21.99, 19.99, '2024-08-09 17:00:00'),
+(19, 59.99, 54.99, '2024-08-10 18:00:00'),
+(20, 69.99, 64.99, '2024-08-10 19:00:00');
+

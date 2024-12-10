@@ -50,11 +50,5 @@ namespace PaymentProcessing.Services
             bool updateSuccess = await _repo.UpdateAsync(payment);
             return updateSuccess;
         }
-
-
-        public Task<bool> UpdatePaymentAsync(Payment payment)
-        {
-            return _repo.UpdateAsync(payment);
-        }
     }
 }

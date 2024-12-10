@@ -13,7 +13,7 @@
             <div class="text-center mt-3">
                 <h4 id="total-amount">Total Cart Value: Rs 0</h4>
 
-                <button class="btn btn-success w-100 mt-3" id="buy-now-btn">Proceed To Buy</button>
+                <a class="btn btn-success w-100 mt-3" id="buy-now-btn" href="/Orders/OrderDetails">Proceed To Buy</a>
 
                 <button class="btn btn-danger w-100 mt-3" id="clear-cart-btn">Clear Cart</button>
             </div>
@@ -63,7 +63,7 @@
 
                     $('#cart-items-list').append(cardHtml);
 
-                    // Update the total amount
+                    
                     totalAmount += product.price * item.quantity;
                     $('#total-amount').text(`Total: Rs ${totalAmount}`);
                 },
@@ -104,7 +104,7 @@
             url: "http://localhost:5218/api/shoppingcart",
             type: 'GET',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             success: function (data) {
                 let cartData = [];
@@ -128,18 +128,20 @@
 
     // Function to create an order
     function createOrder(cartData) {
+        
+        console.log("HI");
         $.ajax({
-            url: "http://localhost:5218/api/orders", // API endpoint to create an order
+            url: url, // API endpoint to create an order
             type: 'POST',
             xhrFields: {
-                withCredentials: true // Ensures cookies are sent with the request
+                withCredentials: true 
             },
             data: JSON.stringify(cartData), // Send the cart data in the request body
             contentType: 'application/json', // Set content type to JSON
             success: function (response) {
                 // Handle success: Redirect to the order details page
                 alert('Checkout successful! Proceed to payment.');
-                <a  asp - controller="Orders" asp - action="OrderDetails" > Shopping Cart < /a>
+               
                 // Redirect to order details with the orderId
             },
             error: function (error) {
@@ -158,7 +160,7 @@
             url: `http://localhost:5218/api/shoppingcart/${productId}`,
             type: 'DELETE',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             success: function (response) {
                 alert('Product removed successfully!');
@@ -191,7 +193,7 @@
             url: `http://localhost:5218/api/shoppingcart/${productId}`,
             type: 'PUT',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             data: JSON.stringify(change),
             contentType: 'application/json',
@@ -211,7 +213,7 @@
             url: "http://localhost:5218/api/shoppingcart",
             type: 'DELETE',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             success: function (response) {
                 alert('Cart cleared successfully!');
@@ -228,12 +230,13 @@
     // Buy Now button click handler
     $('#buy-now-btn').click(function () {
         // Fetch the cart data before proceeding with order creation
+        console.log("btn clicked");
         getCartData();
     });
 </script>
 
 <style>
-    /* General Styles */
+    
     body {
         background-color: #f8f9fa;
         color: #333;
@@ -261,7 +264,7 @@
         font-size: 0.95rem;
     }
 
-    /* Button Styles */
+    
     .remove-product-btn {
         background-color: steelblue;
         color: white;
