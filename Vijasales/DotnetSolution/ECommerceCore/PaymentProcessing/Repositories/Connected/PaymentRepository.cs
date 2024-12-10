@@ -149,7 +149,7 @@ namespace PaymentProcessing.Repositories.Connected
         {
             bool status = false;
             SqlConnection conn = new SqlConnection(_conString);
-            string query = "UPDATE VsPayments SET  OrderId=@OrderId , PaymentAmount=@PaymentAmount, PaymentMode=@PaymentMode,PaymentStatus=@PaymentStatus, TransactionId= @TransactionId, PaymentDate=@PaymentDate   WHERE Id=@Id";
+            string query = "UPDATE VsPayments SET  OrderId=@OrderId , PaymentAmount=@PaymentAmount, PaymentMode=@PaymentMode,PaymentStatus=@PaymentStatus, TransactionId = @TransactionId, PaymentDate=@PaymentDate   WHERE Id=@Id";
             SqlCommand cmd = new SqlCommand(query, conn);
             //Set Paramter for Update Query
             SqlParameter IdParameter = new SqlParameter("@Id", SqlDbType.Int);
@@ -264,12 +264,11 @@ namespace PaymentProcessing.Repositories.Connected
 
 
 
-
         public async Task<(string status, string Tid)> ExecuteFundTransferProcedure(string customerAccountId, string adminAccountId, double amount, string paymentMode)
 
         {
 
-            string status;
+            string status = "Failed";  // Default status if an error occurs
 
             string Tid = string.Empty;  // Initialize Tid to store the transaction ID
 
@@ -287,19 +286,23 @@ namespace PaymentProcessing.Repositories.Connected
 
                     // Add parameters for the stored procedure
 
-                    command.Parameters.Add(new SqlParameter("@ToAccountNumber", SqlDbType.VarChar, 20) { Value = customerAccountId.ToString() });
+                    command.Parameters.Add(new SqlParameter("@ToAccountNumber", SqlDbType.VarChar, 20) { Value = adminAccountId.ToString() });
 
-                    command.Parameters.Add(new SqlParameter("@FromAccountNumber", SqlDbType.VarChar, 20) { Value = adminAccountId.ToString() });
+                    command.Parameters.Add(new SqlParameter("@FromAccountNumber", SqlDbType.VarChar, 20) { Value = customerAccountId.ToString() });
 
                     command.Parameters.Add(new SqlParameter("@Amount", SqlDbType.Decimal) { Value = amount });
 
                     command.Parameters.Add(new SqlParameter("@PaymentMode", SqlDbType.VarChar, 50) { Value = paymentMode });
 
-                    // Output parameter for TransactionId
+                    // Output parameters for TransactionId and Status
 
                     var transactionIdParam = new SqlParameter("@TransactionId", SqlDbType.VarChar, 20) { Direction = ParameterDirection.Output };
 
+                    var statusParam = new SqlParameter("@Status", SqlDbType.VarChar, 50) { Direction = ParameterDirection.Output };
+
                     command.Parameters.Add(transactionIdParam);
+
+                    command.Parameters.Add(statusParam);
 
                     try
 
@@ -309,13 +312,29 @@ namespace PaymentProcessing.Repositories.Connected
 
                         await command.ExecuteNonQueryAsync();
 
-                        // Retrieve the TransactionId from the output parameter
+                        // Retrieve the TransactionId and Status from the output parameters
 
                         Tid = transactionIdParam.Value.ToString();
 
-                        // If execution reaches here, it means the procedure ran without errors
+                        status = statusParam.Value.ToString();
 
-                        status = "Complete";
+                        // If the status is 'Success', we set it to 'Complete'
+
+                        if (status == "Success")
+
+                        {
+
+                            status = "Complete";
+
+                        }
+
+                        else
+
+                        {
+
+                            status = "Failed";
+
+                        }
 
                     }
 
@@ -323,7 +342,7 @@ namespace PaymentProcessing.Repositories.Connected
 
                     {
 
-                        // Handle SQL exceptions, such as transaction issues or errors from the stored procedure
+                        // Handle SQL exceptions
 
                         status = $"SQL Error: {sqlEx.Message}";
 
@@ -332,11 +351,13 @@ namespace PaymentProcessing.Repositories.Connected
                     catch (Exception ex)
 
                     {
+
                         // Handle general exceptions
 
                         status = $"Error: {ex.Message}";
 
                     }
+
                     finally
 
                     {
@@ -344,12 +365,18 @@ namespace PaymentProcessing.Repositories.Connected
                         await connection.CloseAsync();
 
                     }
+
                 }
 
             }
 
             return (status, Tid);
+
         }
+
+
+
+
 
     }
 }
