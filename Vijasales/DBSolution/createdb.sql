@@ -112,3 +112,29 @@ CREATE TABLE VsPayments (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+CREATE TABLE VsReviews (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ProductId INT NOT NULL,
+    UserId INT NOT NULL,
+    Rating INT CHECK (Rating BETWEEN 1 AND 5),
+    ReviewText VARCHAR(MAX),
+    created_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (ProductId) REFERENCES VsProducts(Id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (UserId) REFERENCES VsUsers(Id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+CREATE TABLE VsPriceChanges (
+    Id INT Identity(1,1) PRIMARY KEY,
+    ProductId INT NOT NULL,
+    OldPrice DECIMAL(10, 2) NOT NULL,
+    NewPrice DECIMAL(10, 2) NOT NULL,
+    ChangeDate DATETIME NOT NULL,
+    FOREIGN KEY (ProductId) REFERENCES VsProducts(Id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
