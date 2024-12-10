@@ -1,4 +1,4 @@
-﻿using Shipment.Entities;
+using Shipment.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -130,7 +130,6 @@ namespace Shipment.Repositories.ORM
             }
         }
 
-
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
 
@@ -140,8 +139,16 @@ namespace Shipment.Repositories.ORM
                     // Define the stored procedure query with the necessary parameter
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
 
+<<<<<<< HEAD
                     var param = new SqlParameter("@ShipmentId", shipmentId);
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
+                    var param = new SqlParameter("@ShipmentId", shipmentId);
+>>>>>>> 7dbb199e199e3014c8aba874067572da6b92ed8e
 
                     shipmentDetail =  context.Set<ShipmentDetail>()
                                .FromSqlRaw(query, param)
@@ -150,7 +157,15 @@ namespace Shipment.Repositories.ORM
                 }
 
                 return shipmentDetail;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
+>>>>>>> 7dbb199e199e3014c8aba874067572da6b92ed8e
             }
 
         public async Task<string> GetStatusByOrderIdAsync(int orderId)
@@ -220,8 +235,11 @@ namespace Shipment.Repositories.ORM
                     Console.WriteLine("Shipment not found.");
                 }
             }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7dbb199e199e3014c8aba874067572da6b92ed8e
             return status;
         }
 
@@ -243,5 +261,4 @@ namespace Shipment.Repositories.ORM
 
         }
     }
-    }
-
+}
