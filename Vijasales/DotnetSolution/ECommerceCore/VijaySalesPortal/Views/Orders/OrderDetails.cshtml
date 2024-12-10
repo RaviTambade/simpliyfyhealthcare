@@ -54,6 +54,9 @@
 
 <script>
     // To fetrch the customer detail in the summary section
+    const url = window.location.pathname;
+    const parts = url.split('/');
+    const urlId = parts[parts.length - 1];
 
     var displayOrderItems = (item) => {
         
@@ -102,7 +105,7 @@
 
     var fetchCustomerDetails = () => {
         $.ajax({
-            url: 'http://localhost:5218/api/Orders/OrderItem/17',  //orderId hard coded
+            url: 'http://localhost:5218/api/Orders/OrderItem/'+urlId,  //orderId hard coded
             method: "GET",
             dataType: 'json',
             xhrFields: {
@@ -141,6 +144,7 @@
     var fetchOrderitems = () => {
         
         $('#tblOrderItemsList').empty(); //clear spinner to load order item
+
         $.ajax({
             url: 'http://localhost:5218/api/Orders/OrderItem/17',  //orderId hard coded
             method: "GET",

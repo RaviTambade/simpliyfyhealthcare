@@ -33,9 +33,9 @@ namespace OrderProcessing.Services.Connected
             return await _svc.GetOrderAsync(id);
         }
 
-        public async Task<bool> InsertOrderAsync(Cart cart)
+        public async Task<int> InsertOrderAsync(int customerId,Cart cart)
         {
-            Order order = new Order { CustomerId=2,Status="Pending",OrderDate=DateTime.Now };
+            Order order = new Order { CustomerId=customerId,Status="Pending",OrderDate=DateTime.Now };
             decimal orderTotal = 0;
             cart.Items.ForEach(item =>orderTotal+=item.Price);
             
@@ -44,10 +44,10 @@ namespace OrderProcessing.Services.Connected
             int orderId = await _svc.InsertAsync(order);
             foreach(Items item in cart.Items)
             {
-                OrderItem orderItem = new OrderItem { OrderId=orderId,Quantity=item.Quantity};
+                OrderItem orderItem = new OrderItem { OrderId=orderId,Quantity=item.Quantity, ProductId=item.ProductId};
                 await _itemService.InsertOrderItemAsync(orderItem);
             }
-            return  true;
+            return  orderId;
         }
 
         public async Task<bool> UpdateOrderAsync(Order order)
