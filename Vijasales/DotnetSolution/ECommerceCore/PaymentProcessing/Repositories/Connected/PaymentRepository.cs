@@ -144,20 +144,20 @@ namespace PaymentProcessing.Repositories.Connected
         {
             bool status = false;
             SqlConnection conn = new SqlConnection(_conString);
-            string query = "UPDATE VsPayments SET Id=@Id , OrderId=@OrderId , PaymentDate=@PaymentDate , PaymentAmount=@PaymentAmount, PaymentMode=@PaymentMode,PaymentStatus=@PaymentStatus, TransactionId= @TransactionId   WHERE Id=@Id";
+            string query = "UPDATE VsPayments SET  OrderId=@OrderId , PaymentAmount=@PaymentAmount, PaymentMode=@PaymentMode,PaymentStatus=@PaymentStatus, TransactionId= @TransactionId, PaymentDate=@PaymentDate   WHERE Id=@Id";
             SqlCommand cmd = new SqlCommand(query, conn);
             //Set Paramter for Update Query
             SqlParameter IdParameter = new SqlParameter("@Id", SqlDbType.Int);
             IdParameter.Value = payment.Id;
             SqlParameter OrderIdParameter = new SqlParameter("@OrderId", SqlDbType.Decimal);
             OrderIdParameter.Value = payment.OrderId;
-            SqlParameter PaymentDateParameter = new SqlParameter("PaymentDate", SqlDbType.DateTime);
+            SqlParameter PaymentDateParameter = new SqlParameter("@PaymentDate", SqlDbType.DateTime);
             PaymentDateParameter.Value = payment.PaymentDate;
             SqlParameter PaymentAmountParameter = new SqlParameter("@PaymentAmount", SqlDbType.VarChar);
             PaymentAmountParameter.Value = payment.PaymentAmount;
 
             SqlParameter PaymentModeParameter = new SqlParameter("@PaymentMode", SqlDbType.VarChar);
-            PaymentModeParameter.Value = payment.PaymentMode;
+            PaymentModeParameter.Value = payment.PaymentMode; 
             SqlParameter PaymentStatusParameter = new SqlParameter("@PaymentStatus", SqlDbType.VarChar);
             PaymentStatusParameter.Value = payment.PaymentStatus;
             SqlParameter TransactionIdParameter = new SqlParameter("@TransactionId", SqlDbType.VarChar);
@@ -227,7 +227,7 @@ namespace PaymentProcessing.Repositories.Connected
 
                             // Get the value of 'TotalAmount' column and convert it to int
 
-                            amount = data.GetDouble(data.GetOrdinal("TotalAmount"));
+                            amount = (double)data.GetDecimal(data.GetOrdinal("TotalAmount"));
 
                         }
 
@@ -332,7 +332,13 @@ namespace PaymentProcessing.Repositories.Connected
                         status = $"Error: {ex.Message}";
 
                     }
+                    finally
 
+                    {
+
+                        await connection.CloseAsync();
+
+                    }
                 }
 
             }
