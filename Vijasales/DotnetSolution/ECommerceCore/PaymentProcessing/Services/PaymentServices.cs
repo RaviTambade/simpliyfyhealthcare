@@ -53,10 +53,7 @@ namespace PaymentProcessing.Services
 
         }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
         public Task<bool> InsertPaymentAsync(Payment payment)
         {
             return _repo.InsertAsync(payment);
