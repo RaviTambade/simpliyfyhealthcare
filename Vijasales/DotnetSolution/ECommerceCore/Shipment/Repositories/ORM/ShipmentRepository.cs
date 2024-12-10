@@ -88,13 +88,11 @@ namespace Shipment.Repositories.ORM
 
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
-
                 ShipmentDetail shipmentDetail = null;
                 using (var context = new ShipmentContext(_configuration))
                 {
                     // Define the stored procedure query with the necessary parameter
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
-
 
                     var param = new SqlParameter("@ShipmentId", shipmentId);
 

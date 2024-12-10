@@ -5,104 +5,86 @@
 <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
+<div class="container mt-5">
+    <h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
-<div class="container">
-    <h2>@ViewData["Title"]</h2>
+    <div class="row mb-4">
+        <!-- Filters Section (Left side) -->
+        <div class="col-12 col-md-3">
+            <div class="card p-3">
+                <h5 class="card-title">Filter by Date</h5>
+                <!-- Single Date Filter -->
+                <div class="form-group">
+                    <label for="shipmentDateFilter">Select Date:</label>
+                    <input type="date" id="shipmentDateFilter" name="shipmentDateFilter" class="form-control" />
+                    <button class="btn btn-primary mt-3" id="applySingleDateFilterButton">Apply Single Date</button>
+                </div>
 
-    <!-- Filter by date and status -->
-    <div class="filter-container">
-        <label for="shipmentDateFilter">Filter by Shipment Date:</label>
-        <input type="date" id="shipmentDateFilter" name="shipmentDateFilter" class="form-control" />
+                <!-- Date Range Filter -->
+                <div class="form-group mt-4">
+                    <label for="shipmentStartDateFilter">Start Date:</label>
+                    <input type="date" id="shipmentStartDateFilter" name="shipmentStartDateFilter" class="form-control" />
 
-        <label for="shipmentStatusFilter">Filter by Shipment Status:</label>
-        <select id="shipmentStatusFilter" class="form-control">
-            <option value="">All</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Rejected">Rejected</option>
-            <option value="Pending">Pending</option>
-        </select>
+                    <label for="shipmentEndDateFilter" class="mt-2">End Date:</label>
+                    <input type="date" id="shipmentEndDateFilter" name="shipmentEndDateFilter" class="form-control" />
+                    <button class="btn btn-secondary mt-3" id="applyDateRangeFilterButton">Apply Date Range</button>
+                </div>
 
+                <!-- Status Filter -->
+                <h5 class="card-title mt-4">Filter by Status</h5>
+                <div class="form-group">
+                    <label for="shipmentStatusFilter">Select Status:</label>
+                    <select id="shipmentStatusFilter" class="form-control">
+                        <option value="">All</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                    <button class="btn btn-success mt-3" id="applyFilterButton">Apply Status Filter</button>
+                </div>
+
+                <!-- Clear Filters Button -->
+                <div class="form-group mt-4">
+                    <button class="btn btn-warning w-100" id="clearFiltersButton">Clear All Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipments List Section (Right side) -->
+        <div class="col-12 col-md-9">
+            <div class="card p-4">
+                <h5 class="card-title">Shipments</h5>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Shipment ID</th>
+                            <th>Order ID</th>
+                            <th>Shipment Date</th>
+                            <th>Status</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body-to-update">
+                        <!-- Table rows will be dynamically populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
-    <table id="shipmentsTable">
-        <thead>
-            <tr>
-                <th>Shipment ID</th>
-                <th>Order ID</th>
-                <th>Shipment Date</th>
-                <th>Shipment Status</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody id="table-body-to-update">
-            <!-- Table rows will be dynamically populated here -->
-        </tbody>
-    </table>
 </div>
-
-<!-- Ensure jQuery is loaded before the custom script -->
 
 
 <script>
-
-    $(document).ready(function () {
-        GetAllShipments(); // Call this function to fetch all shipments
-
-        $('#applyDateRangeFilterButton').click(function () {
-            var startDate = $('#shipmentStartDateFilter').val();
-            var endDate = $('#shipmentEndDateFilter').val();
-
-            $.ajax({
-                url: apiUrl,  // Endpoint for filtering shipments
-                type: 'GET',
-                data: {
-                    startDate: startDate,
-                    endDate: endDate
-                },
-                success: function (response) {
-                    // Clear existing table rows
-                    $('#shipmentsTable tbody').empty();
-
-                    // Populate table with filtered shipments
-                    response.forEach(function (shipment) {
-                        var row = `<tr>
-                                            <td>${shipment.Id}</td>
-                                            <td>${shipment.OrderId}</td>
-                                            <td>${shipment.ShipmentDate}</td>
-                                            <td>${shipment.Status}</td>
-                                            <td><div class="details"><a href="/shipments/details/${shipment.Id}">Details</a></div></td>
-                                        </tr>`;
-                        $('#shipmentsTable tbody').append(row);
-                    });
-                },
-                error: function (xhr, status, error) {
-                    alert('Error fetching shipments: ' + error);
-                }
-            });
-        });
-
-    });
-
     let apiUrl = 'http://localhost:5218/api/shipments';
+    let allShipments = [];
 
     const GetAllShipments = () => {
         $.ajax({
             url: apiUrl,
             type: 'GET',
             success: function (response) {
-                console.log(response);
-                $('#table-body-to-update').empty();
-                response.forEach(function (shipment) {
-                    var row = `<tr>
-                                <td>${shipment.id}</td>
-                                <td>${shipment.orderId}</td>
-                                <td>${shipment.shipmentDate}</td>
-                                <td>${shipment.status}</td>
-                                <td><div class="details"><a href="/shipments/details/${shipment.id}">Details</a></div></td>
-                            </tr>`;
-                    $('#table-body-to-update').append(row);
-                });
+                allShipments = response; 
+                UpdateShipmentTable(allShipments); 
             },
             error: function (xhr, status, error) {
                 alert('Error fetching shipments: ' + error);
@@ -110,5 +92,77 @@
         });
     }
 
+    const UpdateShipmentTable = (shipments) => {
+        $('#table-body-to-update').empty();  // Clear the current table rows
+
+        shipments.forEach(function (shipment) {
+            var row = `<tr>
+                            <td>${shipment.id}</td>
+                            <td>${shipment.orderId}</td>
+                            <td>${shipment.shipmentDate}</td>
+                            <td>${shipment.status}</td>
+                               <td>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/shipments/details/${shipment.id}" class="btn btn-success">
+                                            <i class="bi bi-eye me-2"></i> <!-- Eye Icon -->
+                                            View Details
+                                        </a>
+                                    </div>
+                                </td>
+                        </tr>`;
+            $('#table-body-to-update').append(row);
+        });
+    }
+
+    // Function to apply all filters (status, single date, and date range)
+    const FilterShipments = () => {
+        const selectedDate = $('#shipmentDateFilter').val(); 
+        const startDate = $('#shipmentStartDateFilter').val(); 
+        const endDate = $('#shipmentEndDateFilter').val(); 
+        const status = $('#shipmentStatusFilter').val(); 
+
+        const filteredShipments = allShipments.filter((shipment) => {
+            const shipmentDate = new Date(shipment.shipmentDate).toISOString().split('T')[0]; 
+
+            const dateMatches = (selectedDate && shipmentDate === selectedDate) ||
+                (startDate && endDate && shipmentDate >= startDate && shipmentDate <= endDate) ||
+                (!selectedDate && !startDate && !endDate);
+
+            const statusMatches = status ? shipment.status === status : true;
+
+            return dateMatches && statusMatches;
+        });
+
+        UpdateShipmentTable(filteredShipments);
+    }
+
+    const ClearFilters = () => {
+        $('#shipmentDateFilter').val('');
+        $('#shipmentStartDateFilter').val('');
+        $('#shipmentEndDateFilter').val('');
+        $('#shipmentStatusFilter').val('');
+
+        UpdateShipmentTable(allShipments);
+    }
+
+    $(document).ready(function () {
+        GetAllShipments();  
+
+        $('#applySingleDateFilterButton').click(function () {
+            FilterShipments();  
+        });
+
+        $('#applyDateRangeFilterButton').click(function () {
+            FilterShipments();  
+        });
+
+        $('#applyFilterButton').click(function () {
+            FilterShipments();  
+        });
+
+        $('#clearFiltersButton').click(function () {
+            ClearFilters();  
+        });
+    });
 
 </script>
