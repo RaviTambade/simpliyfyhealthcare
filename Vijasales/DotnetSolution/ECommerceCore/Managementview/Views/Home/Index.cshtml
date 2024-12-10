@@ -1,0 +1,218 @@
+﻿﻿@{
+    ViewBag.Title = "Catatlog";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<h2>Product Catatlog</h2>
+
+
+<div class="row">
+    <div id="getproducts" class="col-6 text-center">
+        <table id="products" class="table table-bordered table-hover ">
+            <thead>
+                <tr class="">
+                    <th>Product Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="row">
+    <div id="showproduct" class="col-6 justify-content-around">
+
+    </div>
+
+
+    <div id="updateproduct" class="col-6">
+        <form id="form1">
+            <div id="productid">
+
+            </div>
+            <div>
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name" /><br /><br />
+            </div>
+            <div>
+                <label for="description">Description: </label>
+                <input type="text" id="description" name="description" /><br /><br />
+            </div>
+            <div>
+                <label for="quantity">Quantity: </label>
+                <input type="text" id="quantity" name="quantity" /><br /><br />
+            </div>
+            <div>
+                <label for="unitprice">Unit Price: </label>
+                <input type="text" id="unitprice" name="unitprice" /><br /><br />
+            </div>
+            <div>
+                <label for="image">Image URL: </label>
+                <input type="text" id="image" name="image" /><br /><br />
+            </div>
+            <div>
+                <input type="button" id="update" value="UPDATE" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<script>$(document).ready(function () {
+
+        $("#updateproduct").hide();
+        const url = '/api/products';
+        $.ajax({
+            url: url,
+            type: "GET",
+            contentType: "application/json",
+            //data: JSON.stringify(credential),
+            success: (result) => {
+                $.each(result, function (index, item) {
+                    var row = '<tr class="rows ">' +
+                        '<td class="idcell" >' + item.Id + '</td>' +
+                        '<td>' + item.Name + '</td>' +
+                        '</tr>';
+
+                    $('#products tbody').append(row);
+                });
+                //$("#getproducts").text(result);
+                console.log(result);
+            },
+            error: () => {
+                console.log("something has gone wrong");
+            }
+        });
+
+
+        $(document).on("click", "tr.rows td.idcell", function (e) {
+            alert(e.target.innerHTML);
+            const url1 = '/api/products/' + e.target.innerHTML;
+            console.log(url1);
+            $('#product').html("");
+            $.ajax({
+                url: url1,
+                type: "GET",
+                contentType: "application/json",
+                //data: JSON.stringify(credential),
+                success: (result) => {
+                    var row =
+                        '<h5><br/>ProductID : ' +
+                        result.Id +
+                        '<br/>Name : ' +
+                        result.Name +
+                        '<br/>Description : ' +
+                        result.Description +
+                        '<br/>Quantity : ' +
+                        result.Quantity +
+                        '<br/>UnitPrice : ' +
+                        result.UnitPrice +
+                        '<br/>Image : ' +
+                        result.Img +
+                        '<br/><br/><input type="button" value="EDIT" name="' + result.Id + '" id="btnedit" />     ' +
+                        '<input type="button" value="DELETE" name="' + result.Id + '" id="btndelete" /><h5> ';
+
+                    $('#showproduct').html(row);
+                    console.log(result);
+                },
+                error: () => {
+                    console.log("something has gone wrong");
+                }
+            });
+        });
+
+
+        $(document).on("click", "#btnedit", function (e) {
+            console.log(e.target.name);
+            $("#updateproduct").show();
+            const url2 = '/api/products/' + e.target.name;
+            console.log(url2);
+            $.ajax({
+                url: url2,
+                type: "GET",
+                contentType: "application/json",
+                success: (result) => {
+                    console.log(result);
+                    $("div[id=productid]").html(result.Id);
+                    $("input[id=name]").val(result.Name);
+                    $("input[id=description]").val(result.Description);
+                    $("input[id=quantity]").val(result.Quantity);
+                    $("input[id=unitprice]").val(result.UnitPrice);
+                    $("input[id=image]").val(result.Img);
+
+
+                },
+
+                error: () => {
+                    console.log("something has gone wrong");
+                }
+            });
+        });
+
+
+        $(document).on("click", "#update", function (e) {
+            let id = $("div[id=productid]").html();
+            let name = $("input[id=name]").val();
+            let description = $("input[id=description]").val();
+            let quantity = $("input[id=quantity]").val();
+            let unitprice = $("input[id=unitprice]").val();
+            let image = $("input[id=image]").val();
+            console.log(id, name, description, quantity, unitprice, image);
+            let product = {
+                Id: id,
+                Name: name,
+                Description: description,
+                Quantity: quantity,
+                UnitPrice: unitprice,
+                Image: image
+            }
+            const url = '/api/products/' + id;
+            alert(JSON.stringify(product));
+
+            $.ajax({
+                url: url,
+                type: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(product),
+                dataType: 'json',
+                success: (result) => {
+                    console.log("Succesfully Updated");
+
+                    $("#showproduct").html("");
+                    window.location.reload(true);
+
+                },
+                error: () => {
+                    console.log("something has gone wrong");
+                }
+            });
+        });
+
+
+        $(document).on("click", "#btndelete", function (e) {
+            let id = e.target.name;
+            const url = '/api/products/' + id;
+
+            $.ajax({
+                url: url,
+                type: "DELETE",
+                contentType: "application/json",
+                success: (result) => {
+                    console.log("Succesfully Deleted");
+
+                    $("#showproduct").html("");
+                    window.location.reload(true);
+
+                },
+                error: () => {
+                    console.log("something has gone wrong");
+                }
+            });
+        });
+
+
+    })</script>

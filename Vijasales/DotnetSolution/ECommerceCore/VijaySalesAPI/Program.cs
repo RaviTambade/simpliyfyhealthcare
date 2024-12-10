@@ -16,20 +16,8 @@ using Banking.Services;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-<<<<<<< HEAD
-=======
 
 
-
-
-
-using Banking.Repositories.Connected;
-using Banking.Services;
-
-
-
-
->>>>>>> 161ff82bb30462960e946923b4c809146cb3f28d
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -58,11 +46,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-<<<<<<< HEAD
+
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890")  // Allow your frontend's URL
-=======
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
+
+
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -110,79 +97,12 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 builder.Services.AddTransient<IBankService, BankService>();
 
 
-//Register context
-
 var app = builder.Build();
 
-<<<<<<< HEAD
-
-
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-app.UseRouting();
-
-
-
-
-
-app.UseRouting();
-=======
-<<<<<<< HEAD
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-app.UseRouting();
-
-app.UseCors("AllowLocalhost");
-app.UseRouting();
- 
-
-
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
-=======
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 161ff82bb30462960e946923b4c809146cb3f28d
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> e3e864c06bd45e8528a074c18cf4ff00597caa0e
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
