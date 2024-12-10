@@ -76,7 +76,11 @@ namespace VijaySalesSOA.Controllers
             }
 
             // Update the quantity of the item
-            item.Quantity = quantity;
+            item.Quantity += quantity;
+            if(item.Quantity <= 0)
+            {
+                theCart.Items.Remove(item); 
+            }
 
             return Json(theCart, JsonRequestBehavior.AllowGet);
         }
@@ -110,6 +114,11 @@ namespace VijaySalesSOA.Controllers
             theCart.Items.Clear();
 
             return Json(theCart, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ShowCart()
+        {
+            return View();
         }
 
     }
