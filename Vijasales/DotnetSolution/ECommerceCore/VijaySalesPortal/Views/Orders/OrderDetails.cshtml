@@ -146,7 +146,7 @@
         $('#tblOrderItemsList').empty(); //clear spinner to load order item
 
         $.ajax({
-            url: 'http://localhost:5218/api/Orders/OrderItem/17',  //orderId hard coded
+            url: 'http://localhost:5218/api/Orders/OrderItem/' + urlId,  //orderId hard coded
             method: "GET",
             dataType: 'json',
             xhrFields: {
