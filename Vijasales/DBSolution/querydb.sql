@@ -34,3 +34,63 @@ SELECT * FROM VsProducts WHERE Brand = 'Samsung';
 
 -- 8. Retrieve products by Category and Brand
 SELECT * FROM VsProducts WHERE Category = 'TV' AND Brand = 'Vu';
+
+
+
+----------------- ORDERS AND OREDRSITEMS QUERIES ---------------
+-- 1. Retrieve Users with More Than One Order
+SELECT u.id, u.FirstName, COUNT(o.id) AS order_count
+FROM VsUsers u
+JOIN VsOrders o ON u.id = o.customerid
+GROUP BY u.id, u.FirstName
+HAVING COUNT(o.id) > 0;
+
+-- 2. Calculate Total Sales for a Given Month
+SELECT SUM(oi.quantity * p.price) AS total_sales
+FROM VsOrders o
+JOIN VsOrderItems oi ON o.id = oi.OrderId
+JOIN VsProducts p ON oi.ProductId = p.Id
+WHERE YEAR(o.OrderDate) = 2024 AND MONTH(o.OrderDate) = 11;
+
+-- 3. Retrieve a User's Order History
+SELECT o.id AS order_id, o.TotalAmount, o.TotalAmount, oi.Id, p.Title AS product_name, oi.quantity
+FROM VsOrders o
+JOIN VsOrderItems oi ON o.id = oi.OrderId
+JOIN VsProducts p ON oi.ProductId = p.Id
+WHERE o.CustomerId = 3; 
+
+-- 4. Retrieve Orders Placed Within a Specific Date Range
+SELECT id, OrderDate, TotalAmount
+FROM VsOrders
+WHERE OrderDate BETWEEN '2024-11-01' AND '2024-12-01' 
+order by OrderDate desc;
+
+-- 5. Retrieve Monthly Sales Report
+SELECT p.Title AS product_name, SUM(oi.quantity) AS total_quantity_sold, SUM(oi.quantity * p.price) AS total_sales
+FROM VsOrders o
+JOIN VsOrderItems oi ON o.id = oi.OrderId
+JOIN VsProducts p ON oi.ProductId = p.Id
+WHERE YEAR(o.OrderDate) = 2024 AND MONTH(o.OrderDate) = 12 
+GROUP BY p.id, p.Title;
+
+-- 6. Get Total Revenue Per Product
+SELECT p.id AS product_id, p.Title AS product_name,sum(oi.quantity), SUM(oi.quantity * p.price) AS total_revenue
+FROM VsOrderItems oi
+JOIN VsProducts p ON oi.ProductId = p.id
+GROUP BY p.id, p.Title
+Order By total_revenue desc;
+
+
+
+-- 7. Retrieve Latest Orders
+SELECT TOP 5 o.Id, OrderDate, TotalAmount , o.CustomerId , u.FirstName
+FROM VsOrders o
+JOIN VsUsers u ON o.CustomerId=u.Id
+ORDER BY OrderDate DESC;
+
+-- 8. Get All Orders with Their Items and Prices
+SELECT o.id AS order_id, o.OrderDate, p.Title AS product_name, oi.quantity, p.price, (oi.quantity * p.price) AS total_price
+FROM VsOrders o
+JOIN VsOrderItems oi ON o.id = oi.OrderId
+JOIN VsProducts p ON oi.ProductId = p.id
+ORDER BY o.OrderDate DESC;
