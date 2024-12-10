@@ -194,3 +194,31 @@ BEGIN
     WHERE 
         o.Id = @order_id;
 END;
+
+-- Getting ShipmentDetails
+
+CREATE PROCEDURE [dbo].[GetShipmentDetails]
+    @ShipmentId INT = NULL,
+    @CustomerId INT = NULL,
+    @OrderId INT = NULL
+AS
+BEGIN
+    SELECT 
+		s.Id AS ShipmentId,
+        u.FirstName + ' ' + u.LastName AS CustomerName,
+        u.Address AS CustomerAddress,
+		o.Id AS OrderId,
+        o.TotalAmount,
+        s.ShipmentDate AS DeliveryDate,
+        s.Status AS DeliveryStatus
+    FROM 
+        VsShipments s
+    JOIN 
+        VsOrders o ON s.OrderId = o.Id
+    JOIN 
+        VsUsers u ON o.CustomerId = u.Id
+    WHERE
+        (@ShipmentId IS NULL OR s.Id = @ShipmentId) AND
+        (@CustomerId IS NULL OR o.CustomerId = @CustomerId) AND
+        (@OrderId IS NULL OR o.Id = @OrderId);
+END

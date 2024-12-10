@@ -30,8 +30,7 @@ namespace PaymentProcessing.Services
             return await _repo.GetPaymentAsync(id);
         }
 
-<<<<<<< HEAD
-=======
+
 
         public async Task<bool> PayNow(int orderId, string fromAccountNumber, string paymentMode)
         {
@@ -44,15 +43,15 @@ namespace PaymentProcessing.Services
             payment.PaymentStatus = status;
             payment.TransactionId = transactionId;
             payment.PaymentAmount = amount;
+            DateTime currentDate = DateTime.Now.Date;
+            string formattedDate = currentDate.ToString("yyyy-MM-dd");
+            payment.PaymentDate = formattedDate;
             // Update the Payment record with the new information
             bool updateSuccess = await _repo.UpdateAsync(payment);
             return updateSuccess;
 
 
         }
-
-
->>>>>>> 161ff82bb30462960e946923b4c809146cb3f28d
 
         public Task<bool> InsertPaymentAsync(Payment payment)
         {

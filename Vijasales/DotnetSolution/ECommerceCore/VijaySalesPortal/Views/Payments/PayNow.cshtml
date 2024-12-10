@@ -14,8 +14,8 @@
         <div>
             <input type="radio" id="creditDebitCard" name="paymentMethod" value="creditDebitCard" checked>
             <label for="creditDebitCard" class="mx-2" name="paymentMethod">Credit/Debit Card</label>
-            <input type="radio" id="netBanking" name="paymentMethod" value="netBanking">
-            <label for="netBanking" class="mx-2" name="paymentMethod">Net Banking</label>
+            <input type="radio" id="Netbanking" name="paymentMethod" value="Netbanking">
+            <label for="Netbanking" class="mx-2" name="paymentMethod">Net Banking</label>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Net Banking Fields -->
-    <div id="netBankingForm" class="payment-method-form" style="display: none;">
+    <div id="NetbankingForm" class="payment-method-form" style="display: none;">
         <h4 class="mb-3">Net Banking</h4>
         <div class="form-group mb-3">
             <label for="accountNumber">Account Number </label>
@@ -74,10 +74,10 @@
             </select>
         </div>
         <div class="form-group mb-3">
-            <label for="netBankingPassword">Password</label>
-            <input type="password" class="form-control" id="netBankingPassword" placeholder="Enter net banking password" required />
+            <label for="NetbankingPassword">Password</label>
+            <input type="password" class="form-control" id="NetbankingPassword" placeholder="Enter net banking password" required />
         </div>
-        <button type="button" class="btn btn-outline-primary" id="verifyNetBanking">Verify Bank</button>
+        <button type="button" class="btn btn-outline-primary" id="verifyNetbanking">Verify Bank</button>
     </div>
 
     <!-- Pay Now Button -->
@@ -119,13 +119,13 @@
 
                     $("#bankingAccountNumber").prop("required", false);
 
-                    $("#netBankingPassword").prop("required", false);
+                    $("#NetbankingPassword").prop("required", false);
 
-                } else if (selectedMethod === "netBanking") {
+                } else if (selectedMethod === "Netbanking") {
 
                     $("#bankingAccountNumber").prop("required", true);
 
-                    $("#netBankingPassword").prop("required", true);
+                    $("#NetbankingPassword").prop("required", true);
 
                     $("#cardNumber").prop("required", false);
 
@@ -230,7 +230,7 @@
 
         // Verify Net Banking Action
 
-        $("#verifyNetBanking").click(function () {
+        $("#verifyNetbanking").click(function () {
 
             let bankingAccountNumber = $("#bankingAccountNumber").val();
             // Corrected the URL concatenation
@@ -254,7 +254,7 @@
                 success: function (data) {
 
                     console.log(data);
-                    verifyNetBanking(data);
+                    verifyNetbanking(data);
 
                 },
 
@@ -306,20 +306,14 @@
 
             console.log("Verifying Card.....");
             console.log(data);
-            var cardData = {
-
+            var cardData = 
+            {
                 cardType: $("#cardType").val(),
-
                 accountNumber: $("#cardAccountNumber").val(),
-
                 cardNumber: $("#cardNumber").val(),
-
                 cardExpiry: $("#cardExpiry").val(),
-
                 cardCVV: $("#cardCVV").val(),
-
                 cardPassword: $("#cardPassword").val()
-
             };
             console.log(cardData);
             if(data.cardType == cardData.cardType && 
@@ -335,24 +329,24 @@
         }
 
         // Net Banking verification function
-        function verifyNetBanking(data) {
+        function verifyNetbanking(data) {
 
             console.log("Verifying Net Banking:", data);
-            var netBankingData = {
+            var NetbankingData = {
 
                 accountNumber: $("#bankingAccountNumber").val(),
 
 
                 bankName: $("#bankName").val(),
 
-                netBankingPassword: $("#netBankingPassword").val()
+                NetbankingPassword: $("#NetbankingPassword").val()
 
             };
             // Simulate a successful verification
-            console.log(netBankingData);
-            if (data.accountNumber == netBankingData.accountNumber &&
-                data.bankName == netBankingData.bankName &&
-                data.passcode == netBankingData.netBankingPassword) {
+            console.log(NetbankingData);
+            if (data.accountNumber == NetbankingData.accountNumber &&
+                data.bankName == NetbankingData.bankName &&
+                data.passcode == NetbankingData.NetbankingPassword) {
                 alert("Net Banking verification successful!");
                 
                 }
@@ -366,15 +360,34 @@
 
                         // Gather form data
 
-                        var paymentData = {
+            let radioSelection = $("input[name='paymentMethod']:checked").val();
+            if (radioSelection == "creditDebitCard") {
+                var paymentData = {
 
-                            orderId: 22,  // Get the orderId passed from the view
+                    orderId: 22,  // Get the orderId passed from the view
 
-                            accountNumber: $("#cardAccountNumber").val(),
+                    accountNumber: $("#cardAccountNumber").val(),
 
-                            paymentMethod: $("input[name='paymentMethod']:checked").val(),  // Get selected payment method
+                    paymentMethod: $("#cardType").val(),  // Get selected payment method
 
-                        };
+                    paymentStatus: "Completed"
+
+                };
+            }
+            else if(radioSelection == "Netbanking") {
+                var paymentData = {
+
+                    orderId: 22,  // Get the orderId passed from the view
+
+                    accountNumber: $("#cardAccountNumber").val(),
+
+                    paymentMethod: $("input[name='paymentMethod']:checked").val(),  // Get selected payment method
+
+                    paymentStatus: "Completed"
+
+                };
+            }
+                       
 
 
                         // Make AJAX request to PaymentController's PayNow method

@@ -16,19 +16,11 @@ namespace VijaySalesSOA.Controllers
 {
     //[SessionState]  // Custom filter to enable session in Web API controller
     public class ShoppingCartController : ApiController
-
     {
-
-        
-
         [HttpGet]
-
         public Cart Get()
-
         {
-
             // Access session safely
-
             Items items = new Items();
             items.Quantity = 1;
             items.ProductId = 1;
@@ -43,8 +35,6 @@ namespace VijaySalesSOA.Controllers
             }
 
             var cartItems = JsonConvert.DeserializeObject<Cart>(cookie.Value);
-           
-
             return cart;  // Return the full cart object
 
         }
@@ -70,6 +60,6 @@ namespace VijaySalesSOA.Controllers
              return Ok("items added");
             }
 
-            }
+        }
 
 }

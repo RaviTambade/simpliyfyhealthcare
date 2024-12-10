@@ -144,11 +144,15 @@ namespace Shipment.Repositories.ORM
 
                 var param = new SqlParameter("@ShipmentId", shipmentId);
 
+<<<<<<< HEAD
 
                 shipmentDetail = context.Set<ShipmentDetail>()
 
                 
                  shipmentDetail = context.Set<ShipmentDetail>()
+=======
+                shipmentDetail = context.Set<ShipmentDetail>()
+>>>>>>> e0234d6a7594804d1649daed26c9b112e6dc3e42
                             .FromSqlRaw(query, param)
                             .AsEnumerable()
                             .FirstOrDefault();
