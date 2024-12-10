@@ -140,10 +140,35 @@
     });
 
 
+
+
     $(document).ready(() => {
 
         console.log("start")
         getAllProduct()
+
+        $(document).on("click", "#btndelete", function (e) {
+            let id = e.target.name;
+            const url = '/api/products/' + id;
+
+            $.ajax({
+                url: url,
+                type: "DELETE",
+                contentType: "application/json",
+                success: (result) => {
+                    console.log("Succesfully Deleted");
+
+                    $("#showproduct").html("");
+                    window.location.reload(true);
+
+                },
+                error: () => {
+                    console.log("something has gone wrong");
+                }
+            });
+
+
+      
     });
 
 
