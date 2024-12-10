@@ -1,6 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Shipments";
-}
+﻿
 
 <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -80,8 +78,8 @@
             url: apiUrl,
             type: 'GET',
             success: function (response) {
-                allShipments = response; 
-                UpdateShipmentTable(allShipments); 
+                allShipments = response;
+                UpdateShipmentTable(allShipments);
             },
             error: function (xhr, status, error) {
                 alert('Error fetching shipments: ' + error);
@@ -113,13 +111,13 @@
 
     // Function to apply all filters (status, single date, and date range)
     const FilterShipments = () => {
-        const selectedDate = $('#shipmentDateFilter').val(); 
-        const startDate = $('#shipmentStartDateFilter').val(); 
-        const endDate = $('#shipmentEndDateFilter').val(); 
-        const status = $('#shipmentStatusFilter').val(); 
+        const selectedDate = $('#shipmentDateFilter').val();
+        const startDate = $('#shipmentStartDateFilter').val();
+        const endDate = $('#shipmentEndDateFilter').val();
+        const status = $('#shipmentStatusFilter').val();
 
         const filteredShipments = allShipments.filter((shipment) => {
-            const shipmentDate = new Date(shipment.shipmentDate).toISOString().split('T')[0]; 
+            const shipmentDate = new Date(shipment.shipmentDate).toISOString().split('T')[0];
 
             const dateMatches = (selectedDate && shipmentDate === selectedDate) ||
                 (startDate && endDate && shipmentDate >= startDate && shipmentDate <= endDate) ||
@@ -143,22 +141,22 @@
     }
 
     $(document).ready(function () {
-        GetAllShipments();  
+        GetAllShipments();
 
         $('#applySingleDateFilterButton').click(function () {
-            FilterShipments();  
+            FilterShipments();
         });
 
         $('#applyDateRangeFilterButton').click(function () {
-            FilterShipments();  
+            FilterShipments();
         });
 
         $('#applyFilterButton').click(function () {
-            FilterShipments();  
+            FilterShipments();
         });
 
         $('#clearFiltersButton').click(function () {
-            ClearFilters();  
+            ClearFilters();
         });
     });
 
