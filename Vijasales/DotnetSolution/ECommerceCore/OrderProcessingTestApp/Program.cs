@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 using OrderProcessing.Entities;
 using OrderProcessing.Repositories.Connected;
@@ -19,7 +19,7 @@ class Program
 >>>>>>> aa1406039e17989ef2623f9057b4bfef0636db93
 {
 
-<<<<<<< HEAD
+
 
 
 /*
@@ -35,4 +35,4 @@ Order _newOrder = new Order { CustomerId=12,Status="Shipped",OrderDate=DateTime.
 
     }
 
-}
+}*/
