@@ -49,6 +49,10 @@ namespace Shipment.Services
         {
             return await _repo.GetByDateAsync(date);
         }
+        public async Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate)
+        {
+            return await _repo.GetByDateAsync(startdate, enddate);
+        }
 
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
@@ -58,6 +62,11 @@ namespace Shipment.Services
         public async Task<List<Delivery>> GetByStatusAsync(string status)
         {
             return await _repo.GetByStatusAsync(status);
+        }
+
+        public async Task<string> GetStatusByOrderIdAsync(int orderId)
+        {
+            return await _repo.GetStatusByOrderIdAsync(orderId);
         }
 
         public async Task<bool> UpdateShipmentAsync(Delivery shipment)

@@ -16,32 +16,54 @@ namespace VijaySalesAPI.Controllers
         }
         
         [HttpGet]
-        public List<User> Get()
+        public async Task <ActionResult< List<User>>> GetAsync()
         {
             
-            List<User> users = _userService.GetAll();
+            List<User> users = await _userService.GetAllAsync();
             return users;
         }
         [HttpGet("{id}")]
-        public User Get(int id) 
+        public async Task  <ActionResult<User>> Get(int id) 
         { 
-            User user=_userService.GetUser(id);
+            User user= await _userService.GetUserAsync(id);
             return user;
          }
         [HttpPost]
-        public void Post([FromBody] User user)
-        {
-            _userService.Insert(user);
+        public async Task <IActionResult> Post([FromBody] User user)
+        {    
+          if (user == null)
+            {
+                return BadRequest();
+            }
+            var success=await _userService.InsertAsync(user);
+            if (!success)
+            {
+                return BadRequest("Users cannot be inserted");
+            }
+            return Ok();
         }
         [HttpPut]
-        public void Put([FromBody] User user)
-        {
-            _userService.Update(user);  
+        public  async Task <IActionResult> Put([FromBody] User user)
+        {   if (user == null)
+            {
+                return BadRequest();
+            }
+            var updatedUser=await _userService.UpdateAsync(user);  
+            if(updatedUser==null)
+            {
+                return NotFound();
+            }
+            return Ok(updatedUser);
         }
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _userService.Delete(id);
+           var success= await _userService.DeleteAsync(id);
+            if (!success)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
 
     }

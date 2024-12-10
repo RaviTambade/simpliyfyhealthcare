@@ -1,4 +1,5 @@
-﻿using Shipment.Entities;
+﻿using Microsoft.Extensions.Configuration;
+using Shipment.Entities;
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 
@@ -8,7 +9,7 @@ Console.WriteLine("TESTING SHIPMENT!");
 //IShipmentRepository repo = new ShipmentRepository();
 
 
-DateTime dateTime = new DateTime(2024, 12, 14);
+DateTime startdate = new DateTime(2024, 12, 14);
 /*
 foreach (Delivery sh in repo.GetAll())
 {
@@ -36,5 +37,6 @@ Console.WriteLine("Giving One Shipment");
 //{
 //    Console.WriteLine(sh);
 //}
+
 
 

@@ -74,4 +74,101 @@
         </div>
     </div>
 
-   
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script>
+    // Function to create an order card HTML structure
+    function createOrderCard(order, customerName) {
+        return `
+            <div class="card order-card" id="order-${order.id}">
+                <div class="card-header order-card-header">
+                    Order #${order.id}
+                </div>
+                <div class="card-body">
+                    <p><strong>Customer Name:</strong> ${customerName}</p>
+                    <p><strong>Total:</strong> $${order.totalAmount.toFixed(2)}</p>
+                    <p><strong>Date:</strong> ${new Date(order.orderDate).toLocaleDateString()}</p>
+                    <p>
+                        <strong>Status:</strong>
+                            <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id},new Date('${order.orderDate}'),${order.customerId},${order.totalAmount})">
+                            <option value="pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+        `;
+    }
+
+    // Fetch orders for the salesperson
+    function fetchOrders() {
+        $.ajax({
+            url: 'http://localhost:5218/api/Orders',  
+            method: 'GET',
+            dataType: 'json',
+            success: function (orders) {
+               
+                $('#ordersList').empty();
+
+                orders.forEach(function (order) {
+                    fetchCustomerName(order.customerId, function (customerName) {
+                        var orderCard = createOrderCard(order, customerName);
+                        $('#ordersList').append(orderCard);
+                    });
+                });
+            },
+            error: function () {
+                alert('Failed to load orders');
+            }
+        });
+    }
+
+ 
+    function fetchCustomerName(customerId, callback) {
+        $.ajax({
+            url: `http://localhost:5218/api/users/`+customerId ,
+            method: 'GET',
+            dataType: 'json',
+            success: function (customer) {
+                
+                callback(customer.firstName+ " "+ customer.lastName);  
+            },
+            error: function () {
+                alert('Failed to load customer details');
+                callback('Unknown Customer');
+            }
+        });
+    }
+
+    
+    function changeStatus(orderId,orderDate,customerid,totalAmount) {
+        var status = $('#status' + orderId).val();
+        context = {
+            Id:orderId,
+            CustomerId:customerid,
+            Status:status,
+            OrderDate:orderDate,
+            totalAmount:totalAmount
+        };
+        console.log(context);
+        $.ajax({
+            url: `http://localhost:5218/api/Orders/`+ orderId,  
+            method: 'PUT',
+            dataType: 'json',
+            data: { status: status },
+            success: function () {
+                alert(`Order #${orderId} status updated to ${status}`);
+            },
+            error: function () {
+                alert('Failed to update order status');
+            }
+        });
+    }
+
+    
+    $(document).ready(function () {
+        fetchOrders();
+    });
+
+</script>

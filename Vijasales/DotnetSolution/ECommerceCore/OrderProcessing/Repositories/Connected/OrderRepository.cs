@@ -266,6 +266,7 @@ namespace OrderProcessing.Repositories.Connected
                         {
                             // Read each column value
                             int orderId = Convert.ToInt32(dr["OrderId"]);
+                            int theCustomerId = Convert.ToInt32(dr["CustomerId"]);
                             string name = dr["Name"].ToString();
                             string brand = dr["Brand"].ToString();
                             string title = dr["Title"].ToString();
@@ -274,6 +275,8 @@ namespace OrderProcessing.Repositories.Connected
                             decimal totalPrice = Convert.ToDecimal(dr["TotalPrice"]);
                             DateTime orderDate = Convert.ToDateTime(dr["OrderDate"]);
                             string orderStatus = dr["OrderStatus"].ToString();
+                            string description = dr["Description"].ToString();
+                            string imageUrl = dr["ImageUrl"].ToString();
 
                             // Create an OrderList object and populate it
                             OrderList orderList = new OrderList
@@ -287,6 +290,9 @@ namespace OrderProcessing.Repositories.Connected
                                 TotalPrice = totalPrice,
                                 OrderDate = orderDate,
                                 OrderStatus = orderStatus,
+                                CustomerId = theCustomerId,
+                                Description = description,
+                                ImageUrl= imageUrl
                             };
 
                             // Add the order to the list
@@ -310,7 +316,10 @@ namespace OrderProcessing.Repositories.Connected
             return orderLists;
         }
 
-        //OrderItems 
+        public async Task<bool> UpdateOrderStatus(int orderId, int orderStatus)
+        {
+            return false;
+        }
        
     }
 }
