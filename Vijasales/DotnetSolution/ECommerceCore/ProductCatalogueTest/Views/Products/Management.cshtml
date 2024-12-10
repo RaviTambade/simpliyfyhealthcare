@@ -103,6 +103,42 @@
         });
     }
 
+    $(document).on("click", "tr.rows td.idcell", function (e) {
+        alert(e.target.innerHTML);
+        const url1 = '/api/products/' + e.target.innerHTML;
+        console.log(url1);
+        $('#product').html("");
+        $.ajax({
+            url: url1,
+            type: "GET",
+            contentType: "application/json",
+            //data: JSON.stringify(credential),
+            success: (result) => {
+                var row =
+                    '<h5><br/>ProductID : ' +
+                    result.Id +
+                    '<br/>Name : ' +
+                    result.Name +
+                    '<br/>Description : ' +
+                    result.Description +
+                    '<br/>Quantity : ' +
+                    result.Quantity +
+                    '<br/>UnitPrice : ' +
+                    result.UnitPrice +
+                    '<br/>Image : ' +
+                    result.Img +
+                    '<br/><br/><input type="button" value="EDIT" name="' + result.Id + '" id="btnedit" />     ' +
+                    '<input type="button" value="DELETE" name="' + result.Id + '" id="btndelete" /><h5> ';
+
+                $('#showproduct').html(row);
+                console.log(result);
+            },
+            error: () => {
+                console.log("something has gone wrong");
+            }
+        });
+    });
+
 
 
 

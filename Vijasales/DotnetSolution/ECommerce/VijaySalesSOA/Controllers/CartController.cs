@@ -76,7 +76,11 @@ namespace VijaySalesSOA.Controllers
             }
 
             // Update the quantity of the item
-            item.Quantity = quantity;
+            item.Quantity += quantity;
+            if(item.Quantity <= 0)
+            {
+                theCart.Items.Remove(item); 
+            }
 
             return Json(theCart, JsonRequestBehavior.AllowGet);
         }
@@ -110,6 +114,32 @@ namespace VijaySalesSOA.Controllers
             theCart.Items.Clear();
 
             return Json(theCart, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Cart/GetItemCount
+        [System.Web.Http.HttpGet]
+        [System.Web.Http.Route("Cart/GetItemCount")]
+        public ActionResult GetItemCount()
+        {
+            // Get the cart from session
+            Cart theCart = GetCartFromSession();
+
+            // If no cart or no items in the cart, return count as 0
+            if (theCart == null || !theCart.Items.Any())
+            {
+                return Json(0, JsonRequestBehavior.AllowGet);  // No items, so return 0
+            }
+
+            // Otherwise, sum the quantities of all items in the cart
+            int totalCount = theCart.Items.Sum(item => item.Quantity);
+
+            return Json(totalCount, JsonRequestBehavior.AllowGet); // Return the total count of items
+        }
+
+
+        public ActionResult ShowCart()
+        {
+            return View();
         }
 
     }

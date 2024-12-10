@@ -43,6 +43,9 @@ namespace PaymentProcessing.Services
             payment.PaymentStatus = status;
             payment.TransactionId = transactionId;
             payment.PaymentAmount = amount;
+            DateTime currentDate = DateTime.Now.Date;
+            string formattedDate = currentDate.ToString("yyyy-MM-dd");
+            payment.PaymentDate = formattedDate;
             // Update the Payment record with the new information
             bool updateSuccess = await _repo.UpdateAsync(payment);
             return updateSuccess;
@@ -50,7 +53,10 @@ namespace PaymentProcessing.Services
 
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
         public Task<bool> InsertPaymentAsync(Payment payment)
         {
             return _repo.InsertAsync(payment);
