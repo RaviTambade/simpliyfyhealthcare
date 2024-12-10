@@ -63,7 +63,7 @@
 
                     $('#cart-items-list').append(cardHtml);
 
-                    // Update the total amount
+                    
                     totalAmount += product.price * item.quantity;
                     $('#total-amount').text(`Total: Rs ${totalAmount}`);
                 },
@@ -104,7 +104,7 @@
             url: "http://localhost:5218/api/shoppingcart",
             type: 'GET',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             success: function (data) {
                 let orderCart = {
@@ -141,7 +141,7 @@
             url: `http://localhost:5218/api/orders`, // API endpoint to create an order
             type: 'POST',
             xhrFields: {
-                withCredentials: true // Ensures cookies are sent with the request
+                withCredentials: true 
             },
             data: JSON.stringify(cartData), // Send the cart data in the request body
             contentType: 'application/json', // Set content type to JSON
@@ -173,7 +173,7 @@
             url: `http://localhost:5218/api/shoppingcart/${productId}`,
             type: 'DELETE',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             success: function (response) {
                 alert('Product removed successfully!');
@@ -206,7 +206,7 @@
             url: `http://localhost:5218/api/shoppingcart/${productId}`,
             type: 'PUT',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             data: JSON.stringify(change),
             contentType: 'application/json',
@@ -226,7 +226,7 @@
             url: "http://localhost:5218/api/shoppingcart",
             type: 'DELETE',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             success: function (response) {
                 alert('Cart cleared successfully!');
@@ -250,7 +250,7 @@
 </script>
 
 <style>
-    /* General Styles */
+    
     body {
         background-color: #f8f9fa;
         color: #333;
@@ -278,7 +278,7 @@
         font-size: 0.95rem;
     }
 
-    /* Button Styles */
+    
     .remove-product-btn {
         background-color: steelblue;
         color: white;

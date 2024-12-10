@@ -17,7 +17,6 @@ using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
-
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -82,22 +81,11 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 
 builder.Services.AddTransient<IBankService, BankService>();
 
-
 var app = builder.Build();
-
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
-
-
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
-app.Run();
-
-
-
-
-
-
