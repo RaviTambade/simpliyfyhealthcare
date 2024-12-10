@@ -13,7 +13,5 @@ namespace PaymentProcessing.Services
         Task<Payment> GetPaymentAsync(int id);
         Task<double> GetAmount(int OrderId);
         Task<bool> PayNow(int orderId, string fromAccountNumber, string paymentMode);
-        Task<bool> InsertPaymentAsync(Payment payment);
-        Task<bool> UpdatePaymentAsync(Payment payment);
     }
 }
