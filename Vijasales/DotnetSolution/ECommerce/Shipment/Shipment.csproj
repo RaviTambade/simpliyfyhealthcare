@@ -58,7 +58,7 @@
     <Compile Include="Repositories\IShipmentRepository.cs" />
     <Compile Include="Repositories\ORM\ShipmentContext.cs" />
     <Compile Include="Repositories\ORM\ShipmentRepository.cs" />
-    <Compile Include="Services\IshipmentService.cs" />
+    <Compile Include="Services\IShipmentService.cs" />
     <Compile Include="Services\ShipmentService.cs" />
   </ItemGroup>
   <ItemGroup>

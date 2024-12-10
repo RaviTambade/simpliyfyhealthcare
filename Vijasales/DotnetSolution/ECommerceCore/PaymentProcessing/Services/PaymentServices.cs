@@ -12,12 +12,10 @@ namespace PaymentProcessing.Services
     public class PaymentServices : IPaymentServices
     {
         private  IPaymentRepository _repo;
-        private  IOrderRepository _orderRepo;
 
-        public PaymentServices(IPaymentRepository repo, IOrderRepository orderRepo)
+        public PaymentServices(IPaymentRepository repo)
         {
             _repo = repo;
-            _orderRepo = orderRepo;
         }
 
         public async Task<List<Payment>> GetPaymentsByCustomerIdAsync(int customerId)
@@ -63,12 +61,6 @@ namespace PaymentProcessing.Services
             // Update the Payment record with the new information
             bool updateSuccess = await _repo.UpdateAsync(payment);
             return updateSuccess;
-        }
-
-
-        public Task<bool> UpdatePaymentAsync(Payment payment)
-        {
-            return _repo.UpdateAsync(payment);
         }
 
     }

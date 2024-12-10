@@ -7,7 +7,7 @@ namespace OrderProcessing.Services.Connected
         Task<List<Order>> GetAllAsync();           
         Task<Order> GetOrderAsync(int id);         
         Task<List<OrderList>> GetCustomerOrdersAsync(int id);  
-        Task<bool> InsertOrderAsync(Cart cart);       
+        Task<int> InsertOrderAsync(int customerId, Cart cart);       
         Task<bool> UpdateOrderAsync(Order order);       
         Task<bool> DeleteAsync(int id);
         Task<List<OrderList>> GetOrderDetailsAsync(int customerId);

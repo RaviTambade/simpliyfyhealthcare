@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Account";
+}
+
+<h1>Accounts</h1>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<table class="table table-bordered" id="accountsTable">
+    <thead>
+        <tr>
+            <th>AccountNumber</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Table rows will be inserted here dynamically -->
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        // Make an AJAX call to the API to get payment data
+        $.ajax({
+            url: 'http://localhost:5218/api/bank', // Replace with your API URL
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+
+                var tableBody = $('#accountsTable tbody');
+                tableBody.empty(); // Clear existing rows
+
+                // Check if data is not empty
+                if (data.length > 0) {
+                    // Loop through the payment data and append rows to the table
+                    $.each(data, function (index, account) {
+                        // Create a row for AccountNumber and a View Details button
+                        var row = '<tr class="account-row" data-account-id="' + account.accountId + '">' +
+                            '<td>' + account.accountNumber + '</td>' +
+                            '<td><button class="btn btn-info view-details">View Details</button></td>' +
+                            '</tr>';
+
+                        // Append the row to the table
+                        tableBody.append(row);
+
+                        // Create a hidden row with the detailed account info
+                        var detailsRow = '<tr class="details-row" data-account-id="' + account.accountId + '" style="display:none;">' +
+                            '<td colspan="2">' +
+                            '<strong>AccountId:</strong> ' + account.accountId + '<br>' +
+                            '<strong>Passcode:</strong> ' + account.passcode + '<br>' +
+                            '<strong>UserId:</strong> ' + account.userId + '<br>' +
+                            '<strong>BankName:</strong> ' + account.bankName + '<br>' +
+                            '<strong>IFSCCode:</strong> ' + account.ifscCode + '<br>' +
+                            '<strong>Balance:</strong> ' + account.balance +
+                            '</td>' +
+                            '</tr>';
+
+                        // Append the details row just after the account row
+                        tableBody.append(detailsRow);
+                    });
+                } else {
+                    // If no data, show a message
+                    tableBody.append('<tr><td colspan="2">No accounts found.</td></tr>');
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle error
+                alert('An error occurred: ' + error);
+            }
+        });
+
+        // Handle "View Details" button click
+        $(document).on('click', '.view-details', function () {
+            var $button = $(this);
+            var accountRow = $button.closest('tr');
+            var accountId = accountRow.data('account-id');
+
+            // Find the corresponding details row by accountId
+            var detailsRow = accountRow.next('.details-row[data-account-id="' + accountId + '"]');
+
+            // Toggle visibility of the details row
+            detailsRow.toggle();  // This will show or hide the row
+        });
+    });
+</script>

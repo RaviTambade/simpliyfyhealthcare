@@ -5,6 +5,7 @@ using OrderProcessing.Repositories;
 using OrderProcessing.Entities;
 using OrderProcessing.Services.Connected;
 using ShoppingCart.Entities;
+using OrderProcessing.Requests;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -45,11 +46,13 @@ namespace VijaySalesAPI.Controllers
             return order;
         }
 
-        [HttpPost("{customerId}")]
-        public async Task<bool> InsertAsyncint(int customerId,[FromBody]Cart cart)
+        
+        [HttpPost]
+        public async Task<int> InsertAsyncint([FromBody]OrderResponse orderResponse)
         {
-            bool status= await _orderService.InsertOrderAsync(cart);    
-            return status;
+            int customerId = orderResponse.UserId;
+            int newOrderId = await _orderService.InsertOrderAsync(customerId,orderResponse.OrderCart);    
+            return newOrderId;
         }
 
 
