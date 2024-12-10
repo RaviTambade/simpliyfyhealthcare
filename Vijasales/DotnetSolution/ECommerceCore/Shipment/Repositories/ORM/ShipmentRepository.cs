@@ -1,4 +1,4 @@
-﻿using Shipment.Entities;
+using Shipment.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,7 +85,6 @@ namespace Shipment.Repositories.ORM
             }
         }
 
-
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
                 ShipmentDetail shipmentDetail = null;
@@ -94,21 +93,7 @@ namespace Shipment.Repositories.ORM
                     // Define the stored procedure query with the necessary parameter
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
 
-<<<<<<< HEAD
-
-
-               
-
-                shipmentDetail = context.Set<ShipmentDetail>()
-                            .FromSqlRaw(query, param)
-                            .AsEnumerable()
-                            .FirstOrDefault();
-=======
                     var param = new SqlParameter("@ShipmentId", shipmentId);
-<<<<<<< HEAD
-
-=======
->>>>>>> 6988351d78f90c20312067e8d2bedbc499a51f76
 
                     shipmentDetail =  context.Set<ShipmentDetail>()
                                .FromSqlRaw(query, param)
@@ -117,13 +102,6 @@ namespace Shipment.Repositories.ORM
                 }
 
                 return shipmentDetail;
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 6988351d78f90c20312067e8d2bedbc499a51f76
->>>>>>> aa1406039e17989ef2623f9057b4bfef0636db93
             }
 
         public async Task<string> GetStatusByOrderIdAsync(int orderId)
@@ -173,7 +151,6 @@ namespace Shipment.Repositories.ORM
                 }
                 
             }
-
             return status;
         }
 
@@ -195,5 +172,4 @@ namespace Shipment.Repositories.ORM
 
         }
     }
-    }
-
+}
