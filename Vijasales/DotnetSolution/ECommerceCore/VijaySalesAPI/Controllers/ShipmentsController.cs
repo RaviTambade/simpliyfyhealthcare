@@ -65,8 +65,8 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest("Invalid date format.");
             }
 
-            List<Delivery> deliverylistbydaterange = await _shipmentService.GetByDateAsync(date);
-            return Ok(deliverylistbydaterange);
+            List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date);
+            return Ok(deliverylistbydate);
 
         }
 
@@ -81,8 +81,8 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest("Invalid date format.");
             }
 
-            List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date1,date2);
-            return Ok(deliverylistbydate);
+            List<Delivery> deliverylistbydaterange = await _shipmentService.GetByDateAsync(date1,date2);
+            return Ok(deliverylistbydaterange);
 
         }
 

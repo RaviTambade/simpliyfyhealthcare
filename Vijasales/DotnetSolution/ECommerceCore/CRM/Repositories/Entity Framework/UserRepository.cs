@@ -6,24 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VijaySales.Security;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Data.SqlClient;
 
 namespace CRM.Repositories.ORM
 {
     public class UserRepository : IUserDataRepository
     {
-        public bool Delete(int Id)
+        public async Task < bool> DeleteAsync(int Id)
         {
             bool status = false;
             using(var ctx = new CollectionContext())
             {
                 ctx.Users.Remove(ctx.Users.Find(Id));
-                ctx.SaveChanges();
+                ctx.SaveChangesAsync();
                 status = true;
             }
             return status;
         }
 
-        public List<User> GetAll()
+        public async Task < List<User>> GetAllAsync()
         {
             using(var ctx = new CollectionContext()){
                 var users = ctx.Users.ToList();
@@ -31,7 +34,7 @@ namespace CRM.Repositories.ORM
             }
         }
 
-        public User GetUser(int id)
+        public async Task<User> GetUserAsync(int id)
         {
            using(var ctx = new CollectionContext())
             {
@@ -40,7 +43,7 @@ namespace CRM.Repositories.ORM
             }
         }
 
-        public bool Insert(User user)
+        public  async Task<bool> InsertAsync(User user)
         {   
             bool status = false;
             using(var ctx =  new CollectionContext())
@@ -48,14 +51,14 @@ namespace CRM.Repositories.ORM
                 user.Password = PasswordEncryptionManager.Encrypt(user.Password);
  
                 ctx.Users.Add(user);
-                ctx.SaveChanges();
+                await ctx.SaveChangesAsync();
                 status = true;
             }
             return status;
         }
 
 
-        public bool Update(User user)
+        public async Task <bool> UpdateAsync(User user)
         {
             bool status = false;
             using(var ctx = new CollectionContext())
@@ -65,7 +68,7 @@ namespace CRM.Repositories.ORM
                 user.Password = PasswordEncryptionManager.Encrypt(user.Password);
                 ctx.Users.Remove(ctx.Users.Find(user.Id));
                 ctx.Users.Add(user);
-                ctx.SaveChanges();
+               await ctx.SaveChangesAsync();
                 status = true;
 ;            }
             return status;

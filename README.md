@@ -2,6 +2,7 @@
 
 <a href="https://github.com/RaviTambade/TFLdotNET.git"> Dotnet Core</a>
 
+<<<<<<< HEAD
 1.State Management---------------------------------------------------Samruddhi
 2.SOLID-------------------------------------------------------------Ruchita
 15.Deterministic and indeterministic finalizaiton-----------------Chinmay
@@ -20,3 +21,6 @@
 10.Web API invocation: async, await, fetch, $.ajax----------------------Tejas
 14.Dependency Injection with asp.net core application------------------Raj
 9.Handlers, and filters--------------------------------------------Aditya
+=======
+Learning Project Implementation
+>>>>>>> d99ccef1d5140bde5f3e048fe727909576c6c85d
