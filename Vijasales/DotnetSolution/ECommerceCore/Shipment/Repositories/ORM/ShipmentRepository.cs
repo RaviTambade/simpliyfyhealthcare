@@ -55,38 +55,84 @@ namespace Shipment.Repositories.ORM
 
         public async Task<List<Delivery>> GetAllAsync()
         {
+            List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext(_configuration))
             {
                 var dbshipments = await context.Shipments.ToListAsync();
-                return dbshipments;
-            } 
+                foreach (var shipment in dbshipments)
+                {
+                    Delivery theShipment = new Delivery();
+                    theShipment.Id = shipment.Id;
+                    theShipment.OrderId = shipment.OrderId;
+                    theShipment.ShipmentDate = shipment.ShipmentDate;
+                    theShipment.Status = shipment.Status;
+                    shipments.Add(theShipment);
+                }
+            }
+            return shipments;
         }
 
         public async Task<List<Delivery>> GetByDateAsync(DateTime date)
         {
+
+            List<Delivery> shipments = new List<Delivery>();
+
             using (var context = new ShipmentContext(_configuration))
             {
+
                 var dbShipments = await context.Shipments
-                    .Where(s => s.ShipmentDate == date)
+                    .Where(s => s.ShipmentDate >= date)
                     .ToListAsync();
-                return dbShipments;
+
+                foreach (var shipment in dbShipments)
+                {
+
+                    Delivery theShipment = new Delivery
+                    {
+                        Id = shipment.Id,
+                        OrderId = shipment.OrderId,
+                        ShipmentDate = shipment.ShipmentDate,
+                        Status = shipment.Status
+                    };
+
+                    shipments.Add(theShipment);
+                }
             }
+
+            return shipments;
+
         }
 
         public async Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate)
         {
+            List<Delivery> shipments = new List<Delivery>();
+
             using (var context = new ShipmentContext(_configuration))
             {
                 var dbShipments = await context.Shipments
                     .Where(s => s.ShipmentDate >= startdate && s.ShipmentDate <= enddate)
                     .ToListAsync();
 
-                return dbShipments;
+                foreach (var shipment in dbShipments)
+                {
+                    Delivery theShipment = new Delivery
+                    {
+                        Id = shipment.Id,
+                        OrderId = shipment.OrderId,
+                        ShipmentDate = shipment.ShipmentDate,
+                        Status = shipment.Status
+                    };
+
+                    shipments.Add(theShipment);
+
+                }
+                return shipments;
             }
         }
 
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
+
                 ShipmentDetail shipmentDetail = null;
                 using (var context = new ShipmentContext(_configuration))
                 {
@@ -94,10 +140,15 @@ namespace Shipment.Repositories.ORM
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
 
 <<<<<<< HEAD
+                    var param = new SqlParameter("@ShipmentId", shipmentId);
+
+=======
+<<<<<<< HEAD
 
 =======
 >>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
                     var param = new SqlParameter("@ShipmentId", shipmentId);
+>>>>>>> 7dbb199e199e3014c8aba874067572da6b92ed8e
 
                     shipmentDetail =  context.Set<ShipmentDetail>()
                                .FromSqlRaw(query, param)
@@ -108,9 +159,13 @@ namespace Shipment.Repositories.ORM
                 return shipmentDetail;
 <<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
 
 =======
 >>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
+>>>>>>> 7dbb199e199e3014c8aba874067572da6b92ed8e
             }
 
         public async Task<string> GetStatusByOrderIdAsync(int orderId)
@@ -133,13 +188,30 @@ namespace Shipment.Repositories.ORM
 
         public async Task<List<Delivery>> GetByStatusAsync(string status)
         {
+            List<Delivery> shipments = new List<Delivery>();
 
             using (var context = new ShipmentContext(_configuration))
             {
-                var dbshipments = await context.Shipments
-                    .Where(s=> s.Status == status).ToListAsync();
-                return dbshipments;
+                var dbshipments = await context.Shipments.ToListAsync();
+
+                foreach (var shipment in dbshipments)
+                {
+                    Delivery theShipment = new Delivery();
+                    if (shipment.Status == status)
+                    {
+                        theShipment.Id = shipment.Id;
+                        theShipment.OrderId = shipment.OrderId;
+                        theShipment.ShipmentDate = shipment.ShipmentDate;
+                        theShipment.Status = shipment.Status;
+
+                        shipments.Add(theShipment);
+                    }
+                }
+
+                return shipments;
             }
+
+
         }
 
         public async Task<bool> UpdateAsync(Delivery shipment)
@@ -158,8 +230,16 @@ namespace Shipment.Repositories.ORM
                     await context.SaveChangesAsync();
                     status = true;
                 }
-                
+                else
+                {
+                    Console.WriteLine("Shipment not found.");
+                }
             }
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 7dbb199e199e3014c8aba874067572da6b92ed8e
             return status;
         }
 
