@@ -5,16 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaymentProcessing.Repositories.Connected;
+using OrderProcessing.Repositories.Connected;
 
 namespace PaymentProcessing.Services
 {
     public class PaymentServices : IPaymentServices
     {
-        private IPaymentRepository _repo;
-        public PaymentServices(IPaymentRepository repo)
+        private  IPaymentRepository _repo;
+        private  IOrderRepository _orderRepo;
+
+        public PaymentServices(IPaymentRepository repo, IOrderRepository orderRepo)
         {
             _repo = repo;
+            _orderRepo = orderRepo;
         }
+
+        public async Task<List<Payment>> GetPaymentsByCustomerIdAsync(int customerId)
+        {
+            // Get the payments directly from the repository using the customerId
+            List<Payment> payments = await _repo.GetPaymentsByCustomerIdAsync(customerId);
+
+            // Return the list of payments (which was already filtered by customerId in the repository)
+            return payments;
+        }
+
         public async Task<List<Payment>> GetAllAsync()
         {
             return await _repo.GetAllAsync();
@@ -51,18 +65,11 @@ namespace PaymentProcessing.Services
             return updateSuccess;
         }
 
-<<<<<<< HEAD
-
-        public Task<bool> InsertPaymentAsync(Payment payment)
-        {
-            return _repo.InsertAsync(payment);
-        }
 
         public Task<bool> UpdatePaymentAsync(Payment payment)
         {
             return _repo.UpdateAsync(payment);
         }
-=======
->>>>>>> aa1406039e17989ef2623f9057b4bfef0636db93
+
     }
 }
