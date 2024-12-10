@@ -74,7 +74,6 @@ namespace VijaySalesAPI.Controllers
 
             List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date);
             return Ok(deliverylistbydate);
-
         }
 
         [HttpGet("dates/{startDate}/{endDate}")]
