@@ -90,10 +90,10 @@
                     <p><strong>Date:</strong> ${new Date(order.orderDate).toLocaleDateString()}</p>
                     <p>
                         <strong>Status:</strong>
-                        <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id})">
-                            <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
-                            <option value="completed" ${order.status === 'completed' ? 'selected' : ''}>Completed</option>
-                            <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                            <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id},new Date('${order.orderDate}'),${order.customerId},${order.totalAmount})">
+                            <option value="pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                         </select>
                     </p>
                 </div>
@@ -142,9 +142,16 @@
     }
 
     
-    function changeStatus(orderId) {
+    function changeStatus(orderId,orderDate,customerid,totalAmount) {
         var status = $('#status' + orderId).val();
-
+        context = {
+            Id:orderId,
+            CustomerId:customerid,
+            Status:status,
+            OrderDate:orderDate,
+            totalAmount:totalAmount
+        };
+        console.log(context);
         $.ajax({
             url: `http://localhost:5218/api/Orders/`+ orderId,  
             method: 'PUT',

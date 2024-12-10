@@ -12,30 +12,114 @@ namespace VijaySalesSOA.Controllers
     public class CartController : Controller
     {
         // GET: Cart
-        public ActionResult Index()
+        private Cart GetCartFromSession()
         {
             Cart theCart = (Cart)this.Session["cart"];
+            if (theCart == null)
+            {
+                // If cart is not found, create a new one and save it in session
+                theCart = new Cart();
+                this.Session["cart"] = theCart;
+            }
+            return theCart;
+        }
 
-            return Json(theCart,JsonRequestBehavior.AllowGet);
+        // GET: Cart
+        public ActionResult Index()
+        {
+            Cart theCart = GetCartFromSession();
+            return Json(theCart, JsonRequestBehavior.AllowGet);
+        }
+
+        // POST: Add to Cart
+        [System.Web.Http.HttpPost]
+        public ActionResult AddToCart([FromBody] Product product)
+        {
+            var item = new Items
+            {
+                ProductId = product.Id,
+                Quantity = 1,
+                Price = product.Price
+            };
+
+            Cart theCart = GetCartFromSession();
+            theCart.Items.Add(item);
+
+            return Json(theCart, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Cart/GetById/5
+        [System.Web.Http.HttpGet]
+        public ActionResult GetById(int id)
+        {
+            Cart theCart = GetCartFromSession();
+            var item = theCart.Items.FirstOrDefault(i => i.ProductId == id);
+
+            if (item == null)
+            {
+                return HttpNotFound("Item not found.");
             }
 
-        [System.Web.Http.HttpPost]
-        public ActionResult AddtoCart([FromBody]Product product) {
-            var item = new Items
-
-            {
-
-                ProductId = product.Id,
-
-                Quantity = 1,
-
-                Price = product.Price
-
-            };
-            Cart theCart = (Cart)this.Session["cart"];
-            theCart.Items.Add(item);
-            return Json(theCart, JsonRequestBehavior.AllowGet);
-
+            return Json(item, JsonRequestBehavior.AllowGet);
         }
+
+        // PUT: Cart/PutById/5
+        [System.Web.Http.HttpPut]
+        public ActionResult PutById(int id, [FromBody] int quantity)
+        {
+            Cart theCart = GetCartFromSession();
+            var item = theCart.Items.FirstOrDefault(i => i.ProductId == id);
+
+            if (item == null)
+            {
+                return HttpNotFound("Item not found.");
+            }
+
+            // Update the quantity of the item
+            item.Quantity += quantity;
+            if(item.Quantity <= 0)
+            {
+                theCart.Items.Remove(item); 
+            }
+
+            return Json(theCart, JsonRequestBehavior.AllowGet);
+        }
+
+        // DELETE: Cart/DeleteById/5
+        [System.Web.Http.HttpDelete]
+        public ActionResult DeleteById(int id)
+        {
+            Cart theCart = GetCartFromSession();
+            var item = theCart.Items.FirstOrDefault(i => i.ProductId == id);
+
+            if (item == null)
+            {
+                return HttpNotFound("Item not found.");
+            }
+
+            // Remove the item from the cart
+            theCart.Items.Remove(item);
+
+            return Json(theCart, JsonRequestBehavior.AllowGet);
+        }
+
+        // DELETE: Cart/DeleteAll
+        [System.Web.Http.HttpDelete]
+        [System.Web.Http.Route("Cart/DeleteAll")]
+        public ActionResult DeleteAll()
+        {
+            Cart theCart = GetCartFromSession();
+
+            // Clear all items in the cart
+            theCart.Items.Clear();
+
+            return Json(theCart, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ShowCart()
+        {
+            return View();
+        }
+
     }
 }
