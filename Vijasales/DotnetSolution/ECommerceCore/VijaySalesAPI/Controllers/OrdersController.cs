@@ -45,8 +45,8 @@ namespace VijaySalesAPI.Controllers
             return order;
         }
 
-        [HttpPost]
-        public async Task<bool> InsertAsync(Cart cart)
+        [HttpPost("{customerId}")]
+        public async Task<bool> InsertAsyncint(int customerId,[FromBody]Cart cart)
         {
             bool status= await _orderService.InsertOrderAsync(cart);    
             return status;

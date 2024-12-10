@@ -9,7 +9,19 @@
         <h1 class="text-center">Order Details for Salesperson</h1>
 
         <!-- List of Orders -->
-        <div id="ordersList">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="ordersList">
+            </tbody>
+            </table>
         </div>
     </div>
 
@@ -19,24 +31,19 @@
     // Function to create an order card HTML structure
     function createOrderCard(order, customerName) {
         return `
-            <div class="card order-card" id="order-${order.id}">
-                <div class="card-header order-card-header">
-                    Order #${order.id}
-                </div>
-                <div class="card-body">
-                    <p><strong>Customer Name:</strong> ${customerName}</p>
-                    <p><strong>Total:</strong> $${order.totalAmount.toFixed(2)}</p>
-                    <p><strong>Date:</strong> ${new Date(order.orderDate).toLocaleDateString()}</p>
-                    <p>
-                        <strong>Status:</strong>
-                            <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id},new Date('${order.orderDate}'),${order.customerId},${order.totalAmount})">
+                <tr id="order-${order.id}">
+                    <td>${order.id}</td>
+                    <td>${customerName}</td>
+                    <td>$${order.totalAmount.toFixed(2)}</td>
+                    <td>${new Date(order.orderDate).toLocaleDateString()}</td>
+                    <td>
+                        <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id}, new Date('${order.orderDate}'), ${order.customerId}, ${order.totalAmount})">
                             <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
                             <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
                             <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                         </select>
-                    </p>
-                </div>
-            </div>
+                    </td>
+                </tr>
         `;
     }
 
@@ -94,6 +101,7 @@
         $.ajax({
             url: `http://localhost:5218/api/Orders/`+ orderId,  
             type: 'PUT',
+            +
             contentType: 'application/json',
             data: JSON.stringify(context),
             success: function () {
