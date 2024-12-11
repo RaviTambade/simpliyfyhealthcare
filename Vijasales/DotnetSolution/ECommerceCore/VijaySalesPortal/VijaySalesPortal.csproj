@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Controllers\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Catalog\Catalog.csproj" />
   </ItemGroup>
 
