@@ -29,7 +29,7 @@ namespace VijaySalesAPI.Controllers
                 return Ok(reviews);
             }
 
-            // GET: api/reviews/product/{productId}
+            // GET: api/reviews/{productId}
             [HttpGet("{productId}")]
             public async Task<ActionResult<List<Reviews>>> GetReviewsByProduct(int productId)
             {
