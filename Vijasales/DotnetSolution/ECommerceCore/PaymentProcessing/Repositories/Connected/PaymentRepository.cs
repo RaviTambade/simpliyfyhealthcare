@@ -21,7 +21,7 @@ namespace PaymentProcessing.Repositories.Connected
             _configuration = configuration;
             _conString = _configuration.GetConnectionString("DefaultConnection");
         }
-
+        //
         public async Task<List<Payment>> GetAllAsync()
         {
             SqlConnection conn = new SqlConnection(_conString);
@@ -61,11 +61,11 @@ namespace PaymentProcessing.Repositories.Connected
         {
             Payment payment = new Payment();
             SqlConnection conn = new SqlConnection(_conString);
-            string query = "SELECT * FROM VsPayments WHERE Id=@Id";
+            string query = "SELECT * FROM VsPayments WHERE OrderId=@OrderId";
             SqlCommand cmd = new SqlCommand(query, conn);
-            SqlParameter IdParameter = new SqlParameter("@Id", SqlDbType.Int);
-            IdParameter.Value = id;
-            cmd.Parameters.Add(IdParameter);
+            SqlParameter OrderIdParameter = new SqlParameter("@OrderId", SqlDbType.Int);
+            OrderIdParameter.Value = id;
+            cmd.Parameters.Add(OrderIdParameter);
 
             try
             {
@@ -77,7 +77,7 @@ namespace PaymentProcessing.Repositories.Connected
                     payment.Id = Convert.ToInt32(data["Id"].ToString());
                     payment.OrderId = Convert.ToInt32(data["OrderId"].ToString());
                     payment.PaymentDate = data["PaymentDate"].ToString();
-                    payment.PaymentAmount = Convert.ToInt32(data["PaymentAmount"].ToString());
+                    payment.PaymentAmount = Convert.ToDouble(data["PaymentAmount"].ToString());
                     payment.PaymentMode = data["PaymentMode"].ToString();
                     payment.PaymentStatus = data["PaymentStatus"].ToString();
                     payment.TransactionId = data["TransactionId"].ToString();
@@ -99,14 +99,13 @@ namespace PaymentProcessing.Repositories.Connected
             SqlConnection conn = new SqlConnection(_conString);
 
             // Query to sum up the payment amounts for the specified account number in the given month
-            string query = @"
-        SELECT SUM(p.PaymentAmount) AS TotalRevenue
-        FROM VsPayments p
-        JOIN VsOrders o ON p.OrderId = o.Id
-        JOIN VsAccounts a ON o.CustomerId = a.UserId
-        WHERE a.AccountNumber = @AccountNumber
-        AND MONTH(p.PaymentDate) = @Month
-        GROUP BY a.AccountNumber";
+            string query = @"SELECT SUM(p.PaymentAmount) AS TotalRevenue
+                            FROM VsPayments p
+                            JOIN VsOrders o ON p.OrderId = o.Id
+                            JOIN VsAccounts a ON o.CustomerId = a.UserId
+                            WHERE a.AccountNumber = @AccountNumber
+                            AND MONTH(p.PaymentDate) = @Month
+                            GROUP BY a.AccountNumber";
 
             SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -137,7 +136,6 @@ namespace PaymentProcessing.Repositories.Connected
 
             return totalRevenue;
         }
-
 
         // Fetch payments for a specific customer by their CustomerId
         public async Task<List<Payment>> GetPaymentsByCustomerIdAsync(int customerId)
@@ -225,7 +223,6 @@ namespace PaymentProcessing.Repositories.Connected
             try
             {
                 await conn.OpenAsync();
-                await cmd.ExecuteNonQueryAsync();
                 insertedId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
                 return insertedId;
             }
@@ -466,9 +463,6 @@ namespace PaymentProcessing.Repositories.Connected
             return (status, Tid);
 
         }
-
-
-
 
 
     }

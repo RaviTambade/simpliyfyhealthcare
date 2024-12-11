@@ -26,7 +26,7 @@ namespace VijaySalesAPI.Controllers
             List<Payment> payments = await _paymentService.GetAllAsync();
             return payments;
         }
-        // GET api/<PaymentsController>/5
+        // GET api/<PaymentsController>/5(Order id)
         [HttpGet("{id}")]
         public async Task<Payment> Get(int id)
         {
@@ -72,10 +72,6 @@ namespace VijaySalesAPI.Controllers
             // Ensure it's properly handled
             string accountNumber = paymentData.AccountNumber.ToString();
             string paymentMethod = paymentData.PaymentMethod.ToString();
-            if(paymentMethod == "creditDebitCard")
-            {
-
-            }
             if (orderId<=0 || string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(paymentMethod))
             {
                 return BadRequest(new { success = false, message = "Invalid payment data" });

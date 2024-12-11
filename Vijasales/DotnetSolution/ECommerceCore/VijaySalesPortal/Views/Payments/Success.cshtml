@@ -1,16 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
+﻿
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 <div>
     <h2 id="transactionId"></h2>
 </div>
+
 <div class="container mt-4">
     <h1 class="text-center">@ViewBag.Title</h1>
-
     <!-- Order Summary Section -->
     <div class="card mb-4">
         <div class="card-header">
@@ -42,13 +38,11 @@
         <div class="card-footer bg-light text-end">
             <h5 class="mb-0 text-secondary">Total Amount: <strong id="totalOrderAmount" class="fs-3 text-dark"></strong></h5>
         </div>
-
-
     </div>
 
     <div class="bulk-box text-center">
 
-        <button class="btn btn-outline-primary btn-sm me-2" id="btnGoBack">Go Back</button>
+        <button class="btn btn-outline-primary btn-sm me-2" id="btnGoBack">Go To HOME</button>
         <!--
         <button class="btn btn-success btn-sm" id="track-order-btn">Track your order</button>
         -->
@@ -65,7 +59,7 @@
 
     var fetchTransactionId = () => {
         $.ajax({
-            url: 'http://localhost:5218/api/Payments/' + urlId,  //orderId hard coded
+            url: 'http://localhost:5218/api/payments/' + urlId,  //orderId hard coded
             method: "GET",
             dataType: 'json',
             xhrFields: {
@@ -228,8 +222,6 @@
         }
     });
 
-
-
     $("#btnGoBack").click(() => {
         window.location.href = '/Products/Index';
       
@@ -240,8 +232,5 @@
         fetchOrderitems();
         fetchCustomerDetails();
     });
-
-
-
 
 </script>

@@ -1,8 +1,4 @@
-﻿@{
-
-    Layout = "_Layout";  // Assuming you have a layout page
-
-}
+﻿
 <script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
 
@@ -140,7 +136,6 @@
             },
             success: function (response) {
                 alert('Cart cleared successfully!');
-                $('#total-amount').text('Total: Rs 0');
             },
             error: function (error) {
                 console.error('Error clearing the cart:', error);
@@ -201,7 +196,7 @@
 
             success: function (data) {
                 console.log(data);
-                
+                alert('Update Order Sucessful');
             },
 
             error: function (xhr, status, error) {
@@ -535,7 +530,6 @@
                         alert("Payment successful!");
                         deleteShoppingCart();
                         changeOrderStatus();
-                        alert("Status Change");
                         window.location.href = '/Payments/Success/' + urlId;  // Example redirection
 
                     } else {
