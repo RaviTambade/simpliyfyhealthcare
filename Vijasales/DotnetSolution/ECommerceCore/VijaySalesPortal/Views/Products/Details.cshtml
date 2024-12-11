@@ -27,29 +27,38 @@
                     </div>
                 </div>
             </div>
-
             <div class="text-center mt-3">
                 <a href="@Url.Action("Index", "Products")" class="btn btn-primary mx-2">Back to Products</a>
                 <button class="btn btn-success mx-2" id="addToCartButton">Add to Cart</button>
             </div>
+            <hr />
+
+
+            <!-- Product Reviews Section -->
+            <div class="row">
+                <h4 class="text-center">Customer Reviews</h4>
+                <div id="reviewsContainer" class="mt-3">
+                    <!-- Reviews will be loaded here via AJAX -->
+                </div>
+            </div>
+
+          
+
         </div>
     </div>
 </div>
 
-<!-- jQuery and AJAX Script -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        let url = "http://localhost:5218/api/products/" + @id;
 
+<script>
+
+    let loadProduct = (productId) => {
         // Make an AJAX request to get product details
         $.ajax({
-            url: url,
+            url: "http://localhost:5218/api/products/" + productId,
             method: 'GET',
             xhrFields: {
                 withCredentials: true  // Ensures cookies are sent with the request
             },
-
             success: function (data) {
                 // Update the DOM with the product details
                 $('#productTitle').text(data.title);
@@ -57,9 +66,6 @@
                 $('#productImage').attr('src', data.imageUrl);
                 $('#productImage').attr('alt', data.title);
                 $('#productDescription').text(data.description);
-
-
-
 
                 if (data.stock < 10) {
                     $('#stockStatus').html('<strong>Only ' + data.stock + ' left!</strong>');
@@ -69,16 +75,79 @@
 
                 // Store product data in window.productData for later use
                 window.productData = data; // Set the global productData object
+                console.log("success of all products")
             },
             error: function (xhr, status, error) {
                 console.error("Error loading product details:", error);
             }
         });
 
+    }
+
+    let loadReviews = (productId) => {
+        // Separate AJAX request to get reviews for the product
+        $.ajax({
+            url: "http://localhost:5218/api/reviews/" + productId, // Replace with your review API endpoint
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (reviews) {
+                // Populate Reviews Section
+                console.log(reviews)
+                if (reviews && reviews.length > 0) {
+                    var reviewsHtml = "";
+                    reviews.forEach(function (review) {
+                        console.log(review)
+                        reviewsHtml += `
+                                    <div class="review-box p-3 mb-3 border rounded">
+                                    <strong>User ${review.userId}</strong>
+                                    <strong>Rating: ${review.rating} / 5</strong>
+                                    <p><strong>Review:</strong> ${review.reviewText}</p>
+                                    <p><small><em>Reviewed on: ${new Date(review.created_at).toLocaleDateString()}</em></small></p>
+                                </div>
+                            `;
+                    });
+                    $('#reviewsContainer').html(reviewsHtml);
+                } else {
+                    $('#reviewsContainer').html('<p>No reviews yet. Be the first to review this product!</p>');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error loading reviews:", error);
+                $('#reviewsContainer').html('<p>Could not load reviews at the moment. Please try again later.</p>');
+            }
+        });
+    }
+
+    let addToCart = (productToAdd) => {
+        $.ajax({
+            url: 'http://localhost:5218/api/shoppingcart',
+            method: 'POST',
+            contentType: 'application/json',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            data: JSON.stringify(productToAdd),
+            success: function (response) {
+                alert(response.message); // Show success message
+            },
+            error: function (xhr, status, error) {
+                console.error("Error adding product to cart:", error);
+                alert("Failed to add product to cart.");
+            }
+        });
+    }
+    $(document).ready(function () {
+        let productId = @id;
+        console.log("calling product")
+        loadProduct(productId)
+        console.log("calling review")
+        loadReviews(productId)
+
         // Add to Cart functionality
         $('#addToCartButton').click(function () {
             if (window.productData) {
-                // Ensure all properties are available in productToAdd
                 var productToAdd = {
                     id: window.productData.id,
                     title: window.productData.title,
@@ -86,27 +155,11 @@
                     price: window.productData.price,
                     stock: window.productData.stock,
                     imageUrl: window.productData.imageUrl,
-                    category: window.productData.category,  // Add category here
-                    brand: window.productData.brand         // Add brand here
+                    category: window.productData.category,
+                    brand: window.productData.brand
                 };
-
-                $.ajax({
-                    url: 'http://localhost:5218/api/shoppingcart',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    xhrFields: {
-                        withCredentials: true  // Ensures cookies are sent with the request
-                    },
-
-                    data: JSON.stringify(productToAdd),
-                    success: function (response) {
-                        alert(response.message); // Show success message
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error adding product to cart:", error);
-                        alert("Failed to add product to cart.");
-                    }
-                });
+                addToCart(productToAdd)
+                
             } else {
                 alert("Product details are not available.");
             }

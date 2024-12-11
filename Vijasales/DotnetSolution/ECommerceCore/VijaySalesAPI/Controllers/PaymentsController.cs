@@ -13,12 +13,12 @@ namespace VijaySalesAPI.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
-        private readonly IPaymentServices _paymentService;
         private readonly IConfiguration _configuration;
-        public PaymentsController(IPaymentServices paymentService, IConfiguration config)
+        private readonly IPaymentServices _paymentService;
+        public PaymentsController(IPaymentServices paymentService, IConfiguration configuration)
         {
             _paymentService = paymentService;
-            _configuration = config;
+            _configuration = configuration;
         }
         [HttpGet]
         public async  Task<List<Payment>> Get()
@@ -45,7 +45,7 @@ namespace VijaySalesAPI.Controllers
             return Ok(payments);
         }
 
-        [HttpGet("/salesanalytics/{month}")]
+        [HttpGet("salesanalytics/{month}")]
         public async Task<ActionResult<double>> GetTotalRevenueForMonth(int month)
         {
             double totalRevenue = await _paymentService.GetTotalRevenueForAccountAsync(month);
@@ -88,7 +88,7 @@ namespace VijaySalesAPI.Controllers
 
             if (paymentSuccessful)
             {
-                Delivery d = new Delivery { OrderId = orderId, ShipmentDate= DateTime.Now.AddDays(7), Status="Pending" };
+                Delivery d = new Delivery { OrderId = orderId, ShipmentDate = DateTime.Now.AddDays(7), Status = "Pending" };
                 IShipmentService svc = new ShipmentService(_configuration);
                 bool isShipmentCreated = await svc.CreateShipmentAsync(d);
                 return Ok(new { success = true, message = "Payment successful" });
