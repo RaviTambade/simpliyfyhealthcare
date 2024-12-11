@@ -45,11 +45,6 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-
-
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890"); // Allow your frontend's URL
-
-
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
@@ -59,26 +54,38 @@ builder.Services.AddCors(options =>
 
 // Adding services which are needed in the future
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
 // Register IDataRepository 
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
+
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
+
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
 builder.Services.AddTransient<IOrderItemService, OrderItemService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
+
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
+
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
 builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
+
+
 builder.Services.AddTransient<ICardRepository, CardRepository>();
 builder.Services.AddTransient<ICardService, CardServices>();
+
 builder.Services.AddTransient<IBankRepository, BankRepository>();
+
 builder.Services.AddTransient<IBankService, BankService>();
+
 var app = builder.Build();
+
 app.UseCors("AllowLocalhost");
 app.UseRouting();
+
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
