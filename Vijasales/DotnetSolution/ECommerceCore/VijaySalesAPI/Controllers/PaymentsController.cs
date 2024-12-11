@@ -41,6 +41,20 @@ namespace VijaySalesAPI.Controllers
             return Ok(payments);
         }
 
+        [HttpGet("/salesanalytics/{month}")]
+        public async Task<ActionResult<double>> GetTotalRevenueForMonth(int month)
+        {
+            double totalRevenue = await _paymentService.GetTotalRevenueForAccountAsync(month);
+
+            if (totalRevenue == 0)
+            {
+                return NotFound($"No revenue found for the specified month {month}");
+            }
+
+            return Ok(totalRevenue);
+        }
+
+
         // POST api/payment/paynow
         [HttpPost("paynow")]
         public async Task<IActionResult> PayNow([FromBody] PaymentData paymentData)
