@@ -1,6 +1,6 @@
-﻿<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+﻿<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
 
 @{
     ViewBag.Title = "ShowCart";
@@ -28,32 +28,35 @@
 <script>
     // Function to render cart items
     let addToCart = (data) => {
+        console.log(data);
         $('#cart-items-list').html('');
         let totalAmount = 0;
 
-        $.each(data.items, (index, item) => {
+        $.each(data.Items, (index, item) => {
+            console.log('Item:', item);
+            console.log(`Requesting product with ID: ${item.ProductId}`);
             $.ajax({
-                url: `http://localhost:5218/api/products/${item.productId}`,
+                url: `http://localhost:52741/api/products/${item.ProductId}`,
                 type: "GET",
                 success: function (product) {
                     var cardHtml = `
                         <li class="d-flex justify-content-center mb-3">
-                            <div class="card mb-3 w-75" aria-labelledby="cart-item-${item.productId}">
+                            <div class="card mb-3 w-75" aria-labelledby="cart-item-${item.ProductId}">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="${product.imageUrl || 'default-image.jpg'}" class="img-fluid rounded-start" alt="Product Image">
+                                        <img src="${product.ImageUrl || 'default-image.jpg'}" class="img-fluid rounded-start" alt="Product Image">
                                     </div>
                                     <div class="col-md-8 d-flex align-items-center">
                                         <div class="card-body">
-                                            <h5 class="card-title">${product.title}</h5>
-                                            <p class="card-text text-secondary">${product.description}</p>
-                                            <p class="card-text text-secondary">Price: Rs ${product.price}</p>
+                                            <h5 class="card-title">${product.Title}</h5>
+                                            <p class="card-text text-secondary">${product.Description}</p>
+                                            <p class="card-text text-secondary">Price: Rs ${product.Price}</p>
                                             <div class="d-flex align-items-center">
-                                                <button class="btn btn-sm btn-info increase-quantity-btn" data-product-id="${item.productId}" aria-label="Increase quantity">+</button>
-                                                <span class="mx-2" id="quantity-${item.productId}">${item.quantity}</span>
-                                                <button class="btn btn-sm btn-warning decrease-quantity-btn" data-product-id="${item.productId}" aria-label="Decrease quantity">-</button>
+                                                <button class="btn btn-sm btn-info increase-quantity-btn" data-product-id="${item.ProductId}" aria-label="Increase quantity">+</button>
+                                                <span class="mx-2" id="quantity-${item.ProductId}">${item.Quantity}</span>
+                                                <button class="btn btn-sm btn-warning decrease-quantity-btn" data-product-id="${item.ProductId}" aria-label="Decrease quantity">-</button>
                                             </div>
-                                            <button class="w-25 btn btn-sm btn-danger remove-product-btn" data-product-id="${item.productId}" aria-label="Remove product">Delete</button>
+                                            <button class="w-25 btn btn-sm btn-danger remove-product-btn" data-product-id="${item.ProductId}" aria-label="Remove product">Delete</button>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +64,7 @@
                         </li>`;
 
                     $('#cart-items-list').append(cardHtml);
-                    totalAmount += product.price * item.quantity;
+                    totalAmount += product.Price * item.Quantity;
                     $('#total-amount').text(`Total: Rs ${totalAmount}`);
                 },
                 error: function (error) {
@@ -76,10 +79,9 @@
         loadCart();
     });
 
-    // Load cart from API
     function loadCart() {
         $.ajax({
-            url: "http://localhost:5218/Cart/Index", // Absolute URL
+            url: "http://localhost:52741/Cart/Index", // Absolute URL
             type: "GET",
             xhrFields: { withCredentials: true },
             success: function (data) {
@@ -92,13 +94,12 @@
         });
     }
 
-    // Remove product from cart (using DELETE)
     $(document).on('click', '.remove-product-btn', function (e) {
         e.preventDefault();
         var productId = $(this).data('product-id');
 
         $.ajax({
-            url: `http://localhost:5218/Cart/DeleteById/${productId}`, // Absolute URL
+            url: `http://localhost:52741/Cart/DeleteById/${productId}`,
             type: 'DELETE',
             xhrFields: { withCredentials: true },
             success: function (response) {
@@ -111,25 +112,23 @@
             }
         });
     });
+    /////Quantity Changing 
 
-    // Increase product quantity
     $(document).on('click', '.increase-quantity-btn', function (e) {
         e.preventDefault();
         var productId = $(this).data('product-id');
-        updateQuantity(productId, 1);
+        updateQuantity(productId, 1);  // Increase by 1
     });
 
-    // Decrease product quantity
     $(document).on('click', '.decrease-quantity-btn', function (e) {
         e.preventDefault();
         var productId = $(this).data('product-id');
-        updateQuantity(productId, -1);
+        updateQuantity(productId, -1);  // Decrease by 1
     });
 
-    // Update product quantity
     function updateQuantity(productId, change) {
         $.ajax({
-            url: `http://localhost:5218/Cart/PutById/${productId}`, // Absolute URL
+            url: `http://localhost:52741/Cart/PutById/${productId}`,
             type: 'PUT',
             xhrFields: { withCredentials: true },
             data: JSON.stringify(change),
@@ -144,10 +143,9 @@
         });
     }
 
-    // Clear cart
     $('#clear-cart-btn').click(function () {
         $.ajax({
-            url: "http://localhost:5218/Cart/DeleteAll", // Absolute URL
+            url: "http://localhost:52741/Cart/DeleteAll",
             type: 'DELETE',
             xhrFields: { withCredentials: true },
             success: function (response) {
@@ -162,10 +160,9 @@
         });
     });
 
-    // Buy Now button click handler
     $('#buy-now-btn').click(function () {
         $.ajax({
-            url: "http://localhost:5218/api/checkout", // Absolute URL
+            url: "http://localhost:52741/api/checkout",
             type: 'POST',
             xhrFields: { withCredentials: true },
             success: function (response) {
@@ -180,7 +177,6 @@
 </script>
 
 <style>
-    /* General Styles */
     body {
         background-color: #f8f9fa;
         color: #333;
@@ -208,7 +204,6 @@
         font-size: 0.95rem;
     }
 
-    /* Button Styles */
     .remove-product-btn {
         background-color: steelblue;
         color: white;

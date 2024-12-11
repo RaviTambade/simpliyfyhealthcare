@@ -9,7 +9,7 @@ using Shipment.Entities;
 
 namespace Shipment.Repositories.ORM
 {
-    public class ShipmentContext :DbContext
+    public class ShipmentContext : DbContext
     {
         public DbSet<Delivery> Shipments { get; set; }
 

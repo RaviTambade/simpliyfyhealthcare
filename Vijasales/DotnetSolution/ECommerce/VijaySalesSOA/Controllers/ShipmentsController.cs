@@ -9,19 +9,20 @@ using Shipment.Entities;
 using Shipment.Repositories;
 using Shipment.Services;
 using System.Web.Http.Cors;
+using Shipment.Repositories;
+using Shipment.Services;
 
 namespace VijaySalesSOA.Controllers
 {
-    [Route("api/[controller]")]
-  
+    //[Route("api/shipments")]
+
+    [EnableCors(origins: "http://localhost:49997", headers: "*", methods: "*")]
+
     public class ShipmentsController : ApiController
     {
-        private readonly IShipmentService _shipmentService;
-
-        public ShipmentsController(IShipmentService shipmentService)
-        {
-            _shipmentService = shipmentService;
-        }
+        IShipmentService _shipmentService = new ShipmentService();
+        
+        
 
         [HttpGet]
         public async Task<List<Delivery>> GetByStatus(string status)
