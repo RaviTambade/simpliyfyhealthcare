@@ -40,6 +40,7 @@ namespace VijaySalesSOA.Controllers
         }
 
         [HttpGet]
+        [Route("api/shipments/{id}")]
         public async Task<ShipmentDetail> Get(int id)
         {
             return await _shipmentService.GetByIdAsync(id);
