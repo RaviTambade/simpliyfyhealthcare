@@ -140,10 +140,8 @@ namespace Shipment.Repositories.ORM
                 {
                     // Define the stored procedure query with the necessary parameter
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
-<<<<<<< HEAD
 
-=======
->>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+
                     var param = new SqlParameter("@ShipmentId", shipmentId);
                     shipmentDetail =  context.Set<ShipmentDetail>()
                                .FromSqlRaw(query, param)
