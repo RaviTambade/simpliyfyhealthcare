@@ -18,6 +18,11 @@ using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
 <<<<<<< HEAD
+using Banking.Repositories.Connected;
+using Banking.Services;
+
+=======
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
@@ -52,6 +57,7 @@ using Banking.Services;
 >>>>>>> d896072a549b003f79eccb1ecb8a936f1c61af95
 >>>>>>> 9f138423b37ef8986c2a0204305b3bec18594860
 >>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+>>>>>>> 88682318af5cdea6c96897386436b4058790a3bf
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -80,7 +86,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-<<<<<<< HEAD
+
 
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890"); // Allow your frontend's URL
 
@@ -89,6 +95,8 @@ builder.Services.AddCors(options =>
 >>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
 
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890")  // Allow your frontend's URL
+<<<<<<< HEAD
+=======
 
 =======
 <<<<<<< HEAD
@@ -102,6 +110,7 @@ builder.Services.AddCors(options =>
 >>>>>>> d896072a549b003f79eccb1ecb8a936f1c61af95
 >>>>>>> 9f138423b37ef8986c2a0204305b3bec18594860
 >>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+>>>>>>> 88682318af5cdea6c96897386436b4058790a3bf
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -129,6 +138,9 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 builder.Services.AddTransient<IBankService, BankService>();
 <<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
 
 
 
@@ -138,16 +150,13 @@ app.UseCors("AllowLocalhost");
 app.UseRouting();
 =======
 <<<<<<< HEAD
+>>>>>>> 88682318af5cdea6c96897386436b4058790a3bf
 var app = builder.Build();
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
+<<<<<<< HEAD
+=======
 
 //Register context
 >>>>>>> d896072a549b003f79eccb1ecb8a936f1c61af95
@@ -195,17 +204,9 @@ app.UseRouting();
 =======
 >>>>>>> 9f138423b37ef8986c2a0204305b3bec18594860
 >>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+>>>>>>> 88682318af5cdea6c96897386436b4058790a3bf
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
-<<<<<<< HEAD
+
 app.Run();
-=======
-app.Run();
-
-
-
-
-
-
->>>>>>> d896072a549b003f79eccb1ecb8a936f1c61af95
