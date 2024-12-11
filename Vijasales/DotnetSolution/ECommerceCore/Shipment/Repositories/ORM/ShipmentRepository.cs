@@ -139,11 +139,6 @@ namespace Shipment.Repositories.ORM
                 {
                     // Define the stored procedure query with the necessary parameter
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e45eaf0e36ee34c83f17b79fc8b8d518271be55e
                     var param = new SqlParameter("@ShipmentId", shipmentId);
                     shipmentDetail =  context.Set<ShipmentDetail>()
                                .FromSqlRaw(query, param)
@@ -152,10 +147,6 @@ namespace Shipment.Repositories.ORM
                 }
 
                 return shipmentDetail;
-<<<<<<< HEAD
-=======
-
->>>>>>> e45eaf0e36ee34c83f17b79fc8b8d518271be55e
             }
 
         public async Task<List<ShipmentDetail>> GetByCustomerId(int customerId)
