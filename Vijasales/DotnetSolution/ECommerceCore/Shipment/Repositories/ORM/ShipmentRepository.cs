@@ -147,6 +147,10 @@ namespace Shipment.Repositories.ORM
                            .FirstOrDefault();
             }
 
+            return shipmentDetail;
+
+        }
+
         public async Task<List<ShipmentDetail>> GetByCustomerId(int customerId)
         {
             List<ShipmentDetail> shipmentDetails = null;
