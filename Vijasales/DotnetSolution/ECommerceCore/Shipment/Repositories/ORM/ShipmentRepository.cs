@@ -134,39 +134,22 @@ namespace Shipment.Repositories.ORM
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
 
-                ShipmentDetail shipmentDetail = null;
-                using (var context = new ShipmentContext(_configuration))
-                {
-                    // Define the stored procedure query with the necessary parameter
-                    var query = @"EXEC GetShipmentDetails @ShipmentId";
-<<<<<<< HEAD
+            ShipmentDetail shipmentDetail = null;
+            using (var context = new ShipmentContext(_configuration))
+            {
+                // Define the stored procedure query with the necessary parameter
+                var query = @"EXEC GetShipmentDetails @ShipmentId";
+                var param = new SqlParameter("@ShipmentId", shipmentId);
 
-
-                    var param = new SqlParameter("@ShipmentId", shipmentId);
-=======
-<<<<<<< HEAD
-
->>>>>>> 9fcdc4b5d785379b3bf1454a1696e5f49b3f0f84
-
-=======
->>>>>>> e45eaf0e36ee34c83f17b79fc8b8d518271be55e
-                    var param = new SqlParameter("@ShipmentId", shipmentId);
-                    shipmentDetail =  context.Set<ShipmentDetail>()
-                               .FromSqlRaw(query, param)
-                               .AsEnumerable()
-                               .FirstOrDefault();
-                }
-
-                return shipmentDetail;
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> e45eaf0e36ee34c83f17b79fc8b8d518271be55e
->>>>>>> 9fcdc4b5d785379b3bf1454a1696e5f49b3f0f84
+                shipmentDetail = context.Set<ShipmentDetail>()
+                           .FromSqlRaw(query, param)
+                           .AsEnumerable()
+                           .FirstOrDefault();
             }
+
+            return shipmentDetail;
+
+        }
 
         public async Task<List<ShipmentDetail>> GetByCustomerId(int customerId)
         {
@@ -197,7 +180,7 @@ namespace Shipment.Repositories.ORM
                 var dbShipments = await context.Shipments
                     .Where(s => s.OrderId == orderId)
                     .ToListAsync();
-                
+
                 return dbShipments[0]?.Status ?? "Shipment status not found.";
             }
         }
