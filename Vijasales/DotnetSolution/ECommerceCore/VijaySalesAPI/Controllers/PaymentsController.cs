@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using PaymentProcessing.Entities;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Services;
+using Shipment.Entities;
+using Shipment.Services;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -12,9 +14,11 @@ namespace VijaySalesAPI.Controllers
     public class PaymentsController : ControllerBase
     {
         private readonly IPaymentServices _paymentService;
-        public PaymentsController(IPaymentServices paymentService)
+        private readonly IConfiguration _configuration;
+        public PaymentsController(IPaymentServices paymentService, IConfiguration config)
         {
             _paymentService = paymentService;
+            _configuration = config;
         }
         [HttpGet]
         public async  Task<List<Payment>> Get()
@@ -84,6 +88,9 @@ namespace VijaySalesAPI.Controllers
 
             if (paymentSuccessful)
             {
+                Delivery d = new Delivery { OrderId = orderId, ShipmentDate= DateTime.Now.AddDays(7), Status="Pending" };
+                IShipmentService svc = new ShipmentService(_configuration);
+                bool isShipmentCreated = await svc.CreateShipmentAsync(d);
                 return Ok(new { success = true, message = "Payment successful" });
             }
             else
