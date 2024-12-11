@@ -104,8 +104,8 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest();
             }
 
-            var updatedProduct = await _productService.UpdateAsync(product); 
-            if (updatedProduct == null)
+            bool updatedProduct = await _productService.UpdateAsync(product); 
+            if (!updatedProduct )
             {
                 return NotFound();
             }
