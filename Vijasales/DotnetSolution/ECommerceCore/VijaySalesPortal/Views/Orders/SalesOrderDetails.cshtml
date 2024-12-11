@@ -1,37 +1,45 @@
 ﻿
-@{
-}
-<h3>Orders for SalesPerson</h3>
 
+<div class="container mt-4">
+    <h1 class="text-center">Order Details for Salesperson</h1>
 
-
-    <div class="container mt-4">
-        <h1 class="text-center">Order Details for Salesperson</h1>
-
-        <!-- List of Orders -->
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Customer Name</th>
-                    <th>Total</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="ordersList">
-            </tbody>
-            </table>
-        </div>
+    <!-- Filter Dropdown -->
+    <div class="mb-3">
+        <label for="statusFilter" class="form-label">Filter by Status</label>
+       
+        <select id="statusFilter" class="form-select form-select-sm" style="width: auto; display: inline-block;" onchange="filterOrders()">
+            <option value="All">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
     </div>
+
+    <!-- List of Orders -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Total</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="ordersList">
+            <!-- Orders will be appended here -->
+        </tbody>
+    </table>
+</div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script>
-    // Function to create an order card HTML structure
-    function createOrderCard(order, customerName) {
+    let allOrders = [];  
+    function createOrderRow(order, customerName) {
         return `
-                <tr id="order-${order.id}">
+                <tr id="order-${order.id}" class="order-row" data-order-id="${order.id}">
                     <td>${order.id}</td>
                     <td>${customerName}</td>
                     <td>$${order.totalAmount.toFixed(2)}</td>
@@ -43,26 +51,22 @@
                             <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                         </select>
                     </td>
+                    <td>
+                        <button class="btn btn-info btn-sm view-details-btn" onclick="OnDetailsClick(${order.id})">View More Details</button>
+                    </td>
                 </tr>
-        `;
+            `;
     }
 
     // Fetch orders for the salesperson
     function fetchOrders() {
         $.ajax({
-            url: 'http://localhost:5218/api/Orders',  
+            url: 'http://localhost:5218/api/Orders',
             method: 'GET',
             dataType: 'json',
             success: function (orders) {
-               
-                $('#ordersList').empty();
-
-                orders.forEach(function (order) {
-                    fetchCustomerName(order.customerId, function (customerName) {
-                        var orderCard = createOrderCard(order, customerName);
-                        $('#ordersList').append(orderCard);
-                    });
-                });
+                allOrders = orders;
+                filterOrders();  
             },
             error: function () {
                 alert('Failed to load orders');
@@ -70,15 +74,39 @@
         });
     }
 
- 
+    // Function to filter orders based on the selected status
+    function filterOrders() {
+        const statusFilter = $('#statusFilter').val();  
+
+        // Clear existing orders
+        $('#ordersList').empty();
+
+        // Filter orders based on the selected status
+        const filteredOrders = allOrders.filter(order => {
+            return statusFilter === 'All' || order.status === statusFilter;
+        });
+
+        // If there are any filtered orders, append them to the table
+        if (filteredOrders.length > 0) {
+            filteredOrders.forEach(function (order) {
+                fetchCustomerName(order.customerId, function (customerName) {
+                    const orderRow = createOrderRow(order, customerName);
+                    $('#ordersList').append(orderRow);
+                });
+            });
+        } else {
+            $('#ordersList').append('<tr><td colspan="6">No orders found</td></tr>');
+        }
+    }
+
+    // Fetch customer name by customer ID
     function fetchCustomerName(customerId, callback) {
         $.ajax({
-            url: `http://localhost:5218/api/users/`+customerId ,
+            url: `http://localhost:5218/api/users/${customerId}`,
             method: 'GET',
             dataType: 'json',
             success: function (customer) {
-                
-                callback(customer.firstName+ " "+ customer.lastName);  
+                callback(customer.firstName + " " + customer.lastName);
             },
             error: function () {
                 alert('Failed to load customer details');
@@ -88,20 +116,19 @@
     }
 
     
-    function changeStatus(orderId,orderDate,customerid,totalAmount) {
-        var status = $('#status' + orderId).val();
-        context = {
-            Id:orderId,
-            CustomerId:customerid,
-            Status:status,
-            OrderDate:orderDate,
-            TotalAmount:totalAmount
+    function changeStatus(orderId, orderDate, customerId, totalAmount) {
+        const status = $('#status' + orderId).val();
+        const context = {
+            Id: orderId,
+            CustomerId: customerId,
+            Status: status,
+            OrderDate: orderDate,
+            TotalAmount: totalAmount
         };
-        console.log(context);
+
         $.ajax({
-            url: `http://localhost:5218/api/Orders/`+ orderId,  
+            url: `http://localhost:5218/api/Orders/${orderId}`,
             type: 'PUT',
-            +
             contentType: 'application/json',
             data: JSON.stringify(context),
             success: function () {
@@ -112,10 +139,13 @@
             }
         });
     }
-   
-    
-    $(document).ready(function () {
-        fetchOrders();
-    });
 
+    
+    function OnDetailsClick(orderId) {
+        window.location.href = `/Orders/SalesViewDetails?orderId=${orderId}`;
+    }
+
+    $(document).ready(function () {
+        fetchOrders();  
+    });
 </script>

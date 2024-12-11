@@ -3,51 +3,293 @@
 *@
 @{
 }
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;height:100vh;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        
-        <span class="fs-4">Sidebar</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <button class="nav-link btn btn-link active" aria-current="page" onclick="setActive(this)">
-                Customer Details
-            </button>
-        </li>
-        <li>
-            <button class="nav-link btn btn-link active" onclick="setActive(this)">
-               Order History
-            </button>
-        </li>
-        <li>
-            <button class="nav-link btn btn-link " onclick="setActive(this)">
-                Orders Chart
-            </button>
-        </li>
-        <li>
-            <button class="nav-link btn btn-link " onclick="setActive(this)">
-                Edit Profile
-            </button>
-        </li>
-       
-    </ul>
-    <hr>
-    
+<link rel="stylesheet" href="../contrast-bootstrap-pro/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../contrast-bootstrap-pro/css/cdb.css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 bg-light sidebar">
+            <h4 class="mt-3">Menu</h4>
+            <div class="list-group">
+                <button class="list-group-item list-group-item-action " id="btnOrderHistory" >Order History</button>
+                <button class="list-group-item list-group-item-action" id="btnAccountDetails">Account Details</button>
+                <button class="list-group-item list-group-item-action" id="btnEditProfile">Edit Profile</button>
+                <button class="list-group-item list-group-item-action" id="btnCharts">Charts</button>
+                <button class="list-group-item list-group-item-action" id="btnLogout">Logout</button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="col-md-9 content-area">
+            <div id="DivAccountDetails" class="content-div" style="display: none;">
+                <h3>Account Details</h3>
+                <form>
+                    <table>
+                        <tr>
+                            <td>User Id</td>
+                            <td><input type="number" name="UserId" id="txtUserId" /></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>First Name</td>
+                            <td><input type="text" name="FirstName" id="txtUserFirstName" /></td>
+
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td><input type="text" name="lastname" id="txtUserLastName" /> </td>
+
+
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="email" name="email" id="UserEmail" /> </td>
+
+
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input type="password" name="password" id="UserPassword" /></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td><input type="text" name="address" id="UserAddress" /></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>Conatct No </td>
+                            <td><input type="tel" name="contactno" id="UserContact" /></td>
+
+
+                        </tr>
+                        <tr>
+                            <td>Role </td>
+                            <td><input type="text" name="role" id="UserRole" /></td>
+
+
+                        </tr>
+
+
+
+                        <tr>
+
+                            <td><button type="button" id="CloseDetails">Close</button></td>
+
+                        </tr>
+
+                    </table>
+                </form>
+
+               
+            </div>
+
+            <div id="CustomerUpdateDetails" class="content-div" style="display: none;">
+                <h3>Edit Profile</h3>
+                <form class="row g-3">
+                    <div class="col-md-5">
+                        <label for="txtCustomerId" class="form-label"> User Id</label>
+                        <input type="number" class="form-control" id="txtCustomerId" placeholder="User Id ">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="txtFirstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="txtFirstName" placeholder="First Name">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="txtLastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="txtLastName" placeholder="Last Name">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="txtUserEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="txtUserEmail" placeholder="Email">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="txtUserPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="txtUserPassword" placeholder="Password">
+                    </div>
+                    <div  class="col-md-5">
+                        <label for="txtUserAddress" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="txtUserAddress" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="ContactNumber" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" id="ContactNumber" placeholder="Contact No">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="CustomerRole" class="form-label">Select User Role</label>
+                        <select id="CustomerRole" class="form-select">
+                            <option selected>Customer</option>
+                            <option>Sales</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-info" id="SubmitEditedProfile">Edit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="OrderChart" class="content-div" style="display: none;">
+                <h3>Order Chart</h3>
+                <canvas id="chart"></canvas>
+                <button class="btn btn-info mt-3" id="btnCloseChart">Close Chart</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<script>
-    // Function to set the active class to the clicked button
-    function setActive(button) {
-        // Remove 'active' class from all buttons
-        const buttons = document.querySelectorAll('.nav-link');
-        buttons.forEach(btn => btn.classList.remove('active'));
-
-        // Add 'active' class to the clicked button
-        button.classList.add('active');
+<style>
+    .sidebar {
+        height: 100vh;
+        width:30vh;
+        padding: 10px;
+        border-right: 1px solid #ddd;
     }
-</script>
 
+    .content-area {
+        padding: 50px;
+    }
+
+    .content-div {
+        display: none;
+    }
+</style>
+
+<script>
+    $(document).ready(() => {
+        // $("#OrderChart").hide();
+        // $("#CustomerUpdateDetails").hide();
+        // $("#chart").hide();
+        // $("#DivAccountDetails").hide();
+
+        $("#btnCharts").click(() => {
+             $("#OrderChart").show();
+             $("#chart").show();
+
+         });
+        $("#btnCloseChart").click(() => {
+             $("#OrderChart").hide();
+             $("#chart").hide();
+
+         });
+
+         $("#btnLogout").click(() => {
+             alert("Logout button clicked.");
+         });
+
+        $("#btnEditProfile").click(() => {
+           
+            $("#CustomerUpdateDetails").show();
+            $.ajax({
+                url: 'http://localhost:5218/api/Users/2',
+                type: "GET",
+                contentType: "application/json",
+                success: (user) => {
+                    console.log(user);
+                    $("#txtCustomerId").val(user.id);
+                    $("#txtFirstName  ").val(user.firstName);
+                    $("#txtLastName  ").val(user.lastName);
+                    $("#txtUserEmail ").val(user.email);
+                    $("#txtUserPassword").val(user.password);
+                    $("#txtUserAddress").val(user.address);
+                    $("#ContactNumber").val(user.contactNumber);
+                    $("#CustomerRole").val(user.role);
+                    console.log(user);
+
+                }
+            });
+
+
+        });
+
+        $("#SubmitEditedProfile").click(() => {
+            // $("#DeleteAccount").show();
+            // $("#ChartVisuals").show();
+            $("#CustomerUpdateDetails").hide();
+            let UserToUpdate = {
+                id: $("#txtCustomerId").val(),
+                firstName: $("#txtfirstName  ").val(),
+                lastName: $("#txtLastName  ").val(),
+                email: $("#txtUserEmail ").val(),
+                password: $("#txtUserPassword").val(),
+                address: $("#txtUserAddress").val(),
+                contactNumber: $("#ContactNumber").val(),
+                role: $("#CustomerRole ").val(),
+            };
+            $.ajax({
+                url: 'http://localhost:5218/api/Users',
+                type: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(UserToUpdate),
+                success: () => {
+                    console.log("user updated!!");
+
+                }
+            });
+        });
+        $("#btnAccountDetails").click(() => {
+            $("#DivAccountDetails").show();
+
+            $.ajax({
+                url: 'http://localhost:5218/api/Users/2',
+                type: "GET",
+                contentType: "application/json",
+                success: (user) => {
+                    console.log(user);
+                    $("#txtUserId").val(user.id);
+                    $("#txtUserFirstName").val(user.firstName);
+                    $("#txtUserLastName ").val(user.lastName);
+                    $("#UserEmail       ").val(user.email);
+                    $("#UserPassword    ").val(user.password);
+                    $("#UserAddress     ").val(user.address);
+                    $("#UserContact     ").val(user.contactNumber);
+                    $("#UserRole        ").val(user.role);
+                    console.log(user);
+
+                }
+            });
+
+
+        });
+        $("#CloseDetails").click(() => {
+            $("#DivAccountDetails").hide();
+        });
+
+
+        // Chart.js integration
+        const ctx = document.getElementById("chart").getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["Jan", "Feb", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: 'Last week',
+                    backgroundColor: 'rgba(161, 198, 247, 1)',
+                    borderColor: 'rgb(47, 128, 237)',
+                    data: [3000, 4000, 2000, 5000, 8000, 9000, 2000],
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        }
+                    }]
+                }
+            },
+        });
+    });
+
+</script>
 
 
 

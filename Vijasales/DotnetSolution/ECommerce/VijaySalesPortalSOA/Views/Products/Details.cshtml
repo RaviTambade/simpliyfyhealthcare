@@ -43,7 +43,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        let url = "http://localhost:5218/api/products/" + @id;
+        let url = "http://localhost:52741/api/products/" + @id;
 
         // Make an AJAX request to get product details
         $.ajax({
@@ -53,11 +53,11 @@
 
             success: function (data) {
                 // Update the DOM with the product details
-                $('#productTitle').text(data.title);
-                $('#productPrice').text('Price: ₹' + data.price);
-                $('#productImage').attr('src', data.imageUrl);
-                $('#productImage').attr('alt', data.title);
-                $('#productDescription').text(data.description);
+                $('#productTitle').text(data.Title);
+                $('#productPrice').text('Price: ₹' + data.Price);
+                $('#productImage').attr('src', data.ImageUrl);
+                $('#productImage').attr('alt', data.Title);
+                $('#productDescription').text(data.Description);
 
 
 
@@ -81,18 +81,18 @@
             if (window.productData) {
                 // Ensure all properties are available in productToAdd
                 var productToAdd = {
-                    id: window.productData.id,
-                    title: window.productData.title,
-                    description: window.productData.description,
-                    price: window.productData.price,
-                    stock: window.productData.stock,
-                    imageUrl: window.productData.imageUrl,
-                    category: window.productData.category,  // Add category here
-                    brand: window.productData.brand         // Add brand here
+                    id: window.productData.Id,
+                    title: window.productData.Title,
+                    description: window.productData.Description,
+                    price: window.productData.Price,
+                    stock: window.productData.Stock,
+                    imageUrl: window.productData.ImageUrl,
+                    category: window.productData.Category,  // Add category here
+                    brand: window.productData.Brand         // Add brand here
                 };
 
                 $.ajax({
-                    url: 'http://localhost:5218/api/shoppingcart',
+                    url: 'http://localhost:52741/api/shoppingcart',
                     method: 'POST',
                     contentType: 'application/json',
                     

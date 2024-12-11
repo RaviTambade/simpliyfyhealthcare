@@ -14,12 +14,12 @@ namespace PaymentProcessing.Repositories.Connected
     public class PaymentRepository:IPaymentRepository
     {
         public string _conString;
-
         private IConfiguration _configuration;
+
         public PaymentRepository(IConfiguration configuration)
         {
             _configuration = configuration;
-            _conString = this._configuration.GetConnectionString("DefaultConnection");
+            _conString = _configuration.GetConnectionString("DefaultConnection");
         }
 
         public async Task<List<Payment>> GetAllAsync()
@@ -92,6 +92,56 @@ namespace PaymentProcessing.Repositories.Connected
                 await conn.CloseAsync();
             }
             return payment;
+        }
+
+        // Fetch payments for a specific customer by their CustomerId
+        public async Task<List<Payment>> GetPaymentsByCustomerIdAsync(int customerId)
+        {
+            SqlConnection conn = new SqlConnection(_conString);
+
+            // Use a JOIN query to fetch payments associated with the customer's orders
+            string query = @"
+                SELECT p.*
+                FROM VsPayments p
+                JOIN VsOrders o ON p.OrderId = o.Id
+                WHERE o.CustomerId = @CustomerId";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlParameter customerIdParameter = new SqlParameter("@CustomerId", SqlDbType.Int);
+            customerIdParameter.Value = customerId;
+            cmd.Parameters.Add(customerIdParameter);
+
+            List<Payment> payments = new List<Payment>();
+
+            try
+            {
+                await conn.OpenAsync();
+                IDataReader data = await cmd.ExecuteReaderAsync();
+                while (data.Read())
+                {
+                    Payment payment = new Payment
+                    {
+                        Id = Convert.ToInt32(data["Id"].ToString()),
+                        OrderId = Convert.ToInt32(data["OrderId"].ToString()),
+                        PaymentDate = data["PaymentDate"].ToString(),
+                        PaymentAmount = Convert.ToDouble(data["PaymentAmount"].ToString()),
+                        PaymentMode = data["PaymentMode"].ToString(),
+                        PaymentStatus = data["PaymentStatus"].ToString(),
+                        TransactionId = data["TransactionId"].ToString()
+                    };
+                    payments.Add(payment);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+
+            return payments;
         }
 
         public async Task<int> InsertAsync(Payment payment)
@@ -261,8 +311,6 @@ namespace PaymentProcessing.Repositories.Connected
             return amount;
 
         }
-
-
 
         public async Task<(string status, string Tid)> ExecuteFundTransferProcedure(string customerAccountId, string adminAccountId, double amount, string paymentMode)
 
