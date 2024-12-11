@@ -83,31 +83,49 @@ namespace VijaySalesSOA.Controllers
                 jsonString = reader.ReadToEnd();
             }
 
-            int? quantityChange = JsonConvert.DeserializeObject<int?>(jsonString);
+            // Debug: Log the received JSON string
+            System.Diagnostics.Debug.WriteLine($"Received data: {jsonString}");
 
-            if (quantityChange == null)
+            int updatedQuantity;
+            if (!int.TryParse(jsonString, out updatedQuantity))
             {
-                return Json("Invalid quantity change.");
+                // Log error if the quantity is invalid
+                System.Diagnostics.Debug.WriteLine("Invalid quantity received");
+                return Json(new { success = false, message = "Invalid quantity" }, JsonRequestBehavior.AllowGet);
             }
+
+            // Log the ID and quantity to verify
+            System.Diagnostics.Debug.WriteLine($"Updating product ID: {id} with quantity: {updatedQuantity}");
 
             Cart theCart = GetCartFromSession();
             var item = theCart.Items.FirstOrDefault(i => i.ProductId == id);
 
             if (item == null)
             {
-                return Json("Item not found.");
+                // Log error if item is not found
+                System.Diagnostics.Debug.WriteLine("Item not found in cart");
+                return Json(new { success = false, message = "Item not found" }, JsonRequestBehavior.AllowGet);
             }
 
             // Update the quantity of the item
-            item.Quantity += quantityChange.Value;
+            item.Quantity = updatedQuantity;
 
-            if (item.Quantity <= 0)// if quantity is less remove item 
+            if (item.Quantity <= 0) // If quantity is 0 or less, remove the item
             {
-                theCart.Items.Remove(item); // Remove item if quantity is 0 or less
+                theCart.Items.Remove(item);
             }
 
-            return Json(theCart, JsonRequestBehavior.AllowGet);
+            // Save the updated cart in the session
+            this.Session["cart"] = theCart;
+
+            // Log the updated cart
+            System.Diagnostics.Debug.WriteLine($"Updated Cart: {JsonConvert.SerializeObject(theCart)}");
+
+            return Json(new { success = true, cart = theCart }, JsonRequestBehavior.AllowGet);  // Return the updated cart
         }
+
+
+
 
         [System.Web.Http.HttpDelete]
         public ActionResult DeleteById(int id)

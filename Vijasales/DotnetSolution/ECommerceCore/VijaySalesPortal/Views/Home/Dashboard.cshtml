@@ -3,97 +3,105 @@
 *@
 @{
 }
-<link rel="stylesheet" href="../contrast-bootstrap-pro/css/bootstrap.min.css" />
-<link rel="stylesheet" href="../contrast-bootstrap-pro/css/cdb.css" />
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-<script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-md-3 bg-light sidebar">
-            <h4 class="mt-3">Menu</h4>
-            <div class="list-group">
-                <button class="list-group-item list-group-item-action " id="btnOrderHistory" >Order History</button>
-                <button class="list-group-item list-group-item-action" id="btnAccountDetails">Account Details</button>
-                <button class="list-group-item list-group-item-action" id="btnEditProfile">Edit Profile</button>
-                <button class="list-group-item list-group-item-action" id="btnCharts">Charts</button>
-                <button class="list-group-item list-group-item-action" id="btnLogout">Logout</button>
-            </div>
-        </div>
-
-        <!-- Content Area -->
-        <div class="col-md-9 content-area">
-            <div id="DivAccountDetails" class="content-div" style="display: none;">
-                <h3>Account Details</h3>
-                <form>
-                    <table>
-                        <tr>
-                            <td>User Id</td>
-                            <td><input type="number" name="UserId" id="txtUserId" /></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>First Name</td>
-                            <td><input type="text" name="FirstName" id="txtUserFirstName" /></td>
-
-                        </tr>
-                        <tr>
-                            <td>Last Name</td>
-                            <td><input type="text" name="lastname" id="txtUserLastName" /> </td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="email" name="email" id="UserEmail" /> </td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td><input type="password" name="password" id="UserPassword" /></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td><input type="text" name="address" id="UserAddress" /></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Conatct No </td>
-                            <td><input type="tel" name="contactno" id="UserContact" /></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Role </td>
-                            <td><input type="text" name="role" id="UserRole" /></td>
-
-
-                        </tr>
 
 
 
-                        <tr>
+@{
+    ViewBag.Title = "Home Page";
+}
 
-                            <td><button type="button" id="CloseDetails">Close</button></td>
 
-                        </tr>
+<link rel="stylesheet" href="/css/dashboard.css" />
 
-                    </table>
-                </form>
+<main class="d-flex flex-nowrap">
+<div id="sidebarLink" class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary"
+     style="width: 280px; height: 90vh">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="#"
+               class="nav-link "
+               aria-current="page"
+               onclick="showDiv('orderDiv')">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#home" />
+                </svg>
+                Your orders
+            </a>
+        </li>
+        <li>
+            <a href="#"
+               class="nav-link link-body-emphasis"
+               onclick="showDiv('settingDiv')">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2" />
+                </svg>
+                Settings
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-body-emphasis" onclick="showDiv('statDiv')">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#table" />
+                </svg>
+                Stats
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link active link-body-emphasis" onclick="showDiv('accountDiv')">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#grid" />
+                </svg>
+                Account Details
+            </a>
+        </li>
+        <li>
+            <hr />
+            <a href="#" class="nav-link link-body-emphasis" id="logoutBtn">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="14"
+                     height="14"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="me-2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Logout
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="mainContainer">
+    <div class=" content rightBox p-4 bg-light" id="orderDiv">
+        <h2 class="mb-4">Your Orders</h2>
+     
+        
+        <table class="table">
+            <thead "class="bg-light">
 
-               
-            </div>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Order Id</th>
+                <th>Date</th>
+                <th>Items</th>
+                <th>Status</th>
+                <th>Amount</th>
 
-            <div id="CustomerUpdateDetails" class="content-div" style="display: none;">
+            </thead>    
+            <tbody id="orderTableBody">
+            
+            </tbody>
+        </table>
+       
+    </div>
+        <div class="content rightBox  bg-light p-4" id="settingDiv">
+
+            <div id="CustomerUpdateDetails" class="content-div ">
                 <h3>Edit Profile</h3>
                 <form class="row g-3">
                     <div class="col-md-5">
@@ -116,7 +124,7 @@
                         <label for="txtUserPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="txtUserPassword" placeholder="Password">
                     </div>
-                    <div  class="col-md-5">
+                    <div class="col-md-5">
                         <label for="txtUserAddress" class="form-label">Address</label>
                         <input type="text" class="form-control" id="txtUserAddress" placeholder="Apartment, studio, or floor">
                     </div>
@@ -132,164 +140,355 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-info" id="SubmitEditedProfile">Edit</button>
+                        <button type="button" class="btn btn-info" id="SubmitEditedProfile">Edit</button>
                     </div>
                 </form>
             </div>
 
-            <div id="OrderChart" class="content-div" style="display: none;">
-                <h3>Order Chart</h3>
-                <canvas id="chart"></canvas>
-                <button class="btn btn-info mt-3" id="btnCloseChart">Close Chart</button>
-            </div>
-        </div>
+
+    </div>
+    <div class="content rightBox" id="statDiv">
+    </div>
+        <div class="active content rightBox" id="accountDiv">
+
     </div>
 </div>
+</main>
 
-<style>
-    .sidebar {
-        height: 100vh;
-        width:30vh;
-        padding: 10px;
-        border-right: 1px solid #ddd;
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+@* <script>
+
+    $("#logoutBtn").click(() => {
+        localStorage.removeItem("token");
+        alert("You are logged out!!");
+        window.location.href = "/auth/register";
+    
+    });
+    // Define the showDiv function
+    function showDiv(divId) {
+        console.log(divId);
+        // Hide all divs
+        const divs = document.querySelectorAll(".content");
+        divs.forEach((div) => div.classList.remove("active"));
+
+        // Show the selected div
+        const selectedDiv = document.getElementById(divId);
+        if (selectedDiv) {
+            selectedDiv.classList.add("active");
+        }
     }
 
-    .content-area {
-        padding: 50px;
-    }
+    var userId = 2;
+    var getOrderUrl = "http://localhost:5218/api/orders/customer/" + userId;
+    const items = document.querySelectorAll("#sidebarLink ul .nav-link");
+    console.log(items);
 
-    .content-div {
-        display: none;
-    }
-</style>
+    // Add click event listeners to sidebar items
+    items.forEach(item => {
+        item.addEventListener('click', function () {
+            // Remove active class from all <li> elements
+            items.forEach(i => i.classList.remove('active'));
 
-<script>
-    $(document).ready(() => {
-        // $("#OrderChart").hide();
-        // $("#CustomerUpdateDetails").hide();
-        // $("#chart").hide();
-        // $("#DivAccountDetails").hide();
-
-        $("#btnCharts").click(() => {
-             $("#OrderChart").show();
-             $("#chart").show();
-
-         });
-        $("#btnCloseChart").click(() => {
-             $("#OrderChart").hide();
-             $("#chart").hide();
-
-         });
-
-         $("#btnLogout").click(() => {
-             alert("Logout button clicked.");
-         });
-
-        $("#btnEditProfile").click(() => {
-           
-            $("#CustomerUpdateDetails").show();
-            $.ajax({
-                url: 'http://localhost:5218/api/Users/2',
-                type: "GET",
-                contentType: "application/json",
-                success: (user) => {
-                    console.log(user);
-                    $("#txtCustomerId").val(user.id);
-                    $("#txtFirstName  ").val(user.firstName);
-                    $("#txtLastName  ").val(user.lastName);
-                    $("#txtUserEmail ").val(user.email);
-                    $("#txtUserPassword").val(user.password);
-                    $("#txtUserAddress").val(user.address);
-                    $("#ContactNumber").val(user.contactNumber);
-                    $("#CustomerRole").val(user.role);
-                    console.log(user);
-
-                }
-            });
-
-
-        });
-
-        $("#SubmitEditedProfile").click(() => {
-            // $("#DeleteAccount").show();
-            // $("#ChartVisuals").show();
-            $("#CustomerUpdateDetails").hide();
-            let UserToUpdate = {
-                id: $("#txtCustomerId").val(),
-                firstName: $("#txtfirstName  ").val(),
-                lastName: $("#txtLastName  ").val(),
-                email: $("#txtUserEmail ").val(),
-                password: $("#txtUserPassword").val(),
-                address: $("#txtUserAddress").val(),
-                contactNumber: $("#ContactNumber").val(),
-                role: $("#CustomerRole ").val(),
-            };
-            $.ajax({
-                url: 'http://localhost:5218/api/Users',
-                type: "PUT",
-                contentType: "application/json",
-                data: JSON.stringify(UserToUpdate),
-                success: () => {
-                    console.log("user updated!!");
-
-                }
-            });
-        });
-        $("#btnAccountDetails").click(() => {
-            $("#DivAccountDetails").show();
-
-            $.ajax({
-                url: 'http://localhost:5218/api/Users/2',
-                type: "GET",
-                contentType: "application/json",
-                success: (user) => {
-                    console.log(user);
-                    $("#txtUserId").val(user.id);
-                    $("#txtUserFirstName").val(user.firstName);
-                    $("#txtUserLastName ").val(user.lastName);
-                    $("#UserEmail       ").val(user.email);
-                    $("#UserPassword    ").val(user.password);
-                    $("#UserAddress     ").val(user.address);
-                    $("#UserContact     ").val(user.contactNumber);
-                    $("#UserRole        ").val(user.role);
-                    console.log(user);
-
-                }
-            });
-
-
-        });
-        $("#CloseDetails").click(() => {
-            $("#DivAccountDetails").hide();
-        });
-
-
-        // Chart.js integration
-        const ctx = document.getElementById("chart").getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["Jan", "Feb", "March", "April", "May", "June", "July"],
-                datasets: [{
-                    label: 'Last week',
-                    backgroundColor: 'rgba(161, 198, 247, 1)',
-                    borderColor: 'rgb(47, 128, 237)',
-                    data: [3000, 4000, 2000, 5000, 8000, 9000, 2000],
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                        }
-                    }]
-                }
-            },
+            // Add active class to the clicked <li>
+            this.classList.add('active');
         });
     });
 
+            
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+
+
+        // Make an AJAX call when the DOM is loaded
+        $.ajax({
+            url: getOrderUrl,
+            type: "GET",
+            contentType: "application/json",
+            success: (res) => {
+                let html = "";
+                res.forEach(o => {
+                    html += `<tr><td><img src="/images/products/smartphones/galaxy_S22.jpg" style="width: 100px; height: 100px;" /></td><td>${o.title}</td><td>${o.orderId}</td><td>${o.orderDate}</td><td>${o.quantity}</td><td>${o.orderStatus}</td><td>${o.price}</td></tr>`
+                })
+
+             
+                $("#orderTableBody").html(html);
+    
+            }, 
+            error: (err) => console.log(err)   
+        });
+
+
+        $.ajax({
+            url: 'http://localhost:5218/api/bi/getcustomer/2',
+            type: "GET",
+            contentType: "application/json",
+            success: (user) => {
+                console.log(user);
+
+                // Correcting the card HTML template with proper syntax
+                let card = `
+                <div class="container mt-5">
+                    <div class="card" style="max-width: 600px; margin: auto;">
+                        <div class="card-header">
+                            <h3>Account Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>First Name:</strong>
+                                    <p>${user.firstName}</p>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Last Name:</strong>
+                                    <p>${user.lastName}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Email:</strong>
+                                    <p>${user.email}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Address:</strong>
+                                    <p>${user.address}</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Contact Number:</strong>
+                                    <p>${user.contactNumber}</p> <!-- Fixed syntax error here -->
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Role:</strong>
+                                    <p>${user.role}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Last updated: 10/11/2024
+                        </div>
+                    </div>
+                </div>
+            `;
+
+                // Fixing the jQuery selector to use the correct ID
+                $("#accountDiv").html(card);  // This will insert the card HTML into the element with ID accountDiv
+            },
+            error: (err) => {
+                console.log(err); // Error handling
+            }
+        });
+
+
+
+
+
+
+
+        $.ajax({
+            url: 'http://localhost:5218/api/bi/getcustomer/2',
+            type: "GET",
+            contentType: "application/json",
+            success: (user) => {
+                console.log(user);
+                $("#txtCustomerId").val(user.id);
+                $("#txtFirstName").val(user.firstName);
+                $("#txtLastName").val(user.lastName);
+                $("#txtUserEmail ").val(user.email);
+                $("#txtUserPassword").val(user.password);
+                $("#txtUserAddress").val(user.address);
+                $("#ContactNumber").val(user.contactNumber);
+                $("#CustomerRole").val(user.role);
+                console.log(user);
+
+            }
+        });
+
+
+
+      
+
+        (() => {
+            'use strict';
+            const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(tooltipTriggerEl => {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        })();
+    });
+    </script> *@
+
+
+
+
+<script>
+    // Function to handle logout
+    function handleLogout() {
+
+        localStorage.removeItem("token");
+        alert("You are logged out!");
+        window.location.href = "/auth/register";
+    }
+
+    // Function to show the appropriate div based on the id
+    function showDiv(divId) {
+        console.log(divId);
+        // Hide all divs
+        const divs = document.querySelectorAll(".content");
+        divs.forEach(div => div.classList.remove("active"));
+
+        // Show the selected div
+        const selectedDiv = document.getElementById(divId);
+        if (selectedDiv) {
+            selectedDiv.classList.add("active");
+        }
+    }
+
+    // Function to populate the orders table
+    function populateOrdersTable(orders) {
+        let html = "";
+        orders.forEach(order => {
+            html += `
+                    <tr>
+                        <td><img src=${order.imageUrl} class="img-thumbnail" /></td>
+                        <td>${order.title}</td>
+                        <td>${order.orderId}</td>
+                        <td>${order.orderDate}</td>
+                        <td>${order.quantity}</td>
+                        <td>${order.orderStatus}</td>
+                        <td>${order.price}</td>
+                    </tr>
+                `;
+        });
+        $("#orderTableBody").html(html);
+    }
+
+    // Function to render user details card
+    function renderUserCard(user) {
+        const cardHtml = `
+                <div class="container mt-5">
+                    <div class="card" style="max-width: 600px; margin: auto;">
+                        <div class="card-header">
+                            <h3>Account Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>First Name:</strong>
+                                    <p>${user.firstName}</p>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Last Name:</strong>
+                                    <p>${user.lastName}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Email:</strong>
+                                    <p>${user.email}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Address:</strong>
+                                    <p>${user.address}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Contact Number:</strong>
+                                    <p>${user.contactNumber}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>Role:</strong>
+                                    <p>${user.role}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Last updated: 10/11/2024
+                        </div>
+                    </div>
+                </div>
+            `;
+        $("#accountDiv").html(cardHtml);
+    }
+
+    // Function to populate user form fields
+    function populateUserForm(user) {
+        $("#txtCustomerId").val(user.id);
+        $("#txtFirstName").val(user.firstName);
+        $("#txtLastName").val(user.lastName);
+        $("#txtUserEmail").val(user.email); // Fixed extra space
+        $("#txtUserPassword").val(user.password);
+        $("#txtUserAddress").val(user.address);
+        $("#ContactNumber").val(user.contactNumber);
+        $("#CustomerRole").val(user.role);
+    }
+
+    // Initialize the page when the DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        // Handle sidebar navigation item clicks
+        const items = document.querySelectorAll("#sidebarLink ul .nav-link");
+        items.forEach(item => {
+            item.addEventListener('click', function () {
+                // Remove active class from all sidebar items
+                items.forEach(i => i.classList.remove('active'));
+                // Add active class to the clicked item
+                this.classList.add('active');
+            });
+        });
+
+        // Make a single AJAX call to fetch user and order data
+        const userId = 2;
+        const getOrderUrl = `http://localhost:5218/api/orders/customer/${userId}`;
+        const getUserUrl = `http://localhost:5218/api/bi/getcustomer/${userId}`;
+        let token = localStorage.getItem("token");
+        // Fetch user and order data using Promise.all to handle both requests simultaneously
+        Promise.all([
+            $.ajax({
+                url: getOrderUrl, headers: {
+                    'contentType': "application/json",
+                    'Authorization': `Bearer ${token}`
+                }, type: "GET"
+            }),
+            $.ajax({
+                url: getUserUrl, headers: {
+                    'contentType': "application/json",
+                    'Authorization': `Bearer ${token}`
+                }, type: "GET"
+            })
+        ])
+            .then(([orders, user]) => {
+                // Populate orders table and user card
+                populateOrdersTable(orders);
+                renderUserCard(user);
+                populateUserForm(user);
+            })
+            .catch(err => console.log("Error fetching data", err));
+
+        // Initialize tooltips for any elements with the 'data-bs-toggle="tooltip"' attribute
+        (() => {
+            const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(tooltipTriggerEl => {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        })();
+    });
+
+    // Logout button click event listener
+    $("#logoutBtn").click(handleLogout);
 </script>
-
-
-

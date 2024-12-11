@@ -58,6 +58,11 @@
     const parts = url.split('/');
     const urlId = parts[parts.length - 1];
 
+    if (isNaN(urlId) || urlId <= 0) {
+        alert("You don't have items to process for order");
+        location.replace("/Products/");
+    }
+
     var displayOrderItems = (item) => {
         
         var orderItemRow = `
@@ -104,6 +109,10 @@
     };
 
     var fetchCustomerDetails = () => {
+        if (isNaN(urlId) || urlId <= 0) {
+            alert("You don't have items to process for order");
+            location.replace("/Products/");
+        }
         $.ajax({
             url: 'http://localhost:5218/api/Orders/OrderItem/'+urlId,  //orderId hard coded
             method: "GET",
@@ -144,7 +153,10 @@
     var fetchOrderitems = () => {
         
         $('#tblOrderItemsList').empty(); //clear spinner to load order item
-
+        if (isNaN(urlId) || urlId <= 0) {
+            alert("You don't have items to process for order");
+            location.replace("/Products/");
+        }
         $.ajax({
             url: 'http://localhost:5218/api/Orders/OrderItem/' + urlId,  //orderId hard coded
             method: "GET",
@@ -196,16 +208,17 @@
 
     $("#proceed-to-pay-btn").click(() => { 
         console.log("Proceed to pay btn clicked");
-        context = {
-            orderid:urlId, //This is the order Id Use it for payement as per convinence and integrate it
-
-        }
+        let context = {
+            orderid: urlId, // This is the orderId that needs to be passed
+        };
+        // Redirect to the PayNow view, passing the orderid as a query parameter
+        window.location.href = '/Payments/PayNow/' + context.orderid;
     });
 
 
 
     $("#btnGoBack").click(() => {
-        if (!urlId) {
+        if (isNaN(urlId) || urlId <= 0) {
             alert("Invalid Order ID!");
             return;
         }

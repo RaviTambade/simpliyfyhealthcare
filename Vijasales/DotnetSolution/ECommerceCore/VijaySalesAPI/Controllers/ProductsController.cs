@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Catalog.Entities;
+using Catalog.Entities.Review;
 using Catalog.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,11 +12,16 @@ namespace VijaySalesAPI.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
+     
 
         public ProductsController(IProductService productService)
         {
             _productService = productService;
+           
         }
+       
+
+       
 
         // GET: api/<ProductsController>
         [HttpGet]
@@ -29,12 +35,21 @@ namespace VijaySalesAPI.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Product>> Get(int id)
         {
-            var product = await _productService.GetAsync(id); 
-            if (product == null)
+            try
             {
-                return NotFound();
+                var product = await _productService.GetAsync(id);
+                if (product == null)
+                {
+                    return NotFound();
+                }
+                return Ok(product);
             }
-            return Ok(product);
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest(ex.Message);
+            }
+            
         }
 
         // GET api/<ProductsController>/category
@@ -104,8 +119,8 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest();
             }
 
-            var updatedProduct = await _productService.UpdateAsync(product); 
-            if (updatedProduct == null)
+            bool updatedProduct = await _productService.UpdateAsync(product); 
+            if (!updatedProduct )
             {
                 return NotFound();
             }
@@ -123,5 +138,7 @@ namespace VijaySalesAPI.Controllers
             }
             return NoContent();
         }
+
+      
     }
 }
