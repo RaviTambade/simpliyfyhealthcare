@@ -50,11 +50,5 @@ namespace PaymentProcessing.Services
             bool updateSuccess = await _repo.UpdateAsync(payment);
             return updateSuccess;
         }
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 14b8b1af733866818b844a4453c6a8ec250a2a57
     }
 }
