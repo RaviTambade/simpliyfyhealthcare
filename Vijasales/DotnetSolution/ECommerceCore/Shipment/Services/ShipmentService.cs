@@ -45,6 +45,11 @@ namespace Shipment.Services
             return await _repo.GetAllAsync();
         }
 
+        public async Task<List<ShipmentDetail>> GetByCustomerId(int customerId)
+        {
+            return await _repo.GetByCustomerId(customerId);
+        }
+
         public async Task<List<Delivery>> GetByDateAsync(DateTime date)
         {
             return await _repo.GetByDateAsync(date);
