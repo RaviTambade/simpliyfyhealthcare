@@ -17,9 +17,47 @@ using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
+<<<<<<< HEAD
 using Banking.Repositories.Connected;
 using Banking.Services;
 
+=======
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+=======
+=======
+
+<<<<<<< HEAD
+
+=======
+
+
+
+
+
+using Banking.Repositories.Connected;
+using Banking.Services;
+
+
+
+
+=======
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> e45eaf0e36ee34c83f17b79fc8b8d518271be55e
+>>>>>>> 9fcdc4b5d785379b3bf1454a1696e5f49b3f0f84
+>>>>>>> 3ec300bf8ce64754610ae48243db12a966af9686
+>>>>>>> 5cb31ec77b5792d08c1cbffb46d7aea0ac1a310e
+>>>>>>> d896072a549b003f79eccb1ecb8a936f1c61af95
+>>>>>>> 9f138423b37ef8986c2a0204305b3bec18594860
+>>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+>>>>>>> 88682318af5cdea6c96897386436b4058790a3bf
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -50,7 +88,29 @@ builder.Services.AddCors(options =>
     {
 
 
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890"); // Allow your frontend's URL
+
+=======
+<<<<<<< HEAD
+>>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890")  // Allow your frontend's URL
+<<<<<<< HEAD
+=======
+
+=======
+<<<<<<< HEAD
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890");  // Allow your frontend's URL
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
+
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
+<<<<<<< HEAD
+ 
+=======
+>>>>>>> d896072a549b003f79eccb1ecb8a936f1c61af95
+>>>>>>> 9f138423b37ef8986c2a0204305b3bec18594860
+>>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+>>>>>>> 88682318af5cdea6c96897386436b4058790a3bf
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -76,11 +136,75 @@ builder.Services.AddTransient<ICardRepository, CardRepository>();
 builder.Services.AddTransient<ICardService, CardServices>();
 builder.Services.AddTransient<IBankRepository, BankRepository>();
 builder.Services.AddTransient<IBankService, BankService>();
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+
+
+
+
 
 var app = builder.Build();
 app.UseCors("AllowLocalhost");
 app.UseRouting();
+=======
+<<<<<<< HEAD
+>>>>>>> 88682318af5cdea6c96897386436b4058790a3bf
+var app = builder.Build();
+app.UseCors("AllowLocalhost");
+app.UseRouting();
 
+<<<<<<< HEAD
+=======
+
+//Register context
+>>>>>>> d896072a549b003f79eccb1ecb8a936f1c61af95
+
+var app = builder.Build();
+
+=======
+<<<<<<< HEAD
+>>>>>>> 3ec300bf8ce64754610ae48243db12a966af9686
+
+
+>>>>>>> 5cb31ec77b5792d08c1cbffb46d7aea0ac1a310e
+>>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+
+
+
+
+
+
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 3ec300bf8ce64754610ae48243db12a966af9686
+>>>>>>> 5cb31ec77b5792d08c1cbffb46d7aea0ac1a310e
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+
+
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9f138423b37ef8986c2a0204305b3bec18594860
+>>>>>>> 377bf367928412c378e92f05a2233c72972fc3fc
+>>>>>>> 88682318af5cdea6c96897386436b4058790a3bf
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
