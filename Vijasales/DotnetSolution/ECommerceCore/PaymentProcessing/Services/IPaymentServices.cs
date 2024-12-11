@@ -14,5 +14,6 @@ namespace PaymentProcessing.Services
         Task<double> GetAmount(int OrderId);
         Task<bool> PayNow(int orderId, string fromAccountNumber, string paymentMode);
         Task<List<Payment>> GetPaymentsByCustomerIdAsync(int customerId);
+        Task<double> GetTotalRevenueForAccountAsync(int month);
     }
 }

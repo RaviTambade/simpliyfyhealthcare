@@ -1,4 +1,5 @@
 ﻿using CRM.Entities;
+using CRM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,9 @@ namespace CRM.Services
         //string ForgotPassword(string email);
         Task<bool> ResetPasswordAsync(string email, string oldpassword, string newpassword);
         Task<bool> LogoutAsync();
+        Task<AuthenticateResponse> Authenticate(AuthenticateRequest request);
+
+
+
     }
 }

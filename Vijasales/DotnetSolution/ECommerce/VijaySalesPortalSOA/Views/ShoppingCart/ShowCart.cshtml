@@ -112,35 +112,52 @@
             }
         });
     });
+    /////Quantity Changing 
+    // Handle increase and decrease quantity
+        // Increase quantity
+$(document).on('click', '.increase-quantity-btn', function (e) {
+    e.preventDefault();
+    var productId = $(this).data('product-id');
+    var quantity = parseInt($('#quantity-' + productId).text());  // Get current quantity
+    var newQuantity = quantity + 1;  // Increment quantity
+    updateQuantity(productId, newQuantity);  // Update the quantity
+});
 
-    $(document).on('click', '.increase-quantity-btn', function (e) {
-        e.preventDefault();
-        var productId = $(this).data('product-id');
-        updateQuantity(productId, 1);  // Increase by 1
-    });
-
-    $(document).on('click', '.decrease-quantity-btn', function (e) {
-        e.preventDefault();
-        var productId = $(this).data('product-id');
-        updateQuantity(productId, -1);  // Decrease by 1
-    });
-
-    function updateQuantity(productId, change) {
-        $.ajax({
-            url: `http://localhost:52741/Cart/PutById/${productId}`,
-            type: 'PUT',
-            xhrFields: { withCredentials: true },
-            data: JSON.stringify(change),
-            contentType: 'application/json',
-            success: function (response) {
-                loadCart();
-            },
-            error: function (error) {
-                console.error('Error updating quantity:', error);
-                alert('Error updating quantity.');
-            }
-        });
+// Decrease quantity
+$(document).on('click', '.decrease-quantity-btn', function (e) {
+    e.preventDefault();
+    var productId = $(this).data('product-id');
+    var quantity = parseInt($('#quantity-' + productId).text());  // Get current quantity
+    if (quantity > 1) {
+        var newQuantity = quantity - 1;  // Decrement quantity
+        updateQuantity(productId, newQuantity);  // Update the quantity
     }
+});
+
+function updateQuantity(productId, updatedQuantity) {
+    console.log(`Updating quantity for Product ID: ${productId} to ${updatedQuantity}`); // Debug log
+    $.ajax({
+        url: `http://localhost:52741/Cart/PutById/${productId}`,
+        type: 'PUT',
+        xhrFields: { withCredentials: true },
+        data: JSON.stringify(updatedQuantity),  // Send updated quantity as JSON
+        contentType: 'application/json',
+        success: function (response) {
+            console.log('Response from backend:', response); // Debug log
+            loadCart();  // Reload the cart after updating quantity
+        },
+        error: function (error) {
+            console.error('Error updating quantity:', error);
+            alert('Error updating quantity.');
+        }
+    });
+}
+
+
+
+
+
+    
 
     $('#clear-cart-btn').click(function () {
         $.ajax({

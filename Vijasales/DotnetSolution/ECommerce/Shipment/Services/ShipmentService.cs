@@ -5,17 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shipment.Entities;
+using Shipment.Repositories.ORM;
 
 namespace Shipment.Services
 {
     
     public class ShipmentService:IShipmentService
     {
-        private readonly IShipmentRepository _repo;
-        public ShipmentService(IShipmentRepository repo)
-        {
-            _repo=repo;
-        }
+        IShipmentRepository _repo = new ShipmentRepository();
         public async Task<bool> CreateShipmentAsync(Delivery shipment)
         {
             if (await _repo.CreateAsync(shipment))

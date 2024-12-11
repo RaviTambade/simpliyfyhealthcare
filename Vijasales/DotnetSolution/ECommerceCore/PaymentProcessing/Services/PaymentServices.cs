@@ -18,6 +18,15 @@ namespace PaymentProcessing.Services
             _repo = repo;
         }
 
+        // This method calculates the total revenue for the specified month and account number
+        public async Task<double> GetTotalRevenueForAccountAsync(int month)
+        {
+            // Call the repository method to fetch total revenue for account number 918888926475 for the given month
+            double totalRevenue = await _repo.GetTotalRevenueForAccountAsync(month, "918888926475");
+
+            return totalRevenue;
+        }
+
         public async Task<List<Payment>> GetPaymentsByCustomerIdAsync(int customerId)
         {
             // Get the payments directly from the repository using the customerId
@@ -42,6 +51,10 @@ namespace PaymentProcessing.Services
             return await _repo.GetPaymentAsync(id);
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d489f186a430aa5cd88f3f6c1d9e494b66a840db
         public async Task<bool> PayNow(int orderId, string fromAccountNumber, string paymentMode)
         {
             Payment payment = new Payment { OrderId=orderId,PaymentMode=paymentMode, Id=0};
@@ -60,6 +73,7 @@ namespace PaymentProcessing.Services
             bool updateSuccess = await _repo.UpdateAsync(payment);
             return updateSuccess;
         }
+<<<<<<< HEAD
 
 
 
@@ -69,5 +83,7 @@ namespace PaymentProcessing.Services
             return _repo.UpdateAsync(payment);
         }
 
+=======
+>>>>>>> d489f186a430aa5cd88f3f6c1d9e494b66a840db
     }
 }

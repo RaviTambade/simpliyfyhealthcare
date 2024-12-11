@@ -18,7 +18,7 @@ namespace VijaySalesAPI.Controllers
         [HttpGet]
         public async Task <ActionResult< List<User>>> GetAsync()
         {
-            
+
             List<User> users = await _userService.GetAllAsync();
             return users;
         }

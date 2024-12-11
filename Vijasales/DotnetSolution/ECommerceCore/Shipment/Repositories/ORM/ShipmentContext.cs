@@ -15,6 +15,7 @@ namespace Shipment.Repositories.ORM
         public ShipmentContext(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
+           
         }
         public DbSet<Delivery> Shipments { get; set; }
         public DbSet<ShipmentDetail> ShipmentDetails { get; set; }
