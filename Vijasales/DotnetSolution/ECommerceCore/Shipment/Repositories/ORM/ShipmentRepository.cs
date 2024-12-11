@@ -134,6 +134,7 @@ namespace Shipment.Repositories.ORM
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
 
+<<<<<<< HEAD
 
                 ShipmentDetail shipmentDetail = null;
                 using (var context = new ShipmentContext(_configuration))
@@ -150,6 +151,9 @@ namespace Shipment.Repositories.ORM
                 return shipmentDetail;
 
            
+=======
+            ShipmentDetail shipmentDetail = null;
+>>>>>>> 511a4c4af44558d18d2605d4886b5ea36b777714
             using (var context = new ShipmentContext(_configuration))
             {
                 // Define the stored procedure query with the necessary parameter
@@ -160,7 +164,10 @@ namespace Shipment.Repositories.ORM
                            .FromSqlRaw(query, param)
                            .AsEnumerable()
                            .FirstOrDefault();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 511a4c4af44558d18d2605d4886b5ea36b777714
             }
 
             return shipmentDetail;

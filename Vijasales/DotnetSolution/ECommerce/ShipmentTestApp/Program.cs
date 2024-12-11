@@ -17,7 +17,7 @@ namespace ShipmentTestApp
         static void Main(string[] args)
         {
             IShipmentRepository repo= new ShipmentRepository();
-            IShipmentService svc= new ShipmentService(repo);
+            IShipmentService svc= new ShipmentService();
             List<Delivery> deliveryList = svc.GetAllAsync().GetAwaiter().GetResult();
 
             foreach (Delivery delivery in deliveryList)
