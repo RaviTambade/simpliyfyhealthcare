@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingCart.Entities
 {
+    [Serializable]
     public class Cart
     {
         public List<Items> Items { get; set; }

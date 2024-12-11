@@ -5,6 +5,7 @@ using OrderProcessing.Repositories;
 using OrderProcessing.Entities;
 using OrderProcessing.Services.Connected;
 using ShoppingCart.Entities;
+using OrderProcessing.Requests;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -45,11 +46,13 @@ namespace VijaySalesAPI.Controllers
             return order;
         }
 
+        
         [HttpPost]
-        public async Task<bool> InsertAsync(Cart cart)
+        public async Task<int> InsertAsyncint([FromBody]OrderResponse orderResponse)
         {
-            bool status= await _orderService.InsertOrderAsync(cart);    
-            return status;
+            int customerId = orderResponse.UserId;
+            int newOrderId = await _orderService.InsertOrderAsync(customerId,orderResponse.OrderCart);    
+            return newOrderId;
         }
 
 
@@ -63,6 +66,12 @@ namespace VijaySalesAPI.Controllers
         public async Task<bool> DeleteAsync(int id)
         {
             return await _orderService.DeleteAsync(id);
+        }
+        [HttpGet("Customer/{customerId}")]
+        public async Task<List<OrderList>> GetCustomerPastOrders(int customerId)
+        {
+            List<OrderList> orders = await _orderService.GetCustomerOrdersAsync(customerId);
+            return orders;
         }
     }
 }

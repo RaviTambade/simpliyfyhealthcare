@@ -1,0 +1,234 @@
+﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<div class="container mt-4">
+    <h1 class="text-center">@ViewBag.Title</h1>
+
+    <!-- Order Summary Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>Customer Details</h4>
+        </div>
+        <div class="card-body shadow">
+            <table class="table table-bordered table-striped" id="tblCustomerSummary">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Order Details Section -->
+    <div class="card mb-4 shadow">
+        <div class="card-header">
+            <h4>Order Details</h4>
+        </div>
+        <div id="tblOrderItemsList" class="card-body overflow-auto"> </div>
+
+        <div class="card-footer bg-light text-end">
+            <h5 class="mb-0 text-secondary">Total Amount: <strong id="totalOrderAmount" class="fs-3 text-dark"></strong></h5>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // Get the orderId from the URL query string
+
+    var urlParams = new URLSearchParams(window.location.search);
+
+    var orderId = urlParams.get('orderId');  // Extract the orderId parameter
+
+    // Fetch the customer details for the given orderId
+
+    var fetchCustomerDetails = () => {
+
+        $.ajax({
+
+            url: `http://localhost:5218/api/Orders/OrderItem/${orderId}`,  // Use orderId from URL
+
+            method: "GET",
+
+            dataType: 'json',
+
+            xhrFields: {
+
+                withCredentials: true
+
+            },
+
+            success: function (data) {
+
+                console.log(data);
+
+                // Process and display customer details
+
+                let customer_name = data[0].name;
+
+                let order_id = data[0].orderId;
+
+                let order_date = new Date(data[0].orderDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+                let order_status = data[0].orderStatus;
+
+                let price = 0;
+
+                data.forEach(order => price += order.totalPrice);
+
+                // Create a context for displaying summary
+
+                let context = {
+
+                    name: customer_name,
+
+                    orderid: order_id,
+
+                    orderdate: order_date,
+
+                    orderstatus: order_status,
+
+                    price: price
+
+                };
+
+                displayCustomerSummary(context);
+
+            },
+
+            error: () => {
+
+                console.log("An error occurred");
+
+            }
+
+        });
+
+    }
+
+    // Fetch the order items
+
+    var fetchOrderItems = () => {
+
+        $('#tblOrderItemsList').empty();
+
+        $.ajax({
+
+            url: `http://localhost:5218/api/Orders/OrderItem/${orderId}`,  // Use orderId from URL
+
+            method: "GET",
+
+            dataType: 'json',
+
+            success: function (data) {
+
+                let itemTotal = 0;
+
+                data.forEach((order, index) => {
+
+                    let context = {
+
+                        srno: index + 1,
+
+                        name: order.title,
+
+                        quantity: order.quantity,
+
+                        price: order.price.toFixed(2),
+
+                        subtotal: order.totalPrice.toFixed(2),
+
+                        brand: order.brand,
+
+                        itemTotal: itemTotal += order.totalPrice,
+
+                        productImage: order.imageUrl,
+
+                        desc: order.description
+
+                    };
+
+                    displayOrderItems(context);
+
+                });
+
+                $('#totalOrderAmount').html("&#8377;" + itemTotal.toFixed(2));
+
+            },
+
+            error: function () {
+
+                console.log("Error occurred while fetching order items");
+
+            }
+
+        });
+
+    };
+
+    // Display customer summary in table
+
+    var displayCustomerSummary = (item) => {
+
+        var customerSummaryRow = `
+    <tr>
+    <td>#${item.orderid}</td>
+    <td>${item.name}</td>
+    <td>${item.orderdate}</td>
+    <td>$${item.price}</td>
+    <td>${item.orderstatus}</td>
+    </tr>
+
+                `;
+
+        $('#tblCustomerSummary tbody').append(customerSummaryRow);
+
+    };
+
+    // Display order items in the details section
+
+    var displayOrderItems = (item) => {
+
+        var orderItemRow = `
+    <div class="card-body p-3 row border">
+    <div class="col-2 text-center">
+    <img src="${item.productImage}" class="img-fluid rounded" alt="Product Image" width="80px"/>
+    </div>
+    <div class="col-5">
+    <h6 class="mb-1">${item.name}</h6>
+    <p class="text-muted mb-1">Brand: <strong>${item.brand}</strong></p>
+    <p class="mb-0">Description: ${item.desc}</p>
+    </div>
+    <div class="col-2 mx-auto">
+    <h6 class="mb-1">Price :&#8377;${item.price}</h6>
+    <h6>Qty: <strong>${item.quantity}</strong></h6>
+    </div>
+    <div class="col-3">
+    <div class="mx-auto text-center">
+    <h6>Sub Total:
+    <strong class="mb-0 text-dark fs-4">${item.subtotal}</strong>
+    </h6>
+    </div>
+    </div>
+    </div>
+
+                `;
+
+        $('#tblOrderItemsList').append(orderItemRow);
+
+    };
+
+    $(document).ready(function () {
+
+        fetchCustomerDetails();
+
+        fetchOrderItems();
+
+    });
+</script>
+

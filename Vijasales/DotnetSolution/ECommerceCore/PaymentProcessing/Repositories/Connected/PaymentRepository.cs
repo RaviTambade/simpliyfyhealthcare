@@ -14,12 +14,12 @@ namespace PaymentProcessing.Repositories.Connected
     public class PaymentRepository:IPaymentRepository
     {
         public string _conString;
-
         private IConfiguration _configuration;
+
         public PaymentRepository(IConfiguration configuration)
         {
             _configuration = configuration;
-            _conString = this._configuration.GetConnectionString("DefaultConnection");
+            _conString = _configuration.GetConnectionString("DefaultConnection");
         }
 
         public async Task<List<Payment>> GetAllAsync()
@@ -94,13 +94,68 @@ namespace PaymentProcessing.Repositories.Connected
             return payment;
         }
 
-        public async Task<bool> InsertAsync(Payment payment)
+        // Fetch payments for a specific customer by their CustomerId
+        public async Task<List<Payment>> GetPaymentsByCustomerIdAsync(int customerId)
         {
-            bool status = false;
             SqlConnection conn = new SqlConnection(_conString);
-            string query = "INSERT INTO VsPayments( OrderId, PaymentDate, PaymentAmount,PaymentMode, PaymentStatus ) VALUES(@OrderId,@PaymentDate,@PaymentAmount, @PaymentMode, @PaymentStatus)";
-            SqlCommand cmd = new SqlCommand(query, conn as SqlConnection);
 
+            // Use a JOIN query to fetch payments associated with the customer's orders
+            string query = @"
+                SELECT p.*
+                FROM VsPayments p
+                JOIN VsOrders o ON p.OrderId = o.Id
+                WHERE o.CustomerId = @CustomerId";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlParameter customerIdParameter = new SqlParameter("@CustomerId", SqlDbType.Int);
+            customerIdParameter.Value = customerId;
+            cmd.Parameters.Add(customerIdParameter);
+
+            List<Payment> payments = new List<Payment>();
+
+            try
+            {
+                await conn.OpenAsync();
+                IDataReader data = await cmd.ExecuteReaderAsync();
+                while (data.Read())
+                {
+                    Payment payment = new Payment
+                    {
+                        Id = Convert.ToInt32(data["Id"].ToString()),
+                        OrderId = Convert.ToInt32(data["OrderId"].ToString()),
+                        PaymentDate = data["PaymentDate"].ToString(),
+                        PaymentAmount = Convert.ToDouble(data["PaymentAmount"].ToString()),
+                        PaymentMode = data["PaymentMode"].ToString(),
+                        PaymentStatus = data["PaymentStatus"].ToString(),
+                        TransactionId = data["TransactionId"].ToString()
+                    };
+                    payments.Add(payment);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+
+            return payments;
+        }
+
+        public async Task<int> InsertAsync(Payment payment)
+        {
+            int insertedId = 0;
+            SqlConnection conn = new SqlConnection(_conString);
+            
+            string query = @"INSERT INTO VsPayments (OrderId, PaymentDate, PaymentAmount, PaymentMode, PaymentStatus)
+        
+                            VALUES (@OrderId, @PaymentDate, @PaymentAmount, @PaymentMode, @PaymentStatus);
+
+                            SELECT SCOPE_IDENTITY();"; // This retrieves the last inserted identity value SqlCommand cmd = new SqlCommand(query, conn as SqlConnection);
+
+            SqlCommand cmd = new SqlCommand(query, conn);
             //Set Parameter for insert Query
             SqlParameter OrderIdParameter = new SqlParameter("@OrderId", SqlDbType.Decimal);
             OrderIdParameter.Value = payment.OrderId;
@@ -126,7 +181,8 @@ namespace PaymentProcessing.Repositories.Connected
             {
                 await conn.OpenAsync();
                 await cmd.ExecuteNonQueryAsync();
-                status = true;
+                insertedId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                return insertedId;
             }
             catch (Exception ex)
             {
@@ -136,28 +192,27 @@ namespace PaymentProcessing.Repositories.Connected
             {
                 await conn.CloseAsync();
             }
-            return status;
-            throw new NotImplementedException();
+            return insertedId;
         }
 
         public async Task<bool> UpdateAsync(Payment payment)
         {
             bool status = false;
             SqlConnection conn = new SqlConnection(_conString);
-            string query = "UPDATE VsPayments SET Id=@Id , OrderId=@OrderId , PaymentDate=@PaymentDate , PaymentAmount=@PaymentAmount, PaymentMode=@PaymentMode,PaymentStatus=@PaymentStatus, TransactionId= @TransactionId   WHERE Id=@Id";
+            string query = "UPDATE VsPayments SET  OrderId=@OrderId , PaymentAmount=@PaymentAmount, PaymentMode=@PaymentMode,PaymentStatus=@PaymentStatus, TransactionId = @TransactionId, PaymentDate=@PaymentDate   WHERE Id=@Id";
             SqlCommand cmd = new SqlCommand(query, conn);
             //Set Paramter for Update Query
             SqlParameter IdParameter = new SqlParameter("@Id", SqlDbType.Int);
             IdParameter.Value = payment.Id;
             SqlParameter OrderIdParameter = new SqlParameter("@OrderId", SqlDbType.Decimal);
             OrderIdParameter.Value = payment.OrderId;
-            SqlParameter PaymentDateParameter = new SqlParameter("PaymentDate", SqlDbType.DateTime);
+            SqlParameter PaymentDateParameter = new SqlParameter("@PaymentDate", SqlDbType.DateTime);
             PaymentDateParameter.Value = payment.PaymentDate;
-            SqlParameter PaymentAmountParameter = new SqlParameter("@PaymentAmount", SqlDbType.VarChar);
+            SqlParameter PaymentAmountParameter = new SqlParameter("@PaymentAmount", SqlDbType.Decimal);
             PaymentAmountParameter.Value = payment.PaymentAmount;
 
             SqlParameter PaymentModeParameter = new SqlParameter("@PaymentMode", SqlDbType.VarChar);
-            PaymentModeParameter.Value = payment.PaymentMode;
+            PaymentModeParameter.Value = payment.PaymentMode; 
             SqlParameter PaymentStatusParameter = new SqlParameter("@PaymentStatus", SqlDbType.VarChar);
             PaymentStatusParameter.Value = payment.PaymentStatus;
             SqlParameter TransactionIdParameter = new SqlParameter("@TransactionId", SqlDbType.VarChar);
@@ -227,7 +282,7 @@ namespace PaymentProcessing.Repositories.Connected
 
                             // Get the value of 'TotalAmount' column and convert it to int
 
-                            amount = data.GetDouble(data.GetOrdinal("TotalAmount"));
+                            amount = (double)data.GetDecimal(data.GetOrdinal("TotalAmount"));
 
                         }
 
@@ -257,14 +312,11 @@ namespace PaymentProcessing.Repositories.Connected
 
         }
 
-
-
-
         public async Task<(string status, string Tid)> ExecuteFundTransferProcedure(string customerAccountId, string adminAccountId, double amount, string paymentMode)
 
         {
 
-            string status;
+            string status = "Failed";  // Default status if an error occurs
 
             string Tid = string.Empty;  // Initialize Tid to store the transaction ID
 
@@ -282,19 +334,23 @@ namespace PaymentProcessing.Repositories.Connected
 
                     // Add parameters for the stored procedure
 
-                    command.Parameters.Add(new SqlParameter("@ToAccountNumber", SqlDbType.VarChar, 20) { Value = customerAccountId.ToString() });
+                    command.Parameters.Add(new SqlParameter("@ToAccountNumber", SqlDbType.VarChar, 20) { Value = adminAccountId.ToString() });
 
-                    command.Parameters.Add(new SqlParameter("@FromAccountNumber", SqlDbType.VarChar, 20) { Value = adminAccountId.ToString() });
+                    command.Parameters.Add(new SqlParameter("@FromAccountNumber", SqlDbType.VarChar, 20) { Value = customerAccountId.ToString() });
 
                     command.Parameters.Add(new SqlParameter("@Amount", SqlDbType.Decimal) { Value = amount });
 
                     command.Parameters.Add(new SqlParameter("@PaymentMode", SqlDbType.VarChar, 50) { Value = paymentMode });
 
-                    // Output parameter for TransactionId
+                    // Output parameters for TransactionId and Status
 
                     var transactionIdParam = new SqlParameter("@TransactionId", SqlDbType.VarChar, 20) { Direction = ParameterDirection.Output };
 
+                    var statusParam = new SqlParameter("@Status", SqlDbType.VarChar, 50) { Direction = ParameterDirection.Output };
+
                     command.Parameters.Add(transactionIdParam);
+
+                    command.Parameters.Add(statusParam);
 
                     try
 
@@ -304,13 +360,29 @@ namespace PaymentProcessing.Repositories.Connected
 
                         await command.ExecuteNonQueryAsync();
 
-                        // Retrieve the TransactionId from the output parameter
+                        // Retrieve the TransactionId and Status from the output parameters
 
                         Tid = transactionIdParam.Value.ToString();
 
-                        // If execution reaches here, it means the procedure ran without errors
+                        status = statusParam.Value.ToString();
 
-                        status = "Complete";
+                        // If the status is 'Success', we set it to 'Complete'
+
+                        if (status == "Success")
+
+                        {
+
+                            status = "Complete";
+
+                        }
+
+                        else
+
+                        {
+
+                            status = "Failed";
+
+                        }
 
                     }
 
@@ -318,7 +390,7 @@ namespace PaymentProcessing.Repositories.Connected
 
                     {
 
-                        // Handle SQL exceptions, such as transaction issues or errors from the stored procedure
+                        // Handle SQL exceptions
 
                         status = $"SQL Error: {sqlEx.Message}";
 
@@ -327,9 +399,18 @@ namespace PaymentProcessing.Repositories.Connected
                     catch (Exception ex)
 
                     {
+
                         // Handle general exceptions
 
                         status = $"Error: {ex.Message}";
+
+                    }
+
+                    finally
+
+                    {
+
+                        await connection.CloseAsync();
 
                     }
 
@@ -338,7 +419,12 @@ namespace PaymentProcessing.Repositories.Connected
             }
 
             return (status, Tid);
+
         }
+
+
+
+
 
     }
 }

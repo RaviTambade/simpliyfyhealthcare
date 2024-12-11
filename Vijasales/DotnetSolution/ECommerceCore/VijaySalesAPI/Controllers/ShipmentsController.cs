@@ -47,12 +47,19 @@ namespace VijaySalesAPI.Controllers
         public async Task<IActionResult> GetOrderDeliveryStatus(int orderId)
         {
             string status = await _shipmentService.GetStatusByOrderIdAsync(orderId);
-            var obj = new
-            {
-                orderId = orderId,
-                status = status,
-            };
-            return Ok(obj);
+            //var obj = new
+            //{
+            //    orderId = orderId,
+            //    status = status,
+            //};
+            return Ok(status);
+        }
+
+        [HttpGet("customer/{customerId:int}")]
+        public async Task<IActionResult> GetShipmentsByCustomerId(int customerId)
+        {
+            List<ShipmentDetail> list = await _shipmentService.GetByCustomerId(customerId);
+            return Ok(list);
         }
 
 
@@ -65,9 +72,8 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest("Invalid date format.");
             }
 
-            List<Delivery> deliverylistbydaterange = await _shipmentService.GetByDateAsync(date);
-            return Ok(deliverylistbydaterange);
-
+            List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date);
+            return Ok(deliverylistbydate);
         }
 
         [HttpGet("dates/{startDate}/{endDate}")]
@@ -81,8 +87,8 @@ namespace VijaySalesAPI.Controllers
                 return BadRequest("Invalid date format.");
             }
 
-            List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date1,date2);
-            return Ok(deliverylistbydate);
+            List<Delivery> deliverylistbydaterange = await _shipmentService.GetByDateAsync(date1,date2);
+            return Ok(deliverylistbydaterange);
 
         }
 

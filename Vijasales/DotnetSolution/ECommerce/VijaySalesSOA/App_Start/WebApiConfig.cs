@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
+
 
 namespace VijaySalesSOA
 {
@@ -12,6 +15,8 @@ namespace VijaySalesSOA
             // Web API configuration and services
 
             // Web API routes
+            var cors = new EnableCorsAttribute("http://localhost:49997", "*", "*");  // Allow all origins, headers, and methods
+            config.EnableCors(cors);
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

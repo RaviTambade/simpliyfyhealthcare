@@ -1,0 +1,235 @@
+﻿
+
+@{
+    ViewBag.Title = "ShowCart";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Cart Items Section -->
+        <div class="col-md-8">
+            <h3>Your Shopping Cart</h3>
+            <ul class="list-unstyled" id="cart-items-list"></ul>
+        </div>
+
+        <!-- Cart Summary Section -->
+        <div class="col-md-4">
+            <div class="text-center mt-3">
+                <h4 id="total-amount">Total Cart Value: Rs 0</h4>
+                <button class="btn btn-success w-100 mt-3" id="buy-now-btn">Proceed To Buy</button>
+                <button class="btn btn-danger w-100 mt-3" id="clear-cart-btn">Clear Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+<script>
+    // Function to render cart items
+    let addToCart = (data) => {
+        $('#cart-items-list').html('');
+        let totalAmount = 0;
+
+        $.each(data.items, (index, item) => {
+            $.ajax({
+                url: `http://localhost:52741/api/products/${item.productId}`,
+                type: "GET",
+                success: function (product) {
+                    var cardHtml = `
+                        <li class="d-flex justify-content-center mb-3">
+                            <div class="card mb-3 w-75" aria-labelledby="cart-item-${item.productId}">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="${product.imageUrl || 'default-image.jpg'}" class="img-fluid rounded-start" alt="Product Image">
+                                    </div>
+                                    <div class="col-md-8 d-flex align-items-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${product.title}</h5>
+                                            <p class="card-text text-secondary">${product.description}</p>
+                                            <p class="card-text text-secondary">Price: Rs ${product.price}</p>
+                                            <div class="d-flex align-items-center">
+                                                <button class="btn btn-sm btn-info increase-quantity-btn" data-product-id="${item.productId}" aria-label="Increase quantity">+</button>
+                                                <span class="mx-2" id="quantity-${item.productId}">${item.quantity}</span>
+                                                <button class="btn btn-sm btn-warning decrease-quantity-btn" data-product-id="${item.productId}" aria-label="Decrease quantity">-</button>
+                                            </div>
+                                            <button class="w-25 btn btn-sm btn-danger remove-product-btn" data-product-id="${item.productId}" aria-label="Remove product">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>`;
+
+                    $('#cart-items-list').append(cardHtml);
+                    totalAmount += product.price * item.quantity;
+                    $('#total-amount').text(`Total: Rs ${totalAmount}`);
+                },
+                error: function (error) {
+                    console.error('Error fetching product details:', error);
+                    alert('Error fetching product details.');
+                }
+            });
+        });
+    }
+
+    $(document).ready(() => {
+        loadCart();
+    });
+
+    // Load cart from API
+    function loadCart() {
+        $.ajax({
+            url: "http://localhost:52741/Cart/Index", // Absolute URL
+            type: "GET",
+
+            success: function (data) {
+                console.log(data);
+                addToCart(data);
+            },
+            error: function (error) {
+                console.error('Error fetching updated cart:', error);
+            }
+        });
+    }
+
+    // Remove product from cart (using DELETE)
+    $(document).on('click', '.remove-product-btn', function (e) {
+        e.preventDefault();
+        var productId = $(this).data('product-id');
+
+        $.ajax({
+            url: `http://localhost:52741/Cart/DeleteById/${productId}`, // Absolute URL
+            type: 'DELETE',
+            xhrFields: { withCredentials: true },
+            success: function (response) {
+                alert('Product removed successfully!');
+                loadCart();
+            },
+            error: function (error) {
+                console.error('Error removing product:', error);
+                alert('Error removing product.');
+            }
+        });
+    });
+
+    // Increase product quantity
+    $(document).on('click', '.increase-quantity-btn', function (e) {
+        e.preventDefault();
+        var productId = $(this).data('product-id');
+        updateQuantity(productId, 1);
+    });
+
+    // Decrease product quantity
+    $(document).on('click', '.decrease-quantity-btn', function (e) {
+        e.preventDefault();
+        var productId = $(this).data('product-id');
+        updateQuantity(productId, -1);
+    });
+
+    // Update product quantity
+    function updateQuantity(productId, change) {
+        $.ajax({
+            url: `http://localhost:52741/Cart/PutById/${productId}`, // Absolute URL
+            type: 'PUT',
+            xhrFields: { withCredentials: true },
+            data: JSON.stringify(change),
+            contentType: 'application/json',
+            success: function (response) {
+                loadCart();
+            },
+            error: function (error) {
+                console.error('Error updating quantity:', error);
+                alert('Error updating quantity.');
+            }
+        });
+    }
+
+    // Clear cart
+    $('#clear-cart-btn').click(function () {
+        $.ajax({
+            url: "http://localhost:52741/Cart/DeleteAll", // Absolute URL
+            type: 'DELETE',
+            xhrFields: { withCredentials: true },
+            success: function (response) {
+                alert('Cart cleared successfully!');
+                loadCart();
+                $('#total-amount').text('Total: Rs 0');
+            },
+            error: function (error) {
+                console.error('Error clearing the cart:', error);
+                alert('Error clearing the cart.');
+            }
+        });
+    });
+
+    // Buy Now button click handler
+    $('#buy-now-btn').click(function () {
+        $.ajax({
+            url: "http://localhost:52741/api/checkout", // Absolute URL
+            type: 'POST',
+            xhrFields: { withCredentials: true },
+            success: function (response) {
+                alert('Checkout successful! Proceed to payment.');
+            },
+            error: function (error) {
+                console.error('Error processing checkout:', error);
+                alert('Error processing checkout.');
+            }
+        });
+    });
+</script>
+
+<style>
+    /* General Styles */
+    body {
+        background-color: #f8f9fa;
+        color: #333;
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 10px 20px;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+    }
+
+    /* Button Styles */
+    .remove-product-btn {
+        background-color: steelblue;
+        color: white;
+    }
+
+        .remove-product-btn:hover {
+            background-color: dodgerblue;
+        }
+
+    .increase-quantity-btn,
+    .decrease-quantity-btn {
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+    }
+
+        .increase-quantity-btn:hover,
+        .decrease-quantity-btn:hover {
+            background-color: dimgrey;
+        }
+
+    .container .btn {
+        margin-top: 10px;
+    }
+</style>

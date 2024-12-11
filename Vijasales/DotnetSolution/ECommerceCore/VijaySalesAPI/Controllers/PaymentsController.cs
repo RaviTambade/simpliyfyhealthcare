@@ -30,6 +30,16 @@ namespace VijaySalesAPI.Controllers
             return payment;
         }
 
+        [HttpGet("user/{customerId}")]
+        public async Task<ActionResult<List<Payment>>> GetPaymentsByUser(int customerId)
+        {
+            var payments = await _paymentService.GetPaymentsByCustomerIdAsync(customerId);
+            if (payments == null || payments.Count == 0)
+            {
+                return NotFound($"No payments found for user with ID {customerId}");
+            }
+            return Ok(payments);
+        }
 
         // POST api/payment/paynow
         [HttpPost("paynow")]
@@ -39,10 +49,15 @@ namespace VijaySalesAPI.Controllers
 
             if (paymentData == null)
             { return BadRequest("Invalid payment data."); }
+
             int orderId = Convert.ToInt32(paymentData.OrderId.ToString());
             // Ensure it's properly handled
             string accountNumber = paymentData.AccountNumber.ToString();
             string paymentMethod = paymentData.PaymentMethod.ToString();
+            if(paymentMethod == "creditDebitCard")
+            {
+
+            }
             if (orderId<=0 || string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(paymentMethod))
             {
                 return BadRequest(new { success = false, message = "Invalid payment data" });

@@ -8,7 +8,7 @@ using Shipment.Repositories;
 
 namespace Shipment.Services
 {
-    public interface IshipmentService
+    public interface IShipmentService
     {
         Task<bool> CreateShipmentAsync(Delivery shipment);
 
@@ -20,9 +20,15 @@ namespace Shipment.Services
 
         Task<List<Delivery>> GetByDateAsync(DateTime date);
 
+        Task<List<Delivery>> GetByDateAsync(DateTime date1,DateTime date2);
+
+        Task<bool> UpdateShipmentStatusAsync(int id, string shipmentStatus);
+
         Task<List<Delivery>> GetByStatusAsync(string status);
 
         Task<ShipmentDetail> GetByIdAsync(int id);
+        Task<string> GetStatusByOrderIdAsync(int id);
+
 
     }
 }

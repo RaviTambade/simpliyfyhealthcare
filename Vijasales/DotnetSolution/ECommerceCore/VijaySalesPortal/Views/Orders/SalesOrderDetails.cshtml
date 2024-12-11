@@ -1,148 +1,194 @@
-﻿
-@{
-}
-<h3>Orders for SalesPerson</h3>
+﻿<h3>Orders for SalesPerson</h3>
 
+<div class="container mt-4">
+    <h1 class="text-center">Order Details for Salesperson</h1>
 
-
-    <div class="container mt-4">
-        <h1 class="text-center">Order Details for Salesperson</h1>
-
-        <!-- List of Orders -->
-        <div id="ordersList">
-            <!-- Example Order Card 1 -->
-            <div class="card order-card">
-                <div class="card-header order-card-header">
-                    Order #12345
-                </div>
-                <div class="card-body">
-                    <p><strong>Customer Name:</strong> Raj Jadhav</p>
-                    <p><strong>Total:</strong> $200.00</p>
-                    <p><strong>Date:</strong> 2023-12-07</p>
-                    <p>
-                        <strong>Status:</strong>
-                        <select class="form-select status-dropdown" id="status12345" onchange="changeStatus(12345)">
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Example Order Card 2 -->
-            <div class="card order-card">
-                <div class="card-header order-card-header">
-                    Order #12346
-                </div>
-                <div class="card-body">
-                    <p><strong>Customer Name:</strong> vivek Kolambe</p>
-                    <p><strong>Total:</strong> $150.00</p>
-                    <p><strong>Date:</strong> 2023-12-06</p>
-                    <p>
-                        <strong>Status:</strong>
-                        <select class="form-select status-dropdown" id="status12346" onchange="changeStatus(12346)">
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Example Order Card 3 -->
-            <div class="card order-card">
-                <div class="card-header order-card-header">
-                    Order #12347
-                </div>
-                <div class="card-body">
-                    <p><strong>Customer Name:</strong> Shruti Kadam</p>
-                    <p><strong>Total:</strong> $150.00</p>
-                    <p><strong>Date:</strong> 2023-12-06</p>
-                    <p>
-                        <strong>Status:</strong>
-                        <select class="form-select status-dropdown" id="status12347" onchange="changeStatus(12347)">
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Add more orders here -->
-        </div>
-    </div>
+    <!-- List of Orders -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Total</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="ordersList">
+            <!-- Orders will be appended here -->
+        </tbody>
+    </table>
+</div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script>
-    // Function to create an order card HTML structure
-    function createOrderCard(order) {
+
+    // Function to create an order row HTML structure
+
+    function createOrderRow(order, customerName) {
+
         return `
-                <div class="card order-card" id="order-${order.id}">
-                    <div class="card-header order-card-header">
-                        Order #${order.id}
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Customer Name:</strong> ${order.customerName}</p>
-                        <p><strong>Total:</strong> $${order.totalAmount.toFixed(2)}</p>
-                        <p><strong>Date:</strong> ${order.date}</p>
-                        <p>
-                            <strong>Status:</strong>
-                            <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id})">
-                                <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
-                                <option value="completed" ${order.status === 'completed' ? 'selected' : ''}>Completed</option>
-                                <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
-                            </select>
-                        </p>
-                    </div>
-                </div>
-            `;
+    <tr id="order-${order.id}" class="order-row" data-order-id="${order.id}">
+    <td>${order.id}</td>
+    <td>${customerName}</td>
+    <td>$${order.totalAmount.toFixed(2)}</td>
+    <td>${new Date(order.orderDate).toLocaleDateString()}</td>
+    <td>
+    <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id}, new Date('${order.orderDate}'), ${order.customerId}, ${order.totalAmount})">
+    <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+    <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
+    <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+    </select>
+    </td>
+    <td>
+    <button class="btn btn-info btn-sm view-details-btn" onclick="OnDetailsClick(${order.id})">View More Details</button>
+    </td>
+    </tr>
+
+                `;
+
     }
 
-    // Fetch orders for the salesperson from the server
+    // Fetch orders for the salesperson
+
     function fetchOrders() {
+
         $.ajax({
-            url: 'http://localhost:5218/api/Orders',  // Endpoint for fetching orders (replace with your real API URL)
+
+            url: 'http://localhost:5218/api/Orders',
+
             method: 'GET',
+
             dataType: 'json',
+
             success: function (orders) {
-                // Clear existing orders in the list
+
                 $('#ordersList').empty();
 
-                // Loop through the orders and generate HTML for each
-                orders.forEach(function (order) {
-                    var orderCard = createOrderCard(order);
-                    $('#ordersList').append(orderCard);
-                });
+                if (orders && orders.length > 0) {
+
+                    orders.forEach(function (order) {
+
+                        fetchCustomerName(order.customerId, function (customerName) {
+
+                            var orderRow = createOrderRow(order, customerName);
+
+                            $('#ordersList').append(orderRow);
+
+                        });
+
+                    });
+
+                } else {
+
+                    $('#ordersList').append('<tr><td colspan="6">No orders found</td></tr>');
+
+                }
+
+
+
             },
+
             error: function () {
+
                 alert('Failed to load orders');
+
             }
+
         });
+
     }
 
-    // Handle the change of order status
-    function changeStatus(orderId) {
-        var status = $('#status' + orderId).val();
+    function OnDetailsClick(orderid) {
+
+        window.location.href = `/Orders/SalesViewDetails?orderId=${orderid}`;
+
+        console.log("Clicked");
+
+    }
+
+    // Fetch customer name by customer ID
+
+    function fetchCustomerName(customerId, callback) {
 
         $.ajax({
-            url: `/api/orders/${orderId}`,  // Endpoint for updating the order status (replace with your real API URL)
-            method: 'PUT',
+
+            url: `http://localhost:5218/api/users/${customerId}`,
+
+            method: 'GET',
+
             dataType: 'json',
-            data: { status: status },
-            success: function () {
-                alert(`Order #${orderId} status updated to ${status}`);
+
+            success: function (customer) {
+
+                callback(customer.firstName + " " + customer.lastName);
+
             },
+
             error: function () {
-                alert('Failed to update order status');
+
+                alert('Failed to load customer details');
+
+                callback('Unknown Customer');
+
             }
+
         });
+
     }
 
-    // Fetch orders when the page is loaded
+    // Update order status via API
+
+    function changeStatus(orderId, orderDate, customerId, totalAmount) {
+
+        var status = $('#status' + orderId).val();
+
+        var context = {
+
+            Id: orderId,
+
+            CustomerId: customerId,
+
+            Status: status,
+
+            OrderDate: orderDate,
+
+            TotalAmount: totalAmount
+
+        };
+
+        $.ajax({
+
+            url: `http://localhost:5218/api/Orders/${orderId}`,
+
+            type: 'PUT',
+
+            contentType: 'application/json',
+
+            data: JSON.stringify(context),
+
+            success: function () {
+
+                alert(`Order #${orderId} status updated to ${status}`);
+
+            },
+
+            error: function () {
+
+                alert('Failed to update order status');
+
+            }
+
+        });
+
+    }
+
     $(document).ready(function () {
+
         fetchOrders();
+
     });
 </script>
+
