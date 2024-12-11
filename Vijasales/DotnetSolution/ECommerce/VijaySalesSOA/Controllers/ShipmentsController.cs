@@ -22,9 +22,8 @@ namespace VijaySalesSOA.Controllers
     {
         IShipmentService _shipmentService = new ShipmentService();
         
-        
-
         [HttpGet]
+        [Route("status/{status}")]
         public async Task<List<Delivery>> GetByStatus(string status)
         {
             List<Delivery> deliverylistbystatus = await _shipmentService.GetByStatusAsync(status);
@@ -32,6 +31,7 @@ namespace VijaySalesSOA.Controllers
         }
 
         [HttpGet]
+
         public async Task<List<Delivery>> GetAll()
         {
             List<Delivery> deliveryList = await _shipmentService.GetAllAsync();
@@ -40,7 +40,7 @@ namespace VijaySalesSOA.Controllers
         }
 
         [HttpGet]
-        [Route("api/shipments/{id}")]
+        [Route("{id}")]
         public async Task<ShipmentDetail> Get(int id)
         {
             return await _shipmentService.GetByIdAsync(id);
@@ -49,6 +49,7 @@ namespace VijaySalesSOA.Controllers
 
         
         [HttpGet]
+        [Route("orderstatus/{orderId}")]
         public async Task<IHttpActionResult> GetOrderDeliveryStatus(int orderId)
         {
             string status = await _shipmentService.GetStatusByOrderIdAsync(orderId);
@@ -62,6 +63,7 @@ namespace VijaySalesSOA.Controllers
 
 
         [HttpGet]
+        [Route("date/{date}")]
         public async Task<IHttpActionResult> GetByDate(string filterDate)
         {
             DateTime date;
@@ -76,6 +78,7 @@ namespace VijaySalesSOA.Controllers
         }
 
         [HttpGet]
+        [Route("dates/{startDate}/{endDate}")]
         public async Task<IHttpActionResult> GetByDate(string startDate, string endDate)
         {
             DateTime date1, date2;
@@ -92,6 +95,7 @@ namespace VijaySalesSOA.Controllers
         }
 
         [HttpPost]
+        //[Route("api/shipments")]
         public async Task<bool> Insert([FromBody] Delivery delivery)
         {
             bool status = false;
@@ -103,6 +107,7 @@ namespace VijaySalesSOA.Controllers
 
         // api/shipments/
         [HttpPut]
+        //[Route("api/shipments")]
         public async Task<bool> Update([FromBody] Delivery delivery)
         {
             bool status = false;
@@ -112,6 +117,7 @@ namespace VijaySalesSOA.Controllers
         }
 
         [HttpPut]
+        [Route("{id}")]
         public async Task<IHttpActionResult> UpdateStatus(int id, [FromBody] string status)
         {
             if (await _shipmentService.UpdateShipmentStatusAsync(id, status))
@@ -123,6 +129,7 @@ namespace VijaySalesSOA.Controllers
         }
 
         [HttpDelete]
+        [Route("delete/{id}")]
         public async Task<IHttpActionResult> Delete(int id)
         {
             bool status = false;
