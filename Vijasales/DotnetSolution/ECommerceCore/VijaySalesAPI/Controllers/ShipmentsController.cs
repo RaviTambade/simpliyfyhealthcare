@@ -47,12 +47,8 @@ namespace VijaySalesAPI.Controllers
         public async Task<IActionResult> GetOrderDeliveryStatus(int orderId)
         {
             string status = await _shipmentService.GetStatusByOrderIdAsync(orderId);
-            var obj = new
-            {
-                orderId = orderId,
-                status = status,
-            };
-            return Ok(obj);
+          
+            return Ok(status);
         }
 
 

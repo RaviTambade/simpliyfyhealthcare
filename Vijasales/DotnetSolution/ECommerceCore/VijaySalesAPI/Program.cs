@@ -1,39 +1,23 @@
 using Catalog.Repositories;
 using Catalog.Repositories.ORM;
 using Catalog.Services;
-
 using CRM.Repositories.ORM;
 using CRM.Repositories;
 using CRM.Services;
-
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories.Connected;
-
-
-using Banking.Repositories.Connected;
-using Banking.Services;
-
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-
-
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
->>>>>>> c1f93641034418c03e3e45c12037a357dd8902e3
->>>>>>> c621db239a9df203038518f4dddde3c721068628
+using Banking.Repositories.Connected;
+using Banking.Services;
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using VijaySalesAPI.Helper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +26,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
+// Configure AppSettings section from configuration
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 
 // Add session service
 builder.Services.AddSession(options =>
@@ -59,31 +46,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890")  // Allow your frontend's URL
-=======
-<<<<<<< HEAD
->>>>>>> c621db239a9df203038518f4dddde3c721068628
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890");  // Allow your frontend's URL
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218") // Allow your frontend's URL
 
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
-
-
-<<<<<<< HEAD
-      
-=======
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890")  // Allow your frontend's URL
-
-
-=======
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
->>>>>>> e0234d6a7594804d1649daed26c9b112e6dc3e42
->>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
->>>>>>> c1f93641034418c03e3e45c12037a357dd8902e3
->>>>>>> c621db239a9df203038518f4dddde3c721068628
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -119,76 +84,58 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 
 builder.Services.AddTransient<IBankService, BankService>();
 
+builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IUserDataRepository, UserRepository>();
+
+//JWT Setup
+
+// Configure JWT Authentication
+var appSettingsSection = builder.Configuration.GetSection("AppSettings");
+var appSettings = appSettingsSection.Get<AppSettings>();
+var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+}).AddCookie(options =>
+{
+    options.Cookie.Name = "YourAppAuthCookie"; // Set cookie name
+    options.Cookie.HttpOnly = true; // Security: ensures cookie is only sent in HTTP requests
+    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest; // Use secure cookies in production (set to Always if HTTPS is used)
+    options.Cookie.SameSite = SameSiteMode.Strict; // Helps to prevent CSRF attacks
+    options.SlidingExpiration = true; // Cookie expires after a set time but is renewed with activity
+
+})
+.AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+
+
+});
+
+
 
 var app = builder.Build();
 
 
-<<<<<<< HEAD
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-
-=======
-=======
-//Register context
-
-var app = builder.Build();
-
-<<<<<<< HEAD
-app.UseCors("AllowLocalhost");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-<<<<<<< HEAD
-
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-app.UseRouting();
-app.UseRouting();
-app.UseRouting();
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-=======
->>>>>>> e0234d6a7594804d1649daed26c9b112e6dc3e42
-app.UseCors("AllowLocalhost");
-app.UseRouting();
-
->>>>>>> 3e3c6050d1e1936886f42a5a5c2b4994c8f8a699
->>>>>>> c1f93641034418c03e3e45c12037a357dd8902e3
->>>>>>> c621db239a9df203038518f4dddde3c721068628
-app.UseAuthorization();
 app.UseSession();
+app.UseHttpsRedirection();
+app.UseAuthentication();  // Make sure this comes before UseAuthorization
+app.UseAuthorization();
 app.MapControllers();
 app.Run();
 

@@ -51,5 +51,18 @@ namespace PaymentProcessing.Services
             return updateSuccess;
         }
 
+
+
+        public Task<int> InsertPaymentAsync(Payment payment)
+        {
+             
+            return _repo.InsertAsync(payment); 
+        }
+
+        public Task<bool> UpdatePaymentAsync(Payment payment)
+        {
+            return _repo.UpdateAsync(payment);
+        }
+
     }
 }
