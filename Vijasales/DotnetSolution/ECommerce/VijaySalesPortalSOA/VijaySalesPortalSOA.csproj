@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -212,6 +213,8 @@
     <Content Include="Views\ShoppingCart\ShowCart.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Shipments\List.cshtml" />
     <Content Include="Views\Shipments\Details.cshtml" />
   </ItemGroup>
@@ -251,7 +254,7 @@
     <ProjectReference Include="..\Catalog\Catalog.csproj">
       <Project>{716f59fc-f8f7-4150-b7bc-9d8ef4ef08f9}</Project>
       <Name>Catalog</Name>
-	</ProjectReference>
+    </ProjectReference>
     <ProjectReference Include="..\Shipment\Shipment.csproj">
       <Project>{5e813d94-5c9b-4710-a6ef-3da01381e0c2}</Project>
       <Name>Shipment</Name>

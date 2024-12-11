@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Shipment.Repositories.ORM
 {
@@ -55,50 +56,91 @@ namespace Shipment.Repositories.ORM
 
         public async Task<List<Delivery>> GetAllAsync()
         {
+            List<Delivery> shipments = new List<Delivery>();
             using (var context = new ShipmentContext(_configuration))
             {
                 var dbshipments = await context.Shipments.ToListAsync();
-                return dbshipments;
-            } 
+                foreach (var shipment in dbshipments)
+                {
+                    Delivery theShipment = new Delivery();
+                    theShipment.Id = shipment.Id;
+                    theShipment.OrderId = shipment.OrderId;
+                    theShipment.ShipmentDate = shipment.ShipmentDate;
+                    theShipment.Status = shipment.Status;
+                    shipments.Add(theShipment);
+                }
+            }
+            return shipments;
         }
 
         public async Task<List<Delivery>> GetByDateAsync(DateTime date)
         {
+
+            List<Delivery> shipments = new List<Delivery>();
+
             using (var context = new ShipmentContext(_configuration))
             {
+
                 var dbShipments = await context.Shipments
-                    .Where(s => s.ShipmentDate == date)
+                    .Where(s => s.ShipmentDate >= date)
                     .ToListAsync();
-                return dbShipments;
+
+                foreach (var shipment in dbShipments)
+                {
+
+                    Delivery theShipment = new Delivery
+                    {
+                        Id = shipment.Id,
+                        OrderId = shipment.OrderId,
+                        ShipmentDate = shipment.ShipmentDate,
+                        Status = shipment.Status
+                    };
+
+                    shipments.Add(theShipment);
+                }
             }
+
+            return shipments;
+
         }
 
         public async Task<List<Delivery>> GetByDateAsync(DateTime startdate, DateTime enddate)
         {
+            List<Delivery> shipments = new List<Delivery>();
+
             using (var context = new ShipmentContext(_configuration))
             {
                 var dbShipments = await context.Shipments
                     .Where(s => s.ShipmentDate >= startdate && s.ShipmentDate <= enddate)
                     .ToListAsync();
 
-                return dbShipments;
+                foreach (var shipment in dbShipments)
+                {
+                    Delivery theShipment = new Delivery
+                    {
+                        Id = shipment.Id,
+                        OrderId = shipment.OrderId,
+                        ShipmentDate = shipment.ShipmentDate,
+                        Status = shipment.Status
+                    };
+
+                    shipments.Add(theShipment);
+
+                }
+                return shipments;
             }
         }
 
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
+
+<<<<<<< HEAD
                 ShipmentDetail shipmentDetail = null;
                 using (var context = new ShipmentContext(_configuration))
                 {
                     // Define the stored procedure query with the necessary parameter
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
                     var param = new SqlParameter("@ShipmentId", shipmentId);
-
                     shipmentDetail =  context.Set<ShipmentDetail>()
                                .FromSqlRaw(query, param)
                                .AsEnumerable()
@@ -106,40 +148,88 @@ namespace Shipment.Repositories.ORM
                 }
 
                 return shipmentDetail;
-<<<<<<< HEAD
-
-
 =======
->>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
+            ShipmentDetail shipmentDetail = null;
+            using (var context = new ShipmentContext(_configuration))
+            {
+                // Define the stored procedure query with the necessary parameter
+                var query = @"EXEC GetShipmentDetails @ShipmentId";
+                var param = new SqlParameter("@ShipmentId", shipmentId);
+
+                shipmentDetail = context.Set<ShipmentDetail>()
+                           .FromSqlRaw(query, param)
+                           .AsEnumerable()
+                           .FirstOrDefault();
+>>>>>>> d896072a549b003f79eccb1ecb8a936f1c61af95
             }
+
+            return shipmentDetail;
+
+        }
+
+        public async Task<List<ShipmentDetail>> GetByCustomerId(int customerId)
+        {
+            List<ShipmentDetail> shipmentDetails = null;
+
+            using (var context = new ShipmentContext(_configuration))
+            {
+                var query = @"EXEC GetShipmentDetails @ShipmentId=NULL, @CustomerId=@CustomerId";
+
+                // Create the parameters for the stored procedure
+                var shipmentParam = new SqlParameter("@ShipmentId", DBNull.Value);  // Null for ShipmentId
+                var customerParam = new SqlParameter("@CustomerId", customerId);    // Valid CustomerId
+
+                // Execute the query and retrieve the shipment details
+                shipmentDetails = await context.Set<ShipmentDetail>()
+                                                .FromSqlRaw(query, shipmentParam, customerParam)
+                                                .ToListAsync();
+            }
+
+            return shipmentDetails;
+        }
+
 
         public async Task<string> GetStatusByOrderIdAsync(int orderId)
         {
             using (var context = new ShipmentContext(_configuration))
             {
-                var query = @"EXEC GetShipmentDetails @OrderId";
- 
-                var param = new SqlParameter("@OrderId", orderId);
- 
-                var result = context.Set<ShipmentDetail>()
-                            .FromSqlRaw(query, param)
-                            .AsEnumerable()  
-                            .FirstOrDefault();
- 
-                // Assuming ShipmentDetail has a Status property
-                return result?.DeliveryStatus ?? "Shipment status not found.";
+                var dbShipments = await context.Shipments
+                    .Where(s => s.OrderId == orderId)
+                    .ToListAsync();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5cb31ec77b5792d08c1cbffb46d7aea0ac1a310e
+                return dbShipments[0]?.Status ?? "Shipment status not found.";
             }
         }
 
         public async Task<List<Delivery>> GetByStatusAsync(string status)
         {
+            List<Delivery> shipments = new List<Delivery>();
 
             using (var context = new ShipmentContext(_configuration))
             {
-                var dbshipments = await context.Shipments
-                    .Where(s=> s.Status == status).ToListAsync();
-                return dbshipments;
+                var dbshipments = await context.Shipments.ToListAsync();
+
+                foreach (var shipment in dbshipments)
+                {
+                    Delivery theShipment = new Delivery();
+                    if (shipment.Status == status)
+                    {
+                        theShipment.Id = shipment.Id;
+                        theShipment.OrderId = shipment.OrderId;
+                        theShipment.ShipmentDate = shipment.ShipmentDate;
+                        theShipment.Status = shipment.Status;
+
+                        shipments.Add(theShipment);
+                    }
+                }
+
+                return shipments;
             }
+
+
         }
 
         public async Task<bool> UpdateAsync(Delivery shipment)
@@ -158,8 +248,12 @@ namespace Shipment.Repositories.ORM
                     await context.SaveChangesAsync();
                     status = true;
                 }
-                
+                else
+                {
+                    Console.WriteLine("Shipment not found.");
+                }
             }
+
             return status;
         }
 

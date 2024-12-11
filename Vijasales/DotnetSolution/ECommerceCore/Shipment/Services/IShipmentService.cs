@@ -28,5 +28,7 @@ namespace Shipment.Services
         Task<ShipmentDetail> GetByIdAsync(int id);
         Task<string> GetStatusByOrderIdAsync(int id);
 
+        Task<List<ShipmentDetail>> GetByCustomerId(int customerId);
+
     }
 }
