@@ -75,13 +75,13 @@
                 console.log("Shipment data:", response);
 
                 // Populate the page with the fetched shipment data
-                $('#orderid').append(response.orderId);
-                $('#customername').append(response.customerName);
-                $('#customeraddress').append(response.customerAddress);
-                $('#totalamount').append(response.totalAmount);
-                $('#deliverydate').append(new Date(response.deliveryDate).toLocaleDateString()); // Format the date
+                $('#orderid').append(response.OrderId);
+                $('#customername').append(response.CustomerName);
+                $('#customeraddress').append(response.CustomerAddress);
+                $('#totalamount').append(response.TotalAmount);
+                $('#deliverydate').append(new Date(response.DeliveryDate).toLocaleDateString()); // Format the date
 
-                const status = response.deliveryStatus;
+                const status = response.DeliveryStatus;
                 console.log(status);
                 if (status) {
                     $(`#${status}`).prop('checked', true);

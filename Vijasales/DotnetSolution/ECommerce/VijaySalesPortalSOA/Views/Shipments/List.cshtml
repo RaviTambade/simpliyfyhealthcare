@@ -95,13 +95,13 @@
 
         shipments.forEach(function (shipment) {
             var row = `<tr>
-                            <td>${shipment.id}</td>
-                            <td>${shipment.orderId}</td>
-                            <td>${shipment.shipmentDate}</td>
-                            <td>${shipment.status}</td>
+                            <td>${shipment.Id}</td>
+                            <td>${shipment.OrderId}</td>
+                            <td>${shipment.ShipmentDate}</td>
+                            <td>${shipment.Status}</td>
                                <td>
                                     <div class="d-flex justify-content-center">
-                                        <a href="/shipments/details/${shipment.id}" class="btn btn-success">
+                                        <a href="/shipments/details/${shipment.Id}" class="btn btn-success">
                                             <i class="bi bi-eye me-2"></i> <!-- Eye Icon -->
                                             View Details
                                         </a>
