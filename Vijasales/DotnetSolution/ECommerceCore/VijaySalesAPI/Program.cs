@@ -1,14 +1,22 @@
 using Catalog.Repositories;
 using Catalog.Repositories.ORM;
 using Catalog.Services;
+
 using CRM.Repositories.ORM;
 using CRM.Repositories;
 using CRM.Services;
+
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories.Connected;
+
+
+using Banking.Repositories.Connected;
+using Banking.Services;
+
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
+<<<<<<< HEAD
 using Banking.Repositories.Connected;
 using Banking.Services;
 using Shipment.Repositories;
@@ -18,6 +26,17 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using VijaySalesAPI.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+=======
+
+<<<<<<< HEAD
+using Banking.Repositories.Connected;
+using Banking.Services;
+=======
+>>>>>>> d489f186a430aa5cd88f3f6c1d9e494b66a840db
+using Shipment.Repositories;
+using Shipment.Repositories.ORM;
+using Shipment.Services;
+>>>>>>> 7a418ba70d4881a591081d61969e86d4508b8041
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,9 +45,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
-// Configure AppSettings section from configuration
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
 
 // Add session service
 builder.Services.AddSession(options =>
@@ -46,9 +62,21 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 7a418ba70d4881a591081d61969e86d4508b8041
 
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890");  // Allow your frontend's URL
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218");  // Allow your frontend's URL
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218") // Allow your frontend's URL
 
+<<<<<<< HEAD
+=======
+=======
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
+>>>>>>> d489f186a430aa5cd88f3f6c1d9e494b66a840db
+>>>>>>> 7a418ba70d4881a591081d61969e86d4508b8041
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -84,6 +112,7 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 
 builder.Services.AddTransient<IBankService, BankService>();
 
+<<<<<<< HEAD
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 
@@ -123,17 +152,46 @@ builder.Services.AddAuthentication(x =>
 
 
 });
+=======
+<<<<<<< HEAD
+
+
+//Register context
+>>>>>>> 7a418ba70d4881a591081d61969e86d4508b8041
 
 
 var app = builder.Build();
-
-
 app.UseCors("AllowLocalhost");
 app.UseRouting();
-app.UseSession();
-app.UseHttpsRedirection();
-app.UseAuthentication();  // Make sure this comes before UseAuthorization
 app.UseAuthorization();
+app.UseSession();
+app.MapControllers();
+ 
+app.Run();
+
+
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+ 
+=======
+var app = builder.Build();
+
+>>>>>>> 7a418ba70d4881a591081d61969e86d4508b8041
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+
+app.UseAuthorization();
+app.UseSession();
 app.MapControllers();
 
 app.Run();
+<<<<<<< HEAD
+=======
+>>>>>>> d489f186a430aa5cd88f3f6c1d9e494b66a840db
+>>>>>>> 7a418ba70d4881a591081d61969e86d4508b8041
