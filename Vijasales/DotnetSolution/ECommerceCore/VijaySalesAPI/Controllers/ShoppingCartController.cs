@@ -48,6 +48,7 @@ namespace VijaySalesAPI.Controllers
             return $"ProductId: {item.ProductId}, Quantity: {item.Quantity}, Price: {item.Price}";
         }
 
+        
         // POST api/<ShoppingCartController>
         [HttpPost]
         public IActionResult Post([FromBody] Product product)

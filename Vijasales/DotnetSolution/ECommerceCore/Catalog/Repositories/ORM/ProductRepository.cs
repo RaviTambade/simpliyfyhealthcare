@@ -63,18 +63,36 @@ namespace Catalog.Repositories.ORM
             return status;
         }
 
-        public async Task <bool> UpdateAsync(Product product)
+        public async Task<bool> UpdateAsync(Product product)
         {
             bool status = false;
             using (var ctx = new ProductContext(_conString))
             {
+                var foundProduct = await ctx.Products.SingleOrDefaultAsync(p => p.Id == product.Id);
+                if (foundProduct != null)
+                {
+                    foundProduct.Id = product.Id;
+                    foundProduct.Title = product.Title;
+                    foundProduct.Description = product.Description;
+                    foundProduct.Brand = product.Brand;
+                    foundProduct.Price = product.Price;
+                    foundProduct.Category = product.Category;
+                    foundProduct.Brand = product.Brand;
+                    foundProduct.Stock = product.Stock;
+                    foundProduct.ImageUrl = product.ImageUrl;
 
-               ctx.Products.Update(product);
-              await ctx.SaveChangesAsync();
-                status = true;
+                    await ctx.SaveChangesAsync();
+                    status = true;
+                    return status;
+                }
+                else
+                {
+                    Console.WriteLine("product not found.");
+                    return status;
+                }
             }
-            return status;
         }
+        
         public Task<int> GetCountAsync()
         {
             throw new NotImplementedException();

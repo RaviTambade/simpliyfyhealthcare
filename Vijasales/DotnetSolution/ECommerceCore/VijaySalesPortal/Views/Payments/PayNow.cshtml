@@ -93,7 +93,10 @@
     const url = window.location.pathname;
     const parts = url.split('/');
     const urlId = parts[parts.length - 1];
-
+    if (isNaN(urlId) || urlId <= 0) {
+        alert("You don't have items to process for order");
+        location.replace("/Products/");
+    }
     var loadorderdetails = () => {
         var url = 'http://localhost:5218/api/orders/' + urlId;
 
