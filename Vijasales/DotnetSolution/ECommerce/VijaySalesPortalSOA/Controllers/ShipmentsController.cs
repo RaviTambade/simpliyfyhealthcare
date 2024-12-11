@@ -8,14 +8,16 @@ namespace VijaySalesPortalSOA.Controllers
 {
     public class ShipmentsController : Controller
     {
-        // GET shipments/list
+        // GET: Shipments
+        public ActionResult Index()
+        {
+            return View();
+        }
         public ActionResult List()
         {
             return View();
         }
-
-        // GET shipments/details/id
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
             return View();
         }
