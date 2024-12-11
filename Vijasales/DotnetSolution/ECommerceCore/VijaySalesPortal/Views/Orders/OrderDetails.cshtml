@@ -46,8 +46,8 @@
 
     <div class="bulk-box text-center">
         
-        <button class="btn btn-outline-primary btn-sm me-2">Go Back</button>
-        <button class="btn btn-success btn-sm">Proceed to Payment</button>
+        <button class="btn btn-outline-primary btn-sm me-2" id="btnGoBack">Go Back</button>
+        <button class="btn btn-success btn-sm" id="proceed-to-pay-btn">Proceed to Payment</button>
     </div>
 </div>
 
@@ -194,11 +194,39 @@
         });
     };
 
+    $("#proceed-to-pay-btn").click(() => { 
+        console.log("Proceed to pay btn clicked");
+        context = {
+            orderid:urlId, //This is the order Id Use it for payement as per convinence and integrate it
+
+        }
+    });
 
 
 
+    $("#btnGoBack").click(() => {
+        if (!urlId) {
+            alert("Invalid Order ID!");
+            return;
+        }
 
-
+        $.ajax({
+            url: 'http://localhost:5218/api/Orders/' + urlId,
+            type: 'DELETE',
+            contentType: 'application/json',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function () {
+                alert("Deleted the order. Now redirecting to Cart...");
+                location.replace("/ShoppingCart/GetCart/");
+            },
+            error: function (errorMsg) {
+                console.log("Error: ", errorMsg);
+                alert("An error occurred while deleting the order.");
+            }
+        });
+    });
 
     document.addEventListener("DOMContentLoaded",()=>{
         

@@ -30,6 +30,16 @@ namespace VijaySalesAPI.Controllers
             return payment;
         }
 
+        [HttpGet("user/{customerId}")]
+        public async Task<ActionResult<List<Payment>>> GetPaymentsByUser(int customerId)
+        {
+            var payments = await _paymentService.GetPaymentsByCustomerIdAsync(customerId);
+            if (payments == null || payments.Count == 0)
+            {
+                return NotFound($"No payments found for user with ID {customerId}");
+            }
+            return Ok(payments);
+        }
 
         // POST api/payment/paynow
         [HttpPost("paynow")]

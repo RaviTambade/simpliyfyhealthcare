@@ -1,17 +1,15 @@
-﻿<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+﻿@* <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 
-
-<h2> Product Catalog</h2>
-
+<h2>Product Catalog</h2>
 
 <!-- Code for displaying product table -->
 <div id="showProducts">
     <table class="table table-sm table-striped">
         <thead>
             <tr>
-                <th class="text-center text-bg-success " colspan="5">Products</th>
+                <th class="text-center text-bg-success" colspan="5">Products</th>
             </tr>
             <tr>
                 <th>ID</th>
@@ -23,7 +21,6 @@
                 <th>Stock</th>
                 <th>Category</th>
                 <th>LastModified</th>
-
             </tr>
         </thead>
         <tbody id="tbProducts"></tbody>
@@ -31,9 +28,9 @@
 </div>
 
 <!-- Code for displaying manipulation options-->
-<div class="d-flex flex-row  border rounded border-1 ">
+<div class="d-flex flex-row border rounded border-1">
 
-    <div class="m-3  d-flex flex-column gap-2 w-50" id="getInfoDiv">
+    <div class="m-3 d-flex flex-column gap-2 w-50" id="getInfoDiv">
         <input id="txtProductId" placeholder="Enter Product ID" type="number" />
         <button class="btn btn-info w-50" id="btnGet">Get Data to Update</button>
         <button class="btn btn-info w-50" id="btnDelete">Delete</button>
@@ -41,53 +38,42 @@
     </div>
 
     <div id="divDetailShow" class="border border-1 w-50 justify-content-center" hidden>
-        Enter Product Info to
-        <form class="form-control d-flex flex-column justify-content-center">
-            <label>ID</label>
-            <input id="txtId" type="number" />
-            <label>Name</label>
-            <input type="text" id="txtProName" />
-            <label>Description</label>
-            <input type="text" id="txtProDesc" />
-            <label>UnitPrice</label>
-            <input type="number" id="txtProUPrice" />
-            <label>Quantity</label>
-            <input type="number" id="txtProQuantity" />
-            <label>Img Url</label>
-            <input type="text" id="txtProImgUrl" />
-            <input class="btn btn-info" id="btnUpdate" type="button" value="Update" />
-            <input class="btn btn-info" id="btnInsert" type="button" value="Insert" hidden />
-        </form>
+        <!-- The product details will be shown here -->
+        <h5>Product Details</h5>
+        <p><strong>ID:</strong> <span id="productId"></span></p>
+        <p><strong>Name:</strong> <span id="productName"></span></p>
+        <p><strong>Description:</strong> <span id="productDescription"></span></p>
+        <p><strong>Unit Price:</strong> <span id="productPrice"></span></p>
+        <p><strong>Quantity:</strong> <span id="productQuantity"></span></p>
+        <p><strong>Image:</strong> <img id="productImage" src="" alt="Product Image" class="img-fluid" style="max-width: 100px;"></p>
     </div>
-</div> 
+
+</div>
 
 <script>
     let url = "/api/products";
 
-
-    // function to display table
+    // Function to display table
     let displayTable = (products) => {
         $('#tbProducts').html('');
         $.each(products, (index, item) => {
-            var trBody = '<tr>' +
+            var trBody = '<tr class="rows" data-id="' + item.id + '">' +
                 '<td class="fs-6">' + item.id + '</td>' +
                 '<td>' + item.title + '</td>' +
-                '<td>' + '<img src= ' + item.imageUrl + ' class="img-fluid" style="max-width: 50px; max-height: 50px;" >' + '</td>' +
-                '<td>' + item.description + '</td>' +
+                '<td>' + '<img src="' + item.imageUrl + '" class="img-fluid" style="max-width: 50px; max-height: 50px;" />' + '</td>' +
+                
                 '<td>' + item.brand + '</td>' +
                 '<td>' + item.price + '</td>' +
-                '<td>' + item.stock + '</td>' +
+               
                 '<td>' + item.category + '</td>' +
-                '<td>' + item.lastModified + '</td>' +
+               
                 '</tr>';
             $('#tbProducts').append(trBody);
         });
-        //console.log(products);
     }
 
-    //function for ajax api to get all product list
+    // Function for ajax api to get all product list
     let getAllProduct = () => {
-        console.log("1")
         $.ajax({
             url: "http://localhost:5218/api/products",
             type: 'GET',
@@ -103,74 +89,163 @@
         });
     }
 
-    $(document).on("click", "tr.rows td.idcell", function (e) {
-        alert(e.target.innerHTML);
-        const url1 = '/api/products/' + e.target.innerHTML;
-        console.log(url1);
-        $('#product').html("");
+    // Handle click event on product row to display details
+    $(document).on("click", "tr.rows", function () {
+        // Get the product ID from the clicked row
+        let productId = $(this).data('id');
+
+        // Call the API to get the product details
+        const url1 = "http://localhost:5218/api/products/" + productId;
+
         $.ajax({
             url: url1,
             type: "GET",
             contentType: "application/json",
-            //data: JSON.stringify(credential),
             success: (result) => {
-                var row =
-                    '<h5><br/>ProductID : ' +
-                    result.Id +
-                    '<br/>Name : ' +
-                    result.Name +
-                    '<br/>Description : ' +
-                    result.Description +
-                    '<br/>Quantity : ' +
-                    result.Quantity +
-                    '<br/>UnitPrice : ' +
-                    result.UnitPrice +
-                    '<br/>Image : ' +
-                    result.Img +
-                    '<br/><br/><input type="button" value="EDIT" name="' + result.Id + '" id="btnedit" />     ' +
-                    '<input type="button" value="DELETE" name="' + result.Id + '" id="btndelete" /><h5> ';
+                console.log(result)
+                // Fill the details into the corresponding elements
+                $('#productId').text(result.id);
+                $('#productName').text(result.title);
+                $('#productDescription').text(result.description);
+                $('#productPrice').text(result.price);
+                $('#productQuantity').text(result.stock);
+                $('#productImage').attr("src", result.imageUrl); // Set the image URL
 
-                $('#showproduct').html(row);
-                console.log(result);
+                // Show the product details section
+                $('#divDetailShow').show();
             },
             error: () => {
-                console.log("something has gone wrong");
+                alert("An error occurred while fetching product details.");
+            }
+        });
+
+       
+    });
+
+    // Document Ready Function
+    $(document).ready(() => {
+        console.log("start");
+        getAllProduct(); // Load all products initially
+    });
+</script> *@
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+<h2>Product Catalog</h2>
+
+<!-- Code for displaying product table -->
+<div id="showProducts">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th class="text-center text-bg-success" colspan="6">Products</th>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody id="tbProducts"></tbody>
+    </table>
+</div>
+
+<!-- Code for displaying manipulation options-->
+<div class="d-flex flex-row border rounded border-1">
+    <div class="m-3 d-flex flex-column gap-2 w-50" id="getInfoDiv">
+        <input id="txtProductId" placeholder="Enter Product ID" type="number" class="form-control" />
+        <button class="btn btn-info w-50" id="btnGet">Get Data to Update</button>
+        <button class="btn btn-info w-50" id="btnDelete">Delete</button>
+        <button class="btn btn-info w-50" id="btnEnterData">Insert</button>
+    </div>
+
+    <!-- Product Details Section (Initially Hidden) -->
+    <div id="divDetailShow" class="border border-1 w-50 justify-content-center" style="display: none;">
+        <h5>Product Details</h5>
+        <p><strong>ID:</strong> <span id="productId"></span></p>
+        <p><strong>Name:</strong> <span id="productName"></span></p>
+        <p><strong>Description:</strong> <span id="productDescription"></span></p>
+        <p><strong>Unit Price:</strong> <span id="productPrice"></span></p>
+        <p><strong>Quantity:</strong> <span id="productQuantity"></span></p>
+        <p><strong>Image:</strong> <img id="productImage" src="" alt="Product Image" class="img-fluid" style="max-width: 100px;"></p>
+    </div>
+</div>
+
+<script>
+    let url = "/api/products";
+
+    // Function to display table
+    let displayTable = (products) => {
+        $('#tbProducts').html('');
+        $.each(products, (index, item) => {
+            var trBody = `<tr class="rows" data-id="${item.id}">
+                    <td class="fs-6">${item.id}</td>
+                    <td>${item.title}</td>
+                    <td><img src="${item.imageUrl}" class="img-fluid" style="max-width: 50px; max-height: 50px;" /></td>
+                    <td>${item.brand}</td>
+                    <td>${item.price}</td>
+                    <td>${item.category}</td>
+                </tr>`;
+            $('#tbProducts').append(trBody);
+        });
+    };
+
+    // Function to fetch all products
+    let getAllProduct = () => {
+        $.ajax({
+            url: "http://localhost:5218/api/products",
+            type: 'GET',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function (data) {
+                displayTable(data);  // Populate the table with products
+            },
+            error: function () {
+                alert("An error occurred while loading products.");
+            }
+        });
+    };
+
+    // Handle click event on a product row to display its details
+    $(document).on("click", "tr.rows", function () {
+        // Get the product ID from the clicked row
+        let productId = $(this).data('id');
+
+        // Fetch the product details using the API
+        const url1 = `http://localhost:5218/api/products/${productId}`;
+
+        $.ajax({
+            url: url1,
+            type: "GET",
+            contentType: "application/json",
+            success: (result) => {
+                console.log(result);
+                // Fill the details into the corresponding elements
+                $('#productId').text(result.id);
+                $('#productName').text(result.title);
+                $('#productDescription').text(result.description);
+                $('#productPrice').text(result.price);
+                $('#productQuantity').text(result.stock);
+                $('#productImage').attr("src", result.imageUrl); // Set the image URL
+
+                // Show the product details section
+                $('#divDetailShow').show();
+            },
+            error: () => {
+                alert("An error occurred while fetching product details.");
             }
         });
     });
 
-
-
-
+    // Document Ready Function
     $(document).ready(() => {
-
-        console.log("start")
-        getAllProduct()
-
-        $(document).on("click", "#btndelete", function (e) {
-            let id = e.target.name;
-            const url = '/api/products/' + id;
-
-            $.ajax({
-                url: url,
-                type: "DELETE",
-                contentType: "application/json",
-                success: (result) => {
-                    console.log("Succesfully Deleted");
-
-                    $("#showproduct").html("");
-                    window.location.reload(true);
-
-                },
-                error: () => {
-                    console.log("something has gone wrong");
-                }
-            });
-
-
-      
+        console.log("start");
+        getAllProduct();  // Load all products initially
     });
-
-
-
 </script>

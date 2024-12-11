@@ -1,6 +1,4 @@
-﻿<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+﻿
 
 @{
     ViewBag.Title = "ShowCart";
@@ -24,7 +22,9 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
 <script>
     // Function to render cart items
     let addToCart = (data) => {
@@ -33,7 +33,7 @@
 
         $.each(data.items, (index, item) => {
             $.ajax({
-                url: `http://localhost:5218/api/products/${item.productId}`,
+                url: `http://localhost:52741/api/products/${item.productId}`,
                 type: "GET",
                 success: function (product) {
                     var cardHtml = `
@@ -79,9 +79,9 @@
     // Load cart from API
     function loadCart() {
         $.ajax({
-            url: "http://localhost:5218/Cart/Index", // Absolute URL
+            url: "http://localhost:52741/Cart/Index", // Absolute URL
             type: "GET",
-            xhrFields: { withCredentials: true },
+
             success: function (data) {
                 console.log(data);
                 addToCart(data);
@@ -98,7 +98,7 @@
         var productId = $(this).data('product-id');
 
         $.ajax({
-            url: `http://localhost:5218/Cart/DeleteById/${productId}`, // Absolute URL
+            url: `http://localhost:52741/Cart/DeleteById/${productId}`, // Absolute URL
             type: 'DELETE',
             xhrFields: { withCredentials: true },
             success: function (response) {
@@ -129,7 +129,7 @@
     // Update product quantity
     function updateQuantity(productId, change) {
         $.ajax({
-            url: `http://localhost:5218/Cart/PutById/${productId}`, // Absolute URL
+            url: `http://localhost:52741/Cart/PutById/${productId}`, // Absolute URL
             type: 'PUT',
             xhrFields: { withCredentials: true },
             data: JSON.stringify(change),
@@ -147,7 +147,7 @@
     // Clear cart
     $('#clear-cart-btn').click(function () {
         $.ajax({
-            url: "http://localhost:5218/Cart/DeleteAll", // Absolute URL
+            url: "http://localhost:52741/Cart/DeleteAll", // Absolute URL
             type: 'DELETE',
             xhrFields: { withCredentials: true },
             success: function (response) {
@@ -165,7 +165,7 @@
     // Buy Now button click handler
     $('#buy-now-btn').click(function () {
         $.ajax({
-            url: "http://localhost:5218/api/checkout", // Absolute URL
+            url: "http://localhost:52741/api/checkout", // Absolute URL
             type: 'POST',
             xhrFields: { withCredentials: true },
             success: function (response) {

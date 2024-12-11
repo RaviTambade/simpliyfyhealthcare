@@ -316,27 +316,36 @@
 
             // Retrieve product data from the button's data attributes
             var productData = {
-                id: $(this).data('id'),
-                title: $(this).data('title'),
-                price: $(this).data('price'),
-                description: $(this).data('description'),
-                imageUrl: $(this).data('imageurl'),
-                stock: $(this).data('stock'),
-                category: $(this).data('category'),
-                brand: $(this).data('brand')
-            };
+               
+              
+                
+              
+              
+             
+                Brand: $(this).data('brand'),
+                   Category: $(this).data('category'),
+                Description: $(this).data('description'),
+                Id: $(this).data('id'),
+                ImageUrl: $(this).data('imageurl'),
+                Price: $(this).data('price'),
+                Stock: $(this).data('stock'),
 
+                Title: $(this).data('title')
+            };
+            console.log(productData);
             // Add the product to the shopping cart via an AJAX POST request
             $.ajax({
                 url: 'http://localhost:52741/cart/AddToCart',
                 method: 'POST',
-
+                xhrFields: {
+                    withCredentials: true  // Ensures cookies are sent with the request
+                },
                 contentType: 'application/json',
                 data: JSON.stringify(productData),
                 success: function (response) {
                     alert(response.message); // Show success message
                 },
-                error: function (xhr, status, error) {
+                error: function (error) {
                     console.error("Error adding product to cart:", error);
                     alert("Failed to add product to cart.");
                 }
