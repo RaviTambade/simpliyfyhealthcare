@@ -94,6 +94,51 @@ namespace PaymentProcessing.Repositories.Connected
             return payment;
         }
 
+        public async Task<double> GetTotalRevenueForAccountAsync(int month, string accountNumber)
+        {
+            SqlConnection conn = new SqlConnection(_conString);
+
+            // Query to sum up the payment amounts for the specified account number in the given month
+            string query = @"
+        SELECT SUM(p.PaymentAmount) AS TotalRevenue
+        FROM VsPayments p
+        JOIN VsOrders o ON p.OrderId = o.Id
+        JOIN VsAccounts a ON o.CustomerId = a.UserId
+        WHERE a.AccountNumber = @AccountNumber
+        AND MONTH(p.PaymentDate) = @Month
+        GROUP BY a.AccountNumber";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            // Add parameters to avoid SQL injection
+            cmd.Parameters.AddWithValue("@AccountNumber", accountNumber);
+            cmd.Parameters.AddWithValue("@Month", month);
+
+            double totalRevenue = 0;
+
+            try
+            {
+                await conn.OpenAsync();
+                var result = await cmd.ExecuteScalarAsync();
+
+                if (result != DBNull.Value)
+                {
+                    totalRevenue = Convert.ToDouble(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+            finally
+            {
+                await conn.CloseAsync();
+            }
+
+            return totalRevenue;
+        }
+
+
         // Fetch payments for a specific customer by their CustomerId
         public async Task<List<Payment>> GetPaymentsByCustomerIdAsync(int customerId)
         {
