@@ -180,7 +180,10 @@ namespace Shipment.Repositories.ORM
                 var dbShipments = await context.Shipments
                     .Where(s => s.OrderId == orderId)
                     .ToListAsync();
+<<<<<<< HEAD
+=======
 
+>>>>>>> 5cb31ec77b5792d08c1cbffb46d7aea0ac1a310e
                 return dbShipments[0]?.Status ?? "Shipment status not found.";
             }
         }
