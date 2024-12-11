@@ -51,12 +51,5 @@ namespace PaymentProcessing.Services
             return updateSuccess;
         }
 
-<<<<<<< HEAD
-
-
-      
-
-=======
->>>>>>> 6bd29ac2ec0aa4465909045026c5612f5d505d3f
     }
 }
