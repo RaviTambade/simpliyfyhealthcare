@@ -19,5 +19,11 @@ namespace VijaySalesPortal.Controllers
         {
             return View();
         }
+
+        //SalesViewDetails
+        public IActionResult SalesViewDetails()
+        {
+            return View();
+        }
     }
 }
