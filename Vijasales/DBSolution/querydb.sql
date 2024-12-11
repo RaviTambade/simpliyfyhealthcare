@@ -36,6 +36,22 @@ SELECT * FROM VsProducts WHERE Brand = 'Samsung';
 SELECT * FROM VsProducts WHERE Category = 'TV' AND Brand = 'Vu';
 
 
+---9. Trigger for price changes
+CREATE TRIGGER after_product_priceupdate
+ON VsProducts
+AFTER UPDATE
+AS
+BEGIN
+    -- Insert a record into the VsPriceChanges table
+    INSERT INTO VsPriceChanges (ProductId, OldPrice, NewPrice, ChangeDate)
+    SELECT d.id, d.price, i.price, GETDATE()
+    FROM deleted d
+    JOIN inserted i ON d.id = i.id
+    WHERE d.price <> i.price;
+END;
+GO  -- This is required to separate the trigger creation from other SQL statements
+
+
 
 ----------------- ORDERS AND OREDRSITEMS QUERIES ---------------
 -- 1. Retrieve Users with More Than One Order
