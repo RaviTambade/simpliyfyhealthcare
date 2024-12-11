@@ -13,6 +13,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Shipment.Repositories.ORM
 {
+    
     public class ShipmentRepository : IShipmentRepository
     {
         public async Task<bool> CreateAsync(Delivery shipment)
