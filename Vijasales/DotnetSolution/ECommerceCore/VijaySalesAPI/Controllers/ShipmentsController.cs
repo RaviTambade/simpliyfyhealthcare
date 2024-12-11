@@ -47,8 +47,19 @@ namespace VijaySalesAPI.Controllers
         public async Task<IActionResult> GetOrderDeliveryStatus(int orderId)
         {
             string status = await _shipmentService.GetStatusByOrderIdAsync(orderId);
-          
+            //var obj = new
+            //{
+            //    orderId = orderId,
+            //    status = status,
+            //};
             return Ok(status);
+        }
+
+        [HttpGet("customer/{customerId:int}")]
+        public async Task<IActionResult> GetShipmentsByCustomerId(int customerId)
+        {
+            List<ShipmentDetail> list = await _shipmentService.GetByCustomerId(customerId);
+            return Ok(list);
         }
 
 
@@ -63,7 +74,6 @@ namespace VijaySalesAPI.Controllers
 
             List<Delivery> deliverylistbydate = await _shipmentService.GetByDateAsync(date);
             return Ok(deliverylistbydate);
-
         }
 
         [HttpGet("dates/{startDate}/{endDate}")]

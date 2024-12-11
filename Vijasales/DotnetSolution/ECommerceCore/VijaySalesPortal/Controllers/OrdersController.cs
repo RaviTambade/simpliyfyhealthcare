@@ -10,12 +10,18 @@ namespace VijaySalesPortal.Controllers
         }
 
 
-        public IActionResult OrderDetails() 
+        public IActionResult OrderDetails(int Id) 
         {
             return View();
         }
 
         public IActionResult SalesOrderDetails()
+        {
+            return View();
+        }
+
+        //SalesViewDetails
+        public IActionResult SalesViewDetails()
         {
             return View();
         }

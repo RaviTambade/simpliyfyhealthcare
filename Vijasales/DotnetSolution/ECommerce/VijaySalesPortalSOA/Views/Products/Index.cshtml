@@ -1,0 +1,375 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+<style>
+
+    .dropdown-submenu {
+        position: relative;
+    }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: 0;
+            display: none;
+        }
+
+        .dropdown-submenu:hover .dropdown-menu {
+            display: block;
+        }
+
+
+    .dropdown-item {
+        padding: 10px 20px;
+    }
+
+    .product-image {
+        height: 200px;
+        object-fit: contain;
+        width: 100%;
+    }
+
+    .card {
+        height: 100%;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .btn {
+        margin-top: auto;
+    }
+
+    .view-details-btn {
+        margin-top: 10px;
+        background-color: #28a745;
+        color: white;
+    }
+
+        .view-details-btn:hover {
+            background-color: #218838;
+        }
+
+    .add-to-cart-btn {
+        margin-top: 10px;
+        background-color: #007bff !important;
+        color: white !important;
+        border: none;
+        transition: none;
+    }
+
+        .add-to-cart-btn:hover {
+            background-color: #007bff !important;
+            color: white !important;
+        }
+
+        .add-to-cart-btn:focus {
+            outline: none !important;
+        }
+
+    .add-to-cart-btn {
+        background-color: #007bff !important;
+        color: white !important;
+        border: none;
+    }
+
+        .add-to-cart-btn:hover {
+            background-color: #007bff !important;
+            color: white !important;
+        }
+
+    .view-details-btn {
+        background-color: transparent;
+        color: #28a745;
+        border: 1px solid #28a745;
+    }
+
+        .view-details-btn:hover {
+            background-color: #28a745;
+            color: white;
+            border: 1px solid #218838;
+        }
+</style>
+
+<div class="row">
+
+    <div class="col-md-2 bg-light p-3 h-100">
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+            </button>
+            <ul class="dropdown-menu w-100">
+
+                <li class="dropdown-submenu">
+                    <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" id="btnSmartphone">SmartPhone</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Apple</a></li>
+                        <li><a class="dropdown-item" href="#">Samsung</a></li>
+                        <li><a class="dropdown-item" href="#">OnePlus</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown-submenu">
+                    <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" id="btnLaptop">Laptop</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Dell</a></li>
+                        <li><a class="dropdown-item" href="#">HP</a></li>
+                        <li><a class="dropdown-item" href="#">Lenovo</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown-submenu">
+                    <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" id="btnTV">TV</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">LG</a></li>
+                        <li><a class="dropdown-item" href="#">Sony</a></li>
+                        <li><a class="dropdown-item" href="#">Samsung</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+
+        <div class="row d-flex justify-content-center my-3">
+            <div class="col-md-6 d-flex">
+
+                <input type="text" class="form-control" placeholder="Search for products..." name="search" id="textSearch">
+
+                <button class="search-button btn btn-primary ms-2" type="button" id="btnSearch">Search</button>
+
+                <button id="toggleViewBtn" class="btn btn-light ms-2">
+                    <i class="fas fa-th-large"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="productLayout">
+
+            <div id="gridView" class="view" style="display: block;">
+                <div id="productGrid" class="container">
+                    <div class="row" id="productGridRow">
+                    </div>
+                </div> <!-- Grid View  -->w
+            </div>
+            <div id="cardView" class="view" style="display: none;">
+                <ul class="list-unstyled">
+                </ul> <!-- Card View  -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let gridCard = (data) => {
+        // Generate the product HTML for all cards and update the product grid
+        var productHtml = '';
+        data.forEach(function (card) {
+            
+                productHtml += `
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                        <div class="card h-100">
+
+                            <img src=${card.ImageUrl} class="card-img-top product-image" alt="${card.Title}" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${card.Title}</h5>
+                                <p class="card-text">₹ ${card.Price}</p>
+                                <!-- View Details Button (Green) -->
+                                <a href="/Products/Details/${card.Id}" class="btn view-details-btn mt-auto">View Details</a>
+                                <!-- Add to Cart Button (Blue) -->
+                                <button class="btn add-to-cart-btn mt-2"
+                                        data-id="${card.Id}"
+                                        data-title="${card.Title}"
+                                        data-price="${card.Price}"
+                                        data-description="${card.Description}"
+                                        data-imageUrl="${card.ImageUrl}"
+                                        data-stock="${card.Stock}"
+                                        data-category="${card.Category}"
+                                        data-brand="${card.Brand}">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        });
+
+        // Update the product grid in the DOM with the generated HTML
+        $('#productGridRow').html(productHtml);
+    };
+
+    let listCard = (products) => {
+        $('ul.list-unstyled').html('');  // Clear the list before appending
+        $.each(products, (index, item) => {
+            var cardHtml = `
+                                    <li class="d-flex justify-content-center">
+                                        <div class="card mb-3 w-75">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                    <img src="${item.ImageUrl}" class="img-fluid rounded-start" alt="${item.Title}">
+                                                </div>
+                                                <div class="col-md-8 d-flex align-items-center">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">${item.Title}</h5>
+                                                        <p class="card-text text-secondary">Rs ${item.Price}</p>
+
+                                                        <!-- More Details Button (Only Green on Hover) -->
+                                                        <a class="w-25 btn view-details-btn btn-sm btn-soft-secondary rounded-5" href="/Products/Details/${item.id}">More Details</a>
+
+
+                                                        <!-- Add to Cart Button (Always Blue) -->
+                                                        <a class=" w-25 btn add-to-cart-btn btn-sm btn-sm-wide rounded-5"
+                                                           href="#"
+                                                           data-id="${item.Id}"
+                                                           data-title="${item.Title}"
+                                                           data-price="${item.Price}"
+                                                           data-description="${item.Description}"
+                                                           data-imageUrl="${item.ImageUrl}"
+                                                           data-stock="${item.Stock}"
+                                                           data-category="${item.Category}"
+                                                           data-brand="${item.Brand}">
+                                                           Add to Cart
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>`;
+            $('ul.list-unstyled').append(cardHtml);
+        });
+    }
+
+    let loadAllProducts = () => {
+        $.ajax({
+            url: "http://localhost:52741/api/products",
+            type: 'GET',
+
+            success: function (data) {
+                console.log(data);
+                gridCard(data)
+                listCard(data)
+            },
+            error: function () {
+                alert("An error occurred while loading products.");
+            }
+        });
+    }
+
+    let loadProductsByCat = (category) => {
+        $.ajax({
+            url: "http://localhost:52741/api/products/category/" + category,
+            type: 'GET',
+
+            success: function (data) {
+                gridCard(data)
+                listCard(data)
+            },
+            error: function () {
+                alert("An error occurred while loading categories.");
+            }
+        });
+    }
+    $(document).ready(() => {
+
+
+        const toggleViewBtn = document.getElementById('toggleViewBtn');
+        const gridView = document.getElementById('gridView');
+        const cardView = document.getElementById('cardView');
+        // Set initial state (Grid view)
+        let isGridView = true;
+        toggleViewBtn.addEventListener('click', () => {
+            // Toggle the view state
+            isGridView = !isGridView;
+            // Toggle visibility
+            if (isGridView) {
+                gridView.style.display = 'block'; // Show grid view
+                cardView.style.display = 'none';  // Hide card view
+                toggleViewBtn.innerHTML = '<i class="fas fa-th-large"></i>'; // Set Grid view icon
+            } else {
+                cardView.style.display = 'block'; // Show card view
+                gridView.style.display = 'none';  // Hide grid view
+                toggleViewBtn.innerHTML = '<i class="fas fa-list"></i>'; // Set List view icon
+            }
+        });
+
+
+        loadAllProducts()
+
+        // Handle Add to Cart button click
+        $(document).on('click', '.add-to-cart-btn', function (e) {
+            e.preventDefault();  // Prevent the default anchor action
+
+            // Retrieve product data from the button's data attributes
+            var productData = {
+               
+              
+                
+              
+              
+             
+                Brand: $(this).data('brand'),
+                   Category: $(this).data('category'),
+                Description: $(this).data('description'),
+                Id: $(this).data('id'),
+                ImageUrl: $(this).data('imageurl'),
+                Price: $(this).data('price'),
+                Stock: $(this).data('stock'),
+
+                Title: $(this).data('title')
+            };
+            console.log(productData);
+            // Add the product to the shopping cart via an AJAX POST request
+            $.ajax({
+                url: 'http://localhost:52741/cart/AddToCart',
+                method: 'POST',
+                xhrFields: {
+                    withCredentials: true  // Ensures cookies are sent with the request
+                },
+                contentType: 'application/json',
+                data: JSON.stringify(productData),
+                success: function (response) {
+                    alert(response.message); // Show success message
+                },
+                error: function (error) {
+                    console.error("Error adding product to cart:", error);
+                    alert("Failed to add product to cart.");
+                }
+            });
+        });
+
+        //function to route btn category
+        $("#btnSmartphone").click(() => {
+            loadProductsByCat("Smartphone")
+        });
+
+        $("#btnLaptop").click(() => {
+            loadProductsByCat("Laptop")
+        });
+
+        $("#btnTV").click(() => {
+            loadProductsByCat("TV")
+        });
+
+        $('#btnSearch').click(() => {
+            let searchQuery = $("#textSearch").val();
+            console.log(searchQuery)
+            loadProductsByCat(searchQuery)
+        });
+    });
+
+</script>

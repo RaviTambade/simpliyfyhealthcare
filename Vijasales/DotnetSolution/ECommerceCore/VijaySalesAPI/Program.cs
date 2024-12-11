@@ -137,10 +137,5 @@ app.UseHttpsRedirection();
 app.UseAuthentication();  // Make sure this comes before UseAuthorization
 app.UseAuthorization();
 app.MapControllers();
+
 app.Run();
-
-
-
-
-
-

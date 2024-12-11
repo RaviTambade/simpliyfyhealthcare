@@ -28,7 +28,7 @@ namespace VijaySalesSOA
         {
             //this.Request.RequestContext.HttpContext.Session.Add("cart", new Cart());
             Cart theCart = new Cart();
-            theCart.Items.Add(new Items { ProductId = 12, Price = 54, Quantity = 765 });
+            
             this.Session.Add("cart", theCart);
         }
     }

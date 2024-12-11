@@ -1,4 +1,4 @@
-﻿using Shipment.Entities;
+using Shipment.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Shipment.Repositories.ORM
 {
@@ -130,50 +131,57 @@ namespace Shipment.Repositories.ORM
             }
         }
 
-
         public async Task<ShipmentDetail> GetByIdAsync(int shipmentId)
         {
 
-                ShipmentDetail shipmentDetail = null;
-                using (var context = new ShipmentContext(_configuration))
-                {
-                    // Define the stored procedure query with the necessary parameter
-                    var query = @"EXEC GetShipmentDetails @ShipmentId";
+            ShipmentDetail shipmentDetail = null;
+            using (var context = new ShipmentContext(_configuration))
+            {
+                // Define the stored procedure query with the necessary parameter
+                var query = @"EXEC GetShipmentDetails @ShipmentId";
+                var param = new SqlParameter("@ShipmentId", shipmentId);
 
-
-                    var param = new SqlParameter("@ShipmentId", shipmentId);
-
-         
-
-
-
-                    shipmentDetail =  context.Set<ShipmentDetail>()
-                               .FromSqlRaw(query, param)
-                               .AsEnumerable()
-                               .FirstOrDefault();
-                }
-
-                return shipmentDetail;
-
-
-
+                shipmentDetail = context.Set<ShipmentDetail>()
+                           .FromSqlRaw(query, param)
+                           .AsEnumerable()
+                           .FirstOrDefault();
             }
+
+            return shipmentDetail;
+
+        }
+
+        public async Task<List<ShipmentDetail>> GetByCustomerId(int customerId)
+        {
+            List<ShipmentDetail> shipmentDetails = null;
+
+            using (var context = new ShipmentContext(_configuration))
+            {
+                var query = @"EXEC GetShipmentDetails @ShipmentId=NULL, @CustomerId=@CustomerId";
+
+                // Create the parameters for the stored procedure
+                var shipmentParam = new SqlParameter("@ShipmentId", DBNull.Value);  // Null for ShipmentId
+                var customerParam = new SqlParameter("@CustomerId", customerId);    // Valid CustomerId
+
+                // Execute the query and retrieve the shipment details
+                shipmentDetails = await context.Set<ShipmentDetail>()
+                                                .FromSqlRaw(query, shipmentParam, customerParam)
+                                                .ToListAsync();
+            }
+
+            return shipmentDetails;
+        }
+
 
         public async Task<string> GetStatusByOrderIdAsync(int orderId)
         {
             using (var context = new ShipmentContext(_configuration))
             {
-                var query = @"EXEC GetShipmentDetails @OrderId";
- 
-                var param = new SqlParameter("@OrderId", orderId);
- 
-                var result = context.Set<ShipmentDetail>()
-                            .FromSqlRaw(query, param)
-                            .AsEnumerable()  
-                            .FirstOrDefault();
- 
-                // Assuming ShipmentDetail has a Status property
-                return result?.DeliveryStatus ?? "Shipment status not found.";
+                var dbShipments = await context.Shipments
+                    .Where(s => s.OrderId == orderId)
+                    .ToListAsync();
+
+                return dbShipments[0]?.Status ?? "Shipment status not found.";
             }
         }
 
@@ -227,7 +235,6 @@ namespace Shipment.Repositories.ORM
                 }
             }
 
-
             return status;
         }
 
@@ -249,5 +256,4 @@ namespace Shipment.Repositories.ORM
 
         }
     }
-    }
-
+}

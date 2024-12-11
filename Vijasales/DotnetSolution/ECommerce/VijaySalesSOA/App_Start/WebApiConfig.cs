@@ -15,7 +15,7 @@ namespace VijaySalesSOA
             // Web API configuration and services
 
             // Web API routes
-            var cors = new EnableCorsAttribute("*", "*", "*");  // Allow all origins, headers, and methods
+            var cors = new EnableCorsAttribute("http://localhost:49997", "*", "*");  // Allow all origins, headers, and methods
             config.EnableCors(cors);
             config.MapHttpAttributeRoutes();
 
