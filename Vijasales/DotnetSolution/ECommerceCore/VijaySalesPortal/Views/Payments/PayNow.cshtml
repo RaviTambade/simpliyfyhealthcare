@@ -3,11 +3,18 @@
     Layout = "_Layout";  // Assuming you have a layout page
 
 }
+@{
+
+    var orderId = ViewData["OrderId"];
+
+}
 <script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
 
 <div class="container mt-5">
     <h2 class="text-center mb-4">Payment Processing</h2>
+    <h2 id="orderDetail"></h2>
+    <input type="hidden" name="orderid" value="@orderId" />
     <!-- Payment Method Toggle -->
     <div class="form-group mb-4">
         <label for="paymentMethod">Select Payment Method</label>
@@ -89,7 +96,165 @@
 
 <script>
 
+    const url = window.location.pathname;
+    const parts = url.split('/');
+    const urlId = parts[parts.length - 1];
+
+    var loadorderdetails = () => {
+        var url = 'http://localhost:5218/api/orders/' + urlId;
+
+        $.ajax({
+
+            url: url, // Replace with your API URL
+
+            type: 'GET',
+
+            xhrFields: {
+
+                withCredentials: true  // Ensures cookies are sent with the request
+
+            },
+
+            dataType: 'json',
+
+            success: function (data) {
+                console.log(data);
+                $("#orderDetail").html("Pay Amount : " + data.totalAmount);
+
+            },
+
+            error: function (xhr, status, error) {
+
+                // Handle error
+
+                alert('An error occurred: ' + error);
+
+            }
+
+        });
+    }
+
+    var deleteShoppingCart = () => {
+        $.ajax({
+            url: "http://localhost:5218/api/shoppingcart",
+            type: 'DELETE',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (response) {
+                alert('Cart cleared successfully!');
+                loadCart();
+                $('#total-amount').text('Total: Rs 0');
+            },
+            error: function (error) {
+                console.error('Error clearing the cart:', error);
+                alert('Error clearing the cart.');
+            }
+        });
+    }
+
+    var changeOrderStatus = () => {
+        var url = 'http://localhost:5218/api/orders/' + urlId;
+
+        $.ajax({
+
+            url: url, // Replace with your API URL
+
+            type: 'GET',
+
+            xhrFields: {
+
+                withCredentials: true  // Ensures cookies are sent with the request
+
+            },
+
+            dataType: 'json',
+
+            success: function (data) {
+                console.log(data);
+                updateOrderStatus(data);
+            },
+
+            error: function (xhr, status, error) {
+
+                // Handle error
+
+                alert('An error occurred: ' + error);
+
+            }
+
+        });
+    }
+
+    var updateOrderStatus = (data) => {
+        var url = 'http://localhost:5218/api/orders/' + urlId;
+        data.status = 'Completed';
+        $.ajax({
+
+            url: url, // Replace with your API URL
+            contentType: "application/json",
+            type: 'PUT',
+            data: JSON.stringify(data),
+            xhrFields: {
+
+                withCredentials: true  // Ensures cookies are sent with the request
+
+            },
+
+            dataType: 'json',
+
+            success: function (data) {
+                console.log(data);
+                
+            },
+
+            error: function (xhr, status, error) {
+
+                // Handle error
+
+                alert('An error occurred: ' + error);
+
+            }
+
+        });
+    }
+
+    // Disable payment method toggle when verification is triggered
+
+    function disablePaymentMethodToggle() {
+
+        $("input[name='paymentMethod']").hide();
+        $("label[name='paymentMethod']").hide();
+
+    }
+
+    // Enable payment method toggle after verification is successful
+
+    function enablePaymentMethodToggle() {
+
+        $("input[name='paymentMethod']").show();
+
+    }
+
+    // Disable Pay Now button
+
+    function disablePayNowButton() {
+
+        $("#payNowButton").prop("disabled", true);
+
+    }
+
+    // Enable Pay Now button
+
+    function enablePayNowButton() {
+
+        $("#payNowButton").prop("disabled", false);
+
+    }
+
     $(document).ready(function () {
+
+        loadorderdetails();
 
         // Initially show the Credit/Debit Card form
 
@@ -139,43 +304,9 @@
 
             });
 
-       
         // Trigger the change event on page load to show the correct form
 
         $("input[name='paymentMethod']:checked").trigger("change");
-
-        // Disable payment method toggle when verification is triggered
-
-        function disablePaymentMethodToggle() {
-
-            $("input[name='paymentMethod']").hide();
-            $("label[name='paymentMethod']").hide();
-
-        }
-
-        // Enable payment method toggle after verification is successful
-
-        function enablePaymentMethodToggle() {
-
-            $("input[name='paymentMethod']").show();
-
-        }
-
-        // Disable Pay Now button
-
-        function disablePayNowButton() {
-
-            $("#payNowButton").prop("disabled", true);
-
-        }
-
-        // Enable Pay Now button
-
-        function enablePayNowButton() {
-
-            $("#payNowButton").prop("disabled", false);
-
-        }
 
         // Verify Card Action
         $("#verifyCard").click(function () {
@@ -356,15 +487,15 @@
         // Handle form submission (for now, prevent actual submission)
         $("#paymentForm").submit(function (e) {
 
-                        e.preventDefault();  // Prevent the form from submitting normally
+            e.preventDefault();  // Prevent the form from submitting normally
 
-                        // Gather form data
+            // Gather form data
 
             let radioSelection = $("input[name='paymentMethod']:checked").val();
             if (radioSelection == "creditDebitCard") {
                 var paymentData = {
 
-                    orderId: 22,  // Get the orderId passed from the view
+                    orderId: urlId,  // Get the orderId passed from the view
 
                     accountNumber: $("#cardAccountNumber").val(),
 
@@ -377,7 +508,7 @@
             else if(radioSelection == "Netbanking") {
                 var paymentData = {
 
-                    orderId: 22,  // Get the orderId passed from the view
+                    orderId: urlId,  // Get the orderId passed from the view
 
                     accountNumber: $("#cardAccountNumber").val(),
 
@@ -387,52 +518,50 @@
 
                 };
             }
-                       
-
-
-                        // Make AJAX request to PaymentController's PayNow method
+             
+            // Make AJAX request to PaymentController's PayNow method
             console.log(paymentData);
 
-                        $.ajax({
+            $.ajax({
 
                 url: 'http://localhost:5218/api/payments/paynow',  // Assuming 'PayNow' API endpoint in PaymentController
 
-                            type: 'POST',
+                type: 'POST',
 
-                            contentType: 'application/json',
+                contentType: 'application/json',
 
-                            data: JSON.stringify(paymentData),
+                data: JSON.stringify(paymentData),
 
-                            success: function (response) {
+                success: function (response) {
 
-                                if (response.success) {
+                    if (response.success) {
 
-                                    alert("Payment successful!");
+                        alert("Payment successful!");
+                        deleteShoppingCart();
+                        changeOrderStatus();
+                        alert("Status Change");
+                        //window.location.href = '/ Payments / Success/ ' + orderid;  // Example redirection
 
-                                    // Redirect to a success page or confirmation page
+                    } else {
 
-                                    window.location.href = '/payment/success';  // Example redirection
+                        alert("Payment failed: " + response.message);
 
-                                } else {
+                    }
 
-                                    alert("Payment failed: " + response.message);
+                },
 
-                                }
+                error: function (xhr, status, error) {
 
-                            },
+                    alert("An error occurred during payment processing: " + error);
 
-                            error: function (xhr, status, error) {
+                }
 
-                                alert("An error occurred during payment processing: " + error);
-
-                            }
-
-                        });
-
+            });
 
         });
-
+        
     });
+   
 </script>
 
 

@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+
+    .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+    }
+
+    .bd-mode-toggle {
+        z-index: 1500;
+    }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+
+    .mainContainer {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .rightBox {
+        width: 100%;
+        height: 100%;
+    }
+
+    #orderDiv {
+        background-color: lightgreen;
+    }
+
+    #settingDiv {
+        background-color: blue;
+    }
+
+    #statDiv {
+        background-color: black;
+    }
+
+    #paymentDiv {
+        background-color: royalblue;
+    }
+
+    .content {
+        display: none; /* Hide all divs by default */
+    }
+
+        .content.active {
+            display: block;
+            /* Display the active div */
+        }
+</style>
+<link rel="stylesheet" href="~/Content/dashboard.css" />
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary"
+     style="width: 280px; height: 90vh">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="#"
+               class="nav-link text-dark"
+               aria-current="page"
+               onclick="showDiv('orderDiv')">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#home" />
+                </svg>
+                Your orders
+            </a>
+        </li>
+        <li>
+            <a href="#"
+               class="nav-link link-body-emphasis"
+               onclick="showDiv('settingDiv')">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2" />
+                </svg>
+                Settings
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-body-emphasis" onclick="showDiv('statDiv')">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#table" />
+                </svg>
+                Stats
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link link-body-emphasis" onclick="showDiv('paymentDiv')">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#grid" />
+                </svg>
+                Payment Mehods
+            </a>
+        </li>
+        <li>
+            <hr />
+            <a href="#" class="nav-link link-body-emphasis">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="14"
+                     height="14"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="me-2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Logout
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="mainContainer">
+    <div class="active content rightBox" id="orderDiv">
+
+    </div>
+    <div class="content rightBox" id="settingDiv"></div>
+    <div class="content rightBox" id="statDiv">
+    </div>
+    <div class="content rightBox" id="paymentDiv">
+    </div>
+</div>
+
+<script>
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+
+        (() => {
+            'use strict'
+            const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(tooltipTriggerEl => {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
+
+
+        function showDiv(divId) {
+
+            console.log(divId);
+            // Hide all divs
+            const divs = document.querySelectorAll(".content");
+            divs.forEach((div) => div.classList.remove("active"));
+
+            // Show the selected div
+            const selectedDiv = document.getElementById(divId);
+            if (selectedDiv) {
+                selectedDiv.classList.add("active");
+            }
+        }
+    })
+</script>

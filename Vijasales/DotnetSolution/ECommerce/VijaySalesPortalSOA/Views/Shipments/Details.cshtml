@@ -47,8 +47,8 @@
                         <label class="form-check-label" for="Delivered">Delivered</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" id="Canceled" name="DeliveryStatus" value="Canceled" />
-                        <label class="form-check-label" for="Canceled">Canceled</label>
+                        <input type="radio" class="form-check-input" id="Cancelled" name="DeliveryStatus" value="Cancelled" />
+                        <label class="form-check-label" for="Cancelled">Cancelled</label>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
 </div>
 
 <script>
-    let apiUrl = 'http://localhost:5218/api/shipments';
+    let apiUrl = 'http://localhost:52741/api/shipments';
 
     const PopulateShipmentDetails = (shipmentId) => {
         console.log(`${apiUrl}/${shipmentId}`)
@@ -77,7 +77,7 @@
                 // Populate the page with the fetched shipment data
                 $('#orderid').append(response.OrderId);
                 $('#customername').append(response.CustomerName);
-                $('#customeraddress').append(response.CustomerAddress);
+                $('#customeraddress').append(response.cCstomerAddress);
                 $('#totalamount').append(response.TotalAmount);
                 $('#deliverydate').append(new Date(response.DeliveryDate).toLocaleDateString()); // Format the date
 
@@ -113,8 +113,9 @@
     }
 
     $(document).ready(() => {
-        const shipmentId = window.location.pathname.split('/').pop(); // e.g. /shipments/details/3 -> 3
 
+        const shipmentId = window.location.pathname.split('/').pop(); // e.g. /shipments/details/3 -> 3
+        console.log(`${apiUrl}/${shipmentId}`)
         PopulateShipmentDetails(shipmentId);
 
         $('#btn-update-status').click(() => {
