@@ -138,10 +138,7 @@ namespace Shipment.Repositories.ORM
                 {
                     // Define the stored procedure query with the necessary parameter
                     var query = @"EXEC GetShipmentDetails @ShipmentId";
-<<<<<<< HEAD
-=======
 
->>>>>>> 14b8b1af733866818b844a4453c6a8ec250a2a57
                     var param = new SqlParameter("@ShipmentId", shipmentId);
 
 
