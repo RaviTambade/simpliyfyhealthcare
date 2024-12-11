@@ -22,6 +22,8 @@ namespace Shipment.Repositories
 
         Task<string> GetStatusByOrderIdAsync(int orderId);
 
+        Task<List<ShipmentDetail>> GetByCustomerId(int customerId);
+
         Task<bool> CreateAsync(Delivery shipment);
 
         Task<bool> UpdateAsync(Delivery shipment);
