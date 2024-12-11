@@ -141,11 +141,7 @@
         </div>
         <br />
         <div class="dropdown">
-<<<<<<< HEAD
             <button class="btn btn-primary dropdown-toggle w-100 btn-dropdown btn-Allbrands" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-=======
-            <button class="btn btn-primary dropdown-toggle w-100 btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
                 Brand
             </button>
             <ul class="dropdown-menu ul-brand w-100">
@@ -171,10 +167,6 @@
         </div>
 
         <!-- Code for productLayout-->
-<<<<<<< HEAD
-=======
-        <div id="productLayout">
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
 
         <div id="productLayout">
             <div id="gridView" class="view" style="display: block;">
@@ -183,10 +175,7 @@
                         <!-- Products will be dynamically inserted here -->
                     </div>
                 </div> <!-- Grid View  -->
-<<<<<<< HEAD
 
-=======
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
             </div>
             <div id="cardView" class="view" style="display: none;">
                 <ul class="list-unstyled">
@@ -205,7 +194,6 @@
 
 
 <script>
-<<<<<<< HEAD
     // Declare global variables
     let currentPage = 1;
     let productsPerPage = 6;
@@ -218,13 +206,6 @@
 
         let productHtml = '';
         productData.forEach(function (card) {
-=======
-    // function for dynaiclly rendering gridLayout
-    let gridCard = (data) => {
-        // Generate the product HTML for all cards and update the product grid
-        var productHtml = '';
-        data.forEach(function (card) {
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
             productHtml += `
                         <div class="col-12 col-sm-6 col-md-4 mb-4">
                             <div class="card h-100">
@@ -255,7 +236,6 @@
         $('#productGridRow').html(productHtml);
     }
 
-<<<<<<< HEAD
     // Function to display products for a given page
     let displayPage = (page) => {
         totalPages = Math.ceil(data.length / productsPerPage);
@@ -307,8 +287,6 @@
         displayPage(currentPage);
     }
 
-=======
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
     //function for dynamically rendering listCard layout
     let listCard = (products) => {
         $('ul.list-unstyled').html('');  // Clear the list before appending
@@ -353,28 +331,17 @@
 
     //function to load all products
     let loadAllProducts = () => {
-<<<<<<< HEAD
 
-=======
-        console.log("hello")
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
         $.ajax({
             url: "http://localhost:5218/api/products",
             type: 'GET',
             xhrFields: {
                 withCredentials: true  // Ensures cookies are sent with the request
             },
-<<<<<<< HEAD
             success: function (products) {
                 currentPage = 1;
                 data = products;
                 displayPage(currentPage);
-=======
-            success: function (data) {
-                console.log(data)
-                gridCard(data)
-                listCard(data)
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
             },
             error: function () {
                 alert("An error occurred while loading products.");
@@ -383,11 +350,7 @@
     }
 
     // function to load products by categories
-<<<<<<< HEAD
     let loadProductsByCat = () => {
-=======
-    let loadProductsByCat = (category) => {
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
         $.ajax({
             url: "http://localhost:5218/api/products/category/" + category,
             type: 'GET',
@@ -405,10 +368,7 @@
         });
     }
 
-<<<<<<< HEAD
     //function to display products categories
-=======
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
     let displayCategory = (categories) => {
         let categoryHtml = '';
         // Loop through categories and add them to the dropdown
@@ -418,59 +378,16 @@
                                 <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" data-category="${category}">
                                     ${category}
                                 </button>
-<<<<<<< HEAD
 
-=======
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
                             </li>
                         `;
         });
         // Append to the dropdown
         $('.ul-category').html(categoryHtml);
 
-<<<<<<< HEAD
     }
 
     //function to load product categories
-=======
-        console.log("added category")
-        categories.forEach(function (category) {
-            loadDdBrand(category)
-        });
-
-
-    }
-
-    let displayBrands = (category, brands) => {
-        let brandHtml = '';
-        brands.forEach(function (brand) {
-            brandHtml += `<li class=><button class="dropdown-item dropdown-toggle" type="button" name="btn-brands" data-brand="${brand}">${brand}</button></li>`;
-        });
-        // Append the brands to the corresponding dropdown
-        $(`#brands-${category}`).html(brandHtml);
-
-
-    }
-
-    let loadDdBrand = (category) => {
-        //console.log(category)
-        $.ajax({
-            url: "http://localhost:5218/api/products/brandList/" + category,
-            type: 'GET',
-            xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
-            },
-            success: function (brands) {
-                console.log(brands)
-                displayBrands(category, brands)
-            },
-            error: function () {
-                alert("An error occurred while loading brands.");
-            }
-        });
-    }
-
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
     let loadDdCategory = () => {
         $.ajax({
             url: "http://localhost:5218/api/products/categoryList",
@@ -479,10 +396,6 @@
                 withCredentials: true  // Ensures cookies are sent with the request
             },
             success: function (category) {
-<<<<<<< HEAD
-=======
-                console.log("calling displaycategpry");
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
                 displayCategory(category);
             },
             error: function () {
@@ -491,7 +404,6 @@
         });
     }
 
-<<<<<<< HEAD
     //function to display products by brand
     let loadProdctsByBrand = (brand) => {
         $.ajax({
@@ -542,8 +454,6 @@
         });
     }
 
-=======
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
     $(document).ready(() => {
 
 
@@ -566,19 +476,12 @@
                 toggleViewBtn.innerHTML = '<i class="fas fa-list"></i>'; // Set List view icon
             }
         });
-<<<<<<< HEAD
         $(".btn-Allbrands").hide();
         loadDdCategory()
-=======
-
-        loadDdCategory()
-        console.log("calling load products");
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
         loadAllProducts()
 
         //handle to category buttons - event delegation as buttons are loaded dynamically
         $(document).on('click', 'button[name="btn-category"]', function () {
-<<<<<<< HEAD
             category = $(this).data('category');
             loadProductsByCat();
             $(".btn-Allbrands").show();
@@ -591,13 +494,6 @@
             loadProdctsByBrand(brand);
 
         });
-=======
-            const category = $(this).data('category');
-            loadProductsByCat(category);
-        });
-
-
->>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
 
         // Handle Add to Cart button click
         $(document).on('click', '.add-to-cart-btn', function (e) {
