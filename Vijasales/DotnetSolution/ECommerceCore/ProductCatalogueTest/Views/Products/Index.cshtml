@@ -125,6 +125,7 @@
 </style>
 
 
+
 <div class="row">
 
     <!--Code for displaying dropdown list -->  
@@ -140,7 +141,7 @@
         </div>
         <br />
         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle w-100 btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-primary dropdown-toggle w-100 btn-dropdown btn-Allbrands" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Brand
             </button>
             <ul class="dropdown-menu ul-brand w-100">
@@ -165,60 +166,126 @@
             </div>
         </div>
 
-        <!-- Code for productLayout-->
-        <div id="productLayout">
+        <!-- Code for productLayout--> 
 
+        <div id="productLayout">
             <div id="gridView" class="view" style="display: block;">
                 <div id="productGrid" class="container">
                     <div class="row" id="productGridRow">
+                        <!-- Products will be dynamically inserted here -->
                     </div>
                 </div> <!-- Grid View  -->
+                
             </div>
             <div id="cardView" class="view" style="display: none;">
                 <ul class="list-unstyled">
+                    <!-- Card view content goes here -->
                 </ul> <!-- Card View  -->
             </div>
-        </div>  
+        </div>
+        <!-- Pagination Controls -->
+        <nav aria-label="Product Pagination">
+            <ul class="pagination justify-content-center" id="paginationControls">
+                <!-- Pagination buttons will be added dynamically -->
+            </ul>
+        </nav>
     </div>
 </div>
 
 
 <script>
-    // function for dynaiclly rendering gridLayout
-    let gridCard = (data) => {
-        // Generate the product HTML for all cards and update the product grid
-        var productHtml = '';
-        data.forEach(function (card) {
+    // Declare global variables
+    let currentPage = 1;  
+    let productsPerPage = 6;  
+    let totalPages = 0;  
+    let data = [];
+    let category;
+
+    // Function to initialize the grid and calculate total pages
+    let gridCard = (productData) => {
+
+        let productHtml = '';
+        productData.forEach(function (card) {
             productHtml += `
-                <div class="col-12 col-sm-6 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <img src="${card.imageUrl}" class="card-img-top product-image" alt="${card.title}" />
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${card.title}</h5>
-                            <p class="card-text">₹ ${card.price}</p>
-                            <!-- View Details Button (Green) -->
-                            <a href="/Products/Details/${card.id}" class="btn view-details-btn mt-auto">View Details</a>
-                            <!-- Add to Cart Button (Blue) -->
-                            <button class="btn add-to-cart-btn mt-2"
-                                    data-id="${card.id}"
-                                    data-title="${card.title}"
-                                    data-price="${card.price}"
-                                    data-description="${card.description}"
-                                    data-imageUrl="${card.imageUrl}"
-                                    data-stock="${card.stock}"
-                                    data-category="${card.category}"
-                                    data-brand="${card.brand}">
-                                Add to Cart
-                            </button>
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="${card.imageUrl}" class="card-img-top product-image" alt="${card.title}" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${card.title}</h5>
+                                <p class="card-text">₹ ${card.price}</p>
+                                <!-- View Details Button (Green) -->
+                                <a href="/Products/Details/${card.id}" class="btn view-details-btn mt-auto">View Details</a>
+                                <!-- Add to Cart Button (Blue) -->
+                                <button class="btn add-to-cart-btn mt-2"
+                                        data-id="${card.id}"
+                                        data-title="${card.title}"
+                                        data-price="${card.price}"
+                                        data-description="${card.description}"
+                                        data-imageUrl="${card.imageUrl}"
+                                        data-stock="${card.stock}"
+                                        data-category="${card.category}"
+                                        data-brand="${card.brand}">
+                                    Add to Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
         });
-
-        // Update the product grid in the DOM with the generated HTML
+        //document.getElementById('productGridRow').innerHTML = productHtml;
         $('#productGridRow').html(productHtml);
-    };
+    }
+
+    // Function to display products for a given page
+    let displayPage = (page) => {
+        totalPages = Math.ceil(data.length / productsPerPage);
+        let startIndex = (page - 1) * productsPerPage;
+        let endIndex = startIndex + productsPerPage;
+        let productsForPage = data.slice(startIndex, endIndex);  
+        
+        gridCard(productsForPage);
+        listCard(productsForPage);
+        // Update pagination controls
+        updatePagination(page);
+    }
+
+    // Function to update pagination controls
+    const updatePagination = (page) => {
+        let paginationHtml = '';
+
+        // Previous button
+        paginationHtml += `
+            <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                <button class="page-link" onclick="changePage(${page - 1})">Previous</button>
+            </li>
+        `;
+
+        // Page number buttons
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHtml += `
+                <li class="page-item ${i === page ? 'active' : ''}">
+                    <button class="page-link" onclick="changePage(${i})">${i}</button>
+                </li>
+            `;
+        }
+
+        // Next button
+        paginationHtml += `
+            <li class="page-item ${page === totalPages ? 'disabled' : ''}">
+                <button class="page-link" onclick="changePage(${page + 1})">Next</button>
+            </li>
+        `;
+
+        // Insert pagination HTML into the page
+        document.getElementById('paginationControls').innerHTML = paginationHtml;
+    }
+
+    // Function to handle page change
+    const changePage = (page) => {
+        if (page < 1 || page > totalPages) return;  // Prevent going out of bounds
+        currentPage = page;
+        displayPage(currentPage);
+    }
 
     //function for dynamically rendering listCard layout
     let listCard = (products) => {
@@ -264,17 +331,17 @@
 
     //function to load all products
     let loadAllProducts = () => {
-        console.log("hello")
+        
         $.ajax({
             url: "http://localhost:5218/api/products",
             type: 'GET',
             xhrFields: {
                 withCredentials: true  // Ensures cookies are sent with the request
             },
-            success: function (data) {
-                console.log(data)
-                    gridCard(data)
-                    listCard(data)
+            success: function (products) {
+                currentPage = 1;
+                data = products;
+                displayPage(currentPage);
             },
             error: function () {
                 alert("An error occurred while loading products.");
@@ -283,16 +350,17 @@
     }
 
     // function to load products by categories
-    let loadProductsByCat = (category) => {
+    let loadProductsByCat = () => {
         $.ajax({
             url: "http://localhost:5218/api/products/category/" + category,
             type: 'GET',
             xhrFields: {
                 withCredentials: true  // Ensures cookies are sent with the request
             },
-            success: function (data) {
-                gridCard(data)
-                listCard(data)
+            success: function (productdata) {
+                currentPage = 1;
+                data = productdata
+                displayPage(currentPage);
             },
             error: function () {
                 alert("An error occurred while loading products.");
@@ -300,6 +368,7 @@
         });
     }
 
+    //function to display products categories
     let displayCategory = (categories) => {
        let categoryHtml = '';
        // Loop through categories and add them to the dropdown
@@ -309,59 +378,16 @@
                             <button class="dropdown-item dropdown-toggle" name="btn-category" type="button" data-category="${category}">
                                 ${category}
                             </button>
+
                         </li>
                     `;
         });
                 // Append to the dropdown
         $('.ul-category').html(categoryHtml);
-       
-        console.log("added category")
-        categories.forEach(function (category) {
-            loadDdBrand(category)
-        });
-
-             
+           
     }                   
-    
-    let displayBrands = (category, brands) => {
-        let brandHtml = '';
-        brands.forEach(function (brand) {
-            brandHtml += `<li class=><button class="dropdown-item dropdown-toggle" type="button" name="btn-brands" data-brand="${brand}">${brand}</button></li>`;
-        });
-        // Append the brands to the corresponding dropdown
-        $(`#brands-${category}`).html(brandHtml);
 
-       
-
-        $(document).on('click', `#brands-${category} a[name=a-brands]`, function (event) {
-            event.preventDefault();  // Prevent default link behavior
-
-            const brand = $(this).data('brand');  // Get the brand name from the data attribute
-            console.log("Selected Brand:", brand);
-
-            // Call a function to load products for the selected brand
-            //loadProductsByBrand(brand);
-        });
-    }
-
-    let loadDdBrand = (category) => {
-        //console.log(category)
-        $.ajax({
-            url: "http://localhost:5218/api/products/brandList/" + category,
-            type: 'GET',
-            xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
-            },
-            success: function (brands) {
-                //console.log(brands)
-                displayBrands(category, brands)
-            },
-            error: function () {
-                alert("An error occurred while loading brands.");
-            }
-        });
-    }
-
+    //function to load product categories
     let loadDdCategory = () => {
         $.ajax({
             url: "http://localhost:5218/api/products/categoryList",
@@ -370,7 +396,6 @@
                 withCredentials: true  // Ensures cookies are sent with the request
             },
             success: function (category) {
-                //console.log("calling displaycategpry");
                 displayCategory(category);
             },
             error: function () {
@@ -379,16 +404,66 @@
         });
     }
 
+    //function to display products by brand
+    let loadProdctsByBrand = (brand) => {
+        $.ajax({
+            url: "http://localhost:5218/api/products/" + category + "/"+ brand,
+            type: 'GET',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function (productdata) {
+                currentPage = 1;
+                data = productdata
+                displayPage(currentPage);
+            },
+            error: function () {
+                alert("An error occurred while loading products.");
+            }
+        });
+    }
+
+    //function to display brand list
+    let displayBrands = (brands) => {
+        let brandHtml = '';
+        brands.forEach(function (brand) {
+            brandHtml += `<li  class="dropdown-submenu">
+                            <button class="dropdown-item dropdown-toggle" type="button" name="btn-brand" data-brand="${brand}">
+                                ${brand}
+                            </button>
+                         </li>`;
+        });
+        // Append the brands to the corresponding dropdown
+        $('.ul-brand').html(brandHtml);
+    }
+
+    //function to load brand list
+    let loadDdBrand = () => {
+        $.ajax({
+            url: "http://localhost:5218/api/products/brandList/" + category,
+            type: 'GET',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function (brands) {
+                displayBrands(brands)
+            },
+            error: function () {
+                alert("An error occurred while loading brands.");
+            }
+        });
+    }
+
     $(document).ready(() => {
         
-        
+     
         const toggleViewBtn = document.getElementById('toggleViewBtn');
         const gridView = document.getElementById('gridView');
         const cardView = document.getElementById('cardView');
         // Set initial state (Grid view)
         let isGridView = true;
         toggleViewBtn.addEventListener('click', () => {
-            // Toggle the view state
+            // Toggle the view stateSS
             isGridView = !isGridView;
             // Toggle visibility
             if (isGridView) {
@@ -401,17 +476,24 @@
                 toggleViewBtn.innerHTML = '<i class="fas fa-list"></i>'; // Set List view icon
             }
         });
-
+        $(".btn-Allbrands").hide();
         loadDdCategory()
-        loadAllProducts()        
+        loadAllProducts()
 
         //handle to category buttons - event delegation as buttons are loaded dynamically
         $(document).on('click', 'button[name="btn-category"]', function () {
-            const category = $(this).data('category');  
-            loadProductsByCat(category);  
+            category = $(this).data('category');  
+            loadProductsByCat();  
+            $(".btn-Allbrands").show();
+            loadDdBrand();
         });
 
-        
+        //handle brands button click 
+        $(document).on('click', 'button[name="btn-brand"]', function () {
+            const brand = $(this).data('brand');
+            loadProdctsByBrand(brand);
+          
+        });
 
         // Handle Add to Cart button click
         $(document).on('click', '.add-to-cart-btn', function (e) {
@@ -452,8 +534,9 @@
         //function to handle search button click
         $('#btnSearch').click(() => {
             let searchQuery = $("#textSearch").val();
-            console.log(searchQuery)
             loadProductsByCat(searchQuery)
+            $(".btn-Allbrands").show();
+            loadDdBrand(searchQuery);
         }); 
     });
 

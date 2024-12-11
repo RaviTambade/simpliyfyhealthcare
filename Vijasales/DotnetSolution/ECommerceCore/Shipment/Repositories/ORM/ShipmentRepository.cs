@@ -150,9 +150,16 @@ namespace Shipment.Repositories.ORM
 
                 return shipmentDetail;
 
+<<<<<<< HEAD
            
 
 
+=======
+            
+=======
+            ShipmentDetail shipmentDetail = null;
+>>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
+>>>>>>> 930dacb05d2fe236d337e55cfa3b39cd7e865791
             using (var context = new ShipmentContext(_configuration))
             {
                 // Define the stored procedure query with the necessary parameter
@@ -164,7 +171,12 @@ namespace Shipment.Repositories.ORM
                            .AsEnumerable()
                            .FirstOrDefault();
 
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> 63df6652c3459e1bde7ba5b57ebf0c53df994564
+>>>>>>> 930dacb05d2fe236d337e55cfa3b39cd7e865791
             }
 
             return shipmentDetail;
