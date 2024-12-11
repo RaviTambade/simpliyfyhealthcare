@@ -328,7 +328,7 @@
                 category: $(this).data('category'),
                 brand: $(this).data('brand')
             };
-
+            console.log(JSON.stringify(productData));
             // Add the product to the shopping cart via an AJAX POST request
             $.ajax({
                 url: 'http://localhost:5218/api/shoppingcart',
