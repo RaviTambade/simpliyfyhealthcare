@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using PaymentProcessing.Entities;
 using PaymentProcessing.Repositories;
 using PaymentProcessing.Services;
+using Shipment.Entities;
+using Shipment.Services;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -11,10 +13,12 @@ namespace VijaySalesAPI.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
+        private readonly IConfiguration _configuration;
         private readonly IPaymentServices _paymentService;
-        public PaymentsController(IPaymentServices paymentService)
+        public PaymentsController(IPaymentServices paymentService, IConfiguration configuration)
         {
             _paymentService = paymentService;
+            _configuration = configuration;
         }
         [HttpGet]
         public async  Task<List<Payment>> Get()
@@ -22,7 +26,7 @@ namespace VijaySalesAPI.Controllers
             List<Payment> payments = await _paymentService.GetAllAsync();
             return payments;
         }
-        // GET api/<PaymentsController>/5
+        // GET api/<PaymentsController>/5(Order id)
         [HttpGet("{id}")]
         public async Task<Payment> Get(int id)
         {
@@ -41,6 +45,20 @@ namespace VijaySalesAPI.Controllers
             return Ok(payments);
         }
 
+        [HttpGet("salesanalytics/{month}")]
+        public async Task<ActionResult<double>> GetTotalRevenueForMonth(int month)
+        {
+            double totalRevenue = await _paymentService.GetTotalRevenueForAccountAsync(month);
+
+            if (totalRevenue == 0)
+            {
+                return NotFound($"No revenue found for the specified month {month}");
+            }
+
+            return Ok(totalRevenue);
+        }
+
+
         // POST api/payment/paynow
         [HttpPost("paynow")]
         public async Task<IActionResult> PayNow([FromBody] PaymentData paymentData)
@@ -54,10 +72,6 @@ namespace VijaySalesAPI.Controllers
             // Ensure it's properly handled
             string accountNumber = paymentData.AccountNumber.ToString();
             string paymentMethod = paymentData.PaymentMethod.ToString();
-            if(paymentMethod == "creditDebitCard")
-            {
-
-            }
             if (orderId<=0 || string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(paymentMethod))
             {
                 return BadRequest(new { success = false, message = "Invalid payment data" });
@@ -70,6 +84,9 @@ namespace VijaySalesAPI.Controllers
 
             if (paymentSuccessful)
             {
+                Delivery d = new Delivery { OrderId = orderId, ShipmentDate = DateTime.Now.AddDays(7), Status = "Pending" };
+                IShipmentService svc = new ShipmentService(_configuration);
+                bool isShipmentCreated = await svc.CreateShipmentAsync(d);
                 return Ok(new { success = true, message = "Payment successful" });
             }
             else

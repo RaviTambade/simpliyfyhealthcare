@@ -9,11 +9,15 @@ namespace VijaySalesPortal.Controllers
 
             return View();
         }
-        public IActionResult PayNow()
+        public IActionResult PayNow(int orderid)
+        {            
+                         
+            return View(); 
+        }
+        public IActionResult Success(int orderid)
         {
             return View();
         }
-        
 
     }
 }

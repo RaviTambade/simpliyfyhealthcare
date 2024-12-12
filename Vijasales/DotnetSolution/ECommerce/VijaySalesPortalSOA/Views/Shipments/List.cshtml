@@ -34,9 +34,10 @@
                     <label for="shipmentStatusFilter">Select Status:</label>
                     <select id="shipmentStatusFilter" class="form-control">
                         <option value="">All</option>
-                        <option value="Delivered">Delivered</option>
-                        <option value="Rejected">Rejected</option>
                         <option value="Pending">Pending</option>
+                        <option value="Dispatched">Dispatched</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
                     </select>
                     <button class="btn btn-success mt-3" id="applyFilterButton">Apply Status Filter</button>
                 </div>
@@ -94,14 +95,22 @@
         $('#table-body-to-update').empty();  // Clear the current table rows
 
         shipments.forEach(function (shipment) {
+
+            let shipmentDate = new Date(shipment.ShipmentDate);
+            let formattedDate = shipmentDate.toLocaleDateString('en-US', {
+                day: '2-digit',
+                month: 'short',
+                year: '2-digit'
+            });
+
             var row = `<tr>
-                            <td>${shipment.id}</td>
-                            <td>${shipment.orderId}</td>
-                            <td>${shipment.shipmentDate}</td>
-                            <td>${shipment.status}</td>
+                            <td>${shipment.Id}</td>
+                            <td>${shipment.OrderId}</td>
+                            <td>${formattedDate}</td>
+                            <td>${shipment.Status}</td>
                                <td>
                                     <div class="d-flex justify-content-center">
-                                        <a href="/shipments/details/${shipment.id}" class="btn btn-success">
+                                        <a href="/shipments/details/${shipment.Id}" class="btn btn-success">
                                             <i class="bi bi-eye me-2"></i> <!-- Eye Icon -->
                                             View Details
                                         </a>
@@ -120,13 +129,13 @@
         const status = $('#shipmentStatusFilter').val();
 
         const filteredShipments = allShipments.filter((shipment) => {
-            const shipmentDate = new Date(shipment.shipmentDate).toISOString().split('T')[0];
+            const shipmentDate = new Date(shipment.ShipmentDate).toISOString().split('T')[0];
 
             const dateMatches = (selectedDate && shipmentDate === selectedDate) ||
                 (startDate && endDate && shipmentDate >= startDate && shipmentDate <= endDate) ||
                 (!selectedDate && !startDate && !endDate);
 
-            const statusMatches = status ? shipment.status === status : true;
+            const statusMatches = status ? shipment.Status === status : true;
 
             return dateMatches && statusMatches;
         });

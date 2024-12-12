@@ -9,12 +9,76 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+<style>
+   
+    #reviewsContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+  
+    .review-box {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+    }
+
+      
+        .review-box strong {
+            font-size: 1.2rem;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+       
+        .review-box .rating {
+            font-size: 1.2rem;
+            color: #ffc107;
+            margin-left: 20px;
+            float: right; 
+        }
+
+       
+        .review-box p {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+       
+        .review-box small {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+      
+        .review-box:hover {
+            background-color: #e9ecef;
+            cursor: pointer;
+        }
+
+  
+    .no-reviews-message {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #888;
+    }
+</style>
+
 <div class="container mt-5">
     <div class="card mx-auto" style="max-width: 800px; border: 2px solid #ddd; border-radius: 8px;">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <!-- Product Image -->
+                    
                     <img id="productImage" class="img-fluid rounded" alt="Product Image" />
                 </div>
                 <div class="col-md-6">
@@ -27,39 +91,40 @@
                     </div>
                 </div>
             </div>
-
             <div class="text-center mt-3">
                 <a href="@Url.Action("Index", "Products")" class="btn btn-primary mx-2">Back to Products</a>
                 <button class="btn btn-success mx-2" id="addToCartButton">Add to Cart</button>
             </div>
+            <hr />
+
+          
+            <div class="row">
+                <h4 class="text-center mb-4">Customer Reviews</h4>
+                <div id="reviewsContainer" class="mt-3">
+                   
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
-<!-- jQuery and AJAX Script -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        let url = "http://localhost:5218/api/products/" + @id;
-
-        // Make an AJAX request to get product details
+    let loadProduct = (productId) => {
+       
         $.ajax({
-            url: url,
+            url: "http://localhost:5218/api/products/" + productId,
             method: 'GET',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true 
             },
-
             success: function (data) {
-                // Update the DOM with the product details
+                
                 $('#productTitle').text(data.title);
                 $('#productPrice').text('Price: ₹' + data.price);
                 $('#productImage').attr('src', data.imageUrl);
                 $('#productImage').attr('alt', data.title);
                 $('#productDescription').text(data.description);
-
-
-
 
                 if (data.stock < 10) {
                     $('#stockStatus').html('<strong>Only ' + data.stock + ' left!</strong>');
@@ -67,18 +132,129 @@
                     $('#stockStatus').html('');
                 }
 
-                // Store product data in window.productData for later use
-                window.productData = data; // Set the global productData object
+              
+                window.productData = data; 
             },
             error: function (xhr, status, error) {
                 console.error("Error loading product details:", error);
             }
         });
+    }
 
-        // Add to Cart functionality
+    let loadReviews = (productId) => {
+        
+        $.ajax({
+            url: "http://localhost:5218/api/reviews/" + productId, 
+            method: 'GET',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (reviews) {
+               
+                if (reviews && reviews.length > 0) {
+                    let reviewsHtml = "";
+                    let customerPromises = []; /
+
+                    reviews.forEach(function (review) {
+                        
+                        let customerPromise = new Promise((resolve, reject) => {
+                            fetchCustomerName(review.userId, function (customerName) {
+                                resolve({ customerName, review });
+                            });
+                        });
+
+                      
+                        customerPromises.push(customerPromise);
+                    });
+
+                  
+                    Promise.all(customerPromises).then((results) => {
+                       
+                        results.forEach(({ customerName, review }) => {
+                            console.log(customerName);
+                            reviewsHtml += `
+                                    <div class="review-box">
+                                        <strong>${customerName}</strong>
+                                        <div class="rating">
+                                            ${generateStars(review.rating)}
+                                        </div>
+                                        <p><strong>Review:</strong> ${review.reviewText}</p>
+                                        <p><small><em>Reviewed on: ${new Date(review.created_at).toLocaleDateString()}</em></small></p>
+                                    </div>
+                                `;
+                        });
+
+                        
+                        $('#reviewsContainer').html(reviewsHtml);
+                    }).catch((error) => {
+                        console.error("Error fetching customer names:", error);
+                        $('#reviewsContainer').html('<p>Could not load reviews. Please try again later.</p>');
+                    });
+
+                } else {
+                    $('#reviewsContainer').html('<p class="no-reviews-message">No reviews yet. Be the first to review this product!</p>');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error loading reviews:", error);
+                $('#reviewsContainer').html('<p class="no-reviews-message">Could not load reviews at the moment. Please try again later.</p>');
+            }
+        });
+    }
+
+ 
+    function fetchCustomerName(customerId, callback) {
+        $.ajax({
+            url: `http://localhost:5218/api/users/${customerId}`,
+            method: 'GET',
+            dataType: 'json',
+            success: function (customer) {
+                callback(customer.firstName + " " + customer.lastName); 
+            },
+            error: function () {
+                callback('Unknown Customer'); 
+            }
+        });
+    }
+
+  
+    function generateStars(rating) {
+        let stars = "";
+        for (let i = 1; i <= 5; i++) {
+            stars += i <= rating
+                ? `<span class="fa fa-star" style="color: #ffc107;"></span>`
+                : `<span class="fa fa-star" style="color: #ddd;"></span>`;
+        }
+        return stars;
+    }
+
+    let addToCart = (productToAdd) => {
+        $.ajax({
+            url: 'http://localhost:5218/api/shoppingcart',
+            method: 'POST',
+            contentType: 'application/json',
+            xhrFields: {
+                withCredentials: true  
+            },
+            data: JSON.stringify(productToAdd),
+            success: function (response) {
+                alert(response.message); 
+            },
+            error: function (xhr, status, error) {
+                console.error("Error adding product to cart:", error);
+                alert("Failed to add product to cart.");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        let productId = @id;
+        loadProduct(productId);
+        loadReviews(productId);
+
+       
         $('#addToCartButton').click(function () {
             if (window.productData) {
-                // Ensure all properties are available in productToAdd
                 var productToAdd = {
                     id: window.productData.id,
                     title: window.productData.title,
@@ -86,31 +262,13 @@
                     price: window.productData.price,
                     stock: window.productData.stock,
                     imageUrl: window.productData.imageUrl,
-                    category: window.productData.category,  // Add category here
-                    brand: window.productData.brand         // Add brand here
+                    category: window.productData.category,
+                    brand: window.productData.brand
                 };
-
-                $.ajax({
-                    url: 'http://localhost:5218/api/shoppingcart',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    xhrFields: {
-                        withCredentials: true  // Ensures cookies are sent with the request
-                    },
-
-                    data: JSON.stringify(productToAdd),
-                    success: function (response) {
-                        alert(response.message); // Show success message
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error adding product to cart:", error);
-                        alert("Failed to add product to cart.");
-                    }
-                });
+                addToCart(productToAdd);
             } else {
                 alert("Product details are not available.");
             }
         });
-
     });
 </script>
