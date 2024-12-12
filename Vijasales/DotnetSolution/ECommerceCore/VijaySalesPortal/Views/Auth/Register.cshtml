@@ -1,19 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    // Page-specific logic here
 }
-
 
 <div class="container-fluid d-flex justify-content-center align-items-center">
    
             <div id="CustomerUpdateDetails" class="content-div mt-4" style="height: 100vh; width: 50%;">
                 <h3>Register</h3>
                 <form class="row g-3">
-                    <div class="col-md-5">
-                        <label for="txtCustomerId" class="form-label"> User Id</label>
-                        <input type="number" class="form-control" id="txtCustomerId" placeholder="User Id ">
-                    </div>
+             
                     <div class="col-md-5">
                         <label for="txtFirstName" class="form-label">First Name</label>
                         <input type="text" class="form-control" id="txtFirstName" placeholder="First Name">
@@ -46,7 +40,7 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <button type="button" class="btn btn-info" id="registerBtn">Register</button>
+                        <button type="button" class="btn btn-info" id="registerBtn" >Register</button>
                     </div>
                     <p><a href="/auth/login">Sign In</a></p>
                 </form>
@@ -54,37 +48,40 @@
 </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    $("document").ready(()=>{
+    $("document").ready(() => {
         $("#registerBtn").click(() => {
-            const url = "http://localhost:5218/api/users"
+            const url = "http://localhost:5218/api/users/register";
+            console.log(url);
+
             let newUser = {
-              
-                firstName: $("#txtFirstName  ").val(),
-                lastName: $("#txtLastName  ").val(),
-                email: $("#txtUserEmail ").val(),
+                firstName: $("#txtFirstName").val(),
+                lastName: $("#txtLastName").val(),
+                email: $("#txtUserEmail").val(),
                 password: $("#txtUserPassword").val(),
                 address: $("#txtUserAddress").val(),
                 contactNumber: $("#ContactNumber").val(),
-                role: $("#CustomerRole ").val(),
+                role: $("#CustomerRole").val(),
+                imageUrl: "/image/baseImage.png"
             };
+            console.log(newUser);
+
             $.ajax({
                 url: url,
-                type: "POST,
-                contentType: "application/json",
-                data: JSON.stringify(newUser);
+                type: "POST", 
+                contentType: "application/json",  
+                data: JSON.stringify(newUser),  
                 success: (response) => {
                     console.log("User registered!");
-                    alert("new user registered");
+                    alert("New user registered");
                     window.location.href = "/auth/login";
                 },
                 error: (error) => {
-                    console.log('Error updating user:', error);
+                    console.log('Error registering user:', error);
                 }
-
             });
         });
-    })
+    });
 </script>

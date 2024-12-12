@@ -12,9 +12,9 @@ namespace CRM.Services
     public class UserService : IUserService
     {
         private readonly IUserDataRepository _repoSvc;
-        public UserService()
+        public UserService(IUserDataRepository repoSvc)
         {
-            _repoSvc = new UserRepository();
+            _repoSvc = repoSvc;
         }
         public async Task <bool> DeleteAsync(int Id)
         {

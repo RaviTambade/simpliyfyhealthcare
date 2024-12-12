@@ -5,15 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using CRM.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace CRM.Repositories.DAL
 {
     public class CollectionContext : DbContext
     {
+        private readonly string _connectionString;
+        public CollectionContext(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
+        }
+
         public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string conString = @"data source=shc-sql-01.database.windows.net ; database=HangFireCatalog_VG; User Id=tmgreadonly; Password=#p7P>Wzs;";
+            string conString = _connectionString;
             optionsBuilder.UseSqlServer(conString);
         }
 

@@ -1,9 +1,4 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using CRM.Repositories;
-using CRM.Repositories.ORM;
-using CRM.Entities;
-
-IUserDataRepository _reposvc = new UserRepository();
 
 
 //List<User> users = _reposvc.GetAll();

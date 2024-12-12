@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryWebAPI", "TryWebAPI\TryW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryModuleFilterApp", "TryModuleFilterApp\TryModuleFilterApp.csproj", "{74123E6F-7C1D-4963-B814-92DC09339F60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstApproachTest", "CodeFirstApproachTest\CodeFirstApproachTest.csproj", "{DD2B9EBB-C1D0-4E65-B4D7-9224D8E1FA26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{74123E6F-7C1D-4963-B814-92DC09339F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74123E6F-7C1D-4963-B814-92DC09339F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74123E6F-7C1D-4963-B814-92DC09339F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD2B9EBB-C1D0-4E65-B4D7-9224D8E1FA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD2B9EBB-C1D0-4E65-B4D7-9224D8E1FA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD2B9EBB-C1D0-4E65-B4D7-9224D8E1FA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD2B9EBB-C1D0-4E65-B4D7-9224D8E1FA26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
