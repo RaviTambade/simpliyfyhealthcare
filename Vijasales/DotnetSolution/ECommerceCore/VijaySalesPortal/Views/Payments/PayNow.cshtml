@@ -1,20 +1,10 @@
-﻿@{
-
-    Layout = "_Layout";  // Assuming you have a layout page
-
-}
-@{
-
-    var orderId = ViewData["OrderId"];
-
-}
+﻿
 <script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
 
 <div class="container mt-5">
     <h2 class="text-center mb-4">Payment Processing</h2>
     <h2 id="orderDetail"></h2>
-    <input type="hidden" name="orderid" value="@orderId" />
     <!-- Payment Method Toggle -->
     <div class="form-group mb-4">
         <label for="paymentMethod">Select Payment Method</label>
@@ -146,8 +136,6 @@
             },
             success: function (response) {
                 alert('Cart cleared successfully!');
-                loadCart();
-                $('#total-amount').text('Total: Rs 0');
             },
             error: function (error) {
                 console.error('Error clearing the cart:', error);
@@ -208,7 +196,7 @@
 
             success: function (data) {
                 console.log(data);
-                
+                alert('Update Order Sucessful');
             },
 
             error: function (xhr, status, error) {
@@ -542,8 +530,7 @@
                         alert("Payment successful!");
                         deleteShoppingCart();
                         changeOrderStatus();
-                        alert("Status Change");
-                        //window.location.href = '/ Payments / Success/ ' + orderid;  // Example redirection
+                        window.location.href = '/Payments/Success/' + urlId;  // Example redirection
 
                     } else {
 

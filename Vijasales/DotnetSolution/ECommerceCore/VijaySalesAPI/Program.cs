@@ -1,5 +1,5 @@
 using Catalog.Repositories;
-using Catalog.Repositories.ORM;
+using Catalog.Repositories.Connected;
 using Catalog.Services;
 
 using CRM.Repositories.ORM;
@@ -16,23 +16,26 @@ using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
-using Banking.Repositories.Connected;
-using Banking.Services;
+
+
+
+
+
+
 
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
+
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using VijaySalesAPI.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Catalog.Services.Review;
 
-using Banking.Repositories.Connected;
-using Banking.Services;
 
-using Shipment.Repositories;
-using Shipment.Repositories.ORM;
-using Shipment.Services;
+
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,7 +64,12 @@ builder.Services.AddCors(options =>
     {
 
 
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:12890", "http://localhost:5218")  // Allow your frontend's URL
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
+
+
+
+        
+
 
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
@@ -76,8 +84,10 @@ builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
 
-builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<IProductRepository,ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<IReviewsRepository, ReviewRepository>();
+builder.Services.AddTransient<IReviewService, ReviewService>();
 
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
@@ -99,6 +109,7 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 builder.Services.AddTransient<IBankService, BankService>();
 
 
+
 var app = builder.Build();
 app.UseCors("AllowLocalhost");
 app.UseRouting();
@@ -111,6 +122,7 @@ app.UseSession();
 app.MapControllers();
 
 app.Run();
+
 
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
@@ -150,4 +162,27 @@ builder.Services.AddAuthentication(x =>
     };
 
 
+
 });
+
+
+
+
+
+
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+app.UseSession();
+app.UseHttpsRedirection();
+app.UseAuthentication();  // Make sure this comes before UseAuthorization
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
+
+
+
+
+
+
+
