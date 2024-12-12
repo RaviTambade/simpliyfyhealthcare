@@ -1,5 +1,6 @@
 using Catalog.Repositories;
-using Catalog.Repositories.Connected;
+using Catalog.Repositories.ORM;
+using Catalog.Repositories.Review.Connected;
 using Catalog.Services;
 
 using CRM.Repositories.ORM;
@@ -16,13 +17,14 @@ using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
+<<<<<<< HEAD
+=======
 
 
 
 
 
-
-
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -40,13 +42,13 @@ using Catalog.Services.Review;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
-// Add session service
+
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = "ShoppingCart.Session";
@@ -64,13 +66,23 @@ builder.Services.AddCors(options =>
     {
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
+ 
+
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
 
 
+<<<<<<< HEAD
+=======
 
         
 
 
+
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -109,17 +121,16 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 builder.Services.AddTransient<IBankService, BankService>();
 
 
-
 var app = builder.Build();
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
-//Register context
 
 
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
+
 
 app.Run();
 
@@ -178,7 +189,9 @@ app.UseAuthentication();  // Make sure this comes before UseAuthorization
 app.UseAuthorization();
 app.MapControllers();
 
+
 app.Run();
+
 
 
 

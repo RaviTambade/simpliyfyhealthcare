@@ -534,7 +534,8 @@
         //function to handle search button click
         $('#btnSearch').click(() => {
             let searchQuery = $("#textSearch").val();
-            loadProductsByCat(searchQuery)
+            category = searchQuery;
+            loadProductsByCat()
             $(".btn-Allbrands").show();
             loadDdBrand(searchQuery);
         });
