@@ -97,10 +97,7 @@ namespace Shipment.Repositories.ORM
         {
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
                 ShipmentDetail shipmentDetail = null;
                 using (var context = new ShipmentContext(_configuration))
                 {
@@ -114,7 +111,7 @@ namespace Shipment.Repositories.ORM
                 }
 
                 return shipmentDetail;
-<<<<<<< HEAD
+
 
            
             using (var context = new ShipmentContext(_configuration))
@@ -131,8 +128,7 @@ namespace Shipment.Repositories.ORM
             }
 
             return shipmentDetail;
-=======
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
+
 
         }
 

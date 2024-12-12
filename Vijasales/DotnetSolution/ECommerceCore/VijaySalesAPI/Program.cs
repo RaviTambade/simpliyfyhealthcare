@@ -1,5 +1,6 @@
 using Catalog.Repositories;
-using Catalog.Repositories.Connected;
+using Catalog.Repositories.ORM;
+using Catalog.Repositories.Review.Connected;
 using Catalog.Services;
 
 using CRM.Repositories.ORM;
@@ -16,23 +17,11 @@ using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
 
 
 
 
 
-
-
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -50,13 +39,13 @@ using Catalog.Services.Review;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
-// Add session service
+
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = "ShoppingCart.Session";
@@ -74,11 +63,9 @@ builder.Services.AddCors(options =>
     {
 
 
-<<<<<<< HEAD
+
  
 
-        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
-=======
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
 
 
@@ -86,7 +73,7 @@ builder.Services.AddCors(options =>
         
 
 
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
+
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -124,27 +111,18 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 
 builder.Services.AddTransient<IBankService, BankService>();
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
 var app = builder.Build();
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
-<<<<<<< HEAD
-=======
-//Register context
 
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
 
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
 
-<<<<<<< HEAD
-=======
+
 app.Run();
 
 
@@ -202,7 +180,7 @@ app.UseAuthentication();  // Make sure this comes before UseAuthorization
 app.UseAuthorization();
 app.MapControllers();
 
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
+
 app.Run();
 
 
@@ -211,8 +189,4 @@ app.Run();
 
 
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 9e623b1747d8703fc1c716bfb26249012aad997f
