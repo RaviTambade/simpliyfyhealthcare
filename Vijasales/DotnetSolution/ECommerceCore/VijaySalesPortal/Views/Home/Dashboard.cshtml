@@ -336,9 +336,9 @@
     // Function to handle logout
     function handleLogout() {
 
-        localStorage.removeItem("token");
+        localStorage.clear();
         alert("You are logged out!");
-        window.location.href = "/auth/register";
+        window.location.href = "/auth/login";
     }
 
     // Function to show the appropriate div based on the id
@@ -361,7 +361,7 @@
         orders.forEach(order => {
             html += `
                     <tr>
-                        <td><img src=${order.imageUrl} class="img-thumbnail" /></td>
+                        <td><img src=${order.imageUrl} class="img-thumbnail" style="height: 50px; width: 50px;" /></td>
                         <td>${order.title}</td>
                         <td>${order.orderId}</td>
                         <td>${order.orderDate}</td>
@@ -453,10 +453,15 @@
         });
 
         // Make a single AJAX call to fetch user and order data
-        const userId = 2;
+        const userId = localStorage.getItem("userId");
         const getOrderUrl = `http://localhost:5218/api/orders/customer/${userId}`;
         const getUserUrl = `http://localhost:5218/api/bi/getcustomer/${userId}`;
-        let token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
+        if (userId == null || token == null) {
+            alert("please login first");
+            window.location.href = "/auth/login";
+        }
+        
         // Fetch user and order data using Promise.all to handle both requests simultaneously
         Promise.all([
             $.ajax({
@@ -487,8 +492,8 @@
                 new bootstrap.Tooltip(tooltipTriggerEl);
             });
         })();
+    $("#logoutBtn").click(handleLogout);
     });
 
     // Logout button click event listener
-    $("#logoutBtn").click(handleLogout);
 </script>

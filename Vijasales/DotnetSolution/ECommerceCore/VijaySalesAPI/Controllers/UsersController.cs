@@ -28,7 +28,7 @@ namespace VijaySalesAPI.Controllers
             User user= await _userService.GetUserAsync(id);
             return user;
          }
-        [HttpPost]
+        [HttpPost("register")]
         public async Task <IActionResult> Post([FromBody] User user)
         {    
           if (user == null)

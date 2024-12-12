@@ -49,7 +49,7 @@ namespace CRM.Repositories.ORM
             using(var ctx =  new CollectionContext())
             {
                 user.Password = PasswordEncryptionManager.Encrypt(user.Password);
- 
+                user.CreatedAt = DateTime.Now;
                 ctx.Users.Add(user);
                 await ctx.SaveChangesAsync();
                 status = true;
@@ -66,6 +66,7 @@ namespace CRM.Repositories.ORM
 
                 //hashing password before adding to database
                 user.Password = PasswordEncryptionManager.Encrypt(user.Password);
+                user.CreatedAt = DateTime.Now;
                 ctx.Users.Remove(ctx.Users.Find(user.Id));
                 ctx.Users.Add(user);
                await ctx.SaveChangesAsync();
