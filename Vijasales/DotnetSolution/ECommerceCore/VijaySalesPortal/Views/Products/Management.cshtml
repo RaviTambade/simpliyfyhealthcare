@@ -1,0 +1,369 @@
+﻿
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+<h2>Product Catalog</h2>
+
+<!-- Code for displaying product table -->
+<div id="showProducts">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th class="text-center text-bg-success" colspan="6">Products</th>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody id="tbProducts"></tbody>
+    </table>
+</div>
+
+<!-- Flex Container: Div for product details and edit form -->
+<div class="d-flex" id="productDetailsAndEditForm">
+    <!-- Product Details Section (Initially Visible) -->
+    <div id="divDetailShow" class="border w-50" style="display: none;">
+        <h5>Product Details</h5>
+        <p><strong>ID:</strong> <span id="productId"></span></p>
+        <p><strong>Name:</strong> <span id="productName"></span></p>
+        <p><strong>Description:</strong> <span id="productDescription"></span></p>
+        <p><strong>Unit Price:</strong> <span id="productPrice"></span></p>
+        <p><strong>Quantity:</strong> <span id="productQuantity"></span></p>
+        <p><strong>Image:</strong> <img id="productImage" src="" alt="Product Image" class="img-fluid" style="max-width: 100px;"></p>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-info w-100" id="btnEdit">Edit</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-info w-100" id="btnDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Form Section (Initially Hidden) -->
+    <div id="editForm" class="border w-50" style="display: none;">
+        <h5>Edit Product</h5>
+        <form id="formEditProduct">
+            <div class="mb-3">
+                <label for="editTitle" class="form-label">Title</label>
+                <input type="text" id="editTitle" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="editDescription" class="form-label">Description</label>
+                <input type="text" id="editDescription" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="editPrice" class="form-label">Price</label>
+                <input type="number" id="editPrice" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="editStock" class="form-label">Stock</label>
+                <input type="number" id="editStock" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="editImageUrl" class="form-label">Image URL</label>
+                <input type="text" id="editImageUrl" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="editCategory" class="form-label">Category</label>
+                <input type="text" id="editCategory" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label for="editBrand" class="form-label">Category</label>
+                <input type="text" id="editBrand" class="form-control" />
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<style>
+    /* Custom Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        color: #007bff;
+    }
+
+    #showProducts {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    table th {
+        background-color: #343a40;
+        color: #fff;
+        text-align: center;
+    }
+
+    table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table-dark {
+        background-color: #212529;
+    }
+
+    .btn-info, .btn-danger, .btn-primary, .btn-secondary {
+        transition: all 0.3s ease;
+    }
+
+        .btn-info:hover, .btn-danger:hover, .btn-primary:hover, .btn-secondary:hover {
+            opacity: 0.9;
+        }
+
+    .border {
+        border: 1px solid #dee2e6;
+    }
+
+    .w-45 {
+        width: 45%;
+    }
+
+    .text-info {
+        color: #17a2b8;
+    }
+
+    .text-warning {
+        color: #ffc107;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #productImage {
+        max-width: 120px;
+    }
+
+    .form-control {
+        border-radius: 4px;
+    }
+
+    .d-flex {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .container {
+        margin-top: 30px;
+    }
+
+    .p-3 {
+        padding: 1.5rem;
+    }
+
+    .my-5 {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+</style>
+
+
+
+<script>
+    let url = "/api/products";
+
+    // Function to display table
+    let displayTable = (products) => {
+        $('#tbProducts').html('');
+        $.each(products, (index, item) => {
+            var trBody = `<tr class="rows" data-id="${item.id}">
+                        <td class="fs-6">${item.id}</td>
+                        <td>${item.title}</td>
+                        <td><img src="${item.imageUrl}" class="img-fluid" style="max-width: 50px; max-height: 50px;" /></td>
+                        <td>${item.brand}</td>
+                        <td>${item.price}</td>
+                        <td>${item.category}</td>
+                    </tr>`;
+            $('#tbProducts').append(trBody);
+        });
+    };
+
+    // Function to fetch all products
+    let getAllProduct = () => {
+        $.ajax({
+            url: "http://localhost:5218/api/products",
+            type: 'GET',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function (data) {
+                displayTable(data);  // Populate the table with products
+            },
+            error: function () {
+                alert("An error occurred while loading products.");
+            }
+        });
+    };
+
+    // Handle click event on a product row to display its details
+    $(document).on("click", "tr.rows", function () {
+        // Get the product ID from the clicked row
+        let productId = $(this).data('id');
+
+        // Fetch the product details using the API
+        const url1 = `http://localhost:5218/api/products/${productId}`;
+
+        $.ajax({
+            url: url1,
+            type: "GET",
+            contentType: "application/json",
+            success: (result) => {
+                console.log(result);
+                // Fill the details into the corresponding elements
+                $('#productId').text(result.id);
+                $('#productName').text(result.title);
+                $('#productDescription').text(result.description);
+                $('#productPrice').text(result.price);
+                $('#productQuantity').text(result.stock);
+                $('#productImage').attr("src", result.imageUrl); // Set the image URL
+
+                // Show the product details section and hide the edit form
+                $('#divDetailShow').show();
+                $('#editForm').hide();
+            },
+            error: () => {
+                alert("An error occurred while fetching product details.");
+            }
+        });
+    });
+
+    $(document).on("click", "#btnDelete", function () {
+        // Get the product ID from the details section
+        let productId = $('#productId').text();
+
+        // Confirm the deletion
+        if (confirm("Are you sure you want to delete this product?")) {
+            // Send DELETE request to the server
+            $.ajax({
+                url: `http://localhost:5218/api/products/${productId}`,
+                type: 'DELETE',
+                success: function (response) {
+                    alert("Product deleted successfully.");
+                    $('#divDetailShow').hide();  // Hide the product details section
+                    getAllProduct();  // Refresh the product list
+                },
+                error: function () {
+                    alert("An error occurred while deleting the product.");
+                }
+            });
+        }
+    });
+
+    $(document).on("click", "#btnEdit", function () {
+        // Get the product ID from the details section
+        let productId = $('#productId').text();
+
+        // Fetch the product details using the API
+        const url1 = `http://localhost:5218/api/products/${productId}`;
+
+        $.ajax({
+            url: url1,
+            type: "GET",
+            contentType: "application/json",
+            success: (result) => {
+                console.log(result);
+                // Pre-fill the edit form with the current product data
+                $('#editTitle').val(result.title);
+                $('#editDescription').val(result.description);
+                $('#editPrice').val(result.price);
+                $('#editStock').val(result.stock);
+                $('#editImageUrl').val(result.imageUrl);
+                $('#editCategory').val(result.category);
+                $('#editBrand').val(result.brand); // Add the brand field
+                $('#editLastModified').val(result.lastModified); // Set the lastModified value (read-only)
+
+                // Hide the product details section and show the edit form
+                $('#divDetailShow').show();
+                $('#editForm').show();
+            },
+            error: () => {
+                alert("An error occurred while fetching product details.");
+            }
+        });
+    });
+
+    // Handle form submission to save the changes
+    $(document).on("submit", "#formEditProduct", function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        // Get the updated product data from the form
+        let updatedProduct = {
+            Id: $('#productId').text(),
+            Title: $('#editTitle').val(),
+            Description: $('#editDescription').val(),
+            Price: $('#editPrice').val(),
+            Stock: $('#editStock').val(),
+            ImageUrl: $('#editImageUrl').val(),
+            Category: $('#editCategory').val(),
+            Brand: $('#editBrand').val(), // Include brand field
+            // Don't send lastModified in the PUT request as it should not be updated by the user
+        };
+
+        console.log("Updated Product:");
+        console.log(updatedProduct);
+
+        // Get the product ID from the details section
+        let productId = $('#productId').text();
+        let URL = `http://localhost:5218/api/products/${productId}`;
+        console.log(URL);
+
+        // Send PUT request to update the product
+        $.ajax({
+            url: URL,
+            type: 'PUT',
+            contentType: "application/json",
+            data: JSON.stringify(updatedProduct),
+            success: function () {
+                alert("Product updated successfully.");
+                $('#editForm').hide();  // Hide the edit form
+                $('#divDetailShow').show();  // Show the product details section
+                getAllProduct();  // Refresh the product list
+            },
+            error: function () {
+                alert("An error occurred while updating the product.");
+            }
+        });
+    });
+
+
+    // Handle form submission to save the changes
+   
+
+    $(document).on("click", "#cancelEdit", function () {
+        $('#editForm').hide();  // Hide the edit form
+        $('#divDetailShow').show();  // Show the product details section again
+    });
+
+    // Document Ready Function
+    $(document).ready(() => {
+        console.log("start");
+
+        getAllProduct();  // Load all products initially
+    });
+</script>

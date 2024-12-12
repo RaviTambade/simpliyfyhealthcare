@@ -384,7 +384,7 @@
         });
         // Append to the dropdown
         $('.ul-category').html(categoryHtml);
-        console.log("displayed category")
+
     }
 
     //function to load product categories
@@ -396,7 +396,6 @@
                 withCredentials: true  // Ensures cookies are sent with the request
             },
             success: function (category) {
-                category.log(category)
                 displayCategory(category);
             },
             error: function () {
@@ -478,13 +477,11 @@
             }
         });
         $(".btn-Allbrands").hide();
-        console.log("loading category")
         loadDdCategory()
         loadAllProducts()
 
         //handle to category buttons - event delegation as buttons are loaded dynamically
         $(document).on('click', 'button[name="btn-category"]', function () {
-            
             category = $(this).data('category');
             loadProductsByCat();
             $(".btn-Allbrands").show();
@@ -537,7 +534,8 @@
         //function to handle search button click
         $('#btnSearch').click(() => {
             let searchQuery = $("#textSearch").val();
-            loadProductsByCat(searchQuery)
+            category = searchQuery;
+            loadProductsByCat()
             $(".btn-Allbrands").show();
             loadDdBrand(searchQuery);
         });
