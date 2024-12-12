@@ -27,7 +27,7 @@
     let addToCart = (data) => {
         $('#cart-items-list').html('');
         let totalAmount = 0;
-
+     
         $.each(data.items, (index, item) => {
             $.ajax({
                 url: `http://localhost:5218/api/products/${item.productId}`,
@@ -90,7 +90,12 @@
             },
             success: function (data) {
                 console.log(data);
-
+                if (data.items.length === 0) {
+                    console.log("emty");
+                    $('#buy-now-btn').addClass('disabled-link');
+                } else {
+                    $('#buy-now-btn').removeClass('disabled-link');
+                }
                 addToCart(data);
             },
             error: function (error) {
@@ -298,3 +303,10 @@
         .increase-quantity-btn:hover,
         .decrease-quantity-btn:hover {
             background-color: dimgrey;
+        }
+
+    .disabled-link{
+        pointer-events: none; /* Prevent clicks */
+        opacity: 0.6; /* Make it visually look disabled */
+        cursor: not-allowed; /* Change cursor to indicate it's disabled */
+    }
