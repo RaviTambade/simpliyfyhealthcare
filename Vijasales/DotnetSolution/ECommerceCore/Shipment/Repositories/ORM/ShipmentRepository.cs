@@ -112,6 +112,24 @@ namespace Shipment.Repositories.ORM
 
                 return shipmentDetail;
 
+
+           
+            using (var context = new ShipmentContext(_configuration))
+            {
+                // Define the stored procedure query with the necessary parameter
+                var query = @"EXEC GetShipmentDetails @ShipmentId";
+                var param = new SqlParameter("@ShipmentId", shipmentId);
+
+                shipmentDetail = context.Set<ShipmentDetail>()
+                           .FromSqlRaw(query, param)
+                           .AsEnumerable()
+                           .FirstOrDefault();
+
+            }
+
+            return shipmentDetail;
+
+
         }
 
         public async Task<List<ShipmentDetail>> GetByCustomerId(int customerId)

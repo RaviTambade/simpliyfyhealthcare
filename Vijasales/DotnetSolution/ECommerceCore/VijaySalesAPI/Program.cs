@@ -1,5 +1,6 @@
 using Catalog.Repositories;
-using Catalog.Repositories.Connected;
+using Catalog.Repositories.ORM;
+using Catalog.Repositories.Review.Connected;
 using Catalog.Services;
 
 using CRM.Repositories.ORM;
@@ -15,8 +16,6 @@ using Banking.Services;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-
-
 
 
 
@@ -40,13 +39,13 @@ using Catalog.Services.Review;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
 
-// Add session service
+
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = "ShoppingCart.Session";
@@ -64,11 +63,15 @@ builder.Services.AddCors(options =>
     {
 
 
+
+ 
+
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
 
 
 
         
+
 
 
               .AllowAnyHeader()  // Allow any headers
@@ -109,17 +112,16 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 builder.Services.AddTransient<IBankService, BankService>();
 
 
-
 var app = builder.Build();
 app.UseCors("AllowLocalhost");
 app.UseRouting();
 
-//Register context
 
 
 app.UseAuthorization();
 app.UseSession();
 app.MapControllers();
+
 
 app.Run();
 
@@ -178,7 +180,9 @@ app.UseAuthentication();  // Make sure this comes before UseAuthorization
 app.UseAuthorization();
 app.MapControllers();
 
+
 app.Run();
+
 
 
 

@@ -8,7 +8,7 @@ using Catalog.Entities.Review;
 using Microsoft.Extensions.Configuration;
 using Catalog.Repositories;
 
-namespace Catalog.Repositories.Connected
+namespace Catalog.Repositories.Review.Connected
 {
     public class ReviewRepository : IReviewsRepository
     {
