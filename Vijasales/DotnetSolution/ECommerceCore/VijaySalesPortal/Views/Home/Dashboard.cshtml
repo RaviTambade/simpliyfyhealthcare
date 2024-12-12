@@ -289,14 +289,13 @@
 
         // Make a single AJAX call to fetch user and order data
         const userId = localStorage.getItem("userId");
-        const token = localStorage.getItem("token");
-        if(userId == null ||  token==null){
-            alert("Please login first");
-            window.location.href = '/auth/login'
-        }
         const getOrderUrl = `http://localhost:5218/api/orders/customer/${userId}`;
         const getUserUrl = `http://localhost:5218/api/bi/getcustomer/${userId}`;
-       
+        const token = localStorage.getItem("token");
+        if (userId == null || token == null) {
+            alert("please login first");
+            window.location.href = "/auth/login";
+        }
         
         // Fetch user and order data using Promise.all to handle both requests simultaneously
         Promise.all([
