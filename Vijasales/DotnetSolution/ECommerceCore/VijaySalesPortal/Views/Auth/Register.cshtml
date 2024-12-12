@@ -1,90 +1,104 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    // Page-specific logic here
 }
 
-
 <div class="container-fluid d-flex justify-content-center align-items-center">
-   
-            <div id="CustomerUpdateDetails" class="content-div mt-4" style="height: 100vh; width: 50%;">
-                <h3>Register</h3>
-                <form class="row g-3">
-                    <div class="col-md-5">
-                        <label for="txtCustomerId" class="form-label"> User Id</label>
-                        <input type="number" class="form-control" id="txtCustomerId" placeholder="User Id ">
-                    </div>
-                    <div class="col-md-5">
-                        <label for="txtFirstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="txtFirstName" placeholder="First Name">
-                    </div>
-                    <div class="col-md-5">
-                        <label for="txtLastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="txtLastName" placeholder="Last Name">
-                    </div>
-                    <div class="col-md-5">
-                        <label for="txtUserEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="txtUserEmail" placeholder="Email">
-                    </div>
-                    <div class="col-md-5">
-                        <label for="txtUserPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="txtUserPassword" placeholder="Password">
-                    </div>
-                    <div class="col-md-5">
-                        <label for="txtUserAddress" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="txtUserAddress" placeholder="Apartment, studio, or floor">
-                    </div>
-                    <div class="col-md-5">
-                        <label for="ContactNumber" class="form-label">Contact Number</label>
-                        <input type="tel" class="form-control" id="ContactNumber" placeholder="Contact No">
-                    </div>
-                    <div class="col-md-5">
-                        <label for="CustomerRole" class="form-label">Select User Role</label>
-                        <select id="CustomerRole" class="form-select">
-                            <option selected>Customer</option>
-                            <option>Sales</option>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <button type="button" class="btn btn-info" id="registerBtn">Register</button>
-                    </div>
-                    <p><a href="/auth/login">Sign In</a></p>
-                </form>
+    <div id="CustomerUpdateDetails" class="content-div mt-4" style="height: 100vh; width: 50%;">
+        <h3>Register</h3>
+        <form class="row g-3" id="registrationForm">
+            <div class="col-md-5">
+                <label for="txtFirstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="txtFirstName" placeholder="First Name" required>
             </div>
+            <div class="col-md-5">
+                <label for="txtLastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="txtLastName" placeholder="Last Name" required>
+            </div>
+            <div class="col-md-5">
+                <label for="txtUserEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="txtUserEmail" placeholder="Email" required>
+            </div>
+            <div class="col-md-5">
+                <label for="txtUserPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="txtUserPassword" placeholder="Password" required>
+            </div>
+            <div class="col-md-5">
+                <label for="txtUserAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="txtUserAddress" placeholder="Apartment, studio, or floor" required>
+            </div>
+            <div class="col-md-5">
+                <label for="ContactNumber" class="form-label">Contact Number</label>
+                <input type="tel" class="form-control" id="ContactNumber" placeholder="Contact No" required>
+            </div>
+            <div class="col-md-5">
+                <label for="CustomerRole" class="form-label">Select User Role</label>
+                <select id="CustomerRole" class="form-select" required>
+                    <option value="Customer" selected>Customer</option>
+                    <option value="Sales">Sales</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="button" class="btn btn-info" id="registerBtn">Register</button>
+            </div>
+            <p><a href="/auth/login">Already have an account? Sign In</a></p>
+        </form>
+    </div>
 </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    $("document").ready(()=>{
+    $(document).ready(() => {
         $("#registerBtn").click(() => {
-            const url = "http://localhost:5218/api/users"
+            // Collect form data
+            const firstName = $("#txtFirstName").val().trim();
+            const lastName = $("#txtLastName").val().trim();
+            const email = $("#txtUserEmail").val().trim();
+            const password = $("#txtUserPassword").val().trim();
+            const address = $("#txtUserAddress").val().trim();
+            const contactNumber = $("#ContactNumber").val().trim();
+            const role = $("#CustomerRole").val();
+            const imageUrl = "";
+
+            // Basic validation
+            if (!firstName || !lastName || !email || !password || !address || !contactNumber) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            // Prepare new user object
             let newUser = {
-              
-                firstName: $("#txtFirstName  ").val(),
-                lastName: $("#txtLastName  ").val(),
-                email: $("#txtUserEmail ").val(),
-                password: $("#txtUserPassword").val(),
-                address: $("#txtUserAddress").val(),
-                contactNumber: $("#ContactNumber").val(),
-                role: $("#CustomerRole ").val(),
+                firstName,
+                lastName,
+                email,
+                password,
+                address,
+                contactNumber,
+                role,
+                imageUrl
+                
             };
+            console.log(newUser);
+
+            // AJAX request to register the user
+            const url = "http://localhost:5218/api/users/register";
+
             $.ajax({
                 url: url,
-                type: "POST,
+                type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify(newUser);
+                data: JSON.stringify(newUser),
                 success: (response) => {
                     console.log("User registered!");
-                    alert("new user registered");
-                    window.location.href = "/auth/login";
+                    alert("New user registered successfully.");
+                    window.location.href = "/auth/login"; // Redirect to login page
                 },
                 error: (error) => {
-                    console.log('Error updating user:', error);
+                    console.error("Error registering user:", error);
+                    alert("There was an error registering the user. Please try again.");
                 }
-
             });
         });
-    })
+    });
 </script>
