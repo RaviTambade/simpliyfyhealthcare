@@ -71,7 +71,7 @@ namespace Shipment.Repositories.ORM
             {
 
                 var dbShipments = await context.Shipments
-                    .Where(s => s.ShipmentDate >= date)
+                    .Where(s => s.ShipmentDate == date)
                     .ToListAsync();
 
                 return dbShipments;
