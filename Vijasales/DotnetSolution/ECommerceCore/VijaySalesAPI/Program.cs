@@ -17,11 +17,14 @@ using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
 
+<<<<<<< HEAD
+=======
 
 
 
 
 
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -63,17 +66,23 @@ builder.Services.AddCors(options =>
     {
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
  
 
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
 
 
+<<<<<<< HEAD
+=======
 
         
 
 
 
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
