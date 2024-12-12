@@ -1,21 +1,22 @@
 using Catalog.Repositories;
 using Catalog.Repositories.ORM;
+<<<<<<< HEAD
+=======
 using Catalog.Repositories.Review.Connected;
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
 using Catalog.Services;
-
 using CRM.Repositories.ORM;
 using CRM.Repositories;
 using CRM.Services;
-
 using PaymentProcessing.Services;
 using PaymentProcessing.Repositories.Connected;
-
-using Banking.Repositories.Connected;
-using Banking.Services;
-
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
+<<<<<<< HEAD
+using Banking.Repositories.Connected;
+using Banking.Services;
+=======
 
 <<<<<<< HEAD
 =======
@@ -25,20 +26,14 @@ using OrderProcessing.Services.Connected;
 
 
 >>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
-
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using VijaySalesAPI.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Catalog.Services.Review;
-
-
-
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +42,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();  // This is the key line for in-memory cache
+// Configure AppSettings section from configuration
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 
 
 builder.Services.AddSession(options =>
@@ -65,6 +63,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowLocalhost", policy =>
     {
 
+<<<<<<< HEAD
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218") // Allow your frontend's URL
+=======
 
 <<<<<<< HEAD
 =======
@@ -80,6 +81,7 @@ builder.Services.AddCors(options =>
 
         
 
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
 
 
 >>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
@@ -96,10 +98,8 @@ builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
 
-builder.Services.AddTransient<IProductRepository,ProductRepository>();
+builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddTransient<IReviewsRepository, ReviewRepository>();
-builder.Services.AddTransient<IReviewService, ReviewService>();
 
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
@@ -120,6 +120,8 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 
 builder.Services.AddTransient<IBankService, BankService>();
 
+<<<<<<< HEAD
+=======
 
 var app = builder.Build();
 app.UseCors("AllowLocalhost");
@@ -135,6 +137,7 @@ app.MapControllers();
 app.Run();
 
 
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 
@@ -173,12 +176,10 @@ builder.Services.AddAuthentication(x =>
     };
 
 
-
 });
 
 
-
-
+var app = builder.Build();
 
 
 app.UseCors("AllowLocalhost");
@@ -189,6 +190,9 @@ app.UseAuthentication();  // Make sure this comes before UseAuthorization
 app.UseAuthorization();
 app.MapControllers();
 
+<<<<<<< HEAD
+app.Run();
+=======
 
 app.Run();
 
@@ -199,3 +203,4 @@ app.Run();
 
 
 
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a

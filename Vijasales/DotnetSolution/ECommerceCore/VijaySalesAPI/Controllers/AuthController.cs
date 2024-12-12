@@ -20,10 +20,10 @@ namespace VijaySalesAPI.Controllers
         {
      
 
-        var res = await _authsvc.Authenticate(creds);
+             var res = await _authsvc.Authenticate(creds);
             if (res == null)
             {
-                return BadRequest(new { msg = "Unauthorized" });
+                return StatusCode(400, "user no found");
             }
             var cookieOptions = new CookieOptions
             {
