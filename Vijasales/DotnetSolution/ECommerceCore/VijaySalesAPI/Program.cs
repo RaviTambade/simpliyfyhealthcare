@@ -1,5 +1,9 @@
 using Catalog.Repositories;
 using Catalog.Repositories.ORM;
+<<<<<<< HEAD
+=======
+using Catalog.Repositories.Review.Connected;
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
 using Catalog.Services;
 using CRM.Repositories.ORM;
 using CRM.Repositories;
@@ -9,8 +13,20 @@ using PaymentProcessing.Repositories.Connected;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
+<<<<<<< HEAD
 using Banking.Repositories.Connected;
 using Banking.Services;
+=======
+
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -21,7 +37,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddCors();
 builder.Services.AddControllers();
@@ -30,7 +46,7 @@ builder.Services.AddDistributedMemoryCache();  // This is the key line for in-me
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 
-// Add session service
+
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = "ShoppingCart.Session";
@@ -47,8 +63,28 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowLocalhost", policy =>
     {
 
+<<<<<<< HEAD
         policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218") // Allow your frontend's URL
+=======
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
+ 
+
+        policy.WithOrigins("http://localhost:5260", "http://localhost:5284", "http://localhost:5218")  // Allow your frontend's URL
+
+
+<<<<<<< HEAD
+=======
+
+        
+
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
+
+
+>>>>>>> 7bdace22d4110bb3d70f8987710689eff7aa12a2
               .AllowAnyHeader()  // Allow any headers
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
@@ -84,6 +120,24 @@ builder.Services.AddTransient<IBankRepository, BankRepository>();
 
 builder.Services.AddTransient<IBankService, BankService>();
 
+<<<<<<< HEAD
+=======
+
+var app = builder.Build();
+app.UseCors("AllowLocalhost");
+app.UseRouting();
+
+
+
+app.UseAuthorization();
+app.UseSession();
+app.MapControllers();
+
+
+app.Run();
+
+
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 
@@ -136,4 +190,17 @@ app.UseAuthentication();  // Make sure this comes before UseAuthorization
 app.UseAuthorization();
 app.MapControllers();
 
+<<<<<<< HEAD
 app.Run();
+=======
+
+app.Run();
+
+
+
+
+
+
+
+
+>>>>>>> 275ee7bee7e7e416cab913dd763ff60619e0a12a
