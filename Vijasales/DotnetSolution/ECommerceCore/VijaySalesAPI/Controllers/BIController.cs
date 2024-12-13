@@ -19,6 +19,7 @@ namespace VijaySalesAPI.Controllers
     {
 
         [HttpGet("getCustomer/{id}")]
+        //api/bi/getcustomer/id
 
         public async Task<IActionResult> GetCustomerProfile(int id)
         {

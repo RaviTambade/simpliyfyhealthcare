@@ -33,48 +33,48 @@
                     <table>
                         <tr>
                             <td>User Id</td>
-                            <td><input type="number" name="UserId" id="txtUserId" /></td>
+                            <td><input type="number" name="UserId" id="txtUserId" readonly /></td>
 
 
                         </tr>
                         <tr>
                             <td>First Name</td>
-                            <td><input type="text" name="FirstName" id="txtUserFirstName" /></td>
+                            <td><input type="text" name="FirstName" id="txtUserFirstName" readonly /></td>
 
                         </tr>
                         <tr>
                             <td>Last Name</td>
-                            <td><input type="text" name="lastname" id="txtUserLastName" /> </td>
+                            <td><input type="text" name="lastname" id="txtUserLastName" readonly /> </td>
 
 
                         </tr>
                         <tr>
                             <td>Email</td>
-                            <td><input type="email" name="email" id="UserEmail" /> </td>
+                            <td><input type="email" name="email" id="UserEmail" readonly /> </td>
 
 
                         </tr>
                         <tr>
                             <td>Password</td>
-                            <td><input type="password" name="password" id="UserPassword" /></td>
+                            <td><input type="password" name="password" id="UserPassword" readonly /></td>
 
 
                         </tr>
                         <tr>
                             <td>Address</td>
-                            <td><input type="text" name="address" id="UserAddress" /></td>
+                            <td><input type="text" name="address" id="UserAddress" readonly /></td>
 
 
                         </tr>
                         <tr>
                             <td>Conatct No </td>
-                            <td><input type="tel" name="contactno" id="UserContact" /></td>
+                            <td><input type="tel" name="contactno" id="UserContact" readonly /></td>
 
 
                         </tr>
                         <tr>
                             <td>Role </td>
-                            <td><input type="text" name="role" id="UserRole" /></td>
+                            <td><input type="text" name="role" id="UserRole" readonly /></td>
 
 
                         </tr>
@@ -83,7 +83,7 @@
 
                         <tr>
 
-                            <td><button type="button" id="CloseDetails">Close</button></td>
+                            <td><button type="button" class="btn btn-info" id="CloseDetails" style="margin:20px;">Close</button></td>
 
                         </tr>
 
@@ -93,7 +93,7 @@
                
             </div>
 
-            <div id="CustomerUpdateDetails" class="content-div" style="display: none;">
+            <div id="CustomerUpdateDetails" class="content-div" >
                 <h3>Edit Profile</h3>
                 <form class="row g-3">
                     <div class="col-md-5">
@@ -132,7 +132,7 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-info" id="SubmitEditedProfile">Edit</button>
+                        <button type="button" class="btn btn-info" id="SubmitEditedProfile">Edit</button>
                     </div>
                 </form>
             </div>
@@ -189,14 +189,14 @@
            
             $("#CustomerUpdateDetails").show();
             $.ajax({
-                url: 'http://localhost:5218/api/Users/2',
+                url: 'http://localhost:5218/api/bi/getcustomer/2',
                 type: "GET",
                 contentType: "application/json",
                 success: (user) => {
                     console.log(user);
                     $("#txtCustomerId").val(user.id);
-                    $("#txtFirstName  ").val(user.firstName);
-                    $("#txtLastName  ").val(user.lastName);
+                    $("#txtFirstName").val(user.firstName);
+                    $("#txtLastName").val(user.lastName);
                     $("#txtUserEmail ").val(user.email);
                     $("#txtUserPassword").val(user.password);
                     $("#txtUserAddress").val(user.address);
@@ -213,10 +213,10 @@
         $("#SubmitEditedProfile").click(() => {
             // $("#DeleteAccount").show();
             // $("#ChartVisuals").show();
-            $("#CustomerUpdateDetails").hide();
+            
             let UserToUpdate = {
                 id: $("#txtCustomerId").val(),
-                firstName: $("#txtfirstName  ").val(),
+                firstName: $("#txtFirstName  ").val(),
                 lastName: $("#txtLastName  ").val(),
                 email: $("#txtUserEmail ").val(),
                 password: $("#txtUserPassword").val(),
@@ -224,22 +224,27 @@
                 contactNumber: $("#ContactNumber").val(),
                 role: $("#CustomerRole ").val(),
             };
+            console.log("UserDetails");
+            console.log(JSON.stringify(UserToUpdate));
             $.ajax({
-                url: 'http://localhost:5218/api/Users',
+                url: 'http://localhost:5218/api/Users/' + UserToUpdate.id,
                 type: "PUT",
                 contentType: "application/json",
                 data: JSON.stringify(UserToUpdate),
-                success: () => {
-                    console.log("user updated!!");
-
+                success: (response) => {
+                    console.log("User updated!");
+                },
+                error: (error) => {
+                    console.log('Error updating user:', error);
                 }
             });
+            $("#CustomerUpdateDetails").hide();
         });
         $("#btnAccountDetails").click(() => {
             $("#DivAccountDetails").show();
 
             $.ajax({
-                url: 'http://localhost:5218/api/Users/2',
+                url: 'http://localhost:5218/api/bi/getcustomer/2',
                 type: "GET",
                 contentType: "application/json",
                 success: (user) => {

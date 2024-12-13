@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using CRM.Services;
 using CRM.Entities;
+using Microsoft.AspNetCore.Cors;
 
 namespace VijaySalesAPI.Controllers
 {
+    //[EnableCors("AllowAllOrigins")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -42,8 +44,9 @@ namespace VijaySalesAPI.Controllers
             }
             return Ok();
         }
-        [HttpPut]
-        public  async Task <IActionResult> Put([FromBody] User user)
+
+        [HttpPut("{id}")]
+        public  async Task <IActionResult> Put(int id,[FromBody] User user )
         {   if (user == null)
             {
                 return BadRequest();
