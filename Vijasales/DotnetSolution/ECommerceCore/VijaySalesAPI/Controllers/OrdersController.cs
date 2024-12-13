@@ -6,6 +6,7 @@ using OrderProcessing.Entities;
 using OrderProcessing.Services.Connected;
 using ShoppingCart.Entities;
 using OrderProcessing.Requests;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VijaySalesAPI.Controllers
 {
@@ -68,6 +69,7 @@ namespace VijaySalesAPI.Controllers
             return await _orderService.DeleteAsync(id);
         }
         [HttpGet("Customer/{customerId}")]
+        [Authorize]
         public async Task<List<OrderList>> GetCustomerPastOrders(int customerId)
         {
             List<OrderList> orders = await _orderService.GetCustomerOrdersAsync(customerId);
