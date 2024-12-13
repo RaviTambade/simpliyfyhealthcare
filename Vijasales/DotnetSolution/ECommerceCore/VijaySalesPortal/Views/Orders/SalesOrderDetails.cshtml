@@ -1,7 +1,19 @@
-﻿<h3>Orders for SalesPerson</h3>
+﻿
 
 <div class="container mt-4">
     <h1 class="text-center">Order Details for Salesperson</h1>
+
+    <!-- Filter Dropdown -->
+    <div class="mb-3">
+        <label for="statusFilter" class="form-label">Filter by Status</label>
+       
+        <select id="statusFilter" class="form-select form-select-sm" style="width: auto; display: inline-block;" onchange="filterOrders()">
+            <option value="All">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+    </div>
 
     <!-- List of Orders -->
     <table class="table">
@@ -24,171 +36,116 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 <script>
-
-    // Function to create an order row HTML structure
-
+    let allOrders = [];  
     function createOrderRow(order, customerName) {
-
         return `
-    <tr id="order-${order.id}" class="order-row" data-order-id="${order.id}">
-    <td>${order.id}</td>
-    <td>${customerName}</td>
-    <td>$${order.totalAmount.toFixed(2)}</td>
-    <td>${new Date(order.orderDate).toLocaleDateString()}</td>
-    <td>
-    <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id}, new Date('${order.orderDate}'), ${order.customerId}, ${order.totalAmount})">
-    <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
-    <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
-    <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
-    </select>
-    </td>
-    <td>
-    <button class="btn btn-info btn-sm view-details-btn" onclick="OnDetailsClick(${order.id})">View More Details</button>
-    </td>
-    </tr>
-
-                `;
-
+                <tr id="order-${order.id}" class="order-row" data-order-id="${order.id}">
+                    <td>${order.id}</td>
+                    <td>${customerName}</td>
+                    <td>$${order.totalAmount.toFixed(2)}</td>
+                    <td>${new Date(order.orderDate).toLocaleDateString()}</td>
+                    <td>
+                        <select class="form-select status-dropdown" id="status${order.id}" onchange="changeStatus(${order.id}, new Date('${order.orderDate}'), ${order.customerId}, ${order.totalAmount})">
+                            <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-info btn-sm view-details-btn" onclick="OnDetailsClick(${order.id})">View More Details</button>
+                    </td>
+                </tr>
+            `;
     }
 
     // Fetch orders for the salesperson
-
     function fetchOrders() {
-
         $.ajax({
-
             url: 'http://localhost:5218/api/Orders',
-
             method: 'GET',
-
             dataType: 'json',
-
             success: function (orders) {
-
-                $('#ordersList').empty();
-
-                if (orders && orders.length > 0) {
-
-                    orders.forEach(function (order) {
-
-                        fetchCustomerName(order.customerId, function (customerName) {
-
-                            var orderRow = createOrderRow(order, customerName);
-
-                            $('#ordersList').append(orderRow);
-
-                        });
-
-                    });
-
-                } else {
-
-                    $('#ordersList').append('<tr><td colspan="6">No orders found</td></tr>');
-
-                }
-
-
-
+                allOrders = orders;
+                filterOrders();  
             },
-
             error: function () {
-
                 alert('Failed to load orders');
-
             }
-
         });
-
     }
 
-    function OnDetailsClick(orderid) {
+    // Function to filter orders based on the selected status
+    function filterOrders() {
+        const statusFilter = $('#statusFilter').val();  
 
-        window.location.href = `/Orders/SalesViewDetails?orderId=${orderid}`;
+        // Clear existing orders
+        $('#ordersList').empty();
 
-        console.log("Clicked");
+        // Filter orders based on the selected status
+        const filteredOrders = allOrders.filter(order => {
+            return statusFilter === 'All' || order.status === statusFilter;
+        });
 
+        // If there are any filtered orders, append them to the table
+        if (filteredOrders.length > 0) {
+            filteredOrders.forEach(function (order) {
+                fetchCustomerName(order.customerId, function (customerName) {
+                    const orderRow = createOrderRow(order, customerName);
+                    $('#ordersList').append(orderRow);
+                });
+            });
+        } else {
+            $('#ordersList').append('<tr><td colspan="6">No orders found</td></tr>');
+        }
     }
 
     // Fetch customer name by customer ID
-
     function fetchCustomerName(customerId, callback) {
-
         $.ajax({
-
             url: `http://localhost:5218/api/users/${customerId}`,
-
             method: 'GET',
-
             dataType: 'json',
-
             success: function (customer) {
-
                 callback(customer.firstName + " " + customer.lastName);
-
             },
-
             error: function () {
-
                 alert('Failed to load customer details');
-
                 callback('Unknown Customer');
-
             }
-
         });
-
     }
 
-    // Update order status via API
-
+    
     function changeStatus(orderId, orderDate, customerId, totalAmount) {
-
-        var status = $('#status' + orderId).val();
-
-        var context = {
-
+        const status = $('#status' + orderId).val();
+        const context = {
             Id: orderId,
-
             CustomerId: customerId,
-
             Status: status,
-
             OrderDate: orderDate,
-
             TotalAmount: totalAmount
-
         };
 
         $.ajax({
-
             url: `http://localhost:5218/api/Orders/${orderId}`,
-
             type: 'PUT',
-
             contentType: 'application/json',
-
             data: JSON.stringify(context),
-
             success: function () {
-
                 alert(`Order #${orderId} status updated to ${status}`);
-
             },
-
             error: function () {
-
                 alert('Failed to update order status');
-
             }
-
         });
+    }
 
+    
+    function OnDetailsClick(orderId) {
+        window.location.href = `/Orders/SalesViewDetails?orderId=${orderId}`;
     }
 
     $(document).ready(function () {
-
-        fetchOrders();
-
+        fetchOrders();  
     });
 </script>
-

@@ -1,0 +1,87 @@
+﻿@{
+    // Page-specific logic here
+}
+
+<div class="container-fluid d-flex justify-content-center align-items-center">
+   
+            <div id="CustomerUpdateDetails" class="content-div mt-4" style="height: 100vh; width: 50%;">
+                <h3>Register</h3>
+                <form class="row g-3">
+             
+                    <div class="col-md-5">
+                        <label for="txtFirstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="txtFirstName" placeholder="First Name">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="txtLastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="txtLastName" placeholder="Last Name">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="txtUserEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="txtUserEmail" placeholder="Email">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="txtUserPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="txtUserPassword" placeholder="Password">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="txtUserAddress" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="txtUserAddress" placeholder="Apartment, studio, or floor">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="ContactNumber" class="form-label">Contact Number</label>
+                        <input type="tel" class="form-control" id="ContactNumber" placeholder="Contact No">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="CustomerRole" class="form-label">Select User Role</label>
+                        <select id="CustomerRole" class="form-select">
+                            <option selected>Customer</option>
+                            <option>Sales</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-info" id="registerBtn" >Register</button>
+                    </div>
+                    <p><a href="/auth/login">Sign In</a></p>
+                </form>
+            </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $("document").ready(() => {
+        $("#registerBtn").click(() => {
+            const url = "http://localhost:5218/api/users/register";
+            console.log(url);
+
+            let newUser = {
+                firstName: $("#txtFirstName").val(),
+                lastName: $("#txtLastName").val(),
+                email: $("#txtUserEmail").val(),
+                password: $("#txtUserPassword").val(),
+                address: $("#txtUserAddress").val(),
+                contactNumber: $("#ContactNumber").val(),
+                role: $("#CustomerRole").val(),
+                imageUrl: "/image/baseImage.png"
+            };
+            console.log(newUser);
+
+            $.ajax({
+                url: url,
+                type: "POST", 
+                contentType: "application/json",  
+                data: JSON.stringify(newUser),  
+                success: (response) => {
+                    console.log("User registered!");
+                    alert("New user registered");
+                    window.location.href = "/auth/login";
+                },
+                error: (error) => {
+                    console.log('Error registering user:', error);
+                }
+            });
+        });
+    });
+</script>

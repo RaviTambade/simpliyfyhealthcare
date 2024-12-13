@@ -33,12 +33,11 @@
         let totalAmount = 0;
 
         $.each(data.Items, (index, item) => {
-            console.log('Item:', item); 
+            console.log('Item:', item);
             console.log(`Requesting product with ID: ${item.ProductId}`);
             $.ajax({
                 url: `http://localhost:52741/api/products/${item.ProductId}`,
                 type: "GET",
-                
                 success: function (product) {
                     var cardHtml = `
                         <li class="d-flex justify-content-center mb-3">
@@ -80,14 +79,11 @@
         loadCart();
     });
 
-    // Load cart from API
     function loadCart() {
         $.ajax({
             url: "http://localhost:52741/Cart/Index", // Absolute URL
             type: "GET",
-            xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
-            },
+            xhrFields: { withCredentials: true },
             success: function (data) {
                 console.log(data);
                 addToCart(data);
@@ -98,17 +94,14 @@
         });
     }
 
-    // Remove product from cart (using DELETE)
     $(document).on('click', '.remove-product-btn', function (e) {
         e.preventDefault();
         var productId = $(this).data('product-id');
-        
+
         $.ajax({
-            url: `http://localhost:52741/Cart/DeleteById/${productId}`, // Absolute URL
+            url: `http://localhost:52741/Cart/DeleteById/${productId}`,
             type: 'DELETE',
-            xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
-            },
+            xhrFields: { withCredentials: true },
             success: function (response) {
                 alert('Product removed successfully!');
                 loadCart();
@@ -119,49 +112,58 @@
             }
         });
     });
+    /////Quantity Changing 
+    // Handle increase and decrease quantity
+        // Increase quantity
+$(document).on('click', '.increase-quantity-btn', function (e) {
+    e.preventDefault();
+    var productId = $(this).data('product-id');
+    var quantity = parseInt($('#quantity-' + productId).text());  // Get current quantity
+    var newQuantity = quantity + 1;  // Increment quantity
+    updateQuantity(productId, newQuantity);  // Update the quantity
+});
 
-    // Increase product quantity
-    $(document).on('click', '.increase-quantity-btn', function (e) {
-        e.preventDefault();
-        var productId = $(this).data('product-id');
-        updateQuantity(productId, 1);
-    });
-
-    // Decrease product quantity
-    $(document).on('click', '.decrease-quantity-btn', function (e) {
-        e.preventDefault();
-        var productId = $(this).data('product-id');
-        updateQuantity(productId, -1);
-    });
-
-    // Update product quantity
-    function updateQuantity(productId, change) {
-        $.ajax({
-            url: `http://localhost:52741/Cart/PutById/${productId}`, // Absolute URL
-            type: 'PUT',
-            xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
-            },
-            data: JSON.stringify(change),
-            contentType: 'application/json',
-            success: function (response) {
-                loadCart();
-            },
-            error: function (error) {
-                console.error('Error updating quantity:', error);
-                alert('Error updating quantity.');
-            }
-        });
+// Decrease quantity
+$(document).on('click', '.decrease-quantity-btn', function (e) {
+    e.preventDefault();
+    var productId = $(this).data('product-id');
+    var quantity = parseInt($('#quantity-' + productId).text());  // Get current quantity
+    if (quantity > 1) {
+        var newQuantity = quantity - 1;  // Decrement quantity
+        updateQuantity(productId, newQuantity);  // Update the quantity
     }
+});
 
-    // Clear cart
+function updateQuantity(productId, updatedQuantity) {
+    console.log(`Updating quantity for Product ID: ${productId} to ${updatedQuantity}`); // Debug log
+    $.ajax({
+        url: `http://localhost:52741/Cart/PutById/${productId}`,
+        type: 'PUT',
+        xhrFields: { withCredentials: true },
+        data: JSON.stringify(updatedQuantity),  // Send updated quantity as JSON
+        contentType: 'application/json',
+        success: function (response) {
+            console.log('Response from backend:', response); // Debug log
+            loadCart();  // Reload the cart after updating quantity
+        },
+        error: function (error) {
+            console.error('Error updating quantity:', error);
+            alert('Error updating quantity.');
+        }
+    });
+}
+
+
+
+
+
+    
+
     $('#clear-cart-btn').click(function () {
         $.ajax({
-            url: "http://localhost:52741/Cart/DeleteAll", // Absolute URL
+            url: "http://localhost:52741/Cart/DeleteAll",
             type: 'DELETE',
-            xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
-            },
+            xhrFields: { withCredentials: true },
             success: function (response) {
                 alert('Cart cleared successfully!');
                 loadCart();
@@ -174,14 +176,11 @@
         });
     });
 
-    // Buy Now button click handler
     $('#buy-now-btn').click(function () {
         $.ajax({
-            url: "http://localhost:52741/api/checkout", // Absolute URL
+            url: "http://localhost:52741/api/checkout",
             type: 'POST',
-            xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
-            },
+            xhrFields: { withCredentials: true },
             success: function (response) {
                 alert('Checkout successful! Proceed to payment.');
             },
@@ -194,7 +193,6 @@
 </script>
 
 <style>
-    /* General Styles */
     body {
         background-color: #f8f9fa;
         color: #333;
@@ -222,7 +220,6 @@
         font-size: 0.95rem;
     }
 
-    /* Button Styles */
     .remove-product-btn {
         background-color: steelblue;
         color: white;

@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using ShoppingCart.Entities;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
 using System.Web.Mvc;
 
 namespace VijaySalesSOA.Controllers
@@ -15,28 +14,23 @@ namespace VijaySalesSOA.Controllers
             Cart theCart = (Cart)this.Session["cart"];
             if (theCart == null)
             {
-                // If cart is not found, create a new one and save it in session
                 theCart = new Cart();
                 this.Session["cart"] = theCart;
             }
             return theCart;
         }
 
-        // GET: Cart
         public ActionResult Index()
         {
-            EnableCors(); // Add CORS headers
+            EnableCors();
             Cart theCart = GetCartFromSession();
             return Json(theCart, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Add to Cart
         [System.Web.Http.HttpPost]
         public ActionResult AddToCart()
         {
-            EnableCors();  // Add CORS headers
-
-            // Read JSON request body
+            EnableCors();
             string jsonString;
             using (var reader = new StreamReader(Request.InputStream))
             {
@@ -58,24 +52,16 @@ namespace VijaySalesSOA.Controllers
             };
 
             Cart theCart = GetCartFromSession();
-
-            // Debugging cart state
-            System.Diagnostics.Debug.WriteLine("Cart contents before adding item: " + JsonConvert.SerializeObject(theCart));
-
-            theCart.Items.Add(item);  // Add item to cart
-            this.Session["cart"] = theCart;  // Save updated cart to session
-
-            // Debugging cart state after adding item
-            System.Diagnostics.Debug.WriteLine("Cart contents after adding item: " + JsonConvert.SerializeObject(theCart));
+            theCart.Items.Add(item);
+            this.Session["cart"] = theCart;
 
             return Json(theCart, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Cart/GetById/5
         [System.Web.Http.HttpGet]
         public ActionResult GetById(int id)
         {
-            EnableCors(); // Add CORS headers
+            EnableCors();
             Cart theCart = GetCartFromSession();
             var item = theCart.Items.FirstOrDefault(i => i.ProductId == id);
 
@@ -87,47 +73,64 @@ namespace VijaySalesSOA.Controllers
             return Json(item, JsonRequestBehavior.AllowGet);
         }
 
-        // PUT: Cart/PutById/5
         [System.Web.Http.HttpPut]
         public ActionResult PutById(int id)
         {
-
-            EnableCors(); // Add CORS headers
+            EnableCors();
             string jsonString;
             using (var reader = new StreamReader(Request.InputStream))
             {
                 jsonString = reader.ReadToEnd();
             }
 
-            int? quantity = JsonConvert.DeserializeObject<int?>(jsonString);
+            // Debug: Log the received JSON string
+            System.Diagnostics.Debug.WriteLine($"Received data: {jsonString}");
 
-            if (quantity == null)
+            int updatedQuantity;
+            if (!int.TryParse(jsonString, out updatedQuantity))
             {
-                return Json("Item not found.");
+                // Log error if the quantity is invalid
+                System.Diagnostics.Debug.WriteLine("Invalid quantity received");
+                return Json(new { success = false, message = "Invalid quantity" }, JsonRequestBehavior.AllowGet);
             }
+
+            // Log the ID and quantity to verify
+            System.Diagnostics.Debug.WriteLine($"Updating product ID: {id} with quantity: {updatedQuantity}");
+
             Cart theCart = GetCartFromSession();
             var item = theCart.Items.FirstOrDefault(i => i.ProductId == id);
 
             if (item == null)
             {
-                return Json("Item not found.");
+                // Log error if item is not found
+                System.Diagnostics.Debug.WriteLine("Item not found in cart");
+                return Json(new { success = false, message = "Item not found" }, JsonRequestBehavior.AllowGet);
             }
 
             // Update the quantity of the item
-            item.Quantity += (int)quantity;
-            if (item.Quantity <= 0)
+            item.Quantity = updatedQuantity;
+
+            if (item.Quantity <= 0) // If quantity is 0 or less, remove the item
             {
                 theCart.Items.Remove(item);
             }
 
-            return Json(theCart, JsonRequestBehavior.AllowGet);
+            // Save the updated cart in the session
+            this.Session["cart"] = theCart;
+
+            // Log the updated cart
+            System.Diagnostics.Debug.WriteLine($"Updated Cart: {JsonConvert.SerializeObject(theCart)}");
+
+            return Json(new { success = true, cart = theCart }, JsonRequestBehavior.AllowGet);  // Return the updated cart
         }
 
-        // DELETE: Cart/DeleteById/5
+
+
+
         [System.Web.Http.HttpDelete]
         public ActionResult DeleteById(int id)
         {
-            EnableCors(); // Add CORS headers
+            EnableCors();
             Cart theCart = GetCartFromSession();
             var item = theCart.Items.FirstOrDefault(i => i.ProductId == id);
 
@@ -136,59 +139,52 @@ namespace VijaySalesSOA.Controllers
                 return Json("Item not found.");
             }
 
-            // Remove the item from the cart
             theCart.Items.Remove(item);
 
             return Json(theCart, JsonRequestBehavior.AllowGet);
         }
 
-        // DELETE: Cart/DeleteAll
         [System.Web.Http.HttpDelete]
         [System.Web.Http.Route("Cart/DeleteAll")]
         public ActionResult DeleteAll()
         {
-            EnableCors(); // Add CORS headers
+            EnableCors();
             Cart theCart = GetCartFromSession();
-
-            // Clear all items in the cart
             theCart.Items.Clear();
 
             return Json(theCart, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Cart/GetItemCount
         [System.Web.Http.HttpGet]
         [System.Web.Http.Route("Cart/GetItemCount")]
         public ActionResult GetItemCount()
         {
-            EnableCors(); // Add CORS headers
+            EnableCors();
             Cart theCart = GetCartFromSession();
 
             if (theCart == null || !theCart.Items.Any())
             {
-                return Json(0, JsonRequestBehavior.AllowGet);  // No items, so return 0
+                return Json(0, JsonRequestBehavior.AllowGet);
             }
 
             int totalCount = theCart.Items.Sum(item => item.Quantity);
 
-            return Json(totalCount, JsonRequestBehavior.AllowGet); // Return the total count of items
+            return Json(totalCount, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ShowCart()
         {
-            EnableCors(); // Add CORS headers
+            EnableCors();
             return View();
         }
 
-        // Add CORS headers manually
         private void EnableCors()
         {
-            string allowedOrigin = "http://localhost:49997";  // Replace with your frontend's origin
-            Response.AppendHeader("Access-Control-Allow-Origin", allowedOrigin); // Set specific origin
+            string allowedOrigin = "http://localhost:49997";
+            Response.AppendHeader("Access-Control-Allow-Origin", allowedOrigin);
             Response.AppendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
             Response.AppendHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-            Response.AppendHeader("Access-Control-Allow-Credentials", "true"); // Allow credentials (cookies, etc.)
+            Response.AppendHeader("Access-Control-Allow-Credentials", "true");
         }
-
     }
 }

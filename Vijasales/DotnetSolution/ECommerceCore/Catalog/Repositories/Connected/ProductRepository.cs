@@ -489,7 +489,48 @@ namespace Catalog.Repositories.Connected
 
         public async Task<List<string>> GetCategoriesAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = new SqlConnection(_conString))
+                {
+                    string query = "SELECT DISTINCT Category FROM VsProducts";
+                    var cmd = new SqlCommand(query, conn);
+
+                    var categories = new List<string>();
+
+                    try
+                    {
+                        Console.WriteLine($"Query: {query}");
+
+                        await conn.OpenAsync();
+
+                        using (var dataReader = await cmd.ExecuteReaderAsync())
+                        {
+                            Console.WriteLine($"Columns returned: {dataReader.FieldCount}");
+
+                            while (await dataReader.ReadAsync())
+                            {
+                                var category = dataReader["Category"].ToString();
+                                if (!string.IsNullOrEmpty(category))
+                                {
+                                    categories.Add(category);
+                                }
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"SQL Error: {ex.Message}");
+                    }
+
+                    return categories;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"General Error: {ex.Message}");
+                return new List<string>();
+            }
         }
 
         public async Task<List<string>> GetBrandsAsync(string category)

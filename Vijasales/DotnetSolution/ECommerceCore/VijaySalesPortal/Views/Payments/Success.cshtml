@@ -1,0 +1,236 @@
+﻿
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<div>
+    <h2 id="transactionId"></h2>
+</div>
+
+<div class="container mt-4">
+    <h1 class="text-center">@ViewBag.Title</h1>
+    <!-- Order Summary Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>Customer Details</h4>
+        </div>
+        <div class="card-body shadow">
+            <table class="table table-bordered table-striped" id="tblCustomerSummary">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Order Details Section -->
+    <div class="card mb-4 shadow">
+        <div class="card-header">
+            <h4>Order Details</h4>
+        </div>
+        <div id="tblOrderItemsList" class="card-body overflow-auto"> </div>
+
+        <div class="card-footer bg-light text-end">
+            <h5 class="mb-0 text-secondary">Total Amount: <strong id="totalOrderAmount" class="fs-3 text-dark"></strong></h5>
+        </div>
+    </div>
+
+    <div class="bulk-box text-center">
+
+        <button class="btn btn-outline-primary btn-sm me-2" id="btnGoBack">Go To HOME</button>
+        <!--
+        <button class="btn btn-success btn-sm" id="track-order-btn">Track your order</button>
+        -->
+    </div>
+</div>
+
+
+<script>
+    // To fetrch the customer detail in the summary section
+    const url = window.location.pathname;
+    const parts = url.split('/');
+    const urlId = parts[parts.length - 1];
+
+
+    var fetchTransactionId = () => {
+        $.ajax({
+            url: 'http://localhost:5218/api/payments/' + urlId,  //orderId hard coded
+            method: "GET",
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function (data) {
+                console.log(data);
+                //get individual values
+                let transactionId = data.transactionId;
+                $("#transactionId").html("Payment Successful! Transaction Id : "+ transactionId);
+            },
+            error: () => {
+                console.log("An error occurred");
+            }
+        });
+    }
+
+
+    var displayOrderItems = (item) => {
+
+        var orderItemRow = `
+                    <div class="card-body p-3 row border ">
+                        <div class="col-2 text-center">
+                                    <img src="${item.productImage}" class="img-fluid rounded" alt="Product Image" width="80px" />
+                        </div>
+                        <div class="col-5">
+                            <h6 class="mb-1">${item.name}</h6>
+                                <p class="text-muted mb-1">Brand: <strong>&#8377;${item.brand}</strong></p>
+                            <p class="mb-0">Description: ${item.desc}</p>
+                        </div>
+                        <div class="col-2 mx-auto">
+                                <h6 class="mb-1">Price :&#8377;${item.price}</h6>
+                            <h6>Qty: <strong>${item.quantity}</strong></h6>
+                        </div>
+                        <div class="col-3">
+                                <div class="mx-auto text-center">
+                                    <h6>Sub Total:
+                                        <strong class="mb-0 text-dark fs-4">${item.subtotal}</strong>
+                                    </h6>
+                                </div>
+
+                        </div>
+                    </div>
+            `;
+
+        $('#tblOrderItemsList').append(orderItemRow);
+        $('#totalOrderAmount').html("&#8377;" + item.itemTotal);
+    };
+
+    var displayCustomerSummary = (item) => {
+        var customerSummaryRow = `
+            <tr>
+            <td>#${item.orderid}</td>
+            <td>${item.name}</td>
+            <td>${item.orderdate}</td>
+            <td>\$${item.price}</td>
+            <td>${item.orderstatus}</td>
+            </tr>
+                    `;
+
+        $('#tblCustomerSummary tbody').append(customerSummaryRow);
+    };
+
+    var fetchCustomerDetails = () => {
+        $.ajax({
+            url: 'http://localhost:5218/api/Orders/OrderItem/' + urlId,  //orderId hard coded
+            method: "GET",
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function (data) {
+                console.log(data);
+                //get individual values
+                let customer_name = data[0].name;
+                let order_id = data[0].orderId;
+                let order_date = data[0].orderDate;
+                // Create a JavaScript Date object from the ISO string
+                order_date = new Date(order_date);
+                // Format the date as "Dec 1, 2024"
+                var options = { year: 'numeric', month: 'short', day: 'numeric' };
+                var formattedDate = order_date.toLocaleDateString('en-US', options);
+                let order_status = data[0].orderStatus;
+                let price = 0;
+                data.forEach(order => price += order.totalPrice);
+                let context = {
+                    name: customer_name,
+                    orderid: order_id,
+                    orderdate: formattedDate,
+                    orderstatus: order_status,
+                    price: price
+                };
+
+                displayCustomerSummary(context);
+            },
+            error: () => {
+                console.log("An error occurred");
+            }
+        });
+    }
+
+    var fetchOrderitems = () => {
+
+        $('#tblOrderItemsList').empty(); //clear spinner to load order item
+
+        $.ajax({
+            url: 'http://localhost:5218/api/Orders/OrderItem/' + urlId,  //orderId hard coded
+            method: "GET",
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true  // Ensures cookies are sent with the request
+            },
+            success: function (data) {
+                console.log(data);
+                var itemTotal = 0;
+
+                data.forEach((order, index) => {
+                    let srno = index + 1;
+                    let productName = order.title;
+                    let productQuantity = order.quantity;
+                    let brand = order.brand;
+                    let productPrice = parseFloat(order.price).toFixed(2);
+                    let itemSubTotal = parseFloat(order.totalPrice).toFixed(2);
+                    let productImage = order.imageUrl;
+                    let desc = order.description;
+                    itemSubTotal = parseFloat(itemSubTotal);
+                    console.log(typeof itemSubTotal);
+                    itemTotal += itemSubTotal;
+                    console.log(itemTotal);
+                    context = {
+                        srno: srno,
+                        name: productName,
+                        quantity: productQuantity,
+                        price: productPrice,
+                        subtotal: itemSubTotal.toFixed(2),
+                        brand: brand,
+                        itemTotal: itemTotal.toFixed(2),
+                        productImage: productImage,
+                        desc: desc
+                    };
+
+                    displayOrderItems(context);
+
+
+                });
+
+            },
+            error: function () {
+                console.log("Error occurred while fetching order items");
+
+            }
+        });
+    };
+
+    $("#track-order-btn").click(() => {
+        console.log("Proceed to track btn clicked");
+        context = {
+            orderid: urlId, //This is the order Id Use it for payement as per convinence and integrate it
+            //window.location.href = '/Payment/PayNow?orderid=' + context.orderid;
+        }
+    });
+
+    $("#btnGoBack").click(() => {
+        window.location.href = '/Products/Index';
+      
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchTransactionId();
+        fetchOrderitems();
+        fetchCustomerDetails();
+    });
+
+</script>

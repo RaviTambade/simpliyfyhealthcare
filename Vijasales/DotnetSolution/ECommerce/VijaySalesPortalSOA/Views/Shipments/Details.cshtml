@@ -1,5 +1,8 @@
 ﻿<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
 
 <div class="container mt-5">
     <!-- Back to List Button -->
@@ -44,8 +47,8 @@
                         <label class="form-check-label" for="Delivered">Delivered</label>
                     </div>
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" id="Canceled" name="DeliveryStatus" value="Canceled" />
-                        <label class="form-check-label" for="Canceled">Canceled</label>
+                        <input type="radio" class="form-check-input" id="Cancelled" name="DeliveryStatus" value="Cancelled" />
+                        <label class="form-check-label" for="Cancelled">Cancelled</label>
                     </div>
                 </div>
 
@@ -59,7 +62,7 @@
 </div>
 
 <script>
-    let apiUrl = 'http://localhost:5218/api/shipments';
+    let apiUrl = 'http://localhost:52741/api/shipments';
 
     const PopulateShipmentDetails = (shipmentId) => {
         console.log(`${apiUrl}/${shipmentId}`)
@@ -72,13 +75,13 @@
                 console.log("Shipment data:", response);
 
                 // Populate the page with the fetched shipment data
-                $('#orderid').append(response.orderId);
-                $('#customername').append(response.customerName);
-                $('#customeraddress').append(response.customerAddress);
-                $('#totalamount').append(response.totalAmount);
-                $('#deliverydate').append(new Date(response.deliveryDate).toLocaleDateString()); // Format the date
+                $('#orderid').append(response.OrderId);
+                $('#customername').append(response.CustomerName);
+                $('#customeraddress').append(response.cCstomerAddress);
+                $('#totalamount').append(response.TotalAmount);
+                $('#deliverydate').append(new Date(response.DeliveryDate).toLocaleDateString()); // Format the date
 
-                const status = response.deliveryStatus;
+                const status = response.DeliveryStatus;
                 console.log(status);
                 if (status) {
                     $(`#${status}`).prop('checked', true);
@@ -110,8 +113,9 @@
     }
 
     $(document).ready(() => {
-        const shipmentId = window.location.pathname.split('/').pop(); // e.g. /shipments/details/3 -> 3
 
+        const shipmentId = window.location.pathname.split('/').pop(); // e.g. /shipments/details/3 -> 3
+        console.log(`${apiUrl}/${shipmentId}`)
         PopulateShipmentDetails(shipmentId);
 
         $('#btn-update-status').click(() => {

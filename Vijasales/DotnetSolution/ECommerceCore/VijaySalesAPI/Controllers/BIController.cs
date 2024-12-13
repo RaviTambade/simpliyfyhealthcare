@@ -1,4 +1,6 @@
-﻿using CRM.Entities;
+﻿using Azure;
+using CRM.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -17,7 +19,7 @@ namespace VijaySalesAPI.Controllers
     public class BIController : ControllerBase
 
     {
-
+        [Authorize]
         [HttpGet("getCustomer/{id}")]
         //api/bi/getcustomer/id
 
@@ -30,8 +32,7 @@ namespace VijaySalesAPI.Controllers
                 HttpClient client = new HttpClient();
                 
                 var response = await client.GetAsync(api);
-
-                if (!response.IsSuccessStatusCode)
+                ; if (!response.IsSuccessStatusCode)
                 {
                     return BadRequest(new { message = "customer not found!" });
                 }
@@ -56,22 +57,19 @@ namespace VijaySalesAPI.Controllers
             }
 
         }
-
+        [Authorize]
         [HttpGet("getOrders/{id}")]
 
         public async Task<IActionResult> GetOrderHistory(int id)
         {
-
-            //shipment api -- api/shipment/getshipment/id
-            //order api --- api/orders/getorders/id
-
-            var shipmentStatusAPI = "http://localhost:5218/api/shipments/order/";
-            var ordersAPI = "http://localhost:5218/api/Orders/Customer/" + id;
-
+            string orderAPI = "http://localhost:5218/api/orders/customer/" + id;
+            string getStatAPI = "http://localhost:5218/api/shipments/order/";
+            List<FilteredOrder> orderList = new List<FilteredOrder>();
             try
             {
+
                 HttpClient client = new HttpClient();
-                var response = await client.GetAsync(ordersAPI);
+                var response = await client.GetAsync(orderAPI);
                 if (!response.IsSuccessStatusCode)
                 {
                     return BadRequest(new { message = "order not found!" });
@@ -80,39 +78,39 @@ namespace VijaySalesAPI.Controllers
                 {
                     var orderResponse = await response.Content.ReadAsStringAsync();
 
-                    var orderData = JsonConvert.DeserializeObject<List<OrderList>>(orderResponse);
+                    //get orders by customer id
 
-                    List<FilteredOrder> orders = new List<FilteredOrder>();
+                    var res = await client.GetAsync(orderAPI);
+                    var jsonData = await res.Content.ReadAsStringAsync();
+                    var orders = JsonConvert.DeserializeObject<List<OrderList>>(jsonData);
 
-                    foreach (OrderList order in orderData)
+                foreach (OrderList order in orders)
                     {
-                        var shipmentResponse = await client.GetAsync(shipmentStatusAPI + order.OrderId);
+                    res = await client.GetAsync(getStatAPI + order.OrderId);
+                    string delStat = await res.Content.ReadAsStringAsync();
 
-                        var status = await shipmentResponse.Content.ReadAsStringAsync();
+                        orderList.Add(new FilteredOrder { order = order, status =  delStat});
 
-                        var shipmentStatus = JsonConvert.DeserializeObject(status);
-
-                        orders.Add(new FilteredOrder { order = order, status =  shipmentStatus.ToString()});
-
-                    }
-                    return Ok(orders);
+                    orderList.Add(new FilteredOrder
+                    {
+                        order = order,
+                        status = delStat
+                    });
 
                 }
+                return StatusCode(200, orderList);
 
             }
 
-            catch (Exception ex)
+            }catch(Exception ex)
             { 
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-
+                return StatusCode(500, ex.Message);
+            }
             }
 
-        }
+        [HttpGet("getbalance/{id}")]
 
-        //fetch balance based on user id
-
-        [HttpGet("getOrdersByMonth/{id}")]
-        public async Task<IActionResult> GetOrdersByMonth(int id)
+        public async Task<IActionResult> GetAccountBalance(int id)
         {
 
             //handle both situation like when user has an account and where not.
@@ -122,7 +120,6 @@ namespace VijaySalesAPI.Controllers
 
                 HttpClient client = new HttpClient();
                 var res = await client.GetAsync(api);
-
                 if (res == null)
                 {
                     return StatusCode(404, $"User does not have account");
@@ -135,13 +132,20 @@ namespace VijaySalesAPI.Controllers
 
                     return Ok(balance);
                 }
+
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
+            return Ok(new { id });
+
         }
     }
 
 }
+
+       
+
+    
 
