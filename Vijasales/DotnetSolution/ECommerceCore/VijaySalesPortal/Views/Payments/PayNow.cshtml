@@ -179,7 +179,7 @@
 
     var updateOrderStatus = (data) => {
         var url = 'http://localhost:5218/api/orders/' + urlId;
-        data.status = 'Completed';
+        data.orderStatus = 'Completed';
         $.ajax({
 
             url: url, // Replace with your API URL

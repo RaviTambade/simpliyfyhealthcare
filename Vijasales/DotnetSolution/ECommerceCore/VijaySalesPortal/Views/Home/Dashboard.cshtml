@@ -38,14 +38,14 @@
                 Settings
             </a>
         </li>
-        <li>
+   @*      <li>
             <a href="#" class="nav-link link-body-emphasis" onclick="showDiv('statDiv')">
                 <svg class="bi pe-none me-2" width="16" height="16">
                     <use xlink:href="#table" />
                 </svg>
                 Stats
             </a>
-        </li>
+        </li> *@
         <li>
             <a href="#" class="nav-link active link-body-emphasis" onclick="showDiv('accountDiv')">
                 <svg class="bi pe-none me-2" width="16" height="16">
@@ -97,6 +97,7 @@
             
             </tbody>
         </table>
+                    <div id="paginationControls" class="mt-3 text-center"></div>
        
     </div>
         <div class="content rightBox  bg-light p-4" id="settingDiv">
@@ -164,37 +165,29 @@
 
 
 <script>
-    // Function to handle logout
-    function handleLogout() {
-
-        localStorage.clear();
-        alert("You are logged out!");
-        window.location.href = "/auth/login";
-    }
-
-
-
-    // Function to show the appropriate div based on the id
-    function showDiv(divId) {
-        console.log(divId);
-        // Hide all divs
-        const divs = document.querySelectorAll(".content");
-        divs.forEach(div => div.classList.remove("active"));
-
-        // Show the selected div
-        const selectedDiv = document.getElementById(divId);
-        if (selectedDiv) {
-            selectedDiv.classList.add("active");
-        }
-    }
+    // Variables to keep track of current page, items per page, and orders
+    let currentPage = 1;
+    const itemsPerPage = 5; // Set the number of items per page
+    let orders = []; // Global orders variable to store the fetched data
 
     // Function to populate the orders table
-    function populateOrdersTable(orders) {
+    function populateOrdersTable() {
         let html = "";
-        orders.forEach(order => {
+        const totalOrders = orders.length;
+        const totalPages = Math.ceil(totalOrders / itemsPerPage);
+
+        // Calculate the start and end indices for the current page
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        // Slice the orders array to show only the orders for the current page
+        const ordersToShow = orders.slice(startIndex, endIndex);
+
+        // Generate table rows for the current page's orders
+        ordersToShow.forEach(order => {
             html += `
                     <tr>
-                        <td><img src=${order.imageUrl} class="img-thumbnail" style="height: 50px; width: 50px;" /></td>
+                        <td><img src="${order.imageUrl}" class="img-thumbnail" style="height: 50px; width: 50px;" /></td>
                         <td>${order.title}</td>
                         <td>${order.orderId}</td>
                         <td>${order.orderDate}</td>
@@ -204,7 +197,70 @@
                     </tr>
                 `;
         });
+
+        // Insert the rows into the table body
         $("#orderTableBody").html(html);
+
+        // Generate pagination controls
+        generatePaginationControls(totalPages);
+    }
+
+    // Function to generate pagination controls
+    function generatePaginationControls(totalPages) {
+        let paginationHtml = "";
+
+        // Previous button
+        paginationHtml += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                                <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>
+                               </li>`;
+
+        // Page number buttons
+        for (let page = 1; page <= totalPages; page++) {
+            paginationHtml += `<li class="page-item ${currentPage === page ? 'active' : ''}">
+                                    <a class="page-link" href="#" onclick="changePage(${page})">${page}</a>
+                                   </li>`;
+        }
+
+        // Next button
+        paginationHtml += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                                <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>
+                               </li>`;
+
+        // Insert pagination controls into the DOM
+        $("#paginationControls").html(`
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        ${paginationHtml}
+                    </ul>
+                </nav>
+            `);
+    }
+
+    // Function to change the page
+    function changePage(page) {
+        if (page < 1 || page > Math.ceil(orders.length / itemsPerPage)) return; // Prevent invalid page numbers
+        currentPage = page;
+        populateOrdersTable(); // Re-populate the table for the new page
+    }
+
+    // Function to handle logout
+    function handleLogout() {
+        localStorage.clear();
+        alert("You are logged out!");
+        window.location.href = "/auth/login";
+    }
+
+    // Function to show the appropriate div based on the id
+    function showDiv(divId) {
+        // Hide all divs
+        const divs = document.querySelectorAll(".content");
+        divs.forEach(div => div.classList.remove("active"));
+
+        // Show the selected div
+        const selectedDiv = document.getElementById(divId);
+        if (selectedDiv) {
+            selectedDiv.classList.add("active");
+        }
     }
 
     // Function to render user details card
@@ -217,43 +273,15 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
-                                    <strong>First Name:</strong>
-                                    <p>${user.firstName}</p>
-                                </div>
-                                <div class="col-6">
-                                    <strong>Last Name:</strong>
-                                    <p>${user.lastName}</p>
-                                </div>
+                                <div class="col-6"><strong>First Name:</strong><p>${user.firstName}</p></div>
+                                <div class="col-6"><strong>Last Name:</strong><p>${user.lastName}</p></div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong>Email:</strong>
-                                    <p>${user.email}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong>Address:</strong>
-                                    <p>${user.address}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong>Contact Number:</strong>
-                                    <p>${user.contactNumber}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <strong>Role:</strong>
-                                    <p>${user.role}</p>
-                                </div>
-                            </div>
+                            <div class="row"><div class="col-12"><strong>Email:</strong><p>${user.email}</p></div></div>
+                            <div class="row"><div class="col-12"><strong>Address:</strong><p>${user.address}</p></div></div>
+                            <div class="row"><div class="col-12"><strong>Contact Number:</strong><p>${user.contactNumber}</p></div></div>
+                            <div class="row"><div class="col-12"><strong>Role:</strong><p>${user.role}</p></div></div>
                         </div>
-                        <div class="card-footer text-muted">
-                            Last updated: 10/11/2024
-                        </div>
+                        <div class="card-footer text-muted">Last updated: 10/11/2024</div>
                     </div>
                 </div>
             `;
@@ -271,8 +299,6 @@
         $("#ContactNumber").val(user.contactNumber);
         $("#CustomerRole").val(user.role);
     }
-
-    
 
     // Initialize the page when the DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
@@ -296,7 +322,7 @@
             alert("please login first");
             window.location.href = "/auth/login";
         }
-        
+
         // Fetch user and order data using Promise.all to handle both requests simultaneously
         Promise.all([
             $.ajax({
@@ -312,11 +338,11 @@
                 }, type: "GET"
             })
         ])
-            .then(([orders, user]) => {
-                // Populate orders table and user card
-                populateOrdersTable(orders);
-                renderUserCard(user);
-                populateUserForm(user);
+            .then(([ordersData, user]) => {
+                orders = ordersData; // Save the fetched orders globally
+                populateOrdersTable(); // Populate the orders table
+                renderUserCard(user); // Render the user card
+                populateUserForm(user); // Populate user form
             })
             .catch(err => console.log("Error fetching data", err));
 
@@ -327,11 +353,12 @@
                 new bootstrap.Tooltip(tooltipTriggerEl);
             });
         })();
-    $("#logoutBtn").click(handleLogout);
-    });
 
-    // Logout button click event listener
+        // Logout button click event listener
+        $("#logoutBtn").click(handleLogout);
+    });
 </script>
+
 
 
 

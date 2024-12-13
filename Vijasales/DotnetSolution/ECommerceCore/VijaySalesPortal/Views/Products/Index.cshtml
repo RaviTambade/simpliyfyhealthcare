@@ -336,7 +336,7 @@
             url: "http://localhost:5218/api/products",
             type: 'GET',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             success: function (products) {
                 currentPage = 1;
@@ -355,7 +355,7 @@
             url: "http://localhost:5218/api/products/category/" + category,
             type: 'GET',
             xhrFields: {
-                withCredentials: true  // Ensures cookies are sent with the request
+                withCredentials: true  
             },
             success: function (productdata) {
                 currentPage = 1;

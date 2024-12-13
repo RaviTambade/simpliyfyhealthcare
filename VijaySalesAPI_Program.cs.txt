@@ -18,6 +18,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using VijaySalesAPI.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -38,7 +39,9 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
     options.Cookie.SameSite = SameSiteMode.Lax;
     options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+
 });
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", policy =>
@@ -51,39 +54,52 @@ builder.Services.AddCors(options =>
               .AllowCredentials();  // Allow cookies and credentials to be sent
     });
 });
+
 // Adding services which are needed in the future
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
 // Register IDataRepository 
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
+
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
+
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderItemRepository, OrderItemRepository>();
 builder.Services.AddTransient<IOrderItemService, OrderItemService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
+
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<IPaymentServices, PaymentServices>();
+
 builder.Services.AddTransient<IShipmentService, ShipmentService>();
 builder.Services.AddTransient<IShipmentRepository, ShipmentRepository>();
 
+
 builder.Services.AddTransient<ICardRepository, CardRepository>();
 builder.Services.AddTransient<ICardService, CardServices>();
+
 builder.Services.AddTransient<IBankRepository, BankRepository>();
+
 builder.Services.AddTransient<IBankService, BankService>();
 
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserDataRepository, UserRepository>();
+
 //JWT Setup
+
 // Configure JWT Authentication
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 var appSettings = appSettingsSection.Get<AppSettings>();
 var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
 }).AddCookie(options =>
 {
     options.Cookie.Name = "YourAppAuthCookie"; // Set cookie name
@@ -91,6 +107,7 @@ builder.Services.AddAuthentication(x =>
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest; // Use secure cookies in production (set to Always if HTTPS is used)
     options.Cookie.SameSite = SameSiteMode.Strict; // Helps to prevent CSRF attacks
     options.SlidingExpiration = true; // Cookie expires after a set time but is renewed with activity
+
 })
 .AddJwtBearer(x =>
 {
@@ -104,9 +121,12 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 
+
 });
 
+
 var app = builder.Build();
+
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();

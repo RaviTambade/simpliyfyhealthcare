@@ -22,7 +22,8 @@
 </div>
 
 <script>
-
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
     // Function to render cart items
     let addToCart = (data) => {
         $('#cart-items-list').html('');
@@ -115,8 +116,12 @@
             success: function (data) {
                 
                 
+                if (userId == null || token == null) {
+                    alert("please login first");
+                    window.location.href = "/auth/login";
+                }
                 let orderCart = {
-                    UserId: 2,  // This is just an example. You can dynamically get this based on the current user.
+                    UserId: userId,  // This is just an example. You can dynamically get this based on the current user.
                     OrderCart: {
                         Items: []  // Initialize an empty array for items
                     }
@@ -147,12 +152,17 @@
         console.log("HI");
         $.ajax({
             url: `http://localhost:5218/api/orders`, // API endpoint to create an order
+            headers: {
+                
+                'Authorization': `Bearer ${token}`
+            },
+            contentType: "application/json",
             type: 'POST',
             xhrFields: {
                 withCredentials: true 
             },
             data: JSON.stringify(cartData), // Send the cart data in the request body
-            contentType: 'application/json', // Set content type to JSON
+            
             success: function (response) {
                 // Handle success: Redirect to the order details page
                 console.log(response);
