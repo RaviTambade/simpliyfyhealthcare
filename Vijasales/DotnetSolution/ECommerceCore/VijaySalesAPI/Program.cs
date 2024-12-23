@@ -9,25 +9,8 @@ using PaymentProcessing.Repositories.Connected;
 using OrderProcessing.Repositories.Connected;
 using OrderProcessing.Services;
 using OrderProcessing.Services.Connected;
-<<<<<<< HEAD
-
-
-
-
-
-
-
 using Banking.Repositories.Connected;
 using Banking.Services;
-
-
-
-
-
-=======
-using Banking.Repositories.Connected;
-using Banking.Services;
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 using Shipment.Repositories;
 using Shipment.Repositories.ORM;
 using Shipment.Services;
@@ -58,14 +41,6 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddCors(options =>
 {
-<<<<<<< HEAD
-        options.AddPolicy("AllowAllOrigins", builder =>
-        {
-            builder.AllowAnyOrigin()          // Allows all origins
-                   .AllowAnyMethod()          // Allows all HTTP methods (GET, POST, PUT, DELETE, etc.)
-                   .AllowAnyHeader();         // Allows all headers
-        });    
-=======
     options.AddPolicy("AllowLocalhost", policy =>
     {
 
@@ -75,7 +50,6 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod()  // Allow any HTTP methods (GET, POST, etc.)
               .AllowCredentials();  // Allow cookies and credentials to be sent
     });
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 });
 // Adding services which are needed in the future
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
@@ -133,22 +107,12 @@ builder.Services.AddAuthentication(x =>
 });
 
 var app = builder.Build();
-<<<<<<< HEAD
-app.UseCors("AllowAllOrigins");
-app.UseRouting();
-app.UseAuthorization();
-=======
 
 app.UseCors("AllowLocalhost");
 app.UseRouting();
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 app.UseSession();
 app.UseHttpsRedirection();
 app.UseAuthentication();  // Make sure this comes before UseAuthorization
 app.UseAuthorization();
 app.MapControllers();
-<<<<<<< HEAD
-=======
-
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 app.Run();

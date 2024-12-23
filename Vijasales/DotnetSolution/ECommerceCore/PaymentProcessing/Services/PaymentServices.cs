@@ -51,10 +51,6 @@ namespace PaymentProcessing.Services
             return await _repo.GetPaymentAsync(id);
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 
         public async Task<bool> PayNow(int orderId, string fromAccountNumber, string paymentMode)
         {
@@ -75,7 +71,6 @@ namespace PaymentProcessing.Services
             return updateSuccess;
         }
 
-<<<<<<< HEAD
 
 
 
@@ -84,8 +79,6 @@ namespace PaymentProcessing.Services
         //    return _repo.InsertAsync(payment);
         //}
 
-=======
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
         public Task<bool> UpdatePaymentAsync(Payment payment)
         {
             return _repo.UpdateAsync(payment);

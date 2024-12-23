@@ -44,17 +44,10 @@ namespace VijaySalesAPI.Controllers
             }
             return Ok();
         }
-<<<<<<< HEAD
-
-        [HttpPut("{id}")]
-        public  async Task <IActionResult> Put(int id,[FromBody] User user )
-        {   if (user == null)
-=======
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] User user)
         {
             if (user == null)
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
             {
                 return BadRequest();
             }

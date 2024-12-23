@@ -3,84 +3,6 @@
 *@
 @{
 }
-<<<<<<< HEAD
-<link rel="stylesheet" href="../contrast-bootstrap-pro/css/bootstrap.min.css" />
-<link rel="stylesheet" href="../contrast-bootstrap-pro/css/cdb.css" />
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-<script src="https://kit.fontawesome.com/9d1d9a82d2.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-md-3 bg-light sidebar">
-            <h4 class="mt-3">Menu</h4>
-            <div class="list-group">
-                <button class="list-group-item list-group-item-action " id="btnOrderHistory" >Order History</button>
-                <button class="list-group-item list-group-item-action" id="btnAccountDetails">Account Details</button>
-                <button class="list-group-item list-group-item-action" id="btnEditProfile">Edit Profile</button>
-                <button class="list-group-item list-group-item-action" id="btnCharts">Charts</button>
-                <button class="list-group-item list-group-item-action" id="btnLogout">Logout</button>
-            </div>
-        </div>
-
-        <!-- Content Area -->
-        <div class="col-md-9 content-area">
-            <div id="DivAccountDetails" class="content-div" style="display: none;">
-                <h3>Account Details</h3>
-                <form>
-                    <table>
-                        <tr>
-                            <td>User Id</td>
-                            <td><input type="number" name="UserId" id="txtUserId" readonly /></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>First Name</td>
-                            <td><input type="text" name="FirstName" id="txtUserFirstName" readonly /></td>
-
-                        </tr>
-                        <tr>
-                            <td>Last Name</td>
-                            <td><input type="text" name="lastname" id="txtUserLastName" readonly /> </td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td><input type="email" name="email" id="UserEmail" readonly /> </td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td><input type="password" name="password" id="UserPassword" readonly /></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Address</td>
-                            <td><input type="text" name="address" id="UserAddress" readonly /></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Conatct No </td>
-                            <td><input type="tel" name="contactno" id="UserContact" readonly /></td>
-
-
-                        </tr>
-                        <tr>
-                            <td>Role </td>
-                            <td><input type="text" name="role" id="UserRole" readonly /></td>
-
-
-                        </tr>
-=======
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 
 
 
@@ -88,10 +10,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<<<<<<< HEAD
                             <td><button type="button" class="btn btn-info" id="CloseDetails" style="margin:20px;">Close</button></td>
-=======
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 
 <link rel="stylesheet" href="/css/dashboard.css" />
 
@@ -110,7 +29,7 @@
                 Your orders
             </a>
         </li>
-        <li>
+        @* <li>
             <a href="#"
                class="nav-link link-body-emphasis"
                onclick="showDiv('settingDiv')">
@@ -119,7 +38,7 @@
                 </svg>
                 Settings
             </a>
-        </li>
+        </li> *@
    @*      <li>
             <a href="#" class="nav-link link-body-emphasis" onclick="showDiv('statDiv')">
                 <svg class="bi pe-none me-2" width="16" height="16">
@@ -174,9 +93,7 @@
                 <th>Status</th>
                 <th>Amount</th>
 
-<<<<<<< HEAD
             <div id="CustomerUpdateDetails" class="content-div" >
-=======
             </thead>    
             <tbody id="orderTableBody">
             
@@ -188,7 +105,6 @@
         <div class="content rightBox  bg-light p-4" id="settingDiv">
 
             <div id="CustomerUpdateDetails" class="content-div ">
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
                 <h3>Edit Profile</h3>
                 <form class="row g-3">
                     <div class="col-md-5">
@@ -262,7 +178,6 @@
         const totalOrders = orders.length;
         const totalPages = Math.ceil(totalOrders / itemsPerPage);
 
-<<<<<<< HEAD
          });
         $("#btnCloseChart").click(() => {
              $("#OrderChart").hide();
@@ -295,11 +210,9 @@
 
                 }
             });
-=======
         // Calculate the start and end indices for the current page
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 
         // Slice the orders array to show only the orders for the current page
         const ordersToShow = orders.slice(startIndex, endIndex);
@@ -319,7 +232,6 @@
                 `;
         });
 
-<<<<<<< HEAD
         $("#SubmitEditedProfile").click(() => {
             // $("#DeleteAccount").show();
             // $("#ChartVisuals").show();
@@ -347,7 +259,6 @@
                 error: (error) => {
                     console.log('Error updating user:', error);
                 }
-=======
         // Insert the rows into the table body
         $("#orderTableBody").html(html);
 
@@ -460,7 +371,6 @@
                 items.forEach(i => i.classList.remove('active'));
                 // Add active class to the clicked item
                 this.classList.add('active');
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
             });
             $("#CustomerUpdateDetails").hide();
         });
@@ -478,22 +388,6 @@
         // Fetch user and order data using Promise.all to handle both requests simultaneously
         Promise.all([
             $.ajax({
-<<<<<<< HEAD
-                url: 'http://localhost:5218/api/bi/getcustomer/2',
-                type: "GET",
-                contentType: "application/json",
-                success: (user) => {
-                    console.log(user);
-                    $("#txtUserId").val(user.id);
-                    $("#txtUserFirstName").val(user.firstName);
-                    $("#txtUserLastName ").val(user.lastName);
-                    $("#UserEmail       ").val(user.email);
-                    $("#UserPassword    ").val(user.password);
-                    $("#UserAddress     ").val(user.address);
-                    $("#UserContact     ").val(user.contactNumber);
-                    $("#UserRole        ").val(user.role);
-                    console.log(user);
-=======
                 url: getOrderUrl, headers: {
                     'contentType': "application/json",
                     'Authorization': `Bearer ${token}`
@@ -513,7 +407,6 @@
                 populateUserForm(user); // Populate user form
             })
             .catch(err => console.log("Error fetching data", err));
->>>>>>> b7c818a9c954dd7411c998f9db2341e37a011e21
 
         // Initialize tooltips for any elements with the 'data-bs-toggle="tooltip"' attribute
         (() => {
